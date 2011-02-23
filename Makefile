@@ -1,5 +1,6 @@
 pdf : main.tex\
 	Cross_Sections/cross_sections.tex\
+	Boltzmann_Equations/boltzmann_equations.tex\
 	biblio.bib
 	pdflatex main.tex
 	bibtex main
@@ -9,5 +10,5 @@ pdf : main.tex\
 .PHONY : clean
 
 clean : 
-	-rm main.df
-	-rm *.log
+	-rm main.pdf
+	-rm *.log *.aux *.bbl *.blg

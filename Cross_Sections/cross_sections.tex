@@ -1,26 +1,5 @@
 \section{Cross sections}
 \subsection{Physics of the interactions}
-The principal interactions that electrons and photons can have, are
-\cite{cepxs} :
-\begin{description}
-\item [electron-to-electron :] collisional scattering, knock-on production,
-radiative scattering, elastic scattering and Auger production following impact
-ionization.
-\item [electron-to-photon :] bremsstrahlung production and fluorescence
-production following impact ionization.
-\item [photon-to-photon :] incoherent scattering, coherent scattering (Thomson 
-scattering and Raleigh scattering) and fluorescence production following
-photoionization.
-\item [photon-to-electron :] photoelectric production, Compton electron
-production, pair production and Auger production following photoionization.
-\item [photon-to-positron :] pair production.
-\item [positron-positron :] collisional scattering, radiative scattering and
-elastic scattering.
-\item [positron-to-photon :] bremsstrahlung production, fluorescence
-production following impact ionization and annihilation radiation.
-\item [positron-to-electron :] knock-on production and Auger production
-following impact ionization.
-\end{description}
 
 \begin{description}
 \item [Thomson scattering :] an electron, assumed to be free, oscillates
@@ -47,7 +26,13 @@ shell. The interaction leaves an ionized absorber atom with a vacancy in one
 of its bound shells. This hole is quickly filled through the rearrangement of
 electrons from other shells of the atom. Therefore, one or more X-ray photons
 may also be generated. In some fraction of the cases, the emission of Auger
-electrons may substitute for the X-ray. The photoelectric process is the
+electrons may substitute for the X-ray. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\linewidth]{./Cross_Sections/images/photoelectric}
+\caption{Photoelectric effect}
+\end{figure}
+The photoelectric process is the
 predominant mode of interaction for photons of relatively low energy. The
 process is more important for high atomic number $Z$.The probability of
 photoelectric absorption $\tau$ depends on $Z$ and $h\nu$ as :
@@ -65,6 +50,11 @@ photon leaves the site of the interaction in a different direction from that
 of the original photon. If a photon of energy $h\nu$ and momentum
 $\frac{h\nu}{c}$ is a incident on a stationary, free electron, after the
 collision, the photon is scattered at an angle $\theta$ with energy $h\nu'$.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\linewidth]{./Cross_Sections/images/compton}
+\caption{Compton effect}
+\end{figure}
 The Compton shift is given by :
 \begin{equation}
 \Delta \lambda = \lambda'-\lambda = \frac{h}{mc} \(1-\cos \theta\)
@@ -80,9 +70,340 @@ where $\frac{d\Sigma}{d\bo}$ is the differential scattering cross sections,
 $k_0 = \frac{1}{4\pi \epsilon_0}$, $\epsilon_0$ is the vacuum permittivity,
 $e$ is the elementary charge, $m_e$ is the mass of an electron and $c$ is the
 speed of light in vacuum \cite{radiation}.
+\item [Auger electron :] an atom in which an L electron makes a transition to
+fill a vacancy in the K shell does not always emit a photon. An other L
+electron can be ejected from the atom, thereby leaving two vacancies on the L
+shell. The electron eject by the atom is called an Auger electron.
+Auger-electron emission is favored over photon emission for elements of low
+atomic number. The original inner-shell vacancy in an Auger-electron emitter
+can be created by orbital electron capture, internal conversion, or
+photoelectric effect. Auger cascades can occur in relatively heavy atoms, as
+inner-shell vacancies are successively filled by the Auger process, with
+simultaneous ejections of the more loosely bound atomic electrons.
+\item [Bremsstrahlung :] is an electromagnetic radiation produced by a sudden
+slowing down or deflection of charged particle (especially electrons) passing
+through matter in the vicinity of the strong electric fields of atomic nuclei.
+The efficiency of bremsstrahlung in elements of different atomic number $Z$
+varies nearly as $Z^2$.
+\item [Collisional stopping power :] the collisional stopping power for
+electrons and positrons can be \hbox{written :}
+\begin{equation}
+\(-\frac{dE}{dx}\)_{col}^{\pm} = \frac{4\pi k_0^2 e^4 n}{m_e c^2 \beta^2}
+\[\ln \(\frac{m_e c^2 \tau \sqrt{\tau+2}}{\sqrt{2}I}\)+F^{\pm}\(\beta\)\]
+\end{equation}
+where :
+\begin{equation}
+F^-(\beta) = \frac{1-\beta^2}{2} \[1+\frac{\tau^2}{8} - (2\tau +1 )\ln 2\]
+\end{equation}
+is used for electrons and :
+\begin{equation}
+F^+\(\beta\) = \ln 2 - \frac{\beta^2}{24} \[23 + \frac{14}{\tau +2} +
+\frac{10}{\(\tau + 2\)^2} + \frac{4}{\(\tau + 2\)^2}\]
+\end{equation}       
+for positrons. Here $n$ is number of electrons per unit volume in the medium,
+$\beta = \frac{v}{c}$ is the speed of the particle relative to $c$, $I$ is the
+mean excitation energy of the medium and $\tau = \frac{T}{m_e c^2}$ is the
+kinetic energy $T$ of the particle expressed in multiples of the electron rest
+energy $mc^2$.
+\item[radiative stopping power :] At high beta-particle energies, the
+radiation is emitted mostly in the forward direction, that is, in the direction
+of travel if the beta particle. Unlike collisional energy losses, no single
+analytic formula exists for calculating the radiative stopping power. At high
+energies bremsstrahlung becomes the predominant mechanism of energy loss for
+beta particles. The following approximate formula gives the ratio of radiative
+and collisional stopping powers for an electron of total energy $E$, expressed
+in MeV, in an element of atomic number \hbox{$Z$ :}
+\begin{equation}
+\frac{\(\frac{dE}{dx}\)_{rad}^-}{\(\frac{dE}{dx}\)_{col}^-} \approx
+\frac{ZE}{800}
+\end{equation}
+At very high energies the dominance of radiative over collisional energy
+losses gives rise to electron-photon cascade showers. Since bremsstrahlung
+photon spectrum is approximately flat out to its maximum (equal to the
+electron's kinetic energy), high-energy beta particles emit high-energy
+photons. These, in turn, produce Compton electrons and electron-positron
+pairs, which then produce additional bremsstrahlung photons, and so on. These
+repeated interactions result in an electron-photon cascade shower, which can
+be initiated by either a high-energy beta particle or a photon.
 \end{description}
 
-\subsection{CEPXS and CEPXS-BFP}
-Inelastic interactions, collisional and radiative scattering, can be divided
-into two classes : ``catastrophic" interactions that result in large-energy
-losses and ``soft" interactions that result in small-energy losses. p25 CEPXS
+\subsection{CEPXS}
+The principal interactions that electrons and photons can have, are
+\cite{cepxs} :
+\begin{description}
+\item [electron-to-electron :] collisional scattering, knock-on production,
+radiative scattering, elastic scattering and Auger production following impact
+ionization.
+\item [electron-to-photon :] bremsstrahlung production and fluorescence
+production following impact ionization.
+\item [photon-to-photon :] incoherent scattering, coherent scattering (Thomson 
+scattering and Raleigh scattering) and fluorescence production following
+photoionization.
+\item [photon-to-electron :] photoelectric production, Compton electron
+production, pair production and Auger production following photoionization.
+\item [photon-to-positron :] pair production.
+\item [positron-positron :] collisional scattering, radiative scattering and
+elastic scattering.
+\item [positron-to-photon :] bremsstrahlung production, fluorescence
+production following impact ionization and annihilation radiation.
+\item [positron-to-electron :] knock-on production and Auger production
+following impact ionization.
+\end{description}
+CEPXS is a multigroup Coupled Electron-Photon cross-section (XS) generating
+code. CEPXS was created to \cite{cepxs} :
+\begin{itemize}
+\item generate coupled electron-photon cross sections which can be used by
+standard discrete ordinates code to solve electron-photon transport
+calculations
+\item model the same physical interactions as Version 2.1 of the
+Integrated-TIGER-Series (ITS) code package.
+\end{itemize}
+Now we define \cite{barjon} :
+\begin{itemize}
+\item $\sigma$ is the microscopic cross section. It is the mean probability than a
+particle interacts whit a nucleus per $cm^2$. The unit of $\sigma$ is the barn
+which is $10^{-24}cm^2$.
+\item $\Sigma$ is the macroscopic cross section. $\Sigma = N \sigma$ where $N$
+is the number of atoms per $cm^3$. The unit of $\Sigma$ is $cm^{-1}$.
+\end{itemize}
+In CEPXS, most cross sections for compounds are constructed using \cite{cepxs} :
+\begin{equation}
+\Sigma_{comp} = \sum_i w_i \Sigma_i
+\end{equation}
+where $w_i$ is the weight fraction of the $i^{th}$ element in the compound.
+However, the collisional stopping power of a compound cannot be expressed a
+combination of elemental stopping powers.\\
+The multigroup method involves a discretization of the particle energy domain
+into energy groups :
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\linewidth]{./Cross_Sections/images/multigroup}
+\caption{Multigroup}
+\end{figure}        
+where E1 $>$ E2 $>$ E3 $>$ $\cdots$ $>$ EG $>$ EG+1. EG+1 is the cutoff
+energy. In CEPXS, different groups structures can be selected for photons and
+electrons but the upper boundary energy and the cutoff energy are the same.\\
+The multigroup angular flux, $\Psi^g\(\br,\bo\)$, is defined as :
+\begin{equation}
+\Psi^g\(\br,\bo\) = \int_{E^{g+1}}^{E^g} dE \Psi\(\br,\bo,E\)
+\end{equation}
+where $\Psi(\br,\bo,E)$ is the angular flux. The differential cross section,
+$\Sigma_s(\br,E\rightarrow E',\mu)$ can be represented as :
+\begin{equation}
+\Sigma_s(\br,E\rightarrow E',\mu) = \sum_{l}^{\infty} \frac{2l+1}{4\pi}
+\Sigma_{s,l}(\br,E\rightarrow E') P_l(\mu)
+\end{equation}
+where :
+\begin{equation}
+\begin{split}
+\Sigma_{s,l}(r,E\rightarrow E') &= \int_{4 \pi} d\bo \Sigma_s\(\br,E\rightarrow
+E',\mu\) P_l(\mu)\\
+&= 2\pi \int_{-1}^1 d\mu \Sigma_s(\br,E\rightarrow,\mu) P_l\(\mu\)
+\end{split}
+\end{equation}
+and $P_l$ are the Legendre polynomials. The multigroup-Legendre expansion
+coefficients for the cross sections that describe scattering and production
+interactions are stored by CEPXS in transfer matrices. For a differential
+cross section, the expansion coefficients that are stored in the transfer
+matrix of $L^{th}$-order are :
+\begin{equation}
+\Sigma_{s,L}^{g\rightarrow g'}\(\br\) = \frac{\int_{E^{g+1}}^{E^g} dE w(E)
+\int_{E^{g'+1}}^{E^{g'}}} dE' \Sigma_{s,L}(\br,E\rightarrow
+E'){\int_{E^{g+1}}^{E^g} dE w(E)}
+\end{equation}
+where $w(E)$ is the multigroup weighting function. $g$ is the row index of the
+transfer matrix and $g'$ is the column index. In CEPXS the weighting function
+is piece-wise constant in energy :
+\begin{equation}
+w(E) = c^g \textrm{ for } E^{g}\geq E \geq E^{g+1}
+\end{equation}
+where $c^g$ is a group-dependent constant. Therefore, the multigroup-Legendre
+expansion coefficients become :
+\begin{equation}
+\Sigma_{s,L}^{g \rightarrow g'}\(\br\) = \frac{\int_{E^{g+1}}^{E^g}dE
+\int_{E^{g'+1}}^{E^{g'}}dE' \Sigma_{s,L}\(\br,E \rightarrow E'\)}{\Delta E^g}
+\end{equation}
+where $\Delta E^g = E^g - E^{g+1}$.
+
+The five types of reaction cross sections assembled by CEPXS are : total
+$\(\Sigma_t\)$, absorption $\(\Sigma_a\)$, secondary production
+$\(\Sigma_S\)$, energy deposition $\(\Sigma_E\)$ and charge deposition
+$\(\Sigma_C\)$. For a reaction type $X$, the multigroup reaction rate is :
+\begin{equation}
+R_X^g = \int d\br \Sigma_X^g \Phi^g\(\br\)
+\end{equation}
+The reaction rate over all groups is :
+\begin{equation}
+R_X = \int_{g=1}^G R_X^g
+\end{equation}
+Energy-deposition cross sections are associated with every type of
+interaction. These cross sections are defined as the net energy deposited in
+the medium due to the interactions of particles in a group per unit
+pathlength. These cross sections have units of energy per distance. The
+energy-deposition multigroup cross sections for a scattering interaction could
+be computed by :
+\begin{equation}
+\Sigma_{E,s}^g(\br) = \frac{\int_{E^{g+1}}^{E^g} dE' E
+\Sigma_{s,0}(\br,E\rightarrow E') - \int_{E^{k+1}}^{E^k} dE \int_{E^{k+1}}^E
+dE' E' \Sigma_{s,0}(\br,E\rightarrow E')}{\Delta E^g}
+\end{equation}
+However, it is not what is done in CEPXS where an effective energy-deposition
+multigroup cross sections is defined :
+\begin{equation}
+\Sigma_{E,s}^g\(\br\) = \Sigma_{t,s}^g \(\br,E^{g,m}\) - \sum_{g'=1}^G
+\Sigma_{s,0}^{g\rightarrow g'}\(E^{g',m}\)
+\end{equation}
+where $E^{g,m}$ is the midpoint energy of group $g$ and $\Sigma_{t,s}^g$ are
+the total scattering multigroup cross \hbox{sections :}
+\begin{equation}
+\Sigma_{t,s}^g = \frac{\int_{E^{g+1}}^{E^g} dE \int_{E^{min}}^E dE'
+\Sigma_{s,0} \(\br,E \rightarrow E'\)}{\Delta E^g}
+\end{equation}
+with the assumption that :
+\begin{equation}
+\Sigma_{s,0}(\br,E\rightarrow E') = 0 \textrm{     for }E' < E_{min}
+\end{equation}
+We can notice that :
+\begin{equation}
+\Sigma_{t,s}^g\(\br\) = \sum_{g'=1}^G \Sigma_{s,0}^{g \rightarrow g'}(\br)
+\end{equation}
+only when $E^{min} > E^{g+1}$
+
+\subsubsection{Catastrophic collisional scattering}       
+In CEPXS, inelastic scattering due to catastrophic collisions are modelled by
+the M\o ller microscopic cross section, $\sigma^{CC}$. One of the assumptions
+used in the derivation of the M\o ller cross section is that the incident
+electron collides with a free atomic electron. The adequacy of this assumption
+depends on how the energy of the incident electron compares to the binding
+energy of the atomic electron with which it collides. For example, if the
+incident-electron energy is on the order if the binding energy of an electron,
+the assumption of zero binding is wrong. After an inelastic collision, two
+electrons emerge. By convention, the particle with the higher energy is
+considered to be the primary electron. The electron is the knock-on electron.
+The M\o ller cross section can be written as differential tin the energy of
+the knock-on electron. The microscopic form of this cross section, in units of
+$cm^2$ per reduced electron energy, per collision with an atomic electron is
+given by :
+\begin{equation}
+\frac{d\sigma^{CC}\(\br,\tau,\epsilon\)}{d\epsilon} = \frac{2 \pi r_0^2}{\beta^2}
+\[\frac{1}{\epsilon^2} + \frac{1}{\tau_p^2} + \frac{1}{\(\tau+1\)^2} -
+\frac{2\tau +1}{\(\tau+1\)^2\epsilon \tau_p}\]
+\end{equation}
+where $\tau_p$ is the kinetic energy of the scattered primary electron in
+units of reduced energy, $\tau_p$ varies from $\frac{\tau_p}{2}$ to $\tau$.
+$\epsilon$ is energy lost by the incident electron in units of reduced energy.
+It is equivalent to the kinetic energy of the knock-on electron in reduced
+energy units. Since the knock-on energy is the difference between the energies
+$\tau$ and $\tau_p$, $\epsilon$ varies from 0 to $\frac{\tau}{2}$. $r_0$ is
+the classical electron radius.\\
+\red{The macroscopic M\o ller cross section for a material is :}
+\begin{equation}
+\frac{\Sigma^N(\br,\tau,\epsilon)}{d\epsilon} = \(\frac{Z}{A}\)_{eff} N_A
+\frac{d\sigma^{CC}\(\br,\tau,\epsilon\)}{d\epsilon}
+\end{equation}
+where the expression in brackets is defined in the glossary. Because energy
+and angle are kinematically related, the M\o ller cross section that is
+differential in both energy and angle is :
+\begin{equation}
+\frac{d\Sigma^{CC}(\br)}{d\tau_p d\bo_p} = \frac{d\Sigma^{CC}(\br)}{d\tau_p}
+\frac{1}{2\pi} \delta(\mu-\mu_p)
+\end{equation}
+The total cross section for a catastrophic collision is obtained by
+integrating the differential cross sections over all possible energies and
+angles at which primary electrons can emerge. Because the M\o ller cross
+section is singular is at $\epsilon = 0$, tis integration must be truncated at
+a primary electron energy that corresponds to a non-zero knock-on energy,
+$\epsilon^{CC}$ :
+\begin{equation}
+\Sigma_t^M\(\br,\tau\) = \int_{\frac{\tau}{2}}^{\tau-\epsilon^{CC}} d\tau_p
+\int_{4\pi} d\bo_p \frac{d\Sigma^{CC}(\br)}{d\tau_p d\bo_p}
+\end{equation}
+The energy, $\epsilon^{CC}$, is the smallest energy that knock-on electron is
+allowed to have as a result of a catastrophic collision. Collisions that
+produce primary electrons with energy less than $\tau-\epsilon^{CC}$ are called
+catastrophic. $\epsilon^{CC}$ is chosen such that, in catastrophic collisions,
+primary electrons appear in energy groups that are non-adjacent to the energy
+group of the incident particle. For example, for an electron with energy
+$\tau$ in group $g$, $\epsilon^{CC} = \tau -\tau_{g+2}$. $\epsilon^{CC}$ depends on
+both the kinetic energy of the incident electron and the group structure.
+While the energy, $\epsilon^{CC}$, cannot be less than the smallest width of an
+electron energy group, it may be less than the cutoff energy. The restriction
+of catastrophic collisions to transfer between non-adjacent energy groups is
+required to insure that, in a multigroup formalism, $\epsilon^{CC}$ is never
+zero. If scattering into adjacent energy groups were allowed, $\epsilon^{CC}$
+would equal $\tau - \tau^{g+1}$. Since the kinetic energies of electrons in a
+group can assume any value between $\tau^g$ and $\tau^{g+1}$, $\epsilon^{CC}$
+could assume the value of zero if catastrophic collisions into adjacent energy
+groups were allowed. The total cross sections associated with catastrophic
+collisions are :
+\begin{equation}
+\begin{split}
+\Sigma_{t}^{CC,g}\(\br\) &= \frac{1}{\Delta \tau^g} \int_{\tau^{g+1}}^{\tau^g}d\tau
+\int_{\frac{\tau}{2}}^{\tau^{g+2}} d\tau_p \int_{4\pi} d\bo_p
+\frac{d\Sigma^{CC}\(\br,T,T_p\)}{d\tau_p d\bo_p}\\
+&= \frac{1}{\Delta \tau_p} \int_{\tau^{g+1}}^{\tau^g} d\tau
+\int_{frac{\tau}{2}}^{\tau^{g+2}}d\tau_p \frac{d\Sigma^{CC}\(\br,\tau,\tau_p\)}{d\tau_p}
+\end{split}
+\end{equation}
+The effective energy deposition cross sections due to catastrophic collisions
+are :
+\begin{equation}
+\Sigma_{E}^{CC,g}\(\br\) = \Sigma_{t,s}^{CC,g}\(\br\) E^{m,g} - \sum_{g' >
+g}\Sigma_{s,0}^{CC,g \rightarrow g'}\(\br\) E^{m,g'}
+\end{equation}
+
+\subsubsection{Knock-on electron production}
+Knock-on electrons are defined to be the least energetic electrons that emerge
+following an inelastic collision. In CEPXS, the minimum energy that a knock-on
+electron can possess is the cutoff energy. Most of the primary electrons
+scattered in a catastrophic collision will be correlated in energy with a
+knock-on electron. However, the extent of this correlation is limited by the
+electron energy domain that is selected by the user of the code. If
+$\epsilon^{CC}$ is less than the cutoff energy, not every primary electron
+scattered in a catastrophic collision is associated with a knock-on electron.
+There is no energy correlation between knock-on electrons and electrons that
+lose energy as a result of soft collisions. This is because, in the CSD
+approximation, individual soft collisions are not resolved. Nonetheless, if
+$\epsilon^{CC}$ is greater than the cutoff energy, those knock-ons that are
+generated with energy between $\tau^{G+1}$ and $\epsilon^{CC}$ must be
+associated with soft collisions, even if a direct energy correlation is
+absent.\\
+The microscopic M\o ller cross section differential in the energy of the
+knock-on electron, $\sigma^K$, associated with a collision with an atomic
+electron is given \hbox{by :}
+\begin{equation}
+\frac{d\sigma^K\(\br\)}{d\epsilon d\bo_s} = \frac{d\sigma^K\(\br\)}{d\epsilon}
+\frac{1}{2\pi} \delta\(\mu-\mu_s\)
+\end{equation}
+In order for electrons in group $g$ to produce knock-on electrons in group
+$g'$, the lowest energy of the lower energy group $\tau^{g'+1}$ must not
+exceed the maximum knock-on energy $\frac{\tau^g}{2}$. The expansion
+coefficients of the $l^th$-order transfer matrix for knock-on electron
+production are :
+\begin{equation}
+\sigma_{s,l}^{K,g\rightarrow g'}\(\br\) = \frac{1}{\tau^g} \int_{\tau^{g+1}}^{\tau^g}
+d\tau \int_{\tau^{g'+1}}^{\min\(\tau^{g'},\frac{\tau}{2}\)} d\epsilon
+\nu\(\Delta \epsilon\) P_l\(\mu_s\)
+\frac{d\sigma^k\(\br,\tau,\epsilon\)}{d\epsilon}
+\end{equation}
+where the argument of the Heaviside function $\nu$ is :
+\begin{equation}
+\Delta \epsilon = \min\(\tau^{g'},\frac{\tau}{2}\)-\tau^{g'+1}
+\end{equation}
+\red{The macroscopic transfer matrices for knock-on production are :}
+\begin{equation}
+\Sigma_{s,l}^{K,g\rightarrow g'}\(\br\) = \(\frac{Z}{A}\)_{eff} N_A
+\sigma_{s,l}^{K,g\rightarrow g'}\(\br\)
+\end{equation}
+The effective energy deposition cross sections due to knock-on production
+\hbox{are :}
+\begin{equation}
+\Sigma_{E}^{K,g}\(\br\) = - \sum_{g' > g} \Sigma_{s,0}^{K,g\rightarrow
+g'}(\br) E^{m,g'}
+
+\subsubsection{Soft collisional scattering}
+\end{equation}
+
+
+\red{page 125}
+\subsection{CEPXS-BFP}
