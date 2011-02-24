@@ -1,4 +1,7 @@
 \section{Cross sections}
+\red{ATTENTION PAS CONSISTENT DANS L'UTILISATION DES TAU. CERTAINS DEVRAIENT
+ETRE E... EN FAIT TOUS SAUF LE PREMIER.}\\
+\red{CHECK ALL THE $\Sigma_{t,s}$}
 \subsection{Physics of the interactions}
 
 \begin{description}
@@ -400,9 +403,431 @@ The effective energy deposition cross sections due to knock-on production
 \begin{equation}
 \Sigma_{E}^{K,g}\(\br\) = - \sum_{g' > g} \Sigma_{s,0}^{K,g\rightarrow
 g'}(\br) E^{m,g'}
+\end{equation}
 
 \subsubsection{Soft collisional scattering}
+In CEPXS, the definition of a soft collision depends on the multigroup energy
+grid. In a soft collision, a scattered electron appears in the energy group
+that is adjacent to the group associated with the incident electron. CEPXS
+does not model soft collisions with a single-event cross sections since a
+multigroup representation of such a cross section is not feasible. Rather, the
+restricted CSD approximation is used for soft collisions. Hence, energy-loss
+straggling is not associated with soft collisions.\\
+The expansion coefficients for the $l^{th}$-order transfer matrix associated
+with the first-order differenced form of the restricted CSD operator are :
+\begin{equation}
+\Sigma_{s,l}^{SC}(\br) = \frac{S^C(\br,E^{m,g})}{E^{m,g}-E^{m,g'}}
+\delta_{g',g+1}
 \end{equation}
+where $S^C$ is the restricted collisional stopping power. In a soft collision,
+an electron is assumed to slow down without angular deflection. The angular
+distribution associated with the CSD cross sections is the delta function,
+$\delta(\mu-1)$, which must be represented by a truncated Legendre expansion
+in CEPXS :
+\begin{equation}
+\Sigma_{s,l}^{SC,g\rightarrow g'} = \Sigma_{s,0}^{SC,g\rightarrow g'}
+\textrm{  for }l = 0, 1, \cdots, L
+\end{equation}
+In a discrete ordinates calculation, such a truncated representation of the
+delta function will cause artificial or numerical dispersion of the particles
+unless the proper quadrature set is chosen (Galerkin quadrature). The
+expansion coefficients of the $l^th$-order transfer matrix associated with the
+second-order (diamond-differenced) form of the restricted CSD operator are
+(for $g=1,2,\cdots ,G-1$) :
+\begin{equation}
+\Sigma_{s,l}^{SC,g\rightarrow g'}\(\br\) = 
+\left\{
+\begin{aligned}
+& \frac{(-1)^{g'-g+1}}{\Delta E^g} 2 \(S^C(\br,E^{g'}) + S^C\(\br,E^{g'+1}\)\)
+& \textrm{ if } G > g' > g\\
+& \frac{(-1)^{G-g+1}}{\Delta E^g} 2 \(S^C\(\br,E^G\)+S^C\(\br,E^{G+1}\)\)
+& \textrm{ if } g' = G\\
+& 0 &\textrm{ otherwise}
+\end{aligned}
+\right.
+\end{equation}
+Note that the second-order CSD cross sections can be negative. This is
+possible since these cross sections do not have a microscopic counterpart.
+While discrete ordinates codes can accept negative cross sections, such cross
+sections are not compatible with multigroup Monte-Carlo codes.\\
+The effective absorption cross sections due to soft collisions are :
+\begin{itemize}
+\item first order :
+\begin{equation}
+\Sigma_{a}^{SC,g}\(\br\) =
+\left\{
+\begin{aligned}
+& 0 & \textrm{ if } g=1,2,\cdots, G-1\\
+& \frac{S^C(\br,E^{m,g})}{E^{m,g} - E^u} & \textrm{ if }g = G
+\end{aligned}    
+\right.
+\end{equation}
+\item second order :
+\begin{equation}
+\Sigma_a^{SC,g}\(\br\) = \frac{(-1)^{G-g}2S^C\(\br,E^{g+1}\)}{\Delta E^g} \textrm{
+for }g=1,2,\cdots,G
+\end{equation}
+\end{itemize}
+where $E^u$ is an arbitrary energy that is less than the cutoff energy.\\
+The total cross sections for soft collisions are :
+\begin{itemize}
+\item first order : $\Sigma_{t}^{SC,g}\(\br\) = \Sigma_a^{SC,g}\(\br\) +
+\Sigma_{s,0}^{SC,g\rightarrow g+1}\(\br\)$
+\item second order : $\Sigma_{t}^{SC,g}\(\br\) = \Sigma_{a}^{SC,g}\(\br\) + 
+\sum_{g' > g} \Sigma_{s,0}^{SC,g\rightarrow g'}\(\br\)$
+\end{itemize}
+The energy deposition cross sections due to soft collisions are :
+\begin{itemize}
+\item first collision :
+\begin{equation}
+\Sigma_E^{SC,g}\(\br\) =
+\left\{
+\begin{aligned}
+&0 & \textrm{ if } g<G\\
+&\Sigma_{a}^{SC,g}\(\br\) E^{m,g} & \textrm{ if } g=G
+\end{aligned}
+\right.
+\end{equation}
+\item second order :
+\begin{equation}
+\Sigma_E^{SC,g} = \Sigma_{t}^{SC,g}\(\br\) E^{m,g} - \sum_{g'>g}^{G}
+\Sigma_{s,0}^{SC,g \rightarrow g'}\(\br\)E^{m,g'}
+\end{equation}
+\end{itemize}
+These energy deposition cross sections are non-physical to the extent that
+they cannot be used to determine the of energy deposited by soft collisions
+involving electrons in a group. However, they can be used to determine to
+determine the total energy deposited by soft collisions involving electrons in
+all groups.
+\subsubsection{The restricted collisional stopping power}
+In the first-order scheme, the restricted stopping power must be evaluated at
+the midpoint energies of all electron groups except the last. The restricted
+collisional stopping power is defined as that portion of the total stopping
+power that is not due to catastrophic \hbox{collisions :}
+\red{That is weird, page 37. Verifier ce que vaut T/tau et H/nu}
+\begin{equation}
+S^C\(\br,E^{m,g}\) = \mathcal{S}^C\(\br,E^{m,g}\) - \frac{m_e c^2}{\Delta
+\tau^g} \int_{\tau^{g+1}}^{\tau^g} d\tau \int_{\frac{\tau}{2}}^{\tau^{g+2}}
+d\tau_p \nu(\Delta \tau_p) (\tau-\tau_p) \frac{d\Sigma^{CC}(\br,\tau,\tau_p)}{d\tau_p}
+\end{equation}
+with $g=1,2,\cdots, G-1$ and $\mathcal{S}^C(\br,E)$ is the total collisional
+stopping power $\[\frac{MeV cm^2}{g}\]$ that is generally derived from Bethe
+theory. The stopping power for a compound can be constructed with the aid of a
+density effect formalism discussed in the next section.\\
+The restriction that the cutoff energy in CEPXS cannot extend below one keV is
+due to the lack of stopping power data (as well as electron elastic scattering
+data) for arbitrary materials below one keV. Even for electron energies that
+exceed one keV, the Bethe stopping power theory can be inadequate in high-Z
+materials. Theoretical models of the stopping power at low energies must
+account for effects neglected in Bethe theory such as the inelastic scattering
+of electrons from conduction electrons, inner atomic electrons, and
+plasmons.\\
+Since the definitions of catastrophic and soft collisions are dependent on
+group parameters, the restricted stopping power that is calculated by CEPXS is
+also dependent on the electron group structure. The share of the collisional
+stopping power that is associated with catastrophic collisions increases as
+more groups are selected. This is because the energy, $\epsilon^{CC}$, that
+demarcates catastrophic and soft collisions decreases as the number of groups
+increases.\\
+However, the figure indicates that soft collisions dominate collisional energy
+loss even when an excessive number of electron groups (160) are employed.
+Indeed, very many electron groups would be needed to make the collisional
+stopping power due to catastrophic collisions comparable to the total stopping
+power. This is another way of stating the previously mentioned assertion that
+an excessive number of groups would be required to accurately represent a
+single-event inelastic collisional cross section. In CEPXS, we are able to
+accurately calculate the energy loss of an electron due to inelastic
+scattering with only a modest number of groups ($\approx 40$) because the
+restricted CSD approximation is used to represent the energy loss that is due
+to soft collisions.\\
+Both the total stopping power and the restricted collisional stopping power
+are defined to be positive. That is, a positive stopping power denotes the
+loss of energy per pathlength travelled. However,the restricted stopping power
+can become negative for low electron energies in high-Z materials if the total
+stopping power is derived from the Bethe theory. This is because the
+assumptions that are used to derive the Bethe stopping power are inadequate
+for low energies in high-Z materials.\\
+In CEPXS, the Bethe stopping power is corrected at low energies in high-Z
+materials. Since a general formalism for electron stopping powers in arbitrary
+materials at low energies is not available, a variety of empirical corrections
+have been proposed. In CEPXS, we employ a power-law extrapolation of the Bethe
+stopping power for each element below the arbitrarily selected energy of 10
+keV :
+\begin{align}
+& S^C(\br,E) = S^{Bethe}(\br,E) & \textrm{ for }E > 10 keV \\
+& S^C(\br,E) = S^{Bethe}(\br,10keV) \(\frac{E\(10 keV\)}{E}\)^x & \textrm{ for
+}E \leq 10 keV  \\
+\end{align}
+where $x = - \left.\frac{\partial \ln(S(\br,E))}{\partial \ln
+(E)}\right|_{E=10keV}$.\\
+In order to evaluate the cross sections for the second-order differenced form
+of the CSD operator, the restricted stopping power must be evaluated at all
+group boundaries except the upper boundary, $E^1$, and the lower boundary
+$E^{G+1}$. Since a boundary energy is both the top of one group and the bottom
+of another, there is some ambiguity as to how a catastrophic collision is to
+be defined for an electron whose energy is the same as that of a group
+boundary. In order to remove this ambiguity, we consider the restricted
+collisional stopping power at a group boundary to be the average of these two
+\hbox{formulations :}
+\begin{equation}
+S^C(\br,E^g) = \frac{1}{2}\(S_U^C\(\br,E^g\)+S_L^{C}(\br,e^g)\)
+\end{equation}
+with $g=2,\cdots,G$
+
+\subsubsection{The density effect correction}
+The density effect arises from the self polarization of the medium by the
+electron. It reduces the collisional stopping power :
+\begin{equation}
+\mathcal{S}^C(E) = \mathcal{\bar{S}}i^C(E) - \delta(E) 
+\end{equation}
+where $\delta$ is the density effect correction $\[\frac{MeV-cm^2}{g}\]$ and
+$\mathcal{\bar{S}}^C$ is the uncorrected stopping power. The density effect
+correction becomes most pronounced at high electron energies. For example, in
+water, the density effect correction becomes significant above one MeV. The
+stopping powers of a compound can be constructed from uncorrected stopping
+power of its constituent elements by :
+\begin{equation}
+\mathcal{S}_{mol}^C(E) = \sum_i w_i \mathcal{\bar{S}}_i^C(E) -\delta_{mol}(E)
+\end{equation}
+if $\delta_{mol}$, the density effect correction for the compound, is know. A
+formula for the density effect correction for an arbitrary material was
+devised by Sternheimer \cite{stern}.
+
+\subsubsection{Bremsstrahlung cross section differential in energy}
+The bremsstrahlung production cross section is differential in both the
+energy and the emission angle of photon. In CEPXS, this cross section is
+separated into a cross section that is differential in energy and a normalized
+differential angular distribution. The bremsstrahlung cross section
+differential in energy that is used by CEPXS was devised by Berger and Seltzer
+\cite{berger}. This bremsstrahlung cross section is assembled from a variety
+of Born approximation cross sections and includes empirical correction
+factors.
+
+\subsubsection{Catastrophic radiative scattering}
+In CEPXS, catastrophic radiative scattering is modelled by the bremsstrahlung
+production cross section rewritten as $\Sigma^{CB}$, a cross section that is
+differential in the energy of the scattered electron. Electron slowing down
+due to soft radiative scattering is modelled by the restricted CSD
+approximation.\\
+Like the M\o ller cross section, the bremsstrahlung cross section differential
+in energy used in CEPXS becomes singular as the energy of the secondary
+particle produced (the photon) goes to zero. Hence, as for the M\o ller cross
+section, some low-energy cutoff must be employed on the integration of the
+bremsstrahlung cross section over photon energy. However, unlike the M\o ller
+cross section, the bremsstrahlung cross section could be applied to all
+radiative energy transfers. In CEPXS, the restricted CSD approximation for
+soft radiative events is used because it is somewhat more efficient (i.e. an
+accurate solution can be obtained with fewer electron groups). Hence,
+energy-loss straggling is implicit only for catastrophic radiative events.\\
+CEPXS assumes that the incident electron does not undergo angular deflection
+as a result of bremsstrahlung emission. Hence the scattering cross section,
+$\Sigma^{CB}$, for catastrophic radiative interactions that is differential in
+the energy of the scattered electron is :
+\begin{equation}
+\frac{d\Sigma^{CB}}{d\tau_s d\Omega} = \frac{d\Sigma^{CB}}{dT_s}
+\frac{1}{2\pi} \delta \(\mu_s - 1\)
+\label{au-dessus}
+\end{equation}
+where $\mu_s$ is the cosine of the angle of scatter of the electron relative
+to its initial direction.
+The total cross section associated with catastrophic radiative emission is
+obtained by integrating (\ref{au-dessus}) over all photon energies. Because
+the bremsstrahlung cross section is singular at zero photon energy , this
+integration must be truncated at a scattered electron energy that corresponds
+to a non-zero photon energy, $\epsilon^{CB}$. In the high-frequency limit in
+which the photon energy is comparable the incident electron's energy, the
+model cannot be used anymore. It has been recommended that some high frequency
+limit for the bremsstrahlung cross section, based on theory and experiment, be
+used instead. Rather than adopting a new formalism for the bremsstrahlung
+cross section in the high-frequency limit, we chose to truncate the
+integration of the bremsstrahlung cross section in CEPXS at a maximum photon
+energy, $\epsilon^{max}$. The maximum photon energy that is allowed in CEPXS
+is arbitrarily set to be one keV less than the energy of the incident
+electron.\\
+The total cross section associated with catastrophic radiative emission is  :
+\begin{equation}
+\Sigma_t^{CB} (\br,T) = \int_{T-\epsilon^{max}}^{T-\epsilon^{CB}} dT_s
+\frac{d\Sigma^{CB}(\br,T,T_s)}{dT_s}
+\end{equation}
+In CEPXS, a catastrophic radiative event is defined to be one in which an
+electron down-scatters in energy $T$ in group $g$, the maximum energy that an
+electron can have after a catastrophic radiative event is $T^{g+2}$. Hence,
+the lower photon energy cutoff for catastrophic radiative emission is
+$\epsilon^{CB} = T-T^{g+2}$.\\
+The total multigroup cross sections for catastrophic radiative emission are :
+\begin{equation}
+\Sigma_{t,s}^{CB,g}(\br) = \frac{1}{\Delta T^g} \int_{T^{g+1}}^{T^g} dT
+\int_{T-\epsilon^{max}}^{T^{g+2}} dT_s \frac{d\Sigma_s^{CB}\(\br,T,T_s\)}{dT_S}
+\end{equation}
+The expansion coefficients of the transfer matrices for catastrophic radiative
+emission are :
+\begin{equation}
+\Sigma_{s,l}^{CB,g\rightarrow g'} = \frac{1}{\Delta T^g} \int_{T^{g+1}}^{T^g}
+dT \int_{T^{g'+1}}^{T^{g'}} dT_s \frac{d\Sigma_s^{CB}(\br,T,T_s)}{dT_s}
+\end{equation}
+with $g'=g+2,g+1,\cdots,G$.\\
+The effective energy deposition cross sections for scattering by catastrophic
+radiative emission are :
+\begin{equation}
+\Sigma_E^{CB,g}\(\br\) = \Sigma_{t,s}^{CB,g}(\br) E^{m,g} - \sum_{g' > g}
+\Sigma_{s,0}^{CB,g\rightarrow g}E^{m,g'}
+\end{equation}
+
+\subsubsection{Bremsstrahlung production}
+In CEPXS, the cross section for bremsstrahlung  photon production is separated
+into a cross section that is differential in the energy of the photon and into
+a normalized differential angular distribution :
+\begin{equation}
+\frac{d\Sigma^{BP}}{d\epsilon d\bo} = \frac{\Sigma^{BP}}{d\epsilon}
+\frac{dW(\mu,T)}{d\Omega}
+\end{equation}
+where $\mu$ is the cosine of the emitted photon relative to the direction of
+the electron prior to radiative emission.\\
+The Sommerfield angular distribution of bremsstrahlung is used in CEPXS :
+\begin{equation}
+\begin{split}
+\frac{dW(\mu,T)}{d\bo} &= \frac{1}{2\pi} \frac{dW(\mu,T)}{d\mu}\\
+&=\frac{1-\beta^2}{4\pi (1-\beta \mu)^2}
+\end{split}
+\end{equation}
+As the energy of the incident electrons increases ($\beta \rightarrow 1$), the
+bremsstrahlung angular distribution becomes increasingly forward peaked.\\
+In order for electrons in group $g$ to produce photons in group $f$, the
+maximum energy for an electron in the group $T^g$ must exceed the lower energy
+boundary of that photon group, $\epsilon^{f+1}$. The expansion coefficients of
+the transfer matrices for bremsstrahlung emission are :
+\begin{equation}
+\Sigma_{s,l}^{PB,g\rightarrow f}(\br) = \frac{1}{\Delta T^g} \int_{T^{g+1}}^{T^G}
+dT \int_{\epsilon^{f+1}}^{\min\(\epsilon^f,\epsilon^{max}\)} d\epsilon
+\nu\(\Delta \epsilon\) W_l(T) \frac{d\Sigma^{BP}(\br,T,\epsilon)}{d\epsilon}
+\end{equation}
+with $f=1,2,\cdots,F$ and the argument of the Heaviside function is :
+\begin{equation}
+\Delta \epsilon = \min \(\epsilon^f,\epsilon^{max}\) - \epsilon^{f+1}
+\end{equation}
+Most bremsstrahlung photons are correlated in energy with electrons that are
+scattered in catastrophic radiative events. However, if $\epsilon^{CB}$
+exceeds $\epsilon^{F+1}$, those photons with energy less than $\epsilon^{CB}$
+are associated with soft radiative emission. As was the case for soft
+collisions, soft radiative energy losses are not correlated in energy with the
+production of secondary particles. The energy domain that the user defines for
+the calculation can also impact the extent of the energy correlation for
+catastrophic events. For example, if $\epsilon^{CB}$ is less than the cutoff
+energy, electrons can lose energy in a catastrophic radiative event without
+the appearance of bremsstrahlung photons in any photon energy group. The
+moments of the normalized angular distribution for the bremsstrahlung photons
+are :
+\begin{equation}
+W_l(T) = 2\pi \int_{-1}^1 P_l(\mu) W(T,\mu) d\mu
+\end{equation}
+Note that as the energy of the incident electron increases, the Legendre
+moments of the bremsstrahlung angular distribution become increasingly like
+those of the delta function. For low-energy electrons, the bremsstrahlung
+distribution is close to being isotropic and ti is sufficient to calculate
+only a few moments of the distribution. In CEPXS, when the ratio
+$\frac{W_l}{W_0}$ less than 0.0001, the higher-order Legendre moments
+($l+1,l+2,\cdots,L$) are not evaluated but are set equal to zero.\\
+In CEPXS, the calculation of the transfer matrix for bremsstrahlung production
+is simplified by the assumption that all the electrons in a group emit
+bremsstrahlung with the same angular distribution :
+\begin{equation}
+W_l(T) \approx W_l(T^{m,g})
+\end{equation}
+The effective energy cross sections due to bremsstrahlung production are :
+\begin{equation}
+\Sigma_{E}^{BP,g}(\br) = - \sum_{f=1}^F \Sigma_{s,0}^{BF,g\rightarrow f}(\br)
+E^{m,f}
+\end{equation}
+
+\subsubsection{Soft radiative scattering}
+The restricted CSD approximation is used to characterize soft radiative energy
+losses. As what the case for soft collisions, soft radiative emission results
+in the down-scatter of an electron into the adjacent energy group. Energy-loss
+straggling is not associated with soft radiative emission.\\
+Soft radiative events are represented in CEPXS by pseudo cross sections. These
+cross sections represent the differenced form of the restricted CSD operator.
+Multigroup-Legendre matrices for electron-to-electron transfers due to soft
+radiative events can be constructed from these CSD cross sections. The
+expansion coefficients of the matrices associated with the first-order
+differenced form of the restricted CSD operator are :
+\begin{equation}
+\Sigma_{s,l}^{SB,g\rightarrow g'}(\br) =
+\frac{S^B(\br,E^{m,g})}{E^{m,g}-E^{m,g'}} \textrm{ if } g'=g+1
+\end{equation}
+In the CSD approximation, the electron slows down without angular deflection.
+This delta function scattering is represented by  a truncated Legendre
+expansion :
+\begin{equation}
+\Sigma_{s,l}^{SB,g\rightarrow g'}(\br) = \Sigma_{s,0}^{SB,g\rightarrow
+g'}(\br) \textrm{ if } l\leq L
+\end{equation}
+with $g=1,2,\cdots,G-1$.\\
+The expansion coefficients of the $l^{th}$-order transfer matrix associated
+with the diamond differenced form of the CSD operator are :
+\begin{equation}
+\Sigma_{s,l}^{SB,g\rightarrow g'}(\br) = 
+\left\{
+\begin{aligned}
+& \frac{(-1)^{g'-g+1}}{\Delta E^g} 2 \(S^B(\br,E^{g'})+S^B(E^{g'+1})\) &
+\textrm{if } G > g' >g\\
+& \frac{(-1)^{G-g+1}}{\Delta E^g} 2\(S^B(\br,E^G)+S^B(\br,E^{G+1})\) &
+\textrm{for } g'=G\\
+& 0 & \textrm{otherwise}
+\end{aligned}
+\right.
+\end{equation}
+The effective absorption cross sections due to soft radiative emission are :
+\begin{itemize}
+\item first order :
+\begin{equation}
+\Sigma_{a}^{SB,g}(\br) =
+\left\{
+\begin{aligned}
+& \frac{S^B(\br,E^{m,g})}{E^{m,g}-E^u} & \textrm{ if } g =G\\
+& 0 & \textrm{otherwise}
+\end{aligned}
+\right.
+\end{equation}
+\item second order :
+\begin{equation}
+\Sigma_a^{SB,g}(\br) = \frac{(-1)^{G-g}2\mathcal{S}^B(\br,E^{G+1})}{\Delta
+E^g} \textrm{ for } g=1,2,\cdots,G
+\end{equation}
+\end{itemize}
+where $E^u$ is the midpoint energy of the fictitious energy group constructed
+below the cutoff energy $T^{G+1}$.\\
+The total cross sections sections for soft radiative emission are :
+\begin{itemize}
+\item first order :
+\begin{equation}
+\Sigma_{t}^{SB,g}(\br) = \Sigma_{a}^{SB,g}(\br) + \Sigma_{s,0}^{SB,g\rightarrow
+g+1}(\br)
+\end{equation}
+\item second order :
+\begin{equation}
+\Sigma_t^{SB,g}(\br) = \Sigma_{a}^{SB,g}(\br) + \sum_{g' >
+g}\Sigma_{s,0}^{SB,g\rightarrow g'}(\br)
+\end{equation}
+\end{itemize}
+
+The energy deposition cross sections due to soft radiative emission are :
+\begin{itemize}
+\item first order :
+\begin{equation}
+\Sigma_E^{SB,g}(\br) = 
+\left\{
+\begin{aligned}
+& 0 & \textrm{ if } g\leq G\\
+& \Sigma_a^{SB,g}(\br) E^{m,g} \textrm{ if } g=G
+\end{aligned}
+\right.
+\end{equation}
+\item second order :
+\begin{equation}
+\Sigma_E^{SB,g}(\br) = \Sigma_{t}^{SB,g}(\br) E^{m,g} - \sum_{g'>g}
+\Sigma_{s,0}^{SB,g\rightarrow g'} E^{m,g'}
+\end{equation}
+\end{itemize}
 
 
 \red{page 125}
