@@ -1,0 +1,26 @@
+\contentsline {section}{\numberline {1}Cross sections}{1}
+\contentsline {subsection}{\numberline {1.1}Physics of the interactions}{2}
+\contentsline {subsection}{\numberline {1.2}CEPXS}{4}
+\contentsline {subsubsection}{\numberline {1.2.1}Catastrophic collisional scattering}{7}
+\contentsline {subsubsection}{\numberline {1.2.2}Knock-on electron production}{8}
+\contentsline {subsubsection}{\numberline {1.2.3}Soft collisional scattering}{9}
+\contentsline {subsubsection}{\numberline {1.2.4}The restricted collisional stopping power}{10}
+\contentsline {subsubsection}{\numberline {1.2.5}The density effect correction}{11}
+\contentsline {subsubsection}{\numberline {1.2.6}Bremsstrahlung cross section differential in energy}{11}
+\contentsline {subsubsection}{\numberline {1.2.7}Catastrophic radiative scattering}{12}
+\contentsline {subsubsection}{\numberline {1.2.8}Bremsstrahlung production}{13}
+\contentsline {subsubsection}{\numberline {1.2.9}Soft radiative scattering}{14}
+\contentsline {subsection}{\numberline {1.3}The restricted radiative stopping power}{15}
+\contentsline {subsubsection}{\numberline {1.3.1}Elastic electron scattering}{15}
+\contentsline {subsubsection}{\numberline {1.3.2}The extended transport correction}{16}
+\contentsline {subsubsection}{\numberline {1.3.3}The impact ionization cross section}{16}
+\contentsline {subsubsection}{\numberline {1.3.4}Relaxation production}{17}
+\contentsline {subsubsection}{\numberline {1.3.5}The relaxation cascade}{18}
+\contentsline {subsubsection}{\numberline {1.3.6}The NO-PCODE option}{18}
+\contentsline {subsubsection}{\numberline {1.3.7}The PCODE cascade}{19}
+\contentsline {subsubsection}{\numberline {1.3.8}Incoherent photon scattering and Compton electron production}{19}
+\contentsline {subsubsection}{\numberline {1.3.9}The Klein-Nishina cross section for photon scattering}{19}
+\contentsline {subsubsection}{\numberline {1.3.10}Compton electron production}{20}
+\contentsline {subsection}{\numberline {1.4}CEPXS-BFP}{22}
+\contentsline {subsection}{\numberline {1.5}CEPXS-Morel}{22}
+\contentsline {section}{\numberline {2}Transport equation}{22}

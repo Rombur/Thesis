@@ -1,7 +1,9 @@
 \section{Cross sections}
 \red{ATTENTION PAS CONSISTENT DANS L'UTILISATION DES TAU. CERTAINS DEVRAIENT
 ETRE E... EN FAIT TOUS SAUF LE PREMIER.}\\
-\red{CHECK ALL THE $\Sigma_{t,s}$}
+\red{CHECK ALL THE $\Sigma_{t,s}$}\\
+\red{rajouter les references des formules des sections efficaces}\\
+\red{probablement des s en trop dans certaines formules}
 \subsection{Physics of the interactions}
 
 \begin{description}
@@ -829,6 +831,439 @@ The energy deposition cross sections due to soft radiative emission are :
 \end{equation}
 \end{itemize}
 
+\subsection{The restricted radiative stopping power}
+In order to evaluate the CSD cross sections for soft radiative emission, the
+restricted radiative power, $S^B$, must be calculated. For the cross sections
+that correspond to a first-order differenced form of the restricted CSD
+operator, the restricted radiative stopping power must be evaluated at the
+midpoint energies of all electron groups except the last. The restricted
+radiative stopping power that is not associated with catastrophic energy
+\hbox{loss :}
+\begin{equation}
+S^B(\br,E^{m,g}) = \mathcal{S}^B(br,E^{m,g}) - \frac{m_e c^2}{\Delta T^g}
+\int_{T^{g+1}}^{T^g} dT \int_{T-\epsilon_max}^{T^{g+2}} dT^s (T-T^s)
+\frac{d\Sigma^{TB}(\br,T,T^s)}{dT^s}
+\end{equation}
+with $g=1,2,\cdots,G-1$ and $\mathcal{S^B}$ is the total radiative stopping
+power $\[\frac{MeV cm^2}{g}\]$.\\
+The magnitude of the stopping power associated with catastrophic radiative
+loss is comparable to the total radiative stopping power even when few
+electron groups are used. With 160 groups, the stopping power that is due to
+catastrophic radiative energy losses is nearly identical to the total
+radiative stopping power. This is quite different from the case case with
+collisional scattering.\\
+In order to evaluate the cross sections that represent the second-order
+differenced form of the restricted CSd operator, the restricted radiative
+stopping power must be evaluated at all electron group boundaries except the
+upper boundary, $E^1$, and the lower boundary, $E^{G+1}$. As was the case with
+the restricted collisional stopping power, two different interpretations are
+possible for the restricted radiative stopping power at a group boundary
+energy. If $E^g$ is considered to be the upper boundary of group, then the
+restricted radiative stopping power is :
+\begin{equation}
+S_U^B(\br,E^g) = \mathcal{S}^B(\br,E^g) - m_e c^2
+\int_{T^g-\epsilon^{max}}^{T^{g+2}} dT^s (T^g-T^s)
+\frac{d\Sigma^{CB}(\br,T^g,T^s)}{dT^s}
+\end{equation}
+for $g=2,3,\cdots,G-1$ and :
+\begin{equation}
+\mathcal{S}_U^B(E^G) =0
+\end{equation}
+On the other hand, if $E^g$ is considered to be the lower boundary of a group,
+the restricted radiative stopping power is :
+\begin{equation}
+S_L^B(\br,E^g) = \mathcal{S}^B(\br,E^G) - m_e c^2
+\int_{T^g-\epsilon^{max}}^{T^{g+1}} dT^s (T^g-T^s)
+\frac{d\Sigma^{CB}(\br,T^G,T^s)}{dT^S}
+\end{equation}
+with $g=2,3,\cdots,G$.\\
+To avoid ambiguity, the restricted average radiative stopping power at a group
+boundary is defined to be the average of the previous two formulations :
+\begin{equation}
+S^B(\br,E^g) = \frac{1}{2} \(S_U^B(\br,E^g)+S_L^B{\br,E^g}\)
+\end{equation}
+with $g=2,3,\cdots,G$.
+
+\subsubsection{Elastic electron scattering}
+\red{verifier que tout est bien dans la reference de Berger}\\
+For electrons with relativistic kinetic energies ($> 256 keV$), CEPXS uses the
+Mott cross section with Moliere screening. At non-relativistic energies, the
+elastic scattering cross section data developed by Riley et. al. \cite{riley}.
+In CEPXS, elastic scattering is based on a microscopic cross section. However,
+this highly forward-peaked elastic-scattering cross section is modified by the
+extended transport correction. This approximation makes the elastic-scattering
+cross section amenable to a low-order Legendre expansion.
+
+\subsubsection{The extended transport correction}
+\red{citer lathrop et morel dans cette partie}
+Since the elastic-scattering cross section for electrons is highly forward
+peaked, an accurate Legendre expansion of this cross section would require an
+expansion to very high order. A lower-order expansion is feasible if the
+extended transport correction is applied to the elastic scattering cross
+section. In this approach, the elastic scattering cross section is corrected
+by the removal of a delta function component. In CEPXS, the extended transport
+correction is applied to both the Mott and the Riley cross sections. In the
+extended transport correction, the highly forward-peaked elastic scattering
+cross section is approximated by a corrected cross section $\Sigma^*$, and a
+delta function component :
+\begin{equation}
+\Sigma_s^E(\br,\mu) \approx \Sigma_s^*(\br,\mu) + \frac{C}{2\pi} \delta (\mu-1)
+\end{equation}
+where $C$ is an arbitrary constant. The energy dependence of the cross
+sections is suppressed in this discussion. The corrected cross section can be
+represented by a finite Legendre expansion :
+\begin{equation}
+\Sigma_s^*(\mu) = \sum_{l=0}^{L} \frac{2l+1}{4 \pi} \Sigma_{s,l}^*(\br)
+P_l(\mu)
+\end{equation}
+If we require that decomposition of the elastic cross section into a corrected
+cross section and a delta function to be accurate to Legendre order, $L$, then
+the Legendre moments of the corrected cross sections differ from those of the
+elastic-scattering cross section by a constant :
+\begin{equation}
+\Sigma_{s,l}^*(\br) = \Sigma_{s,l}^E(\br)- C
+\end{equation}
+In CEPXS, the terms of the transfer matrix for the elastic-scattering cross
+sections are constructed using these moments :
+\begin{equation}
+\Sigma_{s,l}^{E,g\rightarrow g'}(\br) =
+\Sigma_{s,l}^{*}(\br,E^{m,g})\delta_{gg'}
+\end{equation}
+It is possible for the corrected cross section to be negative at certain
+values of $\mu$. While such a cross section can be used in discrete ordinates
+codes, they are not acceptable for use in multigroup Monte-Carlo codes which
+sample over $\mu$. A unique corrected cross section does not exist. In order
+to specify a particular $\Sigma^*$, we must specify $C$. One way of doing so
+is to require that :
+\begin{equation}
+\Sigma_{s,l}^* =0
+\end{equation}
+This is the approach used in CEPXS.
+
+\subsubsection{The impact ionization cross section}
+In CEPXS, impact ionizations are not correlated with inelastic collisions. A
+special impact ionization cross section is used solely to determine the
+production of relaxation radiation (Auger electrons and fluorescence photons).
+The energy of a relaxation particle is less than or equal to the binding
+energy of the shell that is ionized. Since particles are not tracked below the
+cutoff energy, ionization events in shells with energy less than the cutoff
+energy are not considered. The minimum cutoff energy allowed is one keV. The
+binding energies of electrons in the K, L1, L2, L3, M and N shells exceed one
+keV for elements with Z greater than 10, 27, 29, 51 and 84 respectively. In
+CEPXS, the binding energy of the N shell for elements with $Z>84$ is taken to
+be identically zero.\\
+When the NO-PCODE option is selected by a user, CEPXS restricts impact
+ionization to the K-shell. The Kolbenstved cross section (derived for
+hydrogen-like atom) \cite{kolb} cross section for impact ionization of the
+K-shell is used.\\
+By default, CEPXS employs the impact ionization cross section developed by
+Gryzi\`nski \cite{gry}. The microscopic form of the Gryzi\`nksi cross section for
+the impact ionization of an electron in the $i^{th}$ shell is in units of
+$cm^2$ :
+\begin{equation}
+\sigma^{I,i}(\br,T) = 
+\left\{
+\begin{aligned}
+& frac{\pi r_e^2}{\phi_i^2} f_v \(1+\frac{2}{3} \(1-\frac{\phi_i}{2T}\) \ln
+\(2.7 + \sqrt{\frac{T}{\phi_i}-1}\)\) \(1-\frac{\phi_i}{T}\)^{3/2} & \textrm{ 
+if } T\geq \phi_i\\
+& 0 & \textrm{ if } T < \phi_i
+\end{aligned}
+\right.
+\end{equation}
+where :
+\begin{itemize}
+\item $i$ is the shell index ($i$ = 1,2,3,4,5 : K,L1,L2,L3, average M)
+\item
+\begin{equation}
+f_v = \frac{\beta_i^2}{\beta} \(\frac{\beta^2}{\beta^2 + \beta_i^2 - \beta^2
+\beta_i^2}\)^{3/2}
+\end{equation}
+\item 
+\begin{equation}
+\beta_i^{2} = \frac{\phi_i (\phi_i+2)}{(\phi_i+2)^2}
+\end{equation}
+\item $\phi_i$ is the binding energy of the $i^{th}$ shell in reduced energy
+units 
+\end{itemize}
+The macroscopic form of the Gryzi\`nski cross section for an element is :
+\begin{equation}
+\Sigma^{I,i}(\br) = \frac{N_A g_i \sigma^{I,i}(\br)}{A}
+\end{equation}
+where $g_i$ is the number of electrons in a complete shell. For example, $g_i$
+is 2,2,2,4,18 for the K,L1,L2,L3 and M shells, respectively. While the outer
+shells of most atoms are not complete, there is no need to make $g_i$
+dependent on the atomic number in high-energy (above one keV) codes cush as
+CEPXS. This is because the binding energies of the outermost shell in all
+atoms is less than the minimum energy allowed by the code. Hence, the
+ionization on the non-complete outermost shell is irrelevant.
+
+\subsubsection{Relaxation production}
+The impact ionization cross section is associated in CEPXS with the production
+of relaxation radiation. Relaxation radiation consists of Auger electrons and
+fluorescence photons. These are produced in a cascade of shell transition
+induced by the initial vacancy. The energy of a relaxation particle is equal
+to the difference between the binding energies of the shells involved in a
+transition. The impact ionization cross sections of the $i^{th}$ shell are :
+\begin{equation}
+\Sigma^{I,i,g}(\br) = \frac{\int_{T^{g+1}}^{T^g}}{\Delta T^g} dT
+\Sigma^{I,i}(T)
+\end{equation}
+Since the impact ionization cross section is solely used to determine the
+production of relaxation radiation, impact ionization does not contribute to
+the total reaction rate.\\
+The expansion coefficients of the transfer matrix associated with the
+production of electron relaxation radiation following impact ionization are :
+\begin{equation}
+\Sigma_0^{IE,i,g\rightarrow g'}(\br) = \sum_{i=1}^5 \sum_{j=1}^28 \eta_{ij}^e
+\delta_{g' g_j}\Sigma^{I,i,g}(\br)
+\end{equation}
+where :
+\begin{itemize}
+\item $g=0,1,\cdots,G$           
+\item $i$ is the index of the ionized shell
+\item $j$ is the index of the line radiation
+\item $\eta_{ij}^e$ is the relaxation efficiency that the $j^{th}$ Auger
+electron is produced following the ionization of the $i^{th}$ shell
+\item $g_j$ is the electron group that contains the energy of the $j^{th}$
+Auger electron
+\end{itemize}
+Since Auger emission is isotropic, only the lowest Legendre-order transfer
+matrix is shown. The higher-order transfer matrices for Auger and fluorescence
+production contain terms that are identically zero.\\
+There are 28 different transitions in the various relaxation cascades that can
+follow an ionization event. The transfer matrix associated with fluorescence
+production resulting from ionization consists of the following terms :
+\begin{equation}
+\Sigma_{0}^{IF,g\rightarrow f}(\br) = \sum_{i=1}^5 \sum_{j=1}^{28} \eta_{ij}^f
+\delta_{ff_j} \Sigma^{I,j,g}(\br)
+\end{equation}
+where :
+\begin{itemize}
+\item $g=1,2,\cdots,G$
+\item $\eta_{ij}^f$ is the relaxation efficiency that the $j^{th}$ fluorescene
+photon is produced following the ionization of the $^{th}$ shell,
+\item $f_j$ is the photon group that contains the energy of the $j^{th}$
+fluorescence photon.
+\end{itemize}
+The effective energy deposition cross sections associated with the productionn
+of relaxation radiation by impact ionization are :
+\begin{equation}
+\Sigma_E{I,g}(\br) = - \sum_{g=1}^G \Sigma_0^{IE,g\rightarrow g'}(\br)E^{m,g'}
+- \sum_{f=1}^F \Sigma_0^{IF,g\rightarrow f} E^{m,f}
+\end{equation}
+Note that these cross sections are expressed in terms of the midpoint energies
+rather than line radiation energies, as consistent with the definition of the
+effective energy deposition cross section.
+
+\subsubsection{The relaxation cascade}
+After an atomic shell is ionized, whether by impact ionization or
+photoelectric ionization, a cascade of relaxation radiation will be produced.
+An atomic transition is induced by the vacancy created by the initial
+ionization event. In the subsequent relaxation cascade, these transitions
+induce vacancies in other shells which lead to the emission of additional line
+radiation. The relaxation cascade ceases when a transition produces a vacancy
+in the outermost shell of the atom.
+
+\subsubsection{The NO-PCODE option}
+With the NO-PCODE option ionization in CEPXS is restricted to the K-shell.
+Moreover, this option invokes a simple model of the relaxation cascade with
+only two possible branches. In one branch, a single Auger electron is emitted
+while the other, only a single fluorescence photon is emitted. In this
+simplified cascade, both the fluorescence photon and the Auger electron are
+emitted with the same energy. This line energy is slightly less than the
+K-shell binding energy and represents and average of the energies that these
+particles would acquire in a real relaxation cascade.
+
+\subsubsection{The PCODE cascade}
+In CEPXS, the binding energy of the N-shell is assumed to be zero for all
+elements. CEPXS obtains from the electron data tape the shell binding
+energies, $\phi_i$, that are needed to calculate the line radiation energies.
+Also obtained from this data tape is the information necessary to calculate
+the relaxation efficiencies for Auger production $\eta^e$ and fluorescence
+production $\eta^f$. There is an array where these quantities, referred as
+relaxation quantities, are store. A relaxation quantity is denoted in this
+report by a bracketed integer which indicates the array index in which this
+information is stored. For example, the shell binding energies for the
+K,L1,L2,L3 and M shells are stored in the relaxation quantity array at indices
+[2], [4], [6], [7] and [8] respectively.\\
+The relaxation efficiencies are calculated using probability parameters stored
+in the relaxation quantity array. These parameters are the conditional
+probabilities for portions of the relaxation cascade. For example, the
+relaxation quantity, [5], is a probability parameter that denotes the
+probability that an Auger KLL transition has produced vacancies in the L2 and
+L3 shells.
+
+\subsubsection{Incoherent photon scattering and Compton electron production}
+In CEPXS, the Klein-Nishina scattering cross section is used to represent the
+incoherent scattering of photons with atomic electrons. The Klein-Nishina
+cross  section was derived for scattering with free or unbound electrons. The
+assumption photon collides with an unbound atomic electron is not valid for
+photons with energies on the order of the atomic binding energies. However,
+photoelectric absorption interactions dominate incoherent scattering at such
+energies. Coherent scattering is ignored. The Klein-Nishina cross section is
+also used to model the production of Compton electrons.
+
+\subsubsection{The Klein-Nishina cross section for photon scattering}
+The Klein-Nishina cross section for unpolarized, incoherent photon scattering
+is differential in the angle of the scattered photon relative to the incident
+photon's direction. The microscopic form of this cross section for an
+interaction with an atomic electron is (in units of $cm^2sr^{-1}$/electron) :
+\begin{equation}
+\frac{d\sigma^{KN}(\br,T,\omega_{\gamma})}{d\bo_{\gamma}} =\frac{r_0^2}{2}
+\(\frac{T'}{T}\)^2 \(\frac{T}{T'}+\frac{T'}{T} -\sin^2 \theta_{\gamma}\)
+\end{equation}
+where :
+\begin{itemize}
+\item $T$ is the energy of the incident photon is reduced energy units
+\item $T'$ is the scattered photon in reduced energy units. $T'$ can vary from
+$T$ (for $\mu_{\gamma} = 1$) to $\frac{T}{(1+2T)}$ (for $\mu_{gamma} = -1$)
+\item $\mu_{gamma} = 1 + \frac{1}{T}-\frac{1}{T'}$
+\end{itemize}
+Since the angle of scatter is kinematically determined by the energy at which
+the scattered photon emerges from the interaction, the Klein-Nishina cross
+section may also be expressed as a cross section that is differential in
+energy. In this case, the microscopic form of the Klein-Nishina cross section
+(in units of $cm^2$/electron per reduced photon energy) is :
+\begin{equation}
+\frac{d\sigma^{KN}(T,T')}{dT'} = \frac{\pi r_e^2}{T^2} \(\frac{T}{T'} +
+\frac{T'}{T} - 2 \(\frac{1}{T'}-\frac{1}{T}\)^2\)
+\end{equation}
+Because energy and angle are kinematically related, the Klein-Nishina cross
+section for photon scattering that is differential in both energy and angle is
+given by :
+\begin{equation}
+\frac{d\sigma^{KN}}{dT' d\bo_{\gamma}} = \frac{d\sigma^{KN}}{dT'}
+\frac{1}{2\pi} \delta(\mu - \mu_{\gamma})
+\end{equation}
+\begin{equation}
+\sigma_l^{KN,f\rightarrow f'} = \frac{1}{\Delta T^f} \int_{T^{f+1}}^{T^f} dT
+\int_{\max\(T^{f'+1},\frac{T}{1+2T}\)}^{T^{f'}} dT' \nu(\Delta T')
+P_l(\mu_{\gamma}) \frac{d\sigma^{KN}(T,T')}{dT'}
+\end{equation}
+where :
+\begin{itemize}
+\item $f'=f,f+1,\cdots,F$
+\item 
+\begin{equation}
+\Delta T^{f'} = T^{f'} - \max\(T^{f'+1},\frac{T}{(1+2T)}\)
+\end{equation}
+\item 
+\begin{equation}
+\Delta T^f = T^f - T^{f+1}
+\end{equation}
+\end{itemize}
+The terms of the macroscopic transfer matrices for incoherent scattering are
+related to the terms of the microscopic transfer matrices by :
+\begin{equation}
+\Sigma_l^{KN,f\rightarrow f'} = \(\frac{Z}{A}\)_{eff} N_A
+\sigma_l^{KN,f\rightarrow f'}
+\end{equation}
+Numerical integration of the Klein-Nishina cross sections is susceptible to
+inaccuracies due to to the numerical cancellation. These problems can occur if
+the Legendre order is large ($l>3$), if the photon energy small ($E^f <10
+keV$), or if the photon group width is small.\\
+Most of these difficulties can be avoided if the terms of the transfer
+matrices are not calculated to the maximum Legendre order, $L$. The
+Klein-Nishina cross section becomes significantly anisotropic only at higher
+energies ($> 100 keV$). Hence, for photons in the lower energy groups, only a
+few of the Legendre moments need to be calculated.\\
+The Legendre moments of the Klein-Nishina cross sections are :
+\begin{equation}
+\Sigma_l^{KN,f} = \sum_{f'} \Sigma_l^{KN,f\rightarrow f'}
+\end{equation}
+In CEPXS, we perform the following test on these Legendre moments in order to
+avoid potential numerical difficulties in calculating the terms of the
+incoherent transfer matrices. If the ratio
+$\frac{\Sigma_l^{KN,f}}{\Sigma_{0}^{KN,f}}$ is less than 0.01, the
+higher-order expansion coefficients that represent photon-to-photon incoherent
+scattering are set to zero.\\
+The total cross sections for incoherent scattering are :
+\begin{equation}
+\Sigma_{t}^{KN,f} = \frac{1}{\Delta T^f} \int_{T^{f+1}}^{T^f} dT
+\int_{\frac{T}{1+2T}}^T dT' \frac{d\Sigma^{KN}(T,T')}{dT'}
+\end{equation}
+for $f'=f,f+1,\cdots,F$.\\
+The effective energy deposition cross sections due to incoherent photon
+scattering are :
+\begin{equation}
+\Sigma_f^{KN,E} = \Sigma_t^{KN,f} E^{m,f} - \sum_{f'}
+\Sigma_0^{KN,f\rightarrow f'}E^{m,f'}
+\end{equation}
+
+\subsubsection{Compton electron production}
+The Klein-Nishina cross section for electron production can be written as
+differential in the angle of emission of the Compton electron relative to the
+incident photon's direction. The microscopic form of this cross section for an
+interaction with an atomic electron is (in units of $cm^2 sr^{-1}$/electron) :
+\begin{equation}
+\frac{d\sigma^{CO}(T,\theta_e)}{d\bo_e} =
+\frac{(1+T)^2(1-\mu_{\gamma})^2}{\mu_e^3}\frac{r_e^2}{2}\(\frac{T'}{T}\)^2
+\(\frac{T}{T'} + \frac{T'}{T} - \sin^2 \theta_{\gamma}\)
+\end{equation}
+where :
+\begin{itemize}
+\item 
+\begin{equation}
+\mu_e = \frac{1+T}{T} \frac{1}{\sqrt{\frac{2}{\epsilon}}}
+\end{equation}
+\item $\epsilon$ is the kinetic energy of the Compton electron in reduced
+energy units.
+\end{itemize}
+The energy of a Compton electron ranges from zero (at $\mu_{gamma}=1$) to
+$\frac{2T^2}{1+2T}$ (at $\mu_gamma = -1$). The Compton electron production
+cross section can also be cast into a form that is differential in the kinetic
+of the electron. In this case, the microscopic form of the Klein-Nishina cross
+section (in units of $cm^2$/electron per reduced electron energy) is :
+\begin{equation}
+\frac{d\sigma^{CO}(T,\epsilon)}{d\epsilon} =
+\left|\frac{d\bo_e}{d\epsilon}\right| \frac{d\sigma^{CO}(T,\theta_e)}{d\bo_e}
+\end{equation}
+Because energy and angle are kinematically related, the Klein-Nishina cross
+section for electron production that is differential in both energy and angle
+is given by :
+\begin{equation}
+\frac{d\sigma^{CO}}{d\epsilon d\bo_e} = \frac{d\sigma^{CO}}{d\epsilon}
+\frac{1}{2\pi} \delta(\mu - \mu_e)
+\end{equation}
+For Compton electron production per collision with an atomic electron, the
+expansion coefficients of the transfer matrices are :
+\begin{equation}
+\sigma_l^{CO,f\rightarrow} = \frac{1}{\Delta T^f} \int_{T^{f+1}}^{T^f} dT
+\int_{\epsilon^{g+1}}^{\min\(\epsilon^g,\frac{2T^2}{1+2T}\)} d\epsilon
+\nu(\Delta \epsilon) P_l(\mu_e) \frac{d\sigma^{CO}(T,\epsilon)}{dT'}
+\end{equation}
+where :
+\begin{itemize}
+\item $g=1,2,\cdots,G$
+\item $\Delta \epsilon = \min \(\epsilon^g\) -\epsilon^{g+1}$
+\end{itemize}
+The terms of the macroscopic transfer matrices for Compton electron production
+are related to the terms of the microscopic transfer matrices by :
+\begin{equation}
+\Sigma_l^{CO,f\rightarrow g'} = \(\frac{Z}{A}\)_{eff} N_A
+\sigma_{l}^{CO,f\rightarrow g'}
+\end{equation}
+This cross section for Compton electron production becomes significantly
+anisotropic for photons of high energies. Hence, only a few Legendre moments
+need to be calculated for the lower-energy photon groups.\\
+The Legendre moments of the Compton production cross sections are :
+\begin{equation}
+\Sigma_l^{CO,f} = \sum_{g} \Sigma_{l}^{CO,f\rightarrow g}
+\end{equation}
+In CEPXS, we perform the following test to avoid calculating the terms of the
+transfer matrices to excessive order. If the ratio
+$\frac{\Sigma_l^{CO,f}}{\Sigma_0^{CO,f}}$ is less than 0.01, the terms of the
+higher-order expansion coefficients that represent Compton production from
+group $f$ are set to zero.\\
+The effective energy deposition cross sections associated with Compton
+electron production are :
+\begin{equation}
+\Sigma_E^{CO,f} = -\sum_g \Sigma_0^{CO,f\rightarrow g} E^{m,g}
+\end{equation}
+
+
 
 \red{page 125}
 \subsection{CEPXS-BFP}
+\subsection{CEPXS-Morel}
