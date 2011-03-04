@@ -1,23 +1,26 @@
 \section{Cross sections}
-\red{ATTENTION PAS CONSISTENT DANS L'UTILISATION DES TAU. CERTAINS DEVRAIENT
-ETRE E... EN FAIT TOUS SAUF LE PREMIER.}\\
-\red{CHECK ALL THE $\Sigma_{t,s}$}\\
-\red{rajouter les references des formules des sections efficaces}\\
-\red{probablement des s en trop dans certaines formules}
 \subsection{Physics of the interactions}
 
 \begin{description}
-\item [Thomson scattering :] an electron, assumed to be free, oscillates
-classically in response to the electric vector of a passing electromagnetic
-wave. The oscillating electron promptly emits photons of the same frequency as
-the incident wave. The net effect of Thomson scattering is the redirection of
+\item [Thomson scattering :] an free electron oscillates in response to the 
+electric vector of a passing electromagnetic wave. The oscillating electron 
+emits photons of the same frequency as the incident wave. The net effect of 
+Thomson scattering is the redirection of
 some incident photons with no transfer of energy to the medium. Thomson
 scattering represents the low-energy limit of Compton scattering, as the
 incident photon energy approaches zero \cite{radiation}.
-\item [Raleigh scattering :] the scattering results from the combined,
+\item [Rayleigh scattering :] the scattering results from the combined,
 coherent action of an atom as a whole. The scattering angle is usually very
 small. There is no appreciable loss of energy by the photon to the atom,
 which, however, does ``recoil" enough to conserve momentum \cite{radiation}.
+Rayleigh scattering is scattering from bound electrons, where the atom as a
+whole recoils. The radiation from all bound in an atom interferes coherently,
+with the results that Rayleigh scattering is sharply at $0^{\circ}$,
+especially at low $Z$ and high energy. Rayleigh scattering deflects photons from
+a very well-collimated beam but has little effect in the broad-beam
+situations, Rayleigh scattering cross section varies as $Z^2$ and decreases
+with increasing energy approximately as $(h \nu)^{-k}$, where $k$ is about 3
+\cite{shielding}.
 \item [photo-electric effect :] a photon undergoes an interaction with an
 absorber atom in which the photon disappears. An energetic photoelectron is
 ejected from one of the bound shells of the atom. For gamma rays of
@@ -90,6 +93,31 @@ slowing down or deflection of charged particle (especially electrons) passing
 through matter in the vicinity of the strong electric fields of atomic nuclei.
 The efficiency of bremsstrahlung in elements of different atomic number $Z$
 varies nearly as $Z^2$.
+\item [Pair production :] In some interactions of a photon with the nuclear
+Coulomb field, an electron-positron pair is formed and the photon disappears.
+Momentum is conserved by the nuclear recoil. The photon energy appears as the
+total energy (kinetic plus rest energy) of the pair :
+\begin{equation}
+h\nu = \(E^- + m_e c^2\)+ \(E^+ + m_e c^2\)
+\end{equation}
+The photon must have an energy of at least $2m_e c^2$ to create the electron
+and positron, hence the threshold for pair production is $1.022MeV$. The
+kinetic energy $h\nu - 2 m_e c^2$ is distributed between the electron ans
+positron. The energy spectra are essentially identical, and the electron
+spectrum seldom matters as the interactions  of electrons and positrons are
+almost the same and their ranges are small. The principal difference between
+electrons and positrons is that the positron, on slowing down and combining
+with an electron, releases two 511keV annihilation photons, isotropically and
+back-to-back. Thus, all of the incident photon's energy is released rapidly,
+although it is possible for the 511keV annihilation photons to travel some
+distance, and they should be followed in the overall $\gamma$-ray transport
+problem.\\
+The cross section for pair production increases with energy above the
+threshold, roughly as $(h\nu)^n$, where $n$ varies from one to two. The cross
+sections is proportional to $Z^2$ except above 5MeV, where the cross section
+increases less rapidly because the pair is created at some distance from the
+nucleus, and screening by the inner atomic electrons slightly reduces the
+effective $Z$ \cite{shieldin}.
 \item [Collisional stopping power :] the collisional stopping power for
 electrons and positrons can be \hbox{written :}
 \begin{equation}
@@ -110,7 +138,7 @@ $\beta = \frac{v}{c}$ is the speed of the particle relative to $c$, $I$ is the
 mean excitation energy of the medium and $\tau = \frac{T}{m_e c^2}$ is the
 kinetic energy $T$ of the particle expressed in multiples of the electron rest
 energy $mc^2$.
-\item[radiative stopping power :] At high beta-particle energies, the
+\item[Radiative stopping power :] At high beta-particle energies, the
 radiation is emitted mostly in the forward direction, that is, in the direction
 of travel if the beta particle. Unlike collisional energy losses, no single
 analytic formula exists for calculating the radiative stopping power. At high
@@ -885,14 +913,13 @@ S^B(\br,E^g) = \frac{1}{2} \(S_U^B(\br,E^g)+S_L^B{\br,E^g}\)
 with $g=2,3,\cdots,G$.
 
 \subsubsection{Elastic electron scattering}
-\red{verifier que tout est bien dans la reference de Berger}\\
 For electrons with relativistic kinetic energies ($> 256 keV$), CEPXS uses the
-Mott cross section with Moliere screening. At non-relativistic energies, the
-elastic scattering cross section data developed by Riley et. al. \cite{riley}.
-In CEPXS, elastic scattering is based on a microscopic cross section. However,
-this highly forward-peaked elastic-scattering cross section is modified by the
-extended transport correction. This approximation makes the elastic-scattering
-cross section amenable to a low-order Legendre expansion.
+Mott cross section with Moliere screening \cite{zerby,berger2} At non-relativistic 
+energies, the elastic scattering cross section data developed by Riley et. al. 
+\cite{riley}. In CEPXS, elastic scattering is based on a microscopic cross 
+section. However, this highly forward-peaked elastic-scattering cross section 
+is modified by the extended transport correction. This approximation makes the 
+elastic-scattering cross section amenable to a low-order Legendre expansion.
 
 \subsubsection{The extended transport correction}
 \red{citer lathrop et morel dans cette partie}
@@ -953,7 +980,7 @@ keV for elements with Z greater than 10, 27, 29, 51 and 84 respectively. In
 CEPXS, the binding energy of the N shell for elements with $Z>84$ is taken to
 be identically zero.\\
 When the NO-PCODE option is selected by a user, CEPXS restricts impact
-ionization to the K-shell. The Kolbenstved cross section (derived for
+ionization to the K-shell. The Kolbenstvedt cross section (derived for
 hydrogen-like atom) \cite{kolb} cross section for impact ionization of the
 K-shell is used.\\
 By default, CEPXS employs the impact ionization cross section developed by
@@ -1262,8 +1289,394 @@ electron production are :
 \Sigma_E^{CO,f} = -\sum_g \Sigma_0^{CO,f\rightarrow g} E^{m,g}
 \end{equation}
 
+\subsubsection{Photoelectric absorption}
+The photoelectric absorption cross section, in units of $\frac{cm^2}{g}$, can
+be expressed as a four-parameter fit :
+\begin{equation}
+\Sigma^{PA}(E) = \sum_{k=1}^4 C_k E^{-k}
+\end{equation}
+where $E$ is the energy of the photon in keV.\\
+This cross section is defined as the probability per unit pathlength that
+photoionization occurs in any shell. The total cross sections associated with
+photoelectric absorption are :
+\begin{equation}
+\Sigma_t^{PA,f} = \frac{\int_{E^{f+1}}^{E^f} dE \Sigma^{PA}(E)}{\Delta E^f}
+\end{equation}
+The effective energy deposition cross sections associated with photoelectric
+are :
+\begin{equation}
+\Sigma_E^{PA,f} = \Sigma_a^{PA,f} E^{m,f}
+\end{equation}
+
+\subsubsection{The production of photoelectrons}
+A photoelectric interaction produces an electron with kinetic energy equal to
+the energy of the photon less the binding energy of the shell that was
+ionized. The cross section for photoelectric production can be separated into
+a cross section that is differential in the energy of the electron and a
+normalized angular distribution :
+\begin{equation}
+\frac{d\Sigma^{PE}}{d\epsilon d\bo} = \sum_{i=1}^6
+\frac{dW^i(\theta,\epsilon)}{d\bo} \frac{d\Sigma^{PE,i}(E,\epsilon)}{d\epsilon}
+\end{equation}
+where :
+\begin{itemize}
+\item $i$ is the shell index ($i$=1,2,3,4,5,6 : K,L1,L2,L3,average M,
+effective N)
+\item $E$ is the energy of the photon
+\item $\epsilon$ is the kinetic energy of the photoelectron $E-\phi^i$
+\item $\bo$ is the angle at which the photoelectron is emitted relative to the
+direction of the photon
+\item $W^i$ is the differential angular distribution of photoelectrons
+produced by ionization of the $i^{th}$ shell
+\item $\phi^i$ is the binding energy of the $i^{th}$ in MeV
+\end{itemize}
+The outer shells of an atom (N-shell and beyond) are considered to have zero
+binding energy in CEPXS. A photoelectric interaction with these shells
+produces electrons with the same energy as the photon. As far as CEPXS is
+concerned, the effective N-shell includes all the outer shells of an atom.
+Note also that an ionization cross section is not calculated for these outer
+shells since a vacancy in one of these shells does not induce relaxation
+radiation in CEPXS.\\
+The photoelectric production cross section is :
+\begin{equation}
+\frac{d\Sigma^{PE,i}(E,\epsilon)}{d\epsilon} = \chi_i(E) \Sigma^{PA}(E)
+\delta(\epsilon-E+\phi_i)
+\end{equation}
+where $\chi_i(E)$ is the probability that a photon of energy $E$ ionizes the
+$i^{th}$ shell.\\
+The photoionization probability, $\chi_i$, can be evaluated in terms of
+photoeffect efficiencies, $f_i$. These are defined using the values of the
+photoelectric cross section immediately above and below the shell binding
+energy in the following manner :
+\begin{equation}
+f_i = 1-\frac{\Sigma^{PA}(\phi_i - \delta)}{\Sigma^{PA}(\phi_i + \delta)}
+\end{equation}
+where $\delta$ is an arbitrarily small energy increment. In CEPXS, $\delta$ is
+taken to be one keV for the numerical calculation of the photoeffect
+efficiencies. The photoeffect efficiency denotes the probability that
+photoionization will occur in the $i^{th}$ shell that photoionization has not
+occured in any of the shells with larger binding energies than $\phi_i$. With
+the NO-PCODE option, only the K-shell photoeffect efficiency, $f_1$, is
+employed. It is calculated using the Biggs-Lighthill photoelectric cross
+section. Note that :
+\begin{equation}
+\sum_{i=1}^6 \chi_i (E) = 1
+\end{equation}
+The cross section transfer matrix associated with photoelectron production
+(for $f=1,2,\cdots,F$) : 
+\begin{equation}
+\Sigma_l^{PE,f\rightarrow g} = \sum_{i=1}^6 W_l^i(\epsilon^{m,g})
+\frac{\int_{E^{f+1}}^{E^f} dE \int_{\epsilon^{g+1}}^{\epsilon^g} d\epsilon
+\frac{d\Sigma^{PE,i}(E,\epsilon)}{d\epsilon}}{\Delta E^f}
+\end{equation}
+or :
+\begin{equation}
+\Sigma_l^{PE,f \rightarrow g} = \sum_{i=1}^6 W_l^i(\epsilon^{m,g})
+\frac{\int_{\max\(E^{f+1},\epsilon^{g+1}+\phi^i\)}^{\min\(E^f,\epsilon^g+\phi^i\)}
+\nu(\Delta E)\Sigma^{PA}(E)dE}{\Delta E^f}
+\end{equation}
+where  $\Delta E = \min\(E^f, \epsilon^g+\phi\) -
+\max\(E^{f+1},\epsilon^{g+1}+\phi_i\)$.\\
+Two different normalized angular distributions for the photoelectrons are used
+in CEPXS. For low-energy photoelectrons, the Fischer distribution is used :
+\begin{equation}
+\begin{split}
+\frac{dW^i(\theta,\epsilon)}{d\bo} &= \frac{1}{2\pi}
+\frac{dW^i(\theta,\epsilon)}{d\theta}\\
+&= \frac{3 \(1-b^2\)^2 \sin^3 \theta}{8 \pi (1-b \cos \theta)^4}
+\end{split}
+\end{equation}
+where $b=\frac{\beta}{1+\frac{\epsilon + \phi_i}{1.022}}$ and all energies are
+expressed in terms of MeV, and $\phi_i$ is the binding energy of the shell
+that was ionized by photoelectric absorption.\\
+For high-energy photoelectrons, the Sauter distribution is :
+\begin{equation}
+\begin{split}
+\frac{dW(\theta,\epsilon)}{d\bo} &=\frac{1}{2\pi}
+\frac{dW(\theta,\epsilon)}{d\theta}\\
+& \frac{A}{2\pi} \(\frac{\beta^2 \sqrt{1-\beta^2} \sin^3 \theta}{(1-\beta \cos
+\theta)^4}+\frac{\(1+\sqrt{1-\beta^2}\)^2 \beta^2 \sin^3\theta}{2
+\(1-\beta^2\) \(1-\beta \cos \theta\)^3}\)
+\end{split}
+\end{equation}
+where :
+\begin{equation}
+A = \frac{1}{\frac{4\beta^2 \sqrt{1-\beta^2}}{3 (1-\beta^2)^2} + \frac{(1+
+\sqrt{1-\beta^2})^2 \beta^2}{2 (1-\beta^2)} \(\frac{2}{\beta^2 (1-\beta^2)} -
+\frac{1}{\beta^2} \ln \(\frac{1+\beta}{1-\beta}\)\)} 
+\end{equation}
+Note that the Sauter distribution depends only on the energy of the
+photoelectron and not on the binding energy of the shell that was ionized.
+Hence, the shell index superscript on the angular distribution is
+suppressed.\\
+In CEPXS, we follow the recommendation of MacCallum that the choice between
+the Fischer and Sauter angular distributions be made in the following way :
+\begin{itemize}
+\item Fischer if $\epsilon \leq 0.0025 Z -0.5 \phi^1$
+\item Sauter if $\epsilon > 0.0025 Z - 0.5 \phi^1$
+\end{itemize}
+where $\phi_1$ is the binding energy of the K-shell and all energies are in
+MeV.\\
+The Legendre moments of the photoelectron angular distribution :
+\begin{equation}
+W_l^i (\epsilon) = 2 \pi \int_0^{2\pi} d\theta P_l(\cos \theta)
+\frac{dW^i(\epsilon,\theta)}{d\theta}
+\end{equation}
+are calculated by quadrature in CEPXS. The calculation of the
+multigroup-Legendre matrix photoelectron production is simplified by
+evaluating the Legendre moments of the photoelectron angular distribution at
+the midpoint energy of the electron group.\\
+The effective energy deposition cross sections associated with the production
+of photoelectrons are :
+\begin{equation}
+\Sigma_{E}^{PE,f} = - \sum_g \Sigma_0^{PE,f\rightarrow g} \epsilon^{m,g}
+\end{equation}
+
+\subsubsection{Relaxation production}
+The same relaxation radiation cascade is produced whether ionization occurs
+by electron impact or the photoelectric effect. The multigroup photoionization
+cross section of the $i^{th}$ is given by :
+\begin{equation}
+\Sigma^{PI,i,f} = \frac{\int_{E^{f+1}}^{E^f} dE \chi_i(E) \Sigma^{PA}(E)}{\Delta E^f}
+\end{equation}
+The expansion coefficients of the transfer matrix associated with electron
+relaxation radiation production resulting from photoionization are :
+\begin{equation}
+\Sigma_0^{PIE,f\rightarrow g} = \sum_{i=1}^5 \sum_{j=1}^{28} \eta_{ij}^e
+\delta_{gg_j} \Sigma^{PI,i,f}
+\end{equation}
+where :
+\begin{itemize}
+\item $f=1,2,\cdots,F$
+\item $i$ is the shell index
+\item $j$ is the index associated with line radiation
+\item $\eta_{ij}^e$ is the relaxation efficiency that the electrons of line
+index $j$ will be produced following ionization of the $i^{th}$ shell
+\item $g_j$ is the electron group that contains the energy of the $j^{th}$
+Auger electron
+\end{itemize}
+The expansion coefficients of transfer matrix associated with fluorescence
+production resulting from impact ionization are :
+\begin{equation}
+\Sigma_0^{PIF,f\rightarrow f'} = \sum_{i=1}^5 \sum_{j=1}^{28} \eta_{ij}^f
+\delta_{f' f_j} \Sigma_f^{PI,i}
+\end{equation}
+where :
+\begin{itemize}
+\item $f=1,2,\cdots,F$
+\item $\eta_{ij}^f$ is the relaxation efficiency that a fluorescence photon of
+line index $j$ will be produced following ionization of the $i^{th}$ shell
+\item $f_j$ is the photon group that contains the energy of the $j^{th}$
+fluorescence photon.\\
+The energy deposition cross sections associated with the production of
+relaxation radiation by photoionization are :
+\begin{equation}
+\Sigma_E^{PI,f} = - \sum_g \Sigma_0^{PIE,f\rightarrow g} E^{m,g} - \sum_{f'}
+\Sigma_0^{PIF,f\rightarrow f'} E^{m,f'}
+\end{equation}
+\end{itemize}
+
+\subsubsection{Pair absorption}
+The pair absorption cross section, in units of $cm^2/g$-photon, can be
+expressed as a parameter fit in the following fashion :
+\begin{align}
+& \Sigma^{PAA}(E) = 0.0 & \textrm{ if } E<1022keV\\
+& \Sigma^{PAA}(E) = C (E-1022) & \textrm{ if } 1022keV < E < 1500 keV\\
+& \Sigma^{PAA}(E) = \sum_{k=1}^7 \frac{A_k (E-1022)^k}{1+1.7\times
+10^{-13}(E-1022)^3} & \textrm{ otherwise}
+\end{align}
+where $E$ is the energy of the photon in keV. The Biggs-Lighthill cross
+section for pair absorption is valid up to 100MeV.
+The total cross sections associated with absorption from pair interactions
+\hbox{are :}
+\begin{equation}
+\Sigma_t^{PAA,f} = \frac{\int_{E^{f+1}}^{E^f} dE \Sigma^{PAA}(E)}{\Delta E^f}
+\end{equation}
+The effective energy deposition cross sections for pair interaction
+interaction absorption are :
+\begin{equation}
+\Sigma_E^{PAA,f} = \Sigma_t^{PAA,f} E^{m,f}
+\end{equation}
+
+\subsubsection{The production of pair secondaries}
+A pair interaction results in the production of a positron and an electron.
+The energies of the pair secondaries (in keV) are correlated in the following
+fashion :
+\begin{equation}
+\epsilon^- + \epsilon^+ = h \nu -1022
+\end{equation}
+where $\epsilon^-$ is the energy of the pair electron, $\epsilon^+$ is the
+energy of the pair positron, and $h\nu$ is the energy of the photon. The
+expression on the side of the previous equation is the energy that is
+available for distribution to the pair secondaries. Both the positron and the
+electron can have kinetic energy that varies from zero to this maximum
+available energy.\\
+The cross section for the production of a pair positron can be separated into
+three components : the total pair absorption cross section, a normalized
+distribution that is differential in the energy of the positron, and a
+normalized distribution that is differential in the angle of emission of the
+positron relative to the direction of the incident photon :
+\begin{equation}
+\frac{d\Sigma^{P,+}(E,\epsilon^+)}{d\epsilon^+ d\bo} = \Sigma^{PAA}(E)
+\frac{dW(\mu,\epsilon^+)}{d\bo} \frac{df^{P,+}(E,\epsilon^+)}{d\epsilon^+}
+\end{equation}
+The cross section for the production of a pair electron is similar :
+\begin{equation}
+\frac{d\Sigma^{P,-}(E,\epsilon^-)}{d\epsilon d\bo} = \Sigma^{PAA}(E)
+\frac{dW(\mu,\epsilon^-)}{d\bo} \frac{df^{P,-}(E,\epsilon^-)}{d\epsilon^-}
+\end{equation}
+The same angular distributions are used for both the electron and the
+positron. Since pair production occurs in the vicinity of a nucleus which
+acquire some of the momentum of the incident photon, the angles at which the
+pair secondaries are emitted are not correlated.\\
+Since bremsstrahlung and pair production are inverse processes, the same
+angular distribution can be used for pair secondaries as was used for
+bremsstrahlung photons :
+\begin{equation}
+\begin{split}
+\frac{dW(\mu,\epsilon)}{d\bo} &= \frac{1}{2\pi}
+\frac{dW(\mu,\epsilon)}{d\mu}\\
+&= \frac{1-\beta^2}{4\pi(1-\beta \mu)^2}
+\end{split}
+\end{equation}
+Just as the bremsstrahlung angular distribution becomes more forward peaked as
+the incident electron's energy increases, the angular distribution of pair
+secondaries becomes increasingly forward peaked as the incident photon's
+energy increases. The recursion relation for the Legendre moments of the
+bremsstrahlung distributions are used to evaluate the Legendre moments of this
+distribution.\\
+Both pair secondaries have the same distribution in energy :
+\begin{equation}
+\frac{df^{P,-}(E,\epsilon^-)}{d\epsilon^-} = \frac{df^{P,+}(E,\epsilon^+)}{d\epsilon^+}
+\end{equation}
+The energy distribution of the pair secondaries is given by Bethe-Heitler
+theory. In CEPXS, tabulated values for this distribution at selected photon
+energies were obtained from text. The energy distribution of the pair
+secondaries are tabulated up to a photon energy of 100 MeV on one of the cross
+section data tapes accessed by CEPXS.\\
+The expansion coefficients of transfer matrices for pair electron production
+are :
+\begin{equation}
+\Sigma_l^{P^-,f\rightarrow g} = \frac{1}{\Delta E^f} \int_{E^{f+1}}^{E^f} dE
+\int_{\epsilon^{g+1}}^{\epsilon^g} d\epsilon \Sigma^{PPA}(E) W_l(E^{m,g})
+\frac{f^{P,-}(E,\epsilon)}{d\epsilon}
+\end{equation}
+Note that the angular distribution of the pair electrons is evaluated in the
+midpoint energy of the electron group.\\
+The transfer matrices for positron pair production are the same as those for
+electron pair production :
+\begin{equation}
+\Sigma_l^{P,+,f\rightarrow h} = \Sigma_l^{P,-,f\rightarrow g}
+\end{equation}
+The effective energy deposition cross sections associated with the pair
+production of electrons and positrons are :
+\begin{align}
+\Sigma_E^{P,-,f} &= -\sum_g \Sigma_0^{P,-,f\rightarrow g} E^{m,g}\\
+\Sigma_E^{P,+,f} &= -\sum_h \Sigma_0^{P,+,f\rightarrow h} E^{m,h}
+\end{align}
+
+\subsubsection{Positron interactions}
+The same elastic scattering, inelastic scattering, and impact ionization cross
+sections are used for both electrons and positrons in CEPXS. Positron specific
+cross sections are not implemented in CEPXS.\\
+Unlike electrons, positrons can undergo annihilation reactions. CEPXS allows
+annihilation to occur only when the positron is absorbed. That is,
+annihilation occurs when the energy of the positron becomes less than the
+cutoff, $E^{g+1}$. In the annihilation process, two photons, each possessing
+the energy equivalent to the rest mass of an electron, are produced. These
+annihilation quanta are emitted isotropically. The transfer matrix associated
+with the production of annihilation radiation consists of the following
+\hbox{terms :}
+\begin{equation}
+\Sigma_{0}^{ANN,h\rightarrow f} = 2 \Sigma_{a}^{p,h} \delta_{ff'}
+\end{equation}
+where $f'$ is the photon energy group into which the annihilation quanta are
+produces.\\
+The energy deposition cross sections associated with the production of annihilation 
+radiation is :
+\begin{equation}
+\Sigma_E^{ANN,h} = -2 E^{m,f'}\Sigma_a^{p,h}
+\end{equation}
+
+\subsection{Summary}
+
+\subsubsection{Elastic scattering}
+The cross section data of Riley, et. al. is used at non-relativistic energies
+($<256 keV$). The Mott cross section with Moliere screening is used at
+relativistic energies (>256keV). The extended transport correction is applied
+to these elastic-scattering cross sections to make them amenable to
+representation by a low-order Legendre expansion.
+
+\subsubsection{Inelastic scattering}
+The M\o ller cross section is used for large-energy loss collisions. For other
+collisions, the restricted CSD approximation is used. In this approximation,
+the restricted collisional stopping power, $S^C$, specifies the energy loss
+the electron per pathlength due to small-energy loss collisions. In CEPXS,
+$S^C$ is calculated as the difference between the total collisional stopping
+power, $\mathcal{S}^C$, and that portion of $\mathcal{S}^C$ that is due to
+large-energy loss collisions. The total collisional stopping power is
+tabulated at discrete energies for all elements in the set of electron data
+called DATAPAC. For electron energies greater than 10keV, these collisional
+stopping powers (which are derived from Bethe theory) are employed. CEPXS
+employs an extrapolation of the stopping power for those elections with energy
+less than 10 keV
+
+\subsubsection{Knock-on production}
+The M\o ller cross section is used to determine the production of knock-on
+electrons with energies down to the cutoff energy. Knock-on production and
+impact ionization are not correlated in CEPXS.
+
+\subsubsection{Radiative energy loss and bremsstrahlung photon production}
+The bremsstrahlung cross section is based on a formulation by Berger et al.,
+involving Born-approximation cross sections described by Koch et. al. This
+cross section is used to describe both bremsstrahlung photon production and
+the slowing down of an electron by radiative events, the restricted CSD
+approximation is used. In this approximation, the restricted radiative
+stopping power, $S^B$, specifies the energy loss of the electron per
+pathlength due to radiative emission in which the energy loss is small. In
+CEPXS, $S^B$ is calculated as the difference between the total radiative
+stopping power, $\mathcal{S}^B$, and that portion of $\mathcal{S}^B$ that is
+due to large-energy loss radiative events. The total radiative stopping power
+is tabulated at discrete energies for all elements in DATAPAC.\\
+Bremsstrahlung photons are produced with energies greater than or equal to the
+cutoff energy. 
+
+\subsubsection{Impact ionization}
+The Gryzinski impact ionization cross sections are used for the K,L1,L2,L3 and
+M shells. With the NO-PCODE option, impact ionization is limited to the
+K-shell and the Kolbenstvedt cross section is used. Following impact
+ionization, a cascade of fluorescence photons and Auger electrons will be
+produced. 
+
+\subsubsection{Compton incoherent scattering and electron production}
+The Klein-Nishina cross section is used for Compton incoherent scattering and
+electron production. 
+
+\subsubsection{Photoelectric absorption and photoelectron production}
+The Biggs-Lighthill cross sections are used for photoelectric absorption. When
+using the NO-PCODE option, photoelectrons emerge with either the energy of the
+photon or with kinetic energy equal to that of the photon less the K-shell
+binding energy. The angular distributions devised by Fischer and Sauter are
+used for the emitted electrons. The relaxation cascade that accompanies
+photoionization is the same as that which accompanies impact ionization.
+
+\subsubsection{Pair interaction and the production of charged secondaries}
+The Biggs-Lighthill cross sections are used for the absorption of photons by
+pair interactions. The energy distribution of the charged secondaries produced
+by a pair interaction are obtained from Bethe-Heitler theory. Since
+Bremsstrahlung production and pair production are inverse processes, the same
+angular distribution is used for both bremsstrahlung photons and the
+secondaries produced by pair interactions.\\
+While positrons can be treated as a separate species of particles in CEPXS,
+the default option is that positrons are assumed to be electrons. This
+assumption has only a minor effect on the spatial profile of the energy
+deposition. Namely, annihilation radiation is produced at the site of the pair 
+interaction rather than where a positron is absorbed. However, the
+assumption that a positron is identical to a electron has a major impact on
+the charge deposition profile. Under this assumption, two electronic charges
+are removed from the medium at the site  of the pair interaction. In an actual
+pair interaction, no charge removal occurs at the site of the interaction.
 
 
-\red{page 125}
 \subsection{CEPXS-BFP}
 \subsection{CEPXS-Morel}
