@@ -1,8 +1,79 @@
 \section{Cross sections}
+The M\o ller cross section takes into account relativity and spin effects as
+well as exchange effects resulting from the indistinguishability of the
+incident and target electrons \cite{icru}.\\
+A key parameter in the Bethe stopping power is the mean excitation energy of
+the medium. Only moderate accuracy of the mean excitation energy is required
+for the determination of the electron collision stopping power. Let $\Delta 
+S_{col}$ be the uncertainty of $S_{col}$ corresponding to an uncertainty
+$\Delta I$ of $I$. From :
+\begin{equation}
+\frac{S_{col}}{\rho} = \frac{2\pi r_e^2 m c^2}{u} \frac{1}{\beta^2}
+\frac{Z}{A} \[\ln \(\frac{T}{I}\)^2 + \ln\(1+\frac{\tau}{2} + F^-(\tau) -
+\delta \)\]
+\label{supra}
+\end{equation}
+($u$ is the atomic mass unit) where :
+\begin{equation}
+F^-(\tau) (1-\beta^2)\[ 1+ \frac{\tau^2}{8} - (2\tau+1)\ln 2\]
+\end{equation}
+it can be seen that at low energies, where the density-effect corrections is
+negligible, $\frac{\Delta S_{col}}{S_{col}} = - \frac{(\Delta I/I)}{L}$, where
+the stopping number, $L$, ranges in value from about 3 at 10 keV to about 15
+at 1,000 MeV. At high energies, the $I$-dependence of the density-effect
+correction is such as to reduce the $I$-dependence of the collision stopping
+further; in fact, in the limit of extremely high energies, the collision
+stopping power becomes independent of $I$ \cite{icru}.\\
+$L(T,\Delta)$ is the  restricted collision stopping power defined as the
+mean energy loss per unit of pathlength due to collisions involving energy
+transfers, $W$, that are smaller than some chosen cut-off energy, $\Delta$.
+The kinetic energy of the secondary electrons from ionization events is then
+also smaller than $\Delta$, and the range for an electron of energy $\Delta$
+roughly specifies the region around the track of the incident particle within
+which  energy is absorbed locally.
+\begin{equation}
+\frac{L^{\pm}(T,\Delta)}{\rho} = \frac{2\pi r_e^2 m c^2}{u}
+\frac{1}{\beta^2}\frac{Z}{A}\[\ln(T/I)^2 + \ln
+(1+\tau/2)+G^{-}(\tau,\eta)-\delta\]
+\end{equation}
+where $\eta = \Delta/T$ is the fractional energy cut-off. This equation is
+similar to (\ref{supra}) except that the function $F$ is replaced by $G$ :
+\begin{equation}
+G^- (\tau,\eta) = -1 -\beta^2 + \ln\[4(1-\eta)\eta\]+(1-\eta)^{-1} +
+(1-\beta^2) \[\tau^2 \eta^2/2 + (2\tau+1) \ln(1-\eta)\]
+\end{equation}
+A condition for the validity of the previous equation is that the cut-off
+energy energy $\Delta$ be larger than the binding energies of the atomic
+electrons in the target materials. For the K- and L-shell electrons of high-Z
+materials, this condition is difficult tot satisfy for $\Delta$-values of
+practical interest. The previous equation does not take into account the
+reduction of the energy deposited locally along the electron track due to the
+escape of secondary Auger electrons or fluorescence X rays after inner-shell
+ionizations. Thus the equation becomes inaccurate for values of $\Delta$
+smaller than the K-shell binding energy (typically $\approx 1/2$ keV for low-Z
+materials such as water, air or graphite). Moreover, for very small $\Delta$,
+the use of the Bethe formalism is no longer justified. It is estimated that,
+for water, the use of the previous equation, with an assumed cut-off value
+$\Delta = 100 eV$, may overestimate the restricted stopping power by 10-20\%.
+\cite{icru}.\\
+Density effect : The passage of a charged particle through a medium results in
+the polarization, in turn, decreases the electromagnetic field acting on the
+particle so as to reduce the stopping power. This reduction is particularly
+strong in dense media, and is, therefore, called the density effect. The
+greater the particle velocity, the greater is the density effect because, by
+virtue of the Lorentz contraction, distant collisions become more important.
+In fact, at very high energies, the density-effect correction to the stopping
+is significant even in gases \cite{icru}.\\
+Positron-electron differences : differences arise because of the use of the
+Bhabha cross section instead of the M\o ller cross section for large energy
+transfers, and because an electron can, at most, lose half its entire energy
+in a single collision, whereas a positron can lose its entire energy
+\cite{icru}.
+
 \subsection{Physics of the interactions}
 
 \begin{description}
-\item [Thomson scattering :] an free electron oscillates in response to the 
+\item [Thomson scattering :] An free electron oscillates in response to the 
 electric vector of a passing electromagnetic wave. The oscillating electron 
 emits photons of the same frequency as the incident wave. The net effect of 
 Thomson scattering is the redirection of
@@ -21,7 +92,7 @@ a very well-collimated beam but has little effect in the broad-beam
 situations, Rayleigh scattering cross section varies as $Z^2$ and decreases
 with increasing energy approximately as $(h \nu)^{-k}$, where $k$ is about 3
 \cite{shielding}.
-\item [photo-electric effect :] a photon undergoes an interaction with an
+\item [Photoelectric effect :] A photon undergoes an interaction with an
 absorber atom in which the photon disappears. An energetic photoelectron is
 ejected from one of the bound shells of the atom. For gamma rays of
 sufficient energy, the most probable origin of the photoelectron is the $K$
@@ -29,8 +100,14 @@ shell of the atom. The photoelectron appears with an energy given by :
 \begin{equation}
 E_{e^-} = h\nu -E_b
 \end{equation}
-where $E_b$ represents the binding energy of the photoelectron in its original
-shell. The interaction leaves an ionized absorber atom with a vacancy in one
+where :
+\begin{itemize}
+\item $E_b$ represents the binding energy of the photoelectron in its original
+shell
+\item $h$ is the Planck's constant
+\item $\nu$ is the frequency of the radiation 
+\end{itemize}
+The interaction leaves an ionized atom with a vacancy in one
 of its bound shells. This hole is quickly filled through the rearrangement of
 electrons from other shells of the atom. Therefore, one or more X-ray photons
 may also be generated. In some fraction of the cases, the emission of Auger
@@ -42,28 +119,34 @@ electrons may substitute for the X-ray.
 \end{figure}
 The photoelectric process is the
 predominant mode of interaction for photons of relatively low energy. The
-process is more important for high atomic number $Z$.The probability of
+process is more important for high atomic number $Z$. The probability of
 photoelectric absorption $\tau$ depends on $Z$ and $h\nu$ as :
 \begin{equation}
 \tau \propto \frac{Z^n}{\(h\nu\)^3}
 \end{equation}
 where $n$ varies between 4 and 5. The photoelectric interaction is most likely
 to occur if the energy of the incident photon is just greater than the binding
-energy of the electron with which it interacts.
-\item [fluorescence :] fluorescence is a process in which some of the energy
-of a photon is used to create a second photon of less energy.
-\item [Compton effect :]  a Compton interaction is one in which only a portion
+energy of the electron with which it interacts \cite{radiation}.
+\item [Fluorescence :] Fluorescence is a process in which some of the energy
+of a photon is used to create a second photon of less energy. Fluorescence is
+the emission of light by a substance that has absorbed light or other
+electromagnetic radiation of a different wavelength. In most cases, emitted
+light has a longer wavelength, and therefore lower energy, than the absorbed
+radiation. However, when the absorbed electromagnetic radiation having a
+shorter wavelength than the absorbed radiation.
+\item [Compton effect :] A Compton interaction is one in which only a portion
 of the energy is absorbed and a photon is produced with reduced energy. This
 photon leaves the site of the interaction in a different direction from that
 of the original photon. If a photon of energy $h\nu$ and momentum
-$\frac{h\nu}{c}$ is a incident on a stationary, free electron, after the
-collision, the photon is scattered at an angle $\theta$ with energy $h\nu'$.
+$\frac{h\nu}{c}$ ($c$ is the speed of light in vacuum) is  incident on a 
+stationary, free electron, after the collision, the photon is scattered at an 
+angle $\theta$ with energy $h\nu'$.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\linewidth]{./Cross_Sections/images/compton}
 \caption{Compton effect}
 \end{figure}
-The Compton shift is given by :
+The Compton shift, i.e. shift of the wavelength is given by :
 \begin{equation}
 \Delta \lambda = \lambda'-\lambda = \frac{h}{mc} \(1-\cos \theta\)
 \end{equation}
@@ -71,13 +154,16 @@ The Klein-Nishina formal gives the differential cross section of photons
 scattered from a single free electron :
 \begin{equation}
 \frac{d \sigma}{d\bo} = \frac{k_0^2 e^4}{2 m_e^2
-c^4}\(\frac{\nu'}{\nu}\)^2\(\frac{\nu}{\nu'}+\frac{\nu'}{\nu}-\sin^e \theta\)
+c^4}\(\frac{\nu'}{\nu}\)^2\(\frac{\nu}{\nu'}+\frac{\nu'}{\nu}-\sin^2 \theta\)
 m^e sr^{-1}
 \end{equation}
-where $\frac{d\Sigma}{d\bo}$ is the differential scattering cross sections,
-$k_0 = \frac{1}{4\pi \epsilon_0}$, $\epsilon_0$ is the vacuum permittivity,
-$e$ is the elementary charge, $m_e$ is the mass of an electron and $c$ is the
-speed of light in vacuum \cite{radiation}.
+where :
+\begin{itemize}
+\item $\frac{d\Sigma}{d\bo}$ is the differential scattering cross sections
+\item $k_0 = \frac{1}{4\pi \epsilon_0}$, $\epsilon_0$ is the vacuum permittivity
+\item $e$ is the elementary charge
+\item $m_e$ is the mass of an electron \cite{radiation}
+\end{itemize}
 \item [Auger electron :] an atom in which an L electron makes a transition to
 fill a vacancy in the K shell does not always emit a photon. An other L
 electron can be ejected from the atom, thereby leaving two vacancies on the L
@@ -87,12 +173,13 @@ atomic number. The original inner-shell vacancy in an Auger-electron emitter
 can be created by orbital electron capture, internal conversion, or
 photoelectric effect. Auger cascades can occur in relatively heavy atoms, as
 inner-shell vacancies are successively filled by the Auger process, with
-simultaneous ejections of the more loosely bound atomic electrons.
-\item [Bremsstrahlung :] is an electromagnetic radiation produced by a sudden
-slowing down or deflection of charged particle (especially electrons) passing
-through matter in the vicinity of the strong electric fields of atomic nuclei.
-The efficiency of bremsstrahlung in elements of different atomic number $Z$
-varies nearly as $Z^2$.
+simultaneous ejections of the more loosely bound atomic electrons
+\cite{radiation}.
+\item [Bremsstrahlung :] bremsstrahlung is an electromagnetic radiation 
+produced by a sudden slowing down or deflection of charged particle (especially 
+electrons) passing through matter in the vicinity of the strong electric fields 
+of atomic nuclei. The efficiency of bremsstrahlung in elements of different 
+atomic number $Z$ varies nearly as $Z^2$ \cite{radiation}.
 \item [Pair production :] In some interactions of a photon with the nuclear
 Coulomb field, an electron-positron pair is formed and the photon disappears.
 Momentum is conserved by the nuclear recoil. The photon energy appears as the
@@ -117,8 +204,15 @@ threshold, roughly as $(h\nu)^n$, where $n$ varies from one to two. The cross
 sections is proportional to $Z^2$ except above 5MeV, where the cross section
 increases less rapidly because the pair is created at some distance from the
 nucleus, and screening by the inner atomic electrons slightly reduces the
-effective $Z$ \cite{shieldin}.
-\item [Collisional stopping power :] the collisional stopping power for
+effective $Z$ \cite{shielding}.
+\item [Stopping power :] The stopping power $-\frac{dE}{dx}$ is the energy
+loss per unit distance of travel by a charged particle. During deceleration,
+the stopping power generally increases until the energy of the particle is so
+low that charge neutralization or quantum effects bring about a reduction.
+\item [Collisional stopping power :] The collision stopping power is due to
+energy transfers from the incident particle to bound atomic electrons
+\cite{icru}.
+The collisional stopping power for
 electrons and positrons can be \hbox{written :}
 \begin{equation}
 \(-\frac{dE}{dx}\)_{col}^{\pm} = \frac{4\pi k_0^2 e^4 n}{m_e c^2 \beta^2}
@@ -161,6 +255,7 @@ be initiated by either a high-energy beta particle or a photon.
 \end{description}
 
 \subsection{CEPXS}
+\subsubsection{Interactions modeled in CEPXS}
 The principal interactions that electrons and photons can have, are
 \cite{cepxs} :
 \begin{description}
@@ -191,7 +286,8 @@ calculations
 \item model the same physical interactions as Version 2.1 of the
 Integrated-TIGER-Series (ITS) code package.
 \end{itemize}
-Now we define \cite{barjon} :
+Usually the microscopic and the macroscopic cross sections are defined as 
+\cite{barjon} :
 \begin{itemize}
 \item $\sigma$ is the microscopic cross section. It is the mean probability than a
 particle interacts whit a nucleus per $cm^2$. The unit of $\sigma$ is the barn
@@ -199,12 +295,19 @@ which is $10^{-24}cm^2$.
 \item $\Sigma$ is the macroscopic cross section. $\Sigma = N \sigma$ where $N$
 is the number of atoms per $cm^3$. The unit of $\Sigma$ is $cm^{-1}$.
 \end{itemize}
+However, in this chapter we will use the following definitions \cite{cepxs} :
+\begin{itemize}
+\item $\sigma$ is defined like previously.
+\item $\Sigma$ is defined by : $\Sigma = \frac{N_A \sigma}{A}$ where $N_A$ is
+Avogadro's number and $A$ is the gram-atomic weight of an element. The unit of
+$cm^{2}/g$.
+\end{itemize}
 In CEPXS, most cross sections for compounds are constructed using \cite{cepxs} :
 \begin{equation}
 \Sigma_{comp} = \sum_i w_i \Sigma_i
 \end{equation}
 where $w_i$ is the weight fraction of the $i^{th}$ element in the compound.
-However, the collisional stopping power of a compound cannot be expressed a
+The collisional stopping power of a compound, however, cannot be expressed as a
 combination of elemental stopping powers.\\
 The multigroup method involves a discretization of the particle energy domain
 into energy groups :
@@ -212,41 +315,51 @@ into energy groups :
 \centering
 \includegraphics[width=0.5\linewidth]{./Cross_Sections/images/multigroup}
 \caption{Multigroup}
-\end{figure}        
+\end{figure}
 where E1 $>$ E2 $>$ E3 $>$ $\cdots$ $>$ EG $>$ EG+1. EG+1 is the cutoff
-energy. In CEPXS, different groups structures can be selected for photons and
+energy, below this energy, the particles are supposed to be absorbed.
+In CEPXS, different groups structures can be selected for photons and
 electrons but the upper boundary energy and the cutoff energy are the same.\\
 The multigroup angular flux, $\Psi^g\(\br,\bo\)$, is defined as :
 \begin{equation}
 \Psi^g\(\br,\bo\) = \int_{E^{g+1}}^{E^g} dE \Psi\(\br,\bo,E\)
 \end{equation}
-where $\Psi(\br,\bo,E)$ is the angular flux. The differential cross section,
-$\Sigma_s(\br,E\rightarrow E',\mu)$ can be represented as :
+where $\Psi(\br,\bo,E)$ is the angular flux.\\
+The differential cross section, $\Sigma_s(\br,E\rightarrow E',\mu)$ can be 
+represented as :
 \begin{equation}
 \Sigma_s(\br,E\rightarrow E',\mu) = \sum_{l}^{\infty} \frac{2l+1}{4\pi}
 \Sigma_{s,l}(\br,E\rightarrow E') P_l(\mu)
 \end{equation}
 where :
+\begin{itemize}
+\item $\Sigma_{s,l}(\br,E\rightarrow E')$ is defined by :
 \begin{equation}
 \begin{split}
-\Sigma_{s,l}(r,E\rightarrow E') &= \int_{4 \pi} d\bo \Sigma_s\(\br,E\rightarrow
+\Sigma_{s,l}(\br,E\rightarrow E') &= \int_{4 \pi} d\bo \Sigma_s\(\br,E\rightarrow
 E',\mu\) P_l(\mu)\\
 &= 2\pi \int_{-1}^1 d\mu \Sigma_s(\br,E\rightarrow,\mu) P_l\(\mu\)
 \end{split}
 \end{equation}
-and $P_l$ are the Legendre polynomials. The multigroup-Legendre expansion
-coefficients for the cross sections that describe scattering and production
+\item $P_l$ are the Legendre polynomials.
+\end{itemize}
+The multigroup-Legendre expansion coefficients for the cross sections that 
+describe scattering and production
 interactions are stored by CEPXS in transfer matrices. For a differential
 cross section, the expansion coefficients that are stored in the transfer
 matrix of $L^{th}$-order are :
 \begin{equation}
-\Sigma_{s,L}^{g\rightarrow g'}\(\br\) = \frac{\int_{E^{g+1}}^{E^g} dE w(E)
-\int_{E^{g'+1}}^{E^{g'}}} dE' \Sigma_{s,L}(\br,E\rightarrow
-E'){\int_{E^{g+1}}^{E^g} dE w(E)}
+\Sigma_{s,L}^{g\rightarrow g'}\(\br\) = \frac{\int_{E^{g+1}}^{E^g} dE\ w(E)
+\int_{E^{g'+1}}^{E^{g'}} dE'\ \Sigma_{s,L}(\br,E\rightarrow
+E')}{\int_{E^{g+1}}^{E^g} dE\ w(E)}
 \end{equation}
-where $w(E)$ is the multigroup weighting function. $g$ is the row index of the
-transfer matrix and $g'$ is the column index. In CEPXS the weighting function
-is piece-wise constant in energy :
+where :
+\begin{itemize}
+\item $w(E)$ is the multigroup weighting function. 
+\item $g$ is the row index of the transfer matrix. 
+\item $g'$ is the column index. 
+\end{itemize}
+In CEPXS, the weighting function is piece-wise constant in energy :
 \begin{equation}
 w(E) = c^g \textrm{ for } E^{g}\geq E \geq E^{g+1}
 \end{equation}
@@ -269,6 +382,9 @@ The reaction rate over all groups is :
 \begin{equation}
 R_X = \int_{g=1}^G R_X^g
 \end{equation}
+In this work, we are primarily interested in energy-deposition cross sections
+because they are used to compute the dose. Therefore, we will not show the
+other cross sections used to compute other reaction rate.
 Energy-deposition cross sections are associated with every type of
 interaction. These cross sections are defined as the net energy deposited in
 the medium due to the interactions of particles in a group per unit
@@ -283,10 +399,10 @@ dE' E' \Sigma_{s,0}(\br,E\rightarrow E')}{\Delta E^g}
 However, it is not what is done in CEPXS where an effective energy-deposition
 multigroup cross sections is defined :
 \begin{equation}
-\Sigma_{E,s}^g\(\br\) = \Sigma_{t,s}^g \(\br,E^{g,m}\) - \sum_{g'=1}^G
-\Sigma_{s,0}^{g\rightarrow g'}\(E^{g',m}\)
+\Sigma_{E,s}^g\(\br\) = \Sigma_{t,s}^g \(\br,E^{m,g}\) - \sum_{g'=1}^G
+\Sigma_{s,0}^{\br,g\rightarrow g'}\(E^{m,g'}\)
 \end{equation}
-where $E^{g,m}$ is the midpoint energy of group $g$ and $\Sigma_{t,s}^g$ are
+where $E^{m,g}$ is the midpoint energy of group $g$ and $\Sigma_{t,s}^g$ are
 the total scattering multigroup cross \hbox{sections :}
 \begin{equation}
 \Sigma_{t,s}^g = \frac{\int_{E^{g+1}}^{E^g} dE \int_{E^{min}}^E dE'
@@ -294,13 +410,14 @@ the total scattering multigroup cross \hbox{sections :}
 \end{equation}
 with the assumption that :
 \begin{equation}
-\Sigma_{s,0}(\br,E\rightarrow E') = 0 \textrm{     for }E' < E_{min}
+\Sigma_{s,0}(\br,E\rightarrow E') = 0 \textrm{     for }E' < E^{min}
 \end{equation}
 We can notice that :
 \begin{equation}
 \Sigma_{t,s}^g\(\br\) = \sum_{g'=1}^G \Sigma_{s,0}^{g \rightarrow g'}(\br)
 \end{equation}
-only when $E^{min} > E^{g+1}$
+only when $E^{min} > E^{g+1}$. In the rest of this chapter, $\br$ will be
+omitted in the cross sections.
 
 \subsubsection{Catastrophic collisional scattering}       
 In CEPXS, inelastic scattering due to catastrophic collisions are modelled by
@@ -309,47 +426,52 @@ used in the derivation of the M\o ller cross section is that the incident
 electron collides with a free atomic electron. The adequacy of this assumption
 depends on how the energy of the incident electron compares to the binding
 energy of the atomic electron with which it collides. For example, if the
-incident-electron energy is on the order if the binding energy of an electron,
+incident-electron energy is on the order of the binding energy of an electron,
 the assumption of zero binding is wrong. After an inelastic collision, two
 electrons emerge. By convention, the particle with the higher energy is
-considered to be the primary electron. The electron is the knock-on electron.
-The M\o ller cross section can be written as differential tin the energy of
-the knock-on electron. The microscopic form of this cross section, in units of
-$cm^2$ per reduced electron energy, per collision with an atomic electron is
-given by :
+considered to be the primary electron. The electron of lowest energy is the 
+knocked-on electron. The M\o ller cross section can be written as differential 
+in the energy of the knock-on electron. The microscopic form of this cross 
+section, in units of $cm^2$ per reduced electron energy, per collision with an 
+atomic electron is given by :
 \begin{equation}
-\frac{d\sigma^{CC}\(\br,\tau,\epsilon\)}{d\epsilon} = \frac{2 \pi r_0^2}{\beta^2}
+\frac{d\sigma^{CC}\(\tau,\epsilon\)}{d\epsilon} = \frac{2 \pi r_0^2}{\beta^2}
 \[\frac{1}{\epsilon^2} + \frac{1}{\tau_p^2} + \frac{1}{\(\tau+1\)^2} -
 \frac{2\tau +1}{\(\tau+1\)^2\epsilon \tau_p}\]
 \end{equation}
-where $\tau_p$ is the kinetic energy of the scattered primary electron in
-units of reduced energy, $\tau_p$ varies from $\frac{\tau_p}{2}$ to $\tau$.
-$\epsilon$ is energy lost by the incident electron in units of reduced energy.
+where :
+\begin{itemize}
+\item $\tau_p$ is the kinetic energy of the scattered primary electron in
+units of reduced energy. $\tau_p$ varies from $\frac{\tau_p}{2}$ to $\tau$.
+\item $\epsilon$ is energy lost by the incident electron in units of reduced energy.
 It is equivalent to the kinetic energy of the knock-on electron in reduced
-energy units. Since the knock-on energy is the difference between the energies
+energy units.
+\end{itemize}
+Since the knock-on energy is the difference between the energies
 $\tau$ and $\tau_p$, $\epsilon$ varies from 0 to $\frac{\tau}{2}$. $r_0$ is
 the classical electron radius.\\
-\red{The macroscopic M\o ller cross section for a material is :}
+The macroscopic M\o ller cross section for a material is :
 \begin{equation}
-\frac{\Sigma^N(\br,\tau,\epsilon)}{d\epsilon} = \(\frac{Z}{A}\)_{eff} N_A
-\frac{d\sigma^{CC}\(\br,\tau,\epsilon\)}{d\epsilon}
+\frac{\Sigma^N(\tau,\epsilon)}{d\epsilon} = \(\frac{Z}{A}\)_{eff} N_A
+\frac{d\sigma^{CC}\(\tau,\epsilon\)}{d\epsilon}
 \end{equation}
-where the expression in brackets is defined in the glossary. Because energy
+where the expression in brackets is defined by : $\(\frac{Z}{A}\)_{eff} =
+\sum_i \frac{w_i Z_i}{A_i}$. Because energy
 and angle are kinematically related, the M\o ller cross section that is
 differential in both energy and angle is :
 \begin{equation}
-\frac{d\Sigma^{CC}(\br)}{d\tau_p d\bo_p} = \frac{d\Sigma^{CC}(\br)}{d\tau_p}
+\frac{d\Sigma^{CC}}{d\tau_p d\bo_p} = \frac{d\Sigma^{CC}}{d\tau_p}
 \frac{1}{2\pi} \delta(\mu-\mu_p)
 \end{equation}
 The total cross section for a catastrophic collision is obtained by
-integrating the differential cross sections over all possible energies and
+integrating the differential cross section over all possible energies and
 angles at which primary electrons can emerge. Because the M\o ller cross
-section is singular is at $\epsilon = 0$, tis integration must be truncated at
+section is singular at $\epsilon = 0$, this integration must be truncated at
 a primary electron energy that corresponds to a non-zero knock-on energy,
 $\epsilon^{CC}$ :
 \begin{equation}
-\Sigma_t^M\(\br,\tau\) = \int_{\frac{\tau}{2}}^{\tau-\epsilon^{CC}} d\tau_p
-\int_{4\pi} d\bo_p \frac{d\Sigma^{CC}(\br)}{d\tau_p d\bo_p}
+\Sigma_t^M\(\tau\) = \int_{\frac{\tau}{2}}^{\tau-\epsilon^{CC}} d\tau_p
+\int_{4\pi} d\bo_p \frac{d\Sigma^{CC}}{d\tau_p d\bo_p}
 \end{equation}
 The energy, $\epsilon^{CC}$, is the smallest energy that knock-on electron is
 allowed to have as a result of a catastrophic collision. Collisions that
@@ -371,18 +493,18 @@ groups were allowed. The total cross sections associated with catastrophic
 collisions are :
 \begin{equation}
 \begin{split}
-\Sigma_{t}^{CC,g}\(\br\) &= \frac{1}{\Delta \tau^g} \int_{\tau^{g+1}}^{\tau^g}d\tau
+\Sigma_{t}^{CC,g} &= \frac{1}{\Delta \tau^g} \int_{\tau^{g+1}}^{\tau^g}d\tau
 \int_{\frac{\tau}{2}}^{\tau^{g+2}} d\tau_p \int_{4\pi} d\bo_p
-\frac{d\Sigma^{CC}\(\br,T,T_p\)}{d\tau_p d\bo_p}\\
+\frac{d\Sigma^{CC}\(T,T_p\)}{d\tau_p d\bo_p}\\
 &= \frac{1}{\Delta \tau_p} \int_{\tau^{g+1}}^{\tau^g} d\tau
-\int_{frac{\tau}{2}}^{\tau^{g+2}}d\tau_p \frac{d\Sigma^{CC}\(\br,\tau,\tau_p\)}{d\tau_p}
+\int_{frac{\tau}{2}}^{\tau^{g+2}}d\tau_p \frac{d\Sigma^{CC}\(\tau,\tau_p\)}{d\tau_p}
 \end{split}
 \end{equation}
 The effective energy deposition cross sections due to catastrophic collisions
 are :
 \begin{equation}
-\Sigma_{E}^{CC,g}\(\br\) = \Sigma_{t,s}^{CC,g}\(\br\) E^{m,g} - \sum_{g' >
-g}\Sigma_{s,0}^{CC,g \rightarrow g'}\(\br\) E^{m,g'}
+\Sigma_{E}^{CC,g} = \Sigma_{t,s}^{CC,g} E^{m,g} - \sum_{g' >
+g}\Sigma_{0}^{CC,g \rightarrow g'} E^{m,g'}
 \end{equation}
 
 \subsubsection{Knock-on electron production}
@@ -405,7 +527,7 @@ The microscopic M\o ller cross section differential in the energy of the
 knock-on electron, $\sigma^K$, associated with a collision with an atomic
 electron is given \hbox{by :}
 \begin{equation}
-\frac{d\sigma^K\(\br\)}{d\epsilon d\bo_s} = \frac{d\sigma^K\(\br\)}{d\epsilon}
+\frac{d\sigma^K}{d\epsilon d\bo_s} = \frac{d\sigma^K}{d\epsilon}
 \frac{1}{2\pi} \delta\(\mu-\mu_s\)
 \end{equation}
 In order for electrons in group $g$ to produce knock-on electrons in group
@@ -414,25 +536,25 @@ exceed the maximum knock-on energy $\frac{\tau^g}{2}$. The expansion
 coefficients of the $l^th$-order transfer matrix for knock-on electron
 production are :
 \begin{equation}
-\sigma_{s,l}^{K,g\rightarrow g'}\(\br\) = \frac{1}{\tau^g} \int_{\tau^{g+1}}^{\tau^g}
-d\tau \int_{\tau^{g'+1}}^{\min\(\tau^{g'},\frac{\tau}{2}\)} d\epsilon
+\sigma_{l}^{K,g\rightarrow g'} = \frac{1}{\tau^g} \int_{\tau^{g+1}}^{\tau^g}
+d\tau \int_{\tau^{g'+1}}^{\min\(\tau^{g'},\frac{\tau}{2}\)} d\epsilon\ 
 \nu\(\Delta \epsilon\) P_l\(\mu_s\)
-\frac{d\sigma^k\(\br,\tau,\epsilon\)}{d\epsilon}
+\frac{d\sigma^k\(\tau,\epsilon\)}{d\epsilon}
 \end{equation}
 where the argument of the Heaviside function $\nu$ is :
 \begin{equation}
 \Delta \epsilon = \min\(\tau^{g'},\frac{\tau}{2}\)-\tau^{g'+1}
 \end{equation}
-\red{The macroscopic transfer matrices for knock-on production are :}
+The macroscopic transfer matrices for knock-on production are :
 \begin{equation}
-\Sigma_{s,l}^{K,g\rightarrow g'}\(\br\) = \(\frac{Z}{A}\)_{eff} N_A
-\sigma_{s,l}^{K,g\rightarrow g'}\(\br\)
+\Sigma_{l}^{K,g\rightarrow g'} = \(\frac{Z}{A}\)_{eff} N_A
+\sigma_{l}^{K,g\rightarrow g'}
 \end{equation}
 The effective energy deposition cross sections due to knock-on production
 \hbox{are :}
 \begin{equation}
-\Sigma_{E}^{K,g}\(\br\) = - \sum_{g' > g} \Sigma_{s,0}^{K,g\rightarrow
-g'}(\br) E^{m,g'}
+\Sigma_{E}^{K,g} = - \sum_{g' > g} \Sigma_{0}^{K,g\rightarrow
+g'} E^{m,g'}
 \end{equation}
 
 \subsubsection{Soft collisional scattering}
@@ -446,32 +568,34 @@ straggling is not associated with soft collisions.\\
 The expansion coefficients for the $l^{th}$-order transfer matrix associated
 with the first-order differenced form of the restricted CSD operator are :
 \begin{equation}
-\Sigma_{s,l}^{SC}(\br) = \frac{S^C(\br,E^{m,g})}{E^{m,g}-E^{m,g'}}
+\Sigma_{l}^{SC} = \frac{S^C(\br,E^{m,g})}{E^{m,g}-E^{m,g'}}
 \delta_{g',g+1}
 \end{equation}
-where $S^C$ is the restricted collisional stopping power. In a soft collision,
-an electron is assumed to slow down without angular deflection. The angular
-distribution associated with the CSD cross sections is the delta function,
-$\delta(\mu-1)$, which must be represented by a truncated Legendre expansion
-in CEPXS :
+where :
+\begin{itemize}
+\item $g \in [1,G-1]$
+\item $S^C$ is the restricted collisional stopping power.
+\end{itemize}
+In a soft collision, an electron is assumed to slow down without angular 
+deflection. The angular distribution associated with the CSD cross sections 
+is the delta function, $\delta(\mu-1)$, which must be represented by a 
+truncated Legendre expansion in CEPXS :
 \begin{equation}
-\Sigma_{s,l}^{SC,g\rightarrow g'} = \Sigma_{s,0}^{SC,g\rightarrow g'}
+\Sigma_{l}^{SC,g\rightarrow g'} = \Sigma_{0}^{SC,g\rightarrow g'}
 \textrm{  for }l = 0, 1, \cdots, L
 \end{equation}
 In a discrete ordinates calculation, such a truncated representation of the
 delta function will cause artificial or numerical dispersion of the particles
 unless the proper quadrature set is chosen (Galerkin quadrature). The
-expansion coefficients of the $l^th$-order transfer matrix associated with the
+expansion coefficients of the $l^{th}$-order transfer matrix associated with the
 second-order (diamond-differenced) form of the restricted CSD operator are
 (for $g=1,2,\cdots ,G-1$) :
 \begin{equation}
-\Sigma_{s,l}^{SC,g\rightarrow g'}\(\br\) = 
+\Sigma_{l}^{SC,g\rightarrow g'} = 
 \left\{
 \begin{aligned}
 & \frac{(-1)^{g'-g+1}}{\Delta E^g} 2 \(S^C(\br,E^{g'}) + S^C\(\br,E^{g'+1}\)\)
-& \textrm{ if } G > g' > g\\
-& \frac{(-1)^{G-g+1}}{\Delta E^g} 2 \(S^C\(\br,E^G\)+S^C\(\br,E^{G+1}\)\)
-& \textrm{ if } g' = G\\
+& \textrm{ if } G \geq g' > g\\
 & 0 &\textrm{ otherwise}
 \end{aligned}
 \right.
@@ -484,27 +608,27 @@ The effective absorption cross sections due to soft collisions are :
 \begin{itemize}
 \item first order :
 \begin{equation}
-\Sigma_{a}^{SC,g}\(\br\) =
+\Sigma_{a}^{SC,g} =
 \left\{
 \begin{aligned}
 & 0 & \textrm{ if } g=1,2,\cdots, G-1\\
-& \frac{S^C(\br,E^{m,g})}{E^{m,g} - E^u} & \textrm{ if }g = G
+& \frac{S^C(E^{m,g})}{E^{m,g} - E^u} & \textrm{ if }g = G
 \end{aligned}    
 \right.
 \end{equation}
 \item second order :
 \begin{equation}
-\Sigma_a^{SC,g}\(\br\) = \frac{(-1)^{G-g}2S^C\(\br,E^{g+1}\)}{\Delta E^g} \textrm{
+\Sigma_a^{SC,g} = \frac{(-1)^{G-g}2S^C\(E^{g+1}\)}{\Delta E^g} \textrm{
 for }g=1,2,\cdots,G
 \end{equation}
 \end{itemize}
 where $E^u$ is an arbitrary energy that is less than the cutoff energy.\\
 The total cross sections for soft collisions are :
 \begin{itemize}
-\item first order : $\Sigma_{t}^{SC,g}\(\br\) = \Sigma_a^{SC,g}\(\br\) +
-\Sigma_{s,0}^{SC,g\rightarrow g+1}\(\br\)$
-\item second order : $\Sigma_{t}^{SC,g}\(\br\) = \Sigma_{a}^{SC,g}\(\br\) + 
-\sum_{g' > g} \Sigma_{s,0}^{SC,g\rightarrow g'}\(\br\)$
+\item first order : $\Sigma_{t}^{SC,g} = \Sigma_a^{SC,g} +
+\Sigma_{0}^{SC,g\rightarrow g+1}$
+\item second order : $\Sigma_{t}^{SC,g} = \Sigma_{a}^{SC,g} + 
+\sum_{g' > g} \Sigma_{0}^{SC,g\rightarrow g'}$
 \end{itemize}
 The energy deposition cross sections due to soft collisions are :
 \begin{itemize}
@@ -534,15 +658,20 @@ In the first-order scheme, the restricted stopping power must be evaluated at
 the midpoint energies of all electron groups except the last. The restricted
 collisional stopping power is defined as that portion of the total stopping
 power that is not due to catastrophic \hbox{collisions :}
-\red{That is weird, page 37. Verifier ce que vaut T/tau et H/nu}
 \begin{equation}
 S^C\(\br,E^{m,g}\) = \mathcal{S}^C\(\br,E^{m,g}\) - \frac{m_e c^2}{\Delta
 \tau^g} \int_{\tau^{g+1}}^{\tau^g} d\tau \int_{\frac{\tau}{2}}^{\tau^{g+2}}
-d\tau_p \nu(\Delta \tau_p) (\tau-\tau_p) \frac{d\Sigma^{CC}(\br,\tau,\tau_p)}{d\tau_p}
+d\tau_p\ \nu(\Delta \tau_p)\ (\tau-\tau_p) \frac{d\Sigma^{CC}(\br,\tau,\tau_p)}
+{d\tau_p}
 \end{equation}
-with $g=1,2,\cdots, G-1$ and $\mathcal{S}^C(\br,E)$ is the total collisional
+where :
+\begin{itemize}
+\item $g=1,2,\cdots, G-1$. 
+\item $\mathcal{S}^C(\br,E)$ is the total collisional
 stopping power $\[\frac{MeV cm^2}{g}\]$ that is generally derived from Bethe
-theory. The stopping power for a compound can be constructed with the aid of a
+theory. 
+\end{itemize}
+The stopping power for a compound can be constructed with the aid of a
 density effect formalism discussed in the next section.\\
 The restriction that the cutoff energy in CEPXS cannot extend below one keV is
 due to the lack of stopping power data (as well as electron elastic scattering
@@ -559,13 +688,13 @@ stopping power that is associated with catastrophic collisions increases as
 more groups are selected. This is because the energy, $\epsilon^{CC}$, that
 demarcates catastrophic and soft collisions decreases as the number of groups
 increases.\\
-However, the figure indicates that soft collisions dominate collisional energy
+However, soft collisions dominate collisional energy
 loss even when an excessive number of electron groups (160) are employed.
 Indeed, very many electron groups would be needed to make the collisional
 stopping power due to catastrophic collisions comparable to the total stopping
 power. This is another way of stating the previously mentioned assertion that
 an excessive number of groups would be required to accurately represent a
-single-event inelastic collisional cross section. In CEPXS, we are able to
+single-event inelastic collisional cross section. CEPXS is able to
 accurately calculate the energy loss of an electron due to inelastic
 scattering with only a modest number of groups ($\approx 40$) because the
 restricted CSD approximation is used to represent the energy loss that is due
@@ -580,15 +709,15 @@ for low energies in high-Z materials.\\
 In CEPXS, the Bethe stopping power is corrected at low energies in high-Z
 materials. Since a general formalism for electron stopping powers in arbitrary
 materials at low energies is not available, a variety of empirical corrections
-have been proposed. In CEPXS, we employ a power-law extrapolation of the Bethe
+have been proposed. CEPXS employs a power-law extrapolation of the Bethe
 stopping power for each element below the arbitrarily selected energy of 10
 keV :
 \begin{align}
-& S^C(\br,E) = S^{Bethe}(\br,E) & \textrm{ for }E > 10 keV \\
-& S^C(\br,E) = S^{Bethe}(\br,10keV) \(\frac{E\(10 keV\)}{E}\)^x & \textrm{ for
+& S^C(E) = S^{Bethe}(E) & \textrm{ for }E > 10 keV \\
+& S^C(E) = S^{Bethe}(10keV) \(\frac{E\(10 keV\)}{E}\)^x & \textrm{ for
 }E \leq 10 keV  \\
 \end{align}
-where $x = - \left.\frac{\partial \ln(S(\br,E))}{\partial \ln
+where $x = - \left.\frac{\partial \ln(S(E))}{\partial \ln
 (E)}\right|_{E=10keV}$.\\
 In order to evaluate the cross sections for the second-order differenced form
 of the CSD operator, the restricted stopping power must be evaluated at all
@@ -596,11 +725,30 @@ group boundaries except the upper boundary, $E^1$, and the lower boundary
 $E^{G+1}$. Since a boundary energy is both the top of one group and the bottom
 of another, there is some ambiguity as to how a catastrophic collision is to
 be defined for an electron whose energy is the same as that of a group
-boundary. In order to remove this ambiguity, we consider the restricted
+boundary. For instance, if $E^g$ is considered to be the upper boundary of
+group $g$, a catastrophic collision would produce primary electrons with
+energies less than $E^{g+2}$. With this interpretation, the restricted
+collisional stopping power at energy $E^g$ is :
+\begin{equation}
+S_U^C(E^g) = S^C(E^g) - m c^2 \int_{\tau^g/2}^{\tau^{g+2}} d\tau_p\ \nu(\Delta
+\tau_p)\ \(\tau^g-\tau_p\) \frac{d\Sigma^{CC}(\tau^g,\tau_p)}{d\tau_p}
+\end{equation}
+where :
+\begin{itemize}
+\item $g=2,3,\hdots,G-1$
+\item $S_U^C(E^G) = 0$
+\end{itemize}
+On the other hand, if $E^G$ is considered to be the lower boundary of a group
+:
+\begin{equation}
+S_L^C(E^g) = S^C(E^g) - m c^2 \int_{\Tau^g/2}^{\tau^{g+1}} d\tau_p\ \nu(\Delta
+\tau_p)\ (\tau^g - \tau_p) \frac{d\Sigma^{CC} (\tau^g,\tau_p)}{d\tau_p}
+\end{equation}
+In order to remove this ambiguity, we consider the restricted
 collisional stopping power at a group boundary to be the average of these two
 \hbox{formulations :}
 \begin{equation}
-S^C(\br,E^g) = \frac{1}{2}\(S_U^C\(\br,E^g\)+S_L^{C}(\br,e^g)\)
+S^C(E^g) = \frac{1}{2}\(S_U^C\(E^g\)+S_L^{C}(E^g)\)
 \end{equation}
 with $g=2,\cdots,G$
 
@@ -608,7 +756,7 @@ with $g=2,\cdots,G$
 The density effect arises from the self polarization of the medium by the
 electron. It reduces the collisional stopping power :
 \begin{equation}
-\mathcal{S}^C(E) = \mathcal{\bar{S}}i^C(E) - \delta(E) 
+\mathcal{S}^C(E) = \mathcal{\bar{S}}^C(E) - \delta(E) 
 \end{equation}
 where $\delta$ is the density effect correction $\[\frac{MeV-cm^2}{g}\]$ and
 $\mathcal{\bar{S}}^C$ is the uncorrected stopping power. The density effect
@@ -654,7 +802,7 @@ as a result of bremsstrahlung emission. Hence the scattering cross section,
 $\Sigma^{CB}$, for catastrophic radiative interactions that is differential in
 the energy of the scattered electron is :
 \begin{equation}
-\frac{d\Sigma^{CB}}{d\tau_s d\Omega} = \frac{d\Sigma^{CB}}{dT_s}
+\frac{d\Sigma^{CB}}{d\tau_s d\Omega} = \frac{d\Sigma^{CB}}{d\tau_s}
 \frac{1}{2\pi} \delta \(\mu_s - 1\)
 \label{au-dessus}
 \end{equation}
@@ -665,41 +813,43 @@ obtained by integrating (\ref{au-dessus}) over all photon energies. Because
 the bremsstrahlung cross section is singular at zero photon energy , this
 integration must be truncated at a scattered electron energy that corresponds
 to a non-zero photon energy, $\epsilon^{CB}$. In the high-frequency limit in
-which the photon energy is comparable the incident electron's energy, the
+which the photon energy is comparable to the incident electron's energy, the
 model cannot be used anymore. It has been recommended that some high frequency
 limit for the bremsstrahlung cross section, based on theory and experiment, be
 used instead. Rather than adopting a new formalism for the bremsstrahlung
-cross section in the high-frequency limit, we chose to truncate the
-integration of the bremsstrahlung cross section in CEPXS at a maximum photon
+cross section in the high-frequency limit, CEPXS truncates the
+integration of the bremsstrahlung cross section at a maximum photon
 energy, $\epsilon^{max}$. The maximum photon energy that is allowed in CEPXS
 is arbitrarily set to be one keV less than the energy of the incident
 electron.\\
 The total cross section associated with catastrophic radiative emission is  :
 \begin{equation}
-\Sigma_t^{CB} (\br,T) = \int_{T-\epsilon^{max}}^{T-\epsilon^{CB}} dT_s
-\frac{d\Sigma^{CB}(\br,T,T_s)}{dT_s}
+\Sigma_t^{CB} (\tau) = \int_{\tau-\epsilon^{max}}^{\tau-\epsilon^{CB}} dtau_s
+\frac{d\Sigma^{CB}(\tau,\tau_s)}{d\tau_s}
 \end{equation}
 In CEPXS, a catastrophic radiative event is defined to be one in which an
-electron down-scatters in energy $T$ in group $g$, the maximum energy that an
-electron can have after a catastrophic radiative event is $T^{g+2}$. Hence,
+electron down-scatters in energy $\tau$ in group $g$, the maximum energy that an
+electron can have after a catastrophic radiative event is $\tau^{g+2}$. Hence,
 the lower photon energy cutoff for catastrophic radiative emission is
-$\epsilon^{CB} = T-T^{g+2}$.\\
+$\epsilon^{CB} = \tau-\tau^{g+2}$.\\
 The total multigroup cross sections for catastrophic radiative emission are :
 \begin{equation}
-\Sigma_{t,s}^{CB,g}(\br) = \frac{1}{\Delta T^g} \int_{T^{g+1}}^{T^g} dT
-\int_{T-\epsilon^{max}}^{T^{g+2}} dT_s \frac{d\Sigma_s^{CB}\(\br,T,T_s\)}{dT_S}
+\Sigma_{t}^{CB,g} = \frac{1}{\Delta \tau^g} \int_{\tau^{g+1}}^{\tau^g} d\tau
+\int_{\tau-\epsilon^{max}}^{\tau^{g+2}} d\tau_s \frac{d\Sigma_s^{CB}
+\(\tau,\tau_s\)}{d\tau_S}
 \end{equation}
 The expansion coefficients of the transfer matrices for catastrophic radiative
 emission are :
 \begin{equation}
-\Sigma_{s,l}^{CB,g\rightarrow g'} = \frac{1}{\Delta T^g} \int_{T^{g+1}}^{T^g}
-dT \int_{T^{g'+1}}^{T^{g'}} dT_s \frac{d\Sigma_s^{CB}(\br,T,T_s)}{dT_s}
+\Sigma_{l}^{CB,g\rightarrow g'} = \frac{1}{\Delta \tau^g} \int_{\tau^{g+1}}^
+{\tau^g} d\tau \int_{\tau^{g'+1}}^{\tau^{g'}} d\tau_s \frac{d\Sigma_s^{CB}
+(\tau,\tau_s)}{d\tau_s}
 \end{equation}
 with $g'=g+2,g+1,\cdots,G$.\\
 The effective energy deposition cross sections for scattering by catastrophic
 radiative emission are :
 \begin{equation}
-\Sigma_E^{CB,g}\(\br\) = \Sigma_{t,s}^{CB,g}(\br) E^{m,g} - \sum_{g' > g}
+\Sigma_E^{CB,g} = \Sigma_{t}^{CB,g} E^{m,g} - \sum_{g' > g}
 \Sigma_{s,0}^{CB,g\rightarrow g}E^{m,g'}
 \end{equation}
 
@@ -709,27 +859,28 @@ into a cross section that is differential in the energy of the photon and into
 a normalized differential angular distribution :
 \begin{equation}
 \frac{d\Sigma^{BP}}{d\epsilon d\bo} = \frac{\Sigma^{BP}}{d\epsilon}
-\frac{dW(\mu,T)}{d\Omega}
+\frac{dW(\mu,\tau)}{d\Omega}
 \end{equation}
 where $\mu$ is the cosine of the emitted photon relative to the direction of
 the electron prior to radiative emission.\\
 The Sommerfield angular distribution of bremsstrahlung is used in CEPXS :
 \begin{equation}
 \begin{split}
-\frac{dW(\mu,T)}{d\bo} &= \frac{1}{2\pi} \frac{dW(\mu,T)}{d\mu}\\
+\frac{dW(\mu,\tau)}{d\bo} &= \frac{1}{2\pi} \frac{dW(\mu,\tau)}{d\mu}\\
 &=\frac{1-\beta^2}{4\pi (1-\beta \mu)^2}
 \end{split}
 \end{equation}
 As the energy of the incident electrons increases ($\beta \rightarrow 1$), the
 bremsstrahlung angular distribution becomes increasingly forward peaked.\\
 In order for electrons in group $g$ to produce photons in group $f$, the
-maximum energy for an electron in the group $T^g$ must exceed the lower energy
+maximum energy for an electron in the group $\tau^g$ must exceed the lower energy
 boundary of that photon group, $\epsilon^{f+1}$. The expansion coefficients of
 the transfer matrices for bremsstrahlung emission are :
 \begin{equation}
-\Sigma_{s,l}^{PB,g\rightarrow f}(\br) = \frac{1}{\Delta T^g} \int_{T^{g+1}}^{T^G}
-dT \int_{\epsilon^{f+1}}^{\min\(\epsilon^f,\epsilon^{max}\)} d\epsilon
-\nu\(\Delta \epsilon\) W_l(T) \frac{d\Sigma^{BP}(\br,T,\epsilon)}{d\epsilon}
+\Sigma_{l}^{PB,g\rightarrow f} = \frac{1}{\Delta \tau^g}
+\int_{\tau^{g+1}}^{\tau^G}
+d\tau \int_{\epsilon^{f+1}}^{\min\(\epsilon^f,\epsilon^{max}\)} d\epsilon
+\nu\(\Delta \epsilon\) W_l(\tau) \frac{d\Sigma^{BP}(\tau,\epsilon)}{d\epsilon}
 \end{equation}
 with $f=1,2,\cdots,F$ and the argument of the Heaviside function is :
 \begin{equation}
@@ -748,12 +899,12 @@ the appearance of bremsstrahlung photons in any photon energy group. The
 moments of the normalized angular distribution for the bremsstrahlung photons
 are :
 \begin{equation}
-W_l(T) = 2\pi \int_{-1}^1 P_l(\mu) W(T,\mu) d\mu
+W_l(\tau) = 2\pi \int_{-1}^1 P_l(\mu) W(\tau,\mu) d\mu
 \end{equation}
 Note that as the energy of the incident electron increases, the Legendre
 moments of the bremsstrahlung angular distribution become increasingly like
 those of the delta function. For low-energy electrons, the bremsstrahlung
-distribution is close to being isotropic and ti is sufficient to calculate
+distribution is close to being isotropic and it is sufficient to calculate
 only a few moments of the distribution. In CEPXS, when the ratio
 $\frac{W_l}{W_0}$ less than 0.0001, the higher-order Legendre moments
 ($l+1,l+2,\cdots,L$) are not evaluated but are set equal to zero.\\
@@ -761,11 +912,11 @@ In CEPXS, the calculation of the transfer matrix for bremsstrahlung production
 is simplified by the assumption that all the electrons in a group emit
 bremsstrahlung with the same angular distribution :
 \begin{equation}
-W_l(T) \approx W_l(T^{m,g})
+W_l(\tau) \approx W_l(\tau^{m,g})
 \end{equation}
 The effective energy cross sections due to bremsstrahlung production are :
 \begin{equation}
-\Sigma_{E}^{BP,g}(\br) = - \sum_{f=1}^F \Sigma_{s,0}^{BF,g\rightarrow f}(\br)
+\Sigma_{E}^{BP,g} = - \sum_{f=1}^F \Sigma_{0}^{BF,g\rightarrow f}
 E^{m,f}
 \end{equation}
 
@@ -781,27 +932,25 @@ radiative events can be constructed from these CSD cross sections. The
 expansion coefficients of the matrices associated with the first-order
 differenced form of the restricted CSD operator are :
 \begin{equation}
-\Sigma_{s,l}^{SB,g\rightarrow g'}(\br) =
-\frac{S^B(\br,E^{m,g})}{E^{m,g}-E^{m,g'}} \textrm{ if } g'=g+1
+\Sigma_{l}^{SB,g\rightarrow g'} =
+\frac{S^B(E^{m,g})}{E^{m,g}-E^{m,g'}} \textrm{ if } g'=g+1
 \end{equation}
 In the CSD approximation, the electron slows down without angular deflection.
 This delta function scattering is represented by  a truncated Legendre
 expansion :
 \begin{equation}
-\Sigma_{s,l}^{SB,g\rightarrow g'}(\br) = \Sigma_{s,0}^{SB,g\rightarrow
-g'}(\br) \textrm{ if } l\leq L
+\Sigma_{l}^{SB,g\rightarrow g'} = \Sigma_{0}^{SB,g\rightarrow
+g'} \textrm{ if } l\leq L
 \end{equation}
 with $g=1,2,\cdots,G-1$.\\
 The expansion coefficients of the $l^{th}$-order transfer matrix associated
 with the diamond differenced form of the CSD operator are :
 \begin{equation}
-\Sigma_{s,l}^{SB,g\rightarrow g'}(\br) = 
+\Sigma_{l}^{SB,g\rightarrow g'} = 
 \left\{
 \begin{aligned}
 & \frac{(-1)^{g'-g+1}}{\Delta E^g} 2 \(S^B(\br,E^{g'})+S^B(E^{g'+1})\) &
-\textrm{if } G > g' >g\\
-& \frac{(-1)^{G-g+1}}{\Delta E^g} 2\(S^B(\br,E^G)+S^B(\br,E^{G+1})\) &
-\textrm{for } g'=G\\
+\textrm{if } G \geq g' >g\\
 & 0 & \textrm{otherwise}
 \end{aligned}
 \right.
@@ -810,17 +959,17 @@ The effective absorption cross sections due to soft radiative emission are :
 \begin{itemize}
 \item first order :
 \begin{equation}
-\Sigma_{a}^{SB,g}(\br) =
+\Sigma_{a}^{SB,g} =
 \left\{
 \begin{aligned}
-& \frac{S^B(\br,E^{m,g})}{E^{m,g}-E^u} & \textrm{ if } g =G\\
+& \frac{S^B(E^{m,g})}{E^{m,g}-E^u} & \textrm{ if } g =G\\
 & 0 & \textrm{otherwise}
 \end{aligned}
 \right.
 \end{equation}
 \item second order :
 \begin{equation}
-\Sigma_a^{SB,g}(\br) = \frac{(-1)^{G-g}2\mathcal{S}^B(\br,E^{G+1})}{\Delta
+\Sigma_a^{SB,g} = \frac{(-1)^{G-g}2\mathcal{S}^B(E^{G+1})}{\Delta
 E^g} \textrm{ for } g=1,2,\cdots,G
 \end{equation}
 \end{itemize}
@@ -830,13 +979,11 @@ The total cross sections sections for soft radiative emission are :
 \begin{itemize}
 \item first order :
 \begin{equation}
-\Sigma_{t}^{SB,g}(\br) = \Sigma_{a}^{SB,g}(\br) + \Sigma_{s,0}^{SB,g\rightarrow
-g+1}(\br)
+\Sigma_{t}^{SB,g} = \Sigma_{a}^{SB,g} + \Sigma_{s,0}^{SB,g\rightarrow g+1}
 \end{equation}
 \item second order :
 \begin{equation}
-\Sigma_t^{SB,g}(\br) = \Sigma_{a}^{SB,g}(\br) + \sum_{g' >
-g}\Sigma_{s,0}^{SB,g\rightarrow g'}(\br)
+\Sigma_t^{SB,g} = \Sigma_{a}^{SB,g} + \sum_{g' > g}\Sigma_{0}^{SB,g\rightarrow g'}
 \end{equation}
 \end{itemize}
 
@@ -844,33 +991,33 @@ The energy deposition cross sections due to soft radiative emission are :
 \begin{itemize}
 \item first order :
 \begin{equation}
-\Sigma_E^{SB,g}(\br) = 
+\Sigma_E^{SB,g} = 
 \left\{
 \begin{aligned}
 & 0 & \textrm{ if } g\leq G\\
-& \Sigma_a^{SB,g}(\br) E^{m,g} \textrm{ if } g=G
+& \Sigma_a^{SB,g} E^{m,g} \textrm{ if } g=G
 \end{aligned}
 \right.
 \end{equation}
 \item second order :
 \begin{equation}
-\Sigma_E^{SB,g}(\br) = \Sigma_{t}^{SB,g}(\br) E^{m,g} - \sum_{g'>g}
-\Sigma_{s,0}^{SB,g\rightarrow g'} E^{m,g'}
+\Sigma_E^{SB,g} = \Sigma_{t}^{SB,g} E^{m,g} - \sum_{g'>g}
+\Sigma_{0}^{SB,g\rightarrow g'} E^{m,g'}
 \end{equation}
 \end{itemize}
 
-\subsection{The restricted radiative stopping power}
+\subsubsection{The restricted radiative stopping power}
 In order to evaluate the CSD cross sections for soft radiative emission, the
 restricted radiative power, $S^B$, must be calculated. For the cross sections
 that correspond to a first-order differenced form of the restricted CSD
 operator, the restricted radiative stopping power must be evaluated at the
 midpoint energies of all electron groups except the last. The restricted
-radiative stopping power that is not associated with catastrophic energy
-\hbox{loss :}
+radiative stopping power that is not associated with catastrophic energy loss
+is given \hbox{by :}
 \begin{equation}
-S^B(\br,E^{m,g}) = \mathcal{S}^B(br,E^{m,g}) - \frac{m_e c^2}{\Delta T^g}
-\int_{T^{g+1}}^{T^g} dT \int_{T-\epsilon_max}^{T^{g+2}} dT^s (T-T^s)
-\frac{d\Sigma^{TB}(\br,T,T^s)}{dT^s}
+S^B(E^{m,g}) = \mathcal{S}^B(E^{m,g}) - \frac{m_e c^2}{\Delta \tau^g}
+\int_{\tau^{g+1}}^{\tau^g} d\tau \int_{\tau-\epsilon^{max}}^{\tau^{g+2}}
+d\tau^s (\tau-\tau^s) \frac{d\Sigma^{TB}(\tau,\tau^s)}{d\tau^s}
 \end{equation}
 with $g=1,2,\cdots,G-1$ and $\mathcal{S^B}$ is the total radiative stopping
 power $\[\frac{MeV cm^2}{g}\]$.\\
@@ -881,7 +1028,7 @@ catastrophic radiative energy losses is nearly identical to the total
 radiative stopping power. This is quite different from the case case with
 collisional scattering.\\
 In order to evaluate the cross sections that represent the second-order
-differenced form of the restricted CSd operator, the restricted radiative
+differenced form of the restricted CSD operator, the restricted radiative
 stopping power must be evaluated at all electron group boundaries except the
 upper boundary, $E^1$, and the lower boundary, $E^{G+1}$. As was the case with
 the restricted collisional stopping power, two different interpretations are
@@ -889,26 +1036,27 @@ possible for the restricted radiative stopping power at a group boundary
 energy. If $E^g$ is considered to be the upper boundary of group, then the
 restricted radiative stopping power is :
 \begin{equation}
-S_U^B(\br,E^g) = \mathcal{S}^B(\br,E^g) - m_e c^2
-\int_{T^g-\epsilon^{max}}^{T^{g+2}} dT^s (T^g-T^s)
-\frac{d\Sigma^{CB}(\br,T^g,T^s)}{dT^s}
+S_U^B(E^g) = \mathcal{S}^B(E^g) - m_e c^2
+\int_{\tau^g-\epsilon^{max}}^{\tau^{g+2}} d\tau^s (\tau^g-\tau^s)
+\frac{d\Sigma^{CB}(\tau^g,\tau^s)}{d\tau^s}
 \end{equation}
-for $g=2,3,\cdots,G-1$ and :
-\begin{equation}
-\mathcal{S}_U^B(E^G) =0
-\end{equation}
+where :
+\begin{itemize}
+\item $g=2,3,\cdots,G-1$ 
+\item $ \mathcal{S}_U^B(E^G) =0$
+\end{itemize}
 On the other hand, if $E^g$ is considered to be the lower boundary of a group,
 the restricted radiative stopping power is :
 \begin{equation}
-S_L^B(\br,E^g) = \mathcal{S}^B(\br,E^G) - m_e c^2
-\int_{T^g-\epsilon^{max}}^{T^{g+1}} dT^s (T^g-T^s)
-\frac{d\Sigma^{CB}(\br,T^G,T^s)}{dT^S}
+S_L^B(E^g) = \mathcal{S}^B(E^G) - m_e c^2
+\int_{\tau^g-\epsilon^{max}}^{\tau^{g+1}} d\tau^s (\tau^g-\tau^s)
+\frac{d\Sigma^{CB}(\tau^G,\tau^s)}{d\tau^S}
 \end{equation}
 with $g=2,3,\cdots,G$.\\
 To avoid ambiguity, the restricted average radiative stopping power at a group
 boundary is defined to be the average of the previous two formulations :
 \begin{equation}
-S^B(\br,E^g) = \frac{1}{2} \(S_U^B(\br,E^g)+S_L^B{\br,E^g}\)
+S^B(E^g) = \frac{1}{2} \(S_U^B(E^g)+S_L^B{E^g}\)
 \end{equation}
 with $g=2,3,\cdots,G$.
 
@@ -922,25 +1070,24 @@ is modified by the extended transport correction. This approximation makes the
 elastic-scattering cross section amenable to a low-order Legendre expansion.
 
 \subsubsection{The extended transport correction}
-\red{citer lathrop et morel dans cette partie}
 Since the elastic-scattering cross section for electrons is highly forward
 peaked, an accurate Legendre expansion of this cross section would require an
 expansion to very high order. A lower-order expansion is feasible if the
 extended transport correction is applied to the elastic scattering cross
 section. In this approach, the elastic scattering cross section is corrected
-by the removal of a delta function component. In CEPXS, the extended transport
-correction is applied to both the Mott and the Riley cross sections. In the
-extended transport correction, the highly forward-peaked elastic scattering
+by the removal of a delta function component \cite{lathrop}. In CEPXS, the extended 
+transport correction is applied to both the Mott and the Riley cross sections. 
+In the extended transport correction, the highly forward-peaked elastic scattering
 cross section is approximated by a corrected cross section $\Sigma^*$, and a
 delta function component :
 \begin{equation}
-\Sigma_s^E(\br,\mu) \approx \Sigma_s^*(\br,\mu) + \frac{C}{2\pi} \delta (\mu-1)
+\Sigma_s^E(\mu) \approx \Sigma_s^*(\mu) + \frac{C}{2\pi} \delta (\mu-1)
 \end{equation}
 where $C$ is an arbitrary constant. The energy dependence of the cross
 sections is suppressed in this discussion. The corrected cross section can be
 represented by a finite Legendre expansion :
 \begin{equation}
-\Sigma_s^*(\mu) = \sum_{l=0}^{L} \frac{2l+1}{4 \pi} \Sigma_{s,l}^*(\br)
+\Sigma_s^*(\mu) = \sum_{l=0}^{L} \frac{2l+1}{4 \pi} \Sigma_{s,l}^*
 P_l(\mu)
 \end{equation}
 If we require that decomposition of the elastic cross section into a corrected
@@ -948,13 +1095,13 @@ cross section and a delta function to be accurate to Legendre order, $L$, then
 the Legendre moments of the corrected cross sections differ from those of the
 elastic-scattering cross section by a constant :
 \begin{equation}
-\Sigma_{s,l}^*(\br) = \Sigma_{s,l}^E(\br)- C
+\Sigma_{s,l}^* = \Sigma_{s,l}^E- C
 \end{equation}
 In CEPXS, the terms of the transfer matrix for the elastic-scattering cross
 sections are constructed using these moments :
 \begin{equation}
-\Sigma_{s,l}^{E,g\rightarrow g'}(\br) =
-\Sigma_{s,l}^{*}(\br,E^{m,g})\delta_{gg'}
+\Sigma_{s,l}^{E,g\rightarrow g'} =
+\Sigma_{s,l}^{*}(E^{m,g})\delta_{gg'}
 \end{equation}
 It is possible for the corrected cross section to be negative at certain
 values of $\mu$. While such a cross section can be used in discrete ordinates
@@ -963,7 +1110,7 @@ sample over $\mu$. A unique corrected cross section does not exist. In order
 to specify a particular $\Sigma^*$, we must specify $C$. One way of doing so
 is to require that :
 \begin{equation}
-\Sigma_{s,l}^* =0
+\Sigma_{s,L}^* =0
 \end{equation}
 This is the approach used in CEPXS.
 
@@ -988,39 +1135,33 @@ Gryzi\`nski \cite{gry}. The microscopic form of the Gryzi\`nksi cross section fo
 the impact ionization of an electron in the $i^{th}$ shell is in units of
 $cm^2$ :
 \begin{equation}
-\sigma^{I,i}(\br,T) = 
+\sigma^{I,i}(\tau) = 
 \left\{
 \begin{aligned}
-& frac{\pi r_e^2}{\phi_i^2} f_v \(1+\frac{2}{3} \(1-\frac{\phi_i}{2T}\) \ln
-\(2.7 + \sqrt{\frac{T}{\phi_i}-1}\)\) \(1-\frac{\phi_i}{T}\)^{3/2} & \textrm{ 
-if } T\geq \phi_i\\
-& 0 & \textrm{ if } T < \phi_i
+& \frac{\pi r_e^2}{\phi_i^2} f_v \(1+\frac{2}{3} \(1-\frac{\phi_i}{2\tau}\) \ln
+\(2.7 + \sqrt{\frac{\tau}{\phi_i}-1}\)\) \(1-\frac{\phi_i}{\tau}\)^{3/2} & \textrm{ 
+if } \tau \geq \phi_i\\
+& 0 & \textrm{ if } \tau < \phi_i
 \end{aligned}
 \right.
 \end{equation}
 where :
 \begin{itemize}
 \item $i$ is the shell index ($i$ = 1,2,3,4,5 : K,L1,L2,L3, average M)
-\item
-\begin{equation}
-f_v = \frac{\beta_i^2}{\beta} \(\frac{\beta^2}{\beta^2 + \beta_i^2 - \beta^2
-\beta_i^2}\)^{3/2}
-\end{equation}
-\item 
-\begin{equation}
-\beta_i^{2} = \frac{\phi_i (\phi_i+2)}{(\phi_i+2)^2}
-\end{equation}
+\item $ f_v = \frac{\beta_i^2}{\beta} \(\frac{\beta^2}{\beta^2 + \beta_i^2 - \beta^2
+\beta_i^2}\)^{3/2} $
+\item $ \beta_i^{2} = \frac{\phi_i (\phi_i+2)}{(\phi_i+2)^2}$
 \item $\phi_i$ is the binding energy of the $i^{th}$ shell in reduced energy
 units 
 \end{itemize}
 The macroscopic form of the Gryzi\`nski cross section for an element is :
 \begin{equation}
-\Sigma^{I,i}(\br) = \frac{N_A g_i \sigma^{I,i}(\br)}{A}
+\Sigma^{I,i} = \frac{N_A g_i \sigma^{I,i}}{A}
 \end{equation}
 where $g_i$ is the number of electrons in a complete shell. For example, $g_i$
 is 2,2,2,4,18 for the K,L1,L2,L3 and M shells, respectively. While the outer
 shells of most atoms are not complete, there is no need to make $g_i$
-dependent on the atomic number in high-energy (above one keV) codes cush as
+dependent on the atomic number in high-energy (above one keV) codes such as
 CEPXS. This is because the binding energies of the outermost shell in all
 atoms is less than the minimum energy allowed by the code. Hence, the
 ionization on the non-complete outermost shell is irrelevant.
@@ -1033,7 +1174,7 @@ induced by the initial vacancy. The energy of a relaxation particle is equal
 to the difference between the binding energies of the shells involved in a
 transition. The impact ionization cross sections of the $i^{th}$ shell are :
 \begin{equation}
-\Sigma^{I,i,g}(\br) = \frac{\int_{T^{g+1}}^{T^g}}{\Delta T^g} dT
+\Sigma^{I,i,g} = \frac{\int_{\tau^{g+1}}^{\tau^g}\Sigma^{I,i}(\tau)d\tau}{\Delta \tau^g} 
 \Sigma^{I,i}(T)
 \end{equation}
 Since the impact ionization cross section is solely used to determine the
@@ -1042,8 +1183,8 @@ the total reaction rate.\\
 The expansion coefficients of the transfer matrix associated with the
 production of electron relaxation radiation following impact ionization are :
 \begin{equation}
-\Sigma_0^{IE,i,g\rightarrow g'}(\br) = \sum_{i=1}^5 \sum_{j=1}^28 \eta_{ij}^e
-\delta_{g' g_j}\Sigma^{I,i,g}(\br)
+\Sigma_0^{IE,i,g\rightarrow g'} = \sum_{i=1}^5 \sum_{j=1}^28 \eta_{ij}^e
+\delta_{g' g_j}\Sigma^{I,i,g}
 \end{equation}
 where :
 \begin{itemize}
@@ -1062,21 +1203,21 @@ There are 28 different transitions in the various relaxation cascades that can
 follow an ionization event. The transfer matrix associated with fluorescence
 production resulting from ionization consists of the following terms :
 \begin{equation}
-\Sigma_{0}^{IF,g\rightarrow f}(\br) = \sum_{i=1}^5 \sum_{j=1}^{28} \eta_{ij}^f
-\delta_{ff_j} \Sigma^{I,j,g}(\br)
+\Sigma_{0}^{IF,g\rightarrow f} = \sum_{i=1}^5 \sum_{j=1}^{28} \eta_{ij}^f
+\delta_{ff_j} \Sigma^{I,j,g}
 \end{equation}
 where :
 \begin{itemize}
 \item $g=1,2,\cdots,G$
-\item $\eta_{ij}^f$ is the relaxation efficiency that the $j^{th}$ fluorescene
+\item $\eta_{ij}^f$ is the relaxation efficiency that the $j^{th}$ fluorescence
 photon is produced following the ionization of the $^{th}$ shell,
 \item $f_j$ is the photon group that contains the energy of the $j^{th}$
 fluorescence photon.
 \end{itemize}
-The effective energy deposition cross sections associated with the productionn
+The effective energy deposition cross sections associated with the production
 of relaxation radiation by impact ionization are :
 \begin{equation}
-\Sigma_E{I,g}(\br) = - \sum_{g=1}^G \Sigma_0^{IE,g\rightarrow g'}(\br)E^{m,g'}
+\Sigma_E^{I,g} = - \sum_{g=1}^G \Sigma_0^{IE,g\rightarrow g'}E^{m,g'}
 - \sum_{f=1}^F \Sigma_0^{IF,g\rightarrow f} E^{m,f}
 \end{equation}
 Note that these cross sections are expressed in terms of the midpoint energies
@@ -1088,44 +1229,37 @@ After an atomic shell is ionized, whether by impact ionization or
 photoelectric ionization, a cascade of relaxation radiation will be produced.
 An atomic transition is induced by the vacancy created by the initial
 ionization event. In the subsequent relaxation cascade, these transitions
-induce vacancies in other shells which lead to the emission of additional line
+induce vacancies in other shells which lead to the emission of additional 
 radiation. The relaxation cascade ceases when a transition produces a vacancy
 in the outermost shell of the atom.
 
-\subsubsection{The NO-PCODE option}
-With the NO-PCODE option ionization in CEPXS is restricted to the K-shell.
+\paragraphe{The NO-PCODE option}
+With the NO-PCODE option, ionization in CEPXS is restricted to the K-shell.
 Moreover, this option invokes a simple model of the relaxation cascade with
 only two possible branches. In one branch, a single Auger electron is emitted
 while the other, only a single fluorescence photon is emitted. In this
 simplified cascade, both the fluorescence photon and the Auger electron are
-emitted with the same energy. This line energy is slightly less than the
+emitted with the same energy. This energy is slightly less than the
 K-shell binding energy and represents and average of the energies that these
 particles would acquire in a real relaxation cascade.
 
-\subsubsection{The PCODE cascade}
+\paragraphe{The PCODE cascade}
 In CEPXS, the binding energy of the N-shell is assumed to be zero for all
 elements. CEPXS obtains from the electron data tape the shell binding
 energies, $\phi_i$, that are needed to calculate the line radiation energies.
 Also obtained from this data tape is the information necessary to calculate
 the relaxation efficiencies for Auger production $\eta^e$ and fluorescence
 production $\eta^f$. There is an array where these quantities, referred as
-relaxation quantities, are store. A relaxation quantity is denoted in this
-report by a bracketed integer which indicates the array index in which this
-information is stored. For example, the shell binding energies for the
-K,L1,L2,L3 and M shells are stored in the relaxation quantity array at indices
-[2], [4], [6], [7] and [8] respectively.\\
+relaxation quantities, are store.\\
 The relaxation efficiencies are calculated using probability parameters stored
 in the relaxation quantity array. These parameters are the conditional
-probabilities for portions of the relaxation cascade. For example, the
-relaxation quantity, [5], is a probability parameter that denotes the
-probability that an Auger KLL transition has produced vacancies in the L2 and
-L3 shells.
+probabilities for portions of the relaxation cascade.
 
 \subsubsection{Incoherent photon scattering and Compton electron production}
 In CEPXS, the Klein-Nishina scattering cross section is used to represent the
 incoherent scattering of photons with atomic electrons. The Klein-Nishina
 cross  section was derived for scattering with free or unbound electrons. The
-assumption photon collides with an unbound atomic electron is not valid for
+assumption that the photon collides with an unbound atomic electron is not valid for
 photons with energies on the order of the atomic binding energies. However,
 photoelectric absorption interactions dominate incoherent scattering at such
 energies. Coherent scattering is ignored. The Klein-Nishina cross section is
@@ -1137,15 +1271,17 @@ is differential in the angle of the scattered photon relative to the incident
 photon's direction. The microscopic form of this cross section for an
 interaction with an atomic electron is (in units of $cm^2sr^{-1}$/electron) :
 \begin{equation}
-\frac{d\sigma^{KN}(\br,T,\omega_{\gamma})}{d\bo_{\gamma}} =\frac{r_0^2}{2}
-\(\frac{T'}{T}\)^2 \(\frac{T}{T'}+\frac{T'}{T} -\sin^2 \theta_{\gamma}\)
+\frac{d\sigma^{KN}(\Gamma,\Omega_{\gamma})}{d\bo_{\gamma}} =\frac{r_0^2}{2}
+\(\frac{\Gamma'}{\Gamma}\)^2 \(\frac{\Gamma}{\Gamma'}+\frac{\Gamma'}{\Gamma} -
+\sin^2 \theta_{\gamma}\)
 \end{equation}
 where :
 \begin{itemize}
-\item $T$ is the energy of the incident photon is reduced energy units
-\item $T'$ is the scattered photon in reduced energy units. $T'$ can vary from
-$T$ (for $\mu_{\gamma} = 1$) to $\frac{T}{(1+2T)}$ (for $\mu_{gamma} = -1$)
-\item $\mu_{gamma} = 1 + \frac{1}{T}-\frac{1}{T'}$
+\item $\Gamma$ is the energy of the incident photon is reduced energy units
+\item $\Gamma'$ is the scattered photon in reduced energy units. $\Gamma'$ can vary 
+from $s\GammaT$ (for $\mu_{\gamma} = 1$) to $\frac{\Gamma}{(1+2\Gamma)}$ (for 
+$\mu_{gamma} = -1$)
+\item $\mu_{gamma} = 1 + \frac{1}{\Gamma}-\frac{1}{\Gamma'}$
 \end{itemize}
 Since the angle of scatter is kinematically determined by the energy at which
 the scattered photon emerges from the interaction, the Klein-Nishina cross
@@ -1153,32 +1289,30 @@ section may also be expressed as a cross section that is differential in
 energy. In this case, the microscopic form of the Klein-Nishina cross section
 (in units of $cm^2$/electron per reduced photon energy) is :
 \begin{equation}
-\frac{d\sigma^{KN}(T,T')}{dT'} = \frac{\pi r_e^2}{T^2} \(\frac{T}{T'} +
-\frac{T'}{T} - 2 \(\frac{1}{T'}-\frac{1}{T}\)^2\)
+\frac{d\sigma^{KN}(\Gamma,\Gamma')}{d\Gamma'} = \frac{\pi r_e^2}{\Gamma^2} 
+\(\frac{\Gamma}{\Gamma'} +
+\frac{\Gamma'}{\Gamma} - 2 \(\frac{1}{\Gamma'}-\frac{1}{\Gamma}\)^2\)
 \end{equation}
 Because energy and angle are kinematically related, the Klein-Nishina cross
 section for photon scattering that is differential in both energy and angle is
 given by :
 \begin{equation}
-\frac{d\sigma^{KN}}{dT' d\bo_{\gamma}} = \frac{d\sigma^{KN}}{dT'}
+\frac{d\sigma^{KN}}{d\Gamma' d\bo_{\gamma}} = \frac{d\sigma^{KN}}{d\Gamma'}
 \frac{1}{2\pi} \delta(\mu - \mu_{\gamma})
 \end{equation}
 \begin{equation}
-\sigma_l^{KN,f\rightarrow f'} = \frac{1}{\Delta T^f} \int_{T^{f+1}}^{T^f} dT
-\int_{\max\(T^{f'+1},\frac{T}{1+2T}\)}^{T^{f'}} dT' \nu(\Delta T')
-P_l(\mu_{\gamma}) \frac{d\sigma^{KN}(T,T')}{dT'}
+\sigma_l^{KN,f\rightarrow f'} = \frac{1}{\Delta \Gamma^f}
+\int_{\Gamma^{f+1}}^{\Gamma^f} d\Gamma
+\int_{\max\(\Gamma^{f'+1},\frac{\Gamma}{1+2\Gamma}\)}^{\Gamma^{f'}} d\Gamma'
+\nu(\Delta \Gamma')
+P_l(\mu_{\gamma}) \frac{d\sigma^{KN}(\Gamma,\Gamma')}{dT'}
 \end{equation}
 where :
 \begin{itemize}
 \item $f'=f,f+1,\cdots,F$
-\item 
-\begin{equation}
-\Delta T^{f'} = T^{f'} - \max\(T^{f'+1},\frac{T}{(1+2T)}\)
-\end{equation}
-\item 
-\begin{equation}
-\Delta T^f = T^f - T^{f+1}
-\end{equation}
+\item $ \Delta \Gamma^{f'} = \Gamma^{f'} -
+\max\(\Gamma^{f'+1},\frac{\Gamma}{(1+2\Gamma)}\) $
+\item  $\Delta \Gamma^f = \Gamma^f - \Gamma^{f+1}$
 \end{itemize}
 The terms of the macroscopic transfer matrices for incoherent scattering are
 related to the terms of the microscopic transfer matrices by :
@@ -1199,7 +1333,7 @@ The Legendre moments of the Klein-Nishina cross sections are :
 \begin{equation}
 \Sigma_l^{KN,f} = \sum_{f'} \Sigma_l^{KN,f\rightarrow f'}
 \end{equation}
-In CEPXS, we perform the following test on these Legendre moments in order to
+In CEPXS, the following test is performed on these Legendre moments in order to
 avoid potential numerical difficulties in calculating the terms of the
 incoherent transfer matrices. If the ratio
 $\frac{\Sigma_l^{KN,f}}{\Sigma_{0}^{KN,f}}$ is less than 0.01, the
@@ -1207,8 +1341,10 @@ higher-order expansion coefficients that represent photon-to-photon incoherent
 scattering are set to zero.\\
 The total cross sections for incoherent scattering are :
 \begin{equation}
-\Sigma_{t}^{KN,f} = \frac{1}{\Delta T^f} \int_{T^{f+1}}^{T^f} dT
-\int_{\frac{T}{1+2T}}^T dT' \frac{d\Sigma^{KN}(T,T')}{dT'}
+\Sigma_{t}^{KN,f} = \frac{1}{\Delta \Gamma^f} \int_{\Gamma^{f+1}}^{\Gamma^f}
+d\Gamma 
+\int_{\frac{\Gamma}{1+2\Gamma}}^\Gamma d\Gamma'
+\frac{d\Sigma^{KN}(\Gamma,\Gamma')}{d\Gamma'}
 \end{equation}
 for $f'=f,f+1,\cdots,F$.\\
 The effective energy deposition cross sections due to incoherent photon
@@ -1224,27 +1360,24 @@ differential in the angle of emission of the Compton electron relative to the
 incident photon's direction. The microscopic form of this cross section for an
 interaction with an atomic electron is (in units of $cm^2 sr^{-1}$/electron) :
 \begin{equation}
-\frac{d\sigma^{CO}(T,\theta_e)}{d\bo_e} =
-\frac{(1+T)^2(1-\mu_{\gamma})^2}{\mu_e^3}\frac{r_e^2}{2}\(\frac{T'}{T}\)^2
-\(\frac{T}{T'} + \frac{T'}{T} - \sin^2 \theta_{\gamma}\)
+\frac{d\sigma^{CO}(\Gamma,\theta_e)}{d\bo_e} =
+\frac{(1+\Gamma)^2(1-\mu_{\gamma})^2}{\mu_e^3}\frac{r_e^2}{2}\(\frac{\Gamma'}
+{\Gamma}\)^2 \(\frac{\Gamma}{\Gamma'} + \frac{\Gamma'}{\Gamma} - \sin^2 \theta_{\gamma}\)
 \end{equation}
 where :
 \begin{itemize}
-\item 
-\begin{equation}
-\mu_e = \frac{1+T}{T} \frac{1}{\sqrt{\frac{2}{\epsilon}}}
-\end{equation}
+\item $ \mu_e = \frac{1+\Gamma}{\Gamma} \frac{1}{\sqrt{\frac{2}{\epsilon}}}$
 \item $\epsilon$ is the kinetic energy of the Compton electron in reduced
 energy units.
 \end{itemize}
-The energy of a Compton electron ranges from zero (at $\mu_{gamma}=1$) to
-$\frac{2T^2}{1+2T}$ (at $\mu_gamma = -1$). The Compton electron production
+The energy of a Compton electron ranges from zero (at $\mu_{\gamma}=1$) to
+$\frac{2\Gamma^2}{1+2\Gamma}$ (at $\mu_{\gamma} = -1$). The Compton electron production
 cross section can also be cast into a form that is differential in the kinetic
 of the electron. In this case, the microscopic form of the Klein-Nishina cross
 section (in units of $cm^2$/electron per reduced electron energy) is :
 \begin{equation}
-\frac{d\sigma^{CO}(T,\epsilon)}{d\epsilon} =
-\left|\frac{d\bo_e}{d\epsilon}\right| \frac{d\sigma^{CO}(T,\theta_e)}{d\bo_e}
+\frac{d\sigma^{CO}(\Gamma,\epsilon)}{d\epsilon} =
+\left|\frac{d\bo_e}{d\epsilon}\right| \frac{d\sigma^{CO}(\Gamma,\theta_e)}{d\bo_e}
 \end{equation}
 Because energy and angle are kinematically related, the Klein-Nishina cross
 section for electron production that is differential in both energy and angle
@@ -1256,9 +1389,10 @@ is given by :
 For Compton electron production per collision with an atomic electron, the
 expansion coefficients of the transfer matrices are :
 \begin{equation}
-\sigma_l^{CO,f\rightarrow} = \frac{1}{\Delta T^f} \int_{T^{f+1}}^{T^f} dT
-\int_{\epsilon^{g+1}}^{\min\(\epsilon^g,\frac{2T^2}{1+2T}\)} d\epsilon
-\nu(\Delta \epsilon) P_l(\mu_e) \frac{d\sigma^{CO}(T,\epsilon)}{dT'}
+\sigma_l^{CO,f\rightarrow} = \frac{1}{\Delta \Gamma^f}
+\int_{\Gamma^{f+1}}^{\Gamma^f} d\Gamma
+\int_{\epsilon^{g+1}}^{\min\(\epsilon^g,\frac{2\Gamma^2}{1+2\Gamma}\)} d\epsilon
+\nu(\Delta \epsilon) P_l(\mu_e) \frac{d\sigma^{CO}(\Gamma,\epsilon)}{d\Gamma'}
 \end{equation}
 where :
 \begin{itemize}
@@ -1278,7 +1412,7 @@ The Legendre moments of the Compton production cross sections are :
 \begin{equation}
 \Sigma_l^{CO,f} = \sum_{g} \Sigma_{l}^{CO,f\rightarrow g}
 \end{equation}
-In CEPXS, we perform the following test to avoid calculating the terms of the
+In CEPXS, the following test is performed to avoid calculating the terms of the
 transfer matrices to excessive order. If the ratio
 $\frac{\Sigma_l^{CO,f}}{\Sigma_0^{CO,f}}$ is less than 0.01, the terms of the
 higher-order expansion coefficients that represent Compton production from
@@ -1300,7 +1434,7 @@ This cross section is defined as the probability per unit pathlength that
 photoionization occurs in any shell. The total cross sections associated with
 photoelectric absorption are :
 \begin{equation}
-\Sigma_t^{PA,f} = \frac{\int_{E^{f+1}}^{E^f} dE \Sigma^{PA}(E)}{\Delta E^f}
+\Sigma_t^{PA,f} = \frac{\int_{E^{f+1}}^{E^f} dE\ \Sigma^{PA}(E)}{\Delta E^f}
 \end{equation}
 The effective energy deposition cross sections associated with photoelectric
 are :
@@ -1315,20 +1449,19 @@ ionized. The cross section for photoelectric production can be separated into
 a cross section that is differential in the energy of the electron and a
 normalized angular distribution :
 \begin{equation}
-\frac{d\Sigma^{PE}}{d\epsilon d\bo} = \sum_{i=1}^6
-\frac{dW^i(\theta,\epsilon)}{d\bo} \frac{d\Sigma^{PE,i}(E,\epsilon)}{d\epsilon}
+\frac{d\Sigma^{PE}}{dT d\bo} = \sum_{i=1}^6
+\frac{dW^i(\theta,T)}{d\bo} \frac{d\Sigma^{PE,i}(E,T)}{dT}
 \end{equation}
 where :
 \begin{itemize}
 \item $i$ is the shell index ($i$=1,2,3,4,5,6 : K,L1,L2,L3,average M,
 effective N)
-\item $E$ is the energy of the photon
-\item $\epsilon$ is the kinetic energy of the photoelectron $E-\phi^i$
+\item $T$ is the kinetic energy of the photoelectron $E-\Phi^i$
 \item $\bo$ is the angle at which the photoelectron is emitted relative to the
 direction of the photon
 \item $W^i$ is the differential angular distribution of photoelectrons
 produced by ionization of the $i^{th}$ shell
-\item $\phi^i$ is the binding energy of the $i^{th}$ in MeV
+\item $\Phi^i$ is the binding energy of the $i^{th}$ in MeV
 \end{itemize}
 The outer shells of an atom (N-shell and beyond) are considered to have zero
 binding energy in CEPXS. A photoelectric interaction with these shells
@@ -1339,8 +1472,8 @@ shells since a vacancy in one of these shells does not induce relaxation
 radiation in CEPXS.\\
 The photoelectric production cross section is :
 \begin{equation}
-\frac{d\Sigma^{PE,i}(E,\epsilon)}{d\epsilon} = \chi_i(E) \Sigma^{PA}(E)
-\delta(\epsilon-E+\phi_i)
+\frac{d\Sigma^{PE,i}(E,T)}{dT} = \chi_i(E) \Sigma^{PA}(E)
+\delta(T-E+\Phi_i)
 \end{equation}
 where $\chi_i(E)$ is the probability that a photon of energy $E$ ionizes the
 $i^{th}$ shell.\\
@@ -1351,7 +1484,7 @@ energy in the following manner :
 \begin{equation}
 f_i = 1-\frac{\Sigma^{PA}(\phi_i - \delta)}{\Sigma^{PA}(\phi_i + \delta)}
 \end{equation}
-where $\delta$ is an arbitrarily small energy increment. In CEPXS, $\delta$ is
+where $\delta$ is an arbitrarily small energy increment
 taken to be one keV for the numerical calculation of the photoeffect
 efficiencies. The photoeffect efficiency denotes the probability that
 photoionization will occur in the $i^{th}$ shell that photoionization has not
@@ -1365,52 +1498,49 @@ section. Note that :
 The cross section transfer matrix associated with photoelectron production
 (for $f=1,2,\cdots,F$) : 
 \begin{equation}
-\Sigma_l^{PE,f\rightarrow g} = \sum_{i=1}^6 W_l^i(\epsilon^{m,g})
-\frac{\int_{E^{f+1}}^{E^f} dE \int_{\epsilon^{g+1}}^{\epsilon^g} d\epsilon
-\frac{d\Sigma^{PE,i}(E,\epsilon)}{d\epsilon}}{\Delta E^f}
+\Sigma_l^{PE,f\rightarrow g} = \sum_{i=1}^6 W_l^i(T^{m,g})
+\frac{\int_{E^{f+1}}^{E^f} dE \int_{T^{g+1}}^{T^g} dT
+\frac{d\Sigma^{PE,i}(E,T)}{dT}}{\Delta E^f}
 \end{equation}
 or :
 \begin{equation}
-\Sigma_l^{PE,f \rightarrow g} = \sum_{i=1}^6 W_l^i(\epsilon^{m,g})
-\frac{\int_{\max\(E^{f+1},\epsilon^{g+1}+\phi^i\)}^{\min\(E^f,\epsilon^g+\phi^i\)}
+\Sigma_l^{PE,f \rightarrow g} = \sum_{i=1}^6 W_l^i(T^{m,g})
+\frac{\int_{\max\(E^{f+1},T^{g+1}+\Phi^i\)}^{\min\(E^f,T^g+\Phi^i\)}
 \nu(\Delta E)\Sigma^{PA}(E)dE}{\Delta E^f}
 \end{equation}
-where  $\Delta E = \min\(E^f, \epsilon^g+\phi\) -
-\max\(E^{f+1},\epsilon^{g+1}+\phi_i\)$.\\
+where  $\Delta E = \min\(E^f, T^g+\Phi\) -
+\max\(E^{f+1},T^{g+1}+\Phi_i\)$.\\
 Two different normalized angular distributions for the photoelectrons are used
 in CEPXS. For low-energy photoelectrons, the Fischer distribution is used :
 \begin{equation}
 \begin{split}
-\frac{dW^i(\theta,\epsilon)}{d\bo} &= \frac{1}{2\pi}
-\frac{dW^i(\theta,\epsilon)}{d\theta}\\
+\frac{dW^i(\theta,T)}{d\bo} &= \frac{1}{2\pi}
+\frac{dW^i(\theta,T)}{d\theta}\\
 &= \frac{3 \(1-b^2\)^2 \sin^3 \theta}{8 \pi (1-b \cos \theta)^4}
 \end{split}
 \end{equation}
-where $b=\frac{\beta}{1+\frac{\epsilon + \phi_i}{1.022}}$ and all energies are
-expressed in terms of MeV, and $\phi_i$ is the binding energy of the shell
+where $b=\frac{\beta}{1+\frac{T + \Phi_i}{1.022}}$ and all energies are
+expressed in terms of MeV, and $\Phi_i$ is the binding energy of the shell
 that was ionized by photoelectric absorption.\\
 For high-energy photoelectrons, the Sauter distribution is :
 \begin{equation}
 \begin{split}
-\frac{dW(\theta,\epsilon)}{d\bo} &=\frac{1}{2\pi}
+\frac{dW(\theta,T)}{d\bo} &=\frac{1}{2\pi}
 \frac{dW(\theta,\epsilon)}{d\theta}\\
 & \frac{A}{2\pi} \(\frac{\beta^2 \sqrt{1-\beta^2} \sin^3 \theta}{(1-\beta \cos
 \theta)^4}+\frac{\(1+\sqrt{1-\beta^2}\)^2 \beta^2 \sin^3\theta}{2
 \(1-\beta^2\) \(1-\beta \cos \theta\)^3}\)
 \end{split}
 \end{equation}
-where :
-\begin{equation}
-A = \frac{1}{\frac{4\beta^2 \sqrt{1-\beta^2}}{3 (1-\beta^2)^2} + \frac{(1+
+where : $A = \frac{1}{\frac{4\beta^2 \sqrt{1-\beta^2}}{3 (1-\beta^2)^2} + \frac{(1+
 \sqrt{1-\beta^2})^2 \beta^2}{2 (1-\beta^2)} \(\frac{2}{\beta^2 (1-\beta^2)} -
-\frac{1}{\beta^2} \ln \(\frac{1+\beta}{1-\beta}\)\)} 
-\end{equation}
+\frac{1}{\beta^2} \ln \(\frac{1+\beta}{1-\beta}\)\)} $
 Note that the Sauter distribution depends only on the energy of the
 photoelectron and not on the binding energy of the shell that was ionized.
 Hence, the shell index superscript on the angular distribution is
 suppressed.\\
-In CEPXS, we follow the recommendation of MacCallum that the choice between
-the Fischer and Sauter angular distributions be made in the following way :
+In CEPXS, the choice between the Fischer and Sauter angular distributions is 
+made in the following way :
 \begin{itemize}
 \item Fischer if $\epsilon \leq 0.0025 Z -0.5 \phi^1$
 \item Sauter if $\epsilon > 0.0025 Z - 0.5 \phi^1$
@@ -1503,9 +1633,9 @@ A pair interaction results in the production of a positron and an electron.
 The energies of the pair secondaries (in keV) are correlated in the following
 fashion :
 \begin{equation}
-\epsilon^- + \epsilon^+ = h \nu -1022
+\E^- + E^+ = h \nu -1022\ keV
 \end{equation}
-where $\epsilon^-$ is the energy of the pair electron, $\epsilon^+$ is the
+where $E^-$ is the energy of the pair electron, $E^+$ is the
 energy of the pair positron, and $h\nu$ is the energy of the photon. The
 expression on the side of the previous equation is the energy that is
 available for distribution to the pair secondaries. Both the positron and the
@@ -1517,25 +1647,25 @@ distribution that is differential in the energy of the positron, and a
 normalized distribution that is differential in the angle of emission of the
 positron relative to the direction of the incident photon :
 \begin{equation}
-\frac{d\Sigma^{P,+}(E,\epsilon^+)}{d\epsilon^+ d\bo} = \Sigma^{PAA}(E)
-\frac{dW(\mu,\epsilon^+)}{d\bo} \frac{df^{P,+}(E,\epsilon^+)}{d\epsilon^+}
+\frac{d\Sigma^{P,+}(E,E^+)}{dE^+ d\bo} = \Sigma^{PAA}(E)
+\frac{dW(\mu,E^+)}{d\bo} \frac{df^{P,+}(E,E^+)}{dE^+}
 \end{equation}
 The cross section for the production of a pair electron is similar :
 \begin{equation}
-\frac{d\Sigma^{P,-}(E,\epsilon^-)}{d\epsilon d\bo} = \Sigma^{PAA}(E)
-\frac{dW(\mu,\epsilon^-)}{d\bo} \frac{df^{P,-}(E,\epsilon^-)}{d\epsilon^-}
+\frac{d\Sigma^{P,-}(E,E^-)}{dE^- d\bo} = \Sigma^{PAA}(E)
+\frac{dW(\mu,E^-)}{d\bo} \frac{df^{P,-}(E,E^-)}{dE^-}
 \end{equation}
 The same angular distributions are used for both the electron and the
 positron. Since pair production occurs in the vicinity of a nucleus which
-acquire some of the momentum of the incident photon, the angles at which the
+acquires some of the momentum of the incident photon, the angles at which the
 pair secondaries are emitted are not correlated.\\
 Since bremsstrahlung and pair production are inverse processes, the same
 angular distribution can be used for pair secondaries as was used for
 bremsstrahlung photons :
 \begin{equation}
 \begin{split}
-\frac{dW(\mu,\epsilon)}{d\bo} &= \frac{1}{2\pi}
-\frac{dW(\mu,\epsilon)}{d\mu}\\
+\frac{dW(\mu,E^{\pm})}{d\bo} &= \frac{1}{2\pi}
+\frac{dW(\mu,E^{\pm})}{d\mu}\\
 &= \frac{1-\beta^2}{4\pi(1-\beta \mu)^2}
 \end{split}
 \end{equation}
@@ -1550,16 +1680,14 @@ Both pair secondaries have the same distribution in energy :
 \frac{df^{P,-}(E,\epsilon^-)}{d\epsilon^-} = \frac{df^{P,+}(E,\epsilon^+)}{d\epsilon^+}
 \end{equation}
 The energy distribution of the pair secondaries is given by Bethe-Heitler
-theory. In CEPXS, tabulated values for this distribution at selected photon
-energies were obtained from text. The energy distribution of the pair
-secondaries are tabulated up to a photon energy of 100 MeV on one of the cross
+theory. They are tabulated up to a photon energy of 100 MeV on one of the cross
 section data tapes accessed by CEPXS.\\
 The expansion coefficients of transfer matrices for pair electron production
 are :
 \begin{equation}
 \Sigma_l^{P^-,f\rightarrow g} = \frac{1}{\Delta E^f} \int_{E^{f+1}}^{E^f} dE
-\int_{\epsilon^{g+1}}^{\epsilon^g} d\epsilon \Sigma^{PPA}(E) W_l(E^{m,g})
-\frac{f^{P,-}(E,\epsilon)}{d\epsilon}
+\int_{E^{-,g+1}}^{E^{-,g}} dE^- \Sigma^{PPA}(E) W_l(E^{m,g})
+\frac{f^{P,-}(E,E^-)}{dE^-}
 \end{equation}
 Note that the angular distribution of the pair electrons is evaluated in the
 midpoint energy of the electron group.\\
@@ -1603,7 +1731,7 @@ radiation is :
 \subsubsection{Elastic scattering}
 The cross section data of Riley, et. al. is used at non-relativistic energies
 ($<256 keV$). The Mott cross section with Moliere screening is used at
-relativistic energies (>256keV). The extended transport correction is applied
+relativistic energies ($>256keV$). The extended transport correction is applied
 to these elastic-scattering cross sections to make them amenable to
 representation by a low-order Legendre expansion.
 
@@ -1628,7 +1756,7 @@ impact ionization are not correlated in CEPXS.
 
 \subsubsection{Radiative energy loss and bremsstrahlung photon production}
 The bremsstrahlung cross section is based on a formulation by Berger et al.,
-involving Born-approximation cross sections described by Koch et. al. This
+involving Born-approximation cross sections. This
 cross section is used to describe both bremsstrahlung photon production and
 the slowing down of an electron by radiative events, the restricted CSD
 approximation is used. In this approximation, the restricted radiative
