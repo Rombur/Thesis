@@ -1,74 +1,4 @@
 \section{Cross sections}
-The M\o ller cross section takes into account relativity and spin effects as
-well as exchange effects resulting from the indistinguishability of the
-incident and target electrons \cite{icru}.\\
-A key parameter in the Bethe stopping power is the mean excitation energy of
-the medium. Only moderate accuracy of the mean excitation energy is required
-for the determination of the electron collision stopping power. Let $\Delta 
-S_{col}$ be the uncertainty of $S_{col}$ corresponding to an uncertainty
-$\Delta I$ of $I$. From :
-\begin{equation}
-\frac{S_{col}}{\rho} = \frac{2\pi r_e^2 m c^2}{u} \frac{1}{\beta^2}
-\frac{Z}{A} \[\ln \(\frac{T}{I}\)^2 + \ln\(1+\frac{\tau}{2} + F^-(\tau) -
-\delta \)\]
-\label{supra}
-\end{equation}
-($u$ is the atomic mass unit) where :
-\begin{equation}
-F^-(\tau) (1-\beta^2)\[ 1+ \frac{\tau^2}{8} - (2\tau+1)\ln 2\]
-\end{equation}
-it can be seen that at low energies, where the density-effect corrections is
-negligible, $\frac{\Delta S_{col}}{S_{col}} = - \frac{(\Delta I/I)}{L}$, where
-the stopping number, $L$, ranges in value from about 3 at 10 keV to about 15
-at 1,000 MeV. At high energies, the $I$-dependence of the density-effect
-correction is such as to reduce the $I$-dependence of the collision stopping
-further; in fact, in the limit of extremely high energies, the collision
-stopping power becomes independent of $I$ \cite{icru}.\\
-$L(T,\Delta)$ is the  restricted collision stopping power defined as the
-mean energy loss per unit of pathlength due to collisions involving energy
-transfers, $W$, that are smaller than some chosen cut-off energy, $\Delta$.
-The kinetic energy of the secondary electrons from ionization events is then
-also smaller than $\Delta$, and the range for an electron of energy $\Delta$
-roughly specifies the region around the track of the incident particle within
-which  energy is absorbed locally.
-\begin{equation}
-\frac{L^{\pm}(T,\Delta)}{\rho} = \frac{2\pi r_e^2 m c^2}{u}
-\frac{1}{\beta^2}\frac{Z}{A}\[\ln(T/I)^2 + \ln
-(1+\tau/2)+G^{-}(\tau,\eta)-\delta\]
-\end{equation}
-where $\eta = \Delta/T$ is the fractional energy cut-off. This equation is
-similar to (\ref{supra}) except that the function $F$ is replaced by $G$ :
-\begin{equation}
-G^- (\tau,\eta) = -1 -\beta^2 + \ln\[4(1-\eta)\eta\]+(1-\eta)^{-1} +
-(1-\beta^2) \[\tau^2 \eta^2/2 + (2\tau+1) \ln(1-\eta)\]
-\end{equation}
-A condition for the validity of the previous equation is that the cut-off
-energy energy $\Delta$ be larger than the binding energies of the atomic
-electrons in the target materials. For the K- and L-shell electrons of high-Z
-materials, this condition is difficult tot satisfy for $\Delta$-values of
-practical interest. The previous equation does not take into account the
-reduction of the energy deposited locally along the electron track due to the
-escape of secondary Auger electrons or fluorescence X rays after inner-shell
-ionizations. Thus the equation becomes inaccurate for values of $\Delta$
-smaller than the K-shell binding energy (typically $\approx 1/2$ keV for low-Z
-materials such as water, air or graphite). Moreover, for very small $\Delta$,
-the use of the Bethe formalism is no longer justified. It is estimated that,
-for water, the use of the previous equation, with an assumed cut-off value
-$\Delta = 100 eV$, may overestimate the restricted stopping power by 10-20\%.
-\cite{icru}.\\
-Density effect : The passage of a charged particle through a medium results in
-the polarization, in turn, decreases the electromagnetic field acting on the
-particle so as to reduce the stopping power. This reduction is particularly
-strong in dense media, and is, therefore, called the density effect. The
-greater the particle velocity, the greater is the density effect because, by
-virtue of the Lorentz contraction, distant collisions become more important.
-In fact, at very high energies, the density-effect correction to the stopping
-is significant even in gases \cite{icru}.\\
-Positron-electron differences : differences arise because of the use of the
-Bhabha cross section instead of the M\o ller cross section for large energy
-transfers, and because an electron can, at most, lose half its entire energy
-in a single collision, whereas a positron can lose its entire energy
-\cite{icru}.
 
 \subsection{Physics of the interactions}
 
@@ -231,7 +161,42 @@ for positrons. Here $n$ is number of electrons per unit volume in the medium,
 $\beta = \frac{v}{c}$ is the speed of the particle relative to $c$, $I$ is the
 mean excitation energy of the medium and $\tau = \frac{T}{m_e c^2}$ is the
 kinetic energy $T$ of the particle expressed in multiples of the electron rest
-energy $mc^2$.
+energy $mc^2$.\\
+A key parameter in the Bethe stopping power is the mean excitation energy of
+the medium. Only moderate accuracy of the mean excitation energy is required
+for the determination of the electron collision stopping power. Let $\Delta 
+S_{col}$ be the uncertainty of $S_{col}$ corresponding to an uncertainty
+$\Delta I$ of $I$. From :
+\begin{equation}
+\frac{S_{col}}{\rho} = \frac{2\pi r_e^2 m c^2}{u} \frac{1}{\beta^2}
+\frac{Z}{A} \[\ln \(\frac{T}{I}\)^2 + \ln\(1+\frac{\tau}{2} + F^-(\tau) -
+\delta \)\]
+\label{supra}
+\end{equation}
+($u$ is the atomic mass unit) where :
+\begin{equation}
+F^-(\tau) = (1-\beta^2)\[ 1+ \frac{\tau^2}{8} - (2\tau+1)\ln 2\]
+\end{equation}
+it can be seen that at low energies, where the density-effect corrections is
+negligible, $\frac{\Delta S_{col}}{S_{col}} = - \frac{(\Delta I/I)}{L}$, where
+the stopping number, $L$, ranges in value from about 3 at 10 keV to about 15
+at 1,000 MeV. At high energies, the $I$-dependence of the density-effect
+correction is such as to reduce the $I$-dependence of the collision stopping
+further; in fact, in the limit of extremely high energies, the collision
+stopping power becomes independent of $I$ \cite{icru}.\\
+Density effect : The passage of a charged particle through a medium results in
+the polarization, in turn, decreases the electromagnetic field acting on the
+particle so as to reduce the stopping power. This reduction is particularly
+strong in dense media, and is, therefore, called the density effect. The
+greater the particle velocity, the greater is the density effect because, by
+virtue of the Lorentz contraction, distant collisions become more important.
+In fact, at very high energies, the density-effect correction to the stopping
+is significant even in gases \cite{icru}.\\
+Positron-electron differences : differences arise because of the use of the
+Bhabha cross section instead of the M\o ller cross section for large energy
+transfers, and because an electron can, at most, lose half its entire energy
+in a single collision, whereas a positron can lose its entire energy
+\cite{icru}.
 \item[Radiative stopping power :] At high beta-particle energies, the
 radiation is emitted mostly in the forward direction, that is, in the direction
 of travel if the beta particle. Unlike collisional energy losses, no single
@@ -420,6 +385,9 @@ only when $E^{min} > E^{g+1}$. In the rest of this chapter, $\br$ will be
 omitted in the cross sections.
 
 \subsubsection{Catastrophic collisional scattering}       
+The M\o ller cross section takes into account relativity and spin effects as
+well as exchange effects resulting from the indistinguishability of the
+incident and target electrons \cite{icru}.\\
 In CEPXS, inelastic scattering due to catastrophic collisions are modelled by
 the M\o ller microscopic cross section, $\sigma^{CC}$. One of the assumptions
 used in the derivation of the M\o ller cross section is that the incident
@@ -558,6 +526,38 @@ g'} E^{m,g'}
 \end{equation}
 
 \subsubsection{Soft collisional scattering}
+$L(T,\Delta)$ is the  restricted collision stopping power defined as the
+mean energy loss per unit of pathlength due to collisions involving energy
+transfers, $W$, that are smaller than some chosen cut-off energy, $\Delta$.
+The kinetic energy of the secondary electrons from ionization events is then
+also smaller than $\Delta$, and the range for an electron of energy $\Delta$
+roughly specifies the region around the track of the incident particle within
+which  energy is absorbed locally.
+\begin{equation}
+\frac{L^{\pm}(T,\Delta)}{\rho} = \frac{2\pi r_e^2 m c^2}{u}
+\frac{1}{\beta^2}\frac{Z}{A}\[\ln(T/I)^2 + \ln
+(1+\tau/2)+G^{-}(\tau,\eta)-\delta\]
+\end{equation}
+where $\eta = \Delta/T$ is the fractional energy cut-off. This equation is
+similar to (\ref{supra}) except that the function $F$ is replaced by $G$ :
+\begin{equation}
+G^- (\tau,\eta) = -1 -\beta^2 + \ln\[4(1-\eta)\eta\]+(1-\eta)^{-1} +
+(1-\beta^2) \[\tau^2 \eta^2/2 + (2\tau+1) \ln(1-\eta)\]
+\end{equation}
+A condition for the validity of the previous equation is that the cut-off
+energy energy $\Delta$ be larger than the binding energies of the atomic
+electrons in the target materials. For the K- and L-shell electrons of high-Z
+materials, this condition is difficult tot satisfy for $\Delta$-values of
+practical interest. The previous equation does not take into account the
+reduction of the energy deposited locally along the electron track due to the
+escape of secondary Auger electrons or fluorescence X rays after inner-shell
+ionizations. Thus the equation becomes inaccurate for values of $\Delta$
+smaller than the K-shell binding energy (typically $\approx 1/2$ keV for low-Z
+materials such as water, air or graphite). Moreover, for very small $\Delta$,
+the use of the Bethe formalism is no longer justified. It is estimated that,
+for water, the use of the previous equation, with an assumed cut-off value
+$\Delta = 100 eV$, may overestimate the restricted stopping power by 10-20\%.
+\cite{icru}.\\
 In CEPXS, the definition of a soft collision depends on the multigroup energy
 grid. In a soft collision, a scattered electron appears in the energy group
 that is adjacent to the group associated with the incident electron. CEPXS
@@ -741,7 +741,7 @@ where :
 On the other hand, if $E^G$ is considered to be the lower boundary of a group
 :
 \begin{equation}
-S_L^C(E^g) = S^C(E^g) - m c^2 \int_{\Tau^g/2}^{\tau^{g+1}} d\tau_p\ \nu(\Delta
+S_L^C(E^g) = S^C(E^g) - m c^2 \int_{\tau^g/2}^{\tau^{g+1}} d\tau_p\ \nu(\Delta
 \tau_p)\ (\tau^g - \tau_p) \frac{d\Sigma^{CC} (\tau^g,\tau_p)}{d\tau_p}
 \end{equation}
 In order to remove this ambiguity, we consider the restricted
@@ -1233,7 +1233,7 @@ induce vacancies in other shells which lead to the emission of additional
 radiation. The relaxation cascade ceases when a transition produces a vacancy
 in the outermost shell of the atom.
 
-\paragraphe{The NO-PCODE option}
+\paragraph{The NO-PCODE option}
 With the NO-PCODE option, ionization in CEPXS is restricted to the K-shell.
 Moreover, this option invokes a simple model of the relaxation cascade with
 only two possible branches. In one branch, a single Auger electron is emitted
@@ -1243,7 +1243,7 @@ emitted with the same energy. This energy is slightly less than the
 K-shell binding energy and represents and average of the energies that these
 particles would acquire in a real relaxation cascade.
 
-\paragraphe{The PCODE cascade}
+\paragraph{The PCODE cascade}
 In CEPXS, the binding energy of the N-shell is assumed to be zero for all
 elements. CEPXS obtains from the electron data tape the shell binding
 energies, $\phi_i$, that are needed to calculate the line radiation energies.
@@ -1279,8 +1279,8 @@ where :
 \begin{itemize}
 \item $\Gamma$ is the energy of the incident photon is reduced energy units
 \item $\Gamma'$ is the scattered photon in reduced energy units. $\Gamma'$ can vary 
-from $s\GammaT$ (for $\mu_{\gamma} = 1$) to $\frac{\Gamma}{(1+2\Gamma)}$ (for 
-$\mu_{gamma} = -1$)
+from $\Gamma$ (for $\mu_{\gamma} = 1$) to $\frac{\Gamma}{(1+2\Gamma)}$ (for 
+$\mu_{\gamma} = -1$)
 \item $\mu_{gamma} = 1 + \frac{1}{\Gamma}-\frac{1}{\Gamma'}$
 \end{itemize}
 Since the angle of scatter is kinematically determined by the energy at which
@@ -1633,7 +1633,7 @@ A pair interaction results in the production of a positron and an electron.
 The energies of the pair secondaries (in keV) are correlated in the following
 fashion :
 \begin{equation}
-\E^- + E^+ = h \nu -1022\ keV
+E^- + E^+ = h \nu -1022\ keV
 \end{equation}
 where $E^-$ is the energy of the pair electron, $E^+$ is the
 energy of the pair positron, and $h\nu$ is the energy of the photon. The

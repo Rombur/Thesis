@@ -1,41 +1,42 @@
 \contentsline {section}{\numberline {1}Cross sections}{2}
 \contentsline {subsection}{\numberline {1.1}Physics of the interactions}{2}
-\contentsline {subsection}{\numberline {1.2}CEPXS}{5}
-\contentsline {subsubsection}{\numberline {1.2.1}Catastrophic collisional scattering}{7}
-\contentsline {subsubsection}{\numberline {1.2.2}Knock-on electron production}{8}
-\contentsline {subsubsection}{\numberline {1.2.3}Soft collisional scattering}{9}
-\contentsline {subsubsection}{\numberline {1.2.4}The restricted collisional stopping power}{10}
-\contentsline {subsubsection}{\numberline {1.2.5}The density effect correction}{11}
-\contentsline {subsubsection}{\numberline {1.2.6}Bremsstrahlung cross section differential in energy}{12}
-\contentsline {subsubsection}{\numberline {1.2.7}Catastrophic radiative scattering}{12}
-\contentsline {subsubsection}{\numberline {1.2.8}Bremsstrahlung production}{13}
-\contentsline {subsubsection}{\numberline {1.2.9}Soft radiative scattering}{14}
-\contentsline {subsection}{\numberline {1.3}The restricted radiative stopping power}{15}
-\contentsline {subsubsection}{\numberline {1.3.1}Elastic electron scattering}{16}
-\contentsline {subsubsection}{\numberline {1.3.2}The extended transport correction}{16}
-\contentsline {subsubsection}{\numberline {1.3.3}The impact ionization cross section}{17}
-\contentsline {subsubsection}{\numberline {1.3.4}Relaxation production}{18}
-\contentsline {subsubsection}{\numberline {1.3.5}The relaxation cascade}{19}
-\contentsline {subsubsection}{\numberline {1.3.6}The NO-PCODE option}{19}
-\contentsline {subsubsection}{\numberline {1.3.7}The PCODE cascade}{19}
-\contentsline {subsubsection}{\numberline {1.3.8}Incoherent photon scattering and Compton electron production}{19}
-\contentsline {subsubsection}{\numberline {1.3.9}The Klein-Nishina cross section for photon scattering}{20}
-\contentsline {subsubsection}{\numberline {1.3.10}Compton electron production}{21}
-\contentsline {subsubsection}{\numberline {1.3.11}Photoelectric absorption}{22}
-\contentsline {subsubsection}{\numberline {1.3.12}The production of photoelectrons}{23}
-\contentsline {subsubsection}{\numberline {1.3.13}Relaxation production}{25}
-\contentsline {subsubsection}{\numberline {1.3.14}Pair absorption}{25}
-\contentsline {subsubsection}{\numberline {1.3.15}The production of pair secondaries}{26}
-\contentsline {subsubsection}{\numberline {1.3.16}Positron interactions}{27}
-\contentsline {subsection}{\numberline {1.4}Summary}{27}
-\contentsline {subsubsection}{\numberline {1.4.1}Elastic scattering}{27}
-\contentsline {subsubsection}{\numberline {1.4.2}Inelastic scattering}{28}
-\contentsline {subsubsection}{\numberline {1.4.3}Knock-on production}{28}
-\contentsline {subsubsection}{\numberline {1.4.4}Radiative energy loss and bremsstrahlung photon production}{28}
-\contentsline {subsubsection}{\numberline {1.4.5}Impact ionization}{28}
-\contentsline {subsubsection}{\numberline {1.4.6}Compton incoherent scattering and electron production}{28}
-\contentsline {subsubsection}{\numberline {1.4.7}Photoelectric absorption and photoelectron production}{28}
-\contentsline {subsubsection}{\numberline {1.4.8}Pair interaction and the production of charged secondaries}{28}
-\contentsline {subsection}{\numberline {1.5}CEPXS-BFP}{29}
-\contentsline {subsection}{\numberline {1.6}CEPXS-Morel}{29}
-\contentsline {section}{\numberline {2}Transport equation}{29}
+\contentsline {subsection}{\numberline {1.2}CEPXS}{6}
+\contentsline {subsubsection}{\numberline {1.2.1}Interactions modeled in CEPXS}{6}
+\contentsline {subsubsection}{\numberline {1.2.2}Catastrophic collisional scattering}{9}
+\contentsline {subsubsection}{\numberline {1.2.3}Knock-on electron production}{10}
+\contentsline {subsubsection}{\numberline {1.2.4}Soft collisional scattering}{11}
+\contentsline {subsubsection}{\numberline {1.2.5}The restricted collisional stopping power}{12}
+\contentsline {subsubsection}{\numberline {1.2.6}The density effect correction}{14}
+\contentsline {subsubsection}{\numberline {1.2.7}Bremsstrahlung cross section differential in energy}{14}
+\contentsline {subsubsection}{\numberline {1.2.8}Catastrophic radiative scattering}{15}
+\contentsline {subsubsection}{\numberline {1.2.9}Bremsstrahlung production}{16}
+\contentsline {subsubsection}{\numberline {1.2.10}Soft radiative scattering}{17}
+\contentsline {subsubsection}{\numberline {1.2.11}The restricted radiative stopping power}{18}
+\contentsline {subsubsection}{\numberline {1.2.12}Elastic electron scattering}{18}
+\contentsline {subsubsection}{\numberline {1.2.13}The extended transport correction}{19}
+\contentsline {subsubsection}{\numberline {1.2.14}The impact ionization cross section}{19}
+\contentsline {subsubsection}{\numberline {1.2.15}Relaxation production}{20}
+\contentsline {subsubsection}{\numberline {1.2.16}The relaxation cascade}{21}
+\contentsline {paragraph}{The NO-PCODE option}{21}
+\contentsline {paragraph}{The PCODE cascade}{21}
+\contentsline {subsubsection}{\numberline {1.2.17}Incoherent photon scattering and Compton electron production}{22}
+\contentsline {subsubsection}{\numberline {1.2.18}The Klein-Nishina cross section for photon scattering}{22}
+\contentsline {subsubsection}{\numberline {1.2.19}Compton electron production}{23}
+\contentsline {subsubsection}{\numberline {1.2.20}Photoelectric absorption}{24}
+\contentsline {subsubsection}{\numberline {1.2.21}The production of photoelectrons}{25}
+\contentsline {subsubsection}{\numberline {1.2.22}Relaxation production}{27}
+\contentsline {subsubsection}{\numberline {1.2.23}Pair absorption}{28}
+\contentsline {subsubsection}{\numberline {1.2.24}The production of pair secondaries}{28}
+\contentsline {subsubsection}{\numberline {1.2.25}Positron interactions}{29}
+\contentsline {subsection}{\numberline {1.3}Summary}{29}
+\contentsline {subsubsection}{\numberline {1.3.1}Elastic scattering}{29}
+\contentsline {subsubsection}{\numberline {1.3.2}Inelastic scattering}{30}
+\contentsline {subsubsection}{\numberline {1.3.3}Knock-on production}{30}
+\contentsline {subsubsection}{\numberline {1.3.4}Radiative energy loss and bremsstrahlung photon production}{30}
+\contentsline {subsubsection}{\numberline {1.3.5}Impact ionization}{30}
+\contentsline {subsubsection}{\numberline {1.3.6}Compton incoherent scattering and electron production}{30}
+\contentsline {subsubsection}{\numberline {1.3.7}Photoelectric absorption and photoelectron production}{30}
+\contentsline {subsubsection}{\numberline {1.3.8}Pair interaction and the production of charged secondaries}{30}
+\contentsline {subsection}{\numberline {1.4}CEPXS-BFP}{31}
+\contentsline {subsection}{\numberline {1.5}CEPXS-Morel}{31}
+\contentsline {section}{\numberline {2}Transport equation}{31}
