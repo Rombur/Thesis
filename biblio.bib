@@ -14,7 +14,7 @@
     note = "[Online; accessed 4-February-2011]",
 }
 @Misc{wagner,
-    title = {Python Simulated Annealing Module},
+    title = {{Python Simulated Annealing Module}},
     author = {Rick Wagner},
     howpublished = "\url{http://www-personal.umich.edu/~wagnerr/PythonAnneal.html}",
     note = "[Online; accessed 4-February-2011]",
@@ -83,6 +83,15 @@
     year = {1999},
     volume = {34},
 } 
+@Article{morel_79,
+    title = {{On the Validity of the Extended Transport Cross-Section
+      Correction for Low-Energy Electron Transport}},
+    author = {J. E. Morel},
+    journal = {Nuclear Science and Engineering},
+    year = {1979},
+    volume = {71},
+    pages = {64-71}
+}
 @Article{morel_81,
     title = {{Fokker-Planck Calculations Using Standard Discrete Ordinates
         Transport Codes}},
@@ -119,8 +128,8 @@
     journal = {RSICC Computer Code Collection},
 }
 @Article{saaf,
-    title = {{Finite Element Solution of the Self-Adjoint Angular Flux Equation
-        for Coupled Electron-Photon Transport}},
+    title = {Finite Element Solution of the Self-Adjoint Angular Flux Equation
+        for Coupled Electron-Photon Transport},
     author = {Jennifer L. Liscum-Powell and Anil K. Prinja and Jim E. Morel
         and Leonard J. Lorence,Jr.},
     journal = {Nuclear Science and Engineering},
@@ -182,7 +191,7 @@
 }
 @Article{dose-volume,
     title = {{An optimization algorithm for intensity modulated radiotherapy -
-        The simulated dynamics with dose-volume constraints}},
+      The simulated dynamics with dose-volume constraints}},
     author = {Qing Hou and Jun Wang and Yan Chen and James M. Gavin},
     journal = {American Association of Physicists in Medicine},
     year = {2002},
@@ -192,7 +201,7 @@
 }
 @Article{math,
     title = {{Optimizing the Delivery of Radiation Therapy to Cancer
-        Patients}},
+      Patients}},
     author = {David M. Shepard and Michael C. Ferris and Gustavo H. Olvera and T. Rockwell Mackie},
     journal = {Society for Industrial and Applied Mathematics},
     year = {1999},
@@ -201,16 +210,26 @@
 }
 @Article{complexity,
     title = {{Optimization of intensity modulated radiation therapy :
-        assessing the complexity of the problem}},
+      assessing the complexity of the problem}},
     author = {Simona Marzi and Maurizio Mattia and Paolo Del Giudice and Barbara Caccia and Marcello Benassi},
     journal = {Annali dell'Istituto Superiori di Sanita},
     year = {2001},
     volume = {37},
     pages = {225-230},
 }
+@Book{python,
+    author={C. Zhu and R. H. Byrd and J. Nocedal},
+    title={{ACM Transactions on Mathenatical Software}},
+    year={1997},
+}
+@Book{livre,
+    author={Roman G. Strongin and Yaroslav D. Sergeyev},
+    title={{Global Optimization with Non-Convex Constraints}},
+    year={2000},
+}
 @Article{jcam,
     title = {{A two-mesh refinement technique for SN neutral-particle
-        transport using a higher-order DGFEM}},
+      transport using a higher-order DGFEM}},
     journal = {Journal of computational and applied mathematics, Volume 233, Issue 12,15 April 2010, Pages 3178-3188},
     author = {Jean C. Ragusa and Yaqi Wang}
 }
@@ -227,7 +246,7 @@
         Databases}},
     author = {Peter Sch\"{o}der and Steven M. Drucker},
     journal = {Proceedings of the conference on Graphics interface},
-    year = {1992},
+    year = {1992}
 }
 @Article{gpu,
     title = {{Real-time dose computation: GPU-accelerated source modeling and
@@ -238,116 +257,225 @@
     volume = {38},
     pages = {294-305},
 }
-@Article{stern,
-    title = {{Density Effect for the Ionization Loss in Various Materials}},
-    author = {Sternheimer, R. M.},
-    journal = {Physical Review},
-    year = {1956},
-    month = {August},
-    volume = {103},
-    pages = {511-515},
+@Article{multigrid_1d,
+  title = {{An Angular Multigrid Acceleration Technique $S_n$ Equations with
+    Highly Forward-Peaked Scattering}},
+  author = {J.E. Morel and T.A. Manteuffel},
+  journal = {Nuclear Science and Engineering},
+  year = {1991},
+  volume = {107},
+  pages = {330-342},
 }
-@Article{berger,
-    title = {{Bremsstrahlung and Photoneutrons from Thick Tungsten and
-        Tantalum Targets}},
-    author = {Berger, Martin J. and Seltzer, Stephen M.},
-    journal = {Physical Review C},
-    year = {1970},
-    month = {August},
-    volume = {2},
-    pages = {621-631},
+@Article{multigrid_2d,
+  title = {{An Angular Multigrid Acceleration Method for $S_n$ Equations with
+    Highly Forward-Peaked Scattering}},
+  author = {S.D. Pautz and J.E. Morel and M.L. Adams},
+  journal = {Proceedings of the International Conference on Mathematics and
+    Computation, Reactor Physics and Environmental Analyses in Nuclear
+      Applications, Madrid, Spain},
+  year = {1999},
+  month = {September},
+  volume = {1},
+  pages = {104-113},
 }
-@Article{riley,
-    title = {{Theoretical electron-atom elastic scattering cross sections}},
-    author = {Merle E. Riley and Crawford J. MacCallum and Frank Biggs },
-    journal = {Atomic data and nuclear data tables},
-    year = {1975},
-    month = {May},
-    volume = {15},
-    number = {5},
-    pages = {443-476},
+@Article{mip,
+  title = {{Diffusion Synthetic Acceleration for High-Order Discontinuous
+    Finite Element $S_n$ Transport Schemes and Application to Locally Refined
+      Unstructured Meshes}},
+  author = {Y. Wang and J.C. Ragusa},
+  journal = {Nuclear Science and Engineering},
+  year = {2010},
+  volume = {166},
+  pages = {145-166},
 }
-@Article{kolb,
-    title = {{Simple Theory for K-Ionization by Relativistic Electrons}},
-    author = {H. Kolbenstvedt},
-    journal = {Journal of applied physics},
-    year = {1967},
-    month = {November},
-    volume = {38},
-    number = {12},
-    pages = {4785-4787},
+@Article{agmg,
+  title = {{An aggregation-based algebraic multigrid method}},
+  author = {Y. Notay},
+  journal = {Electronic Transactions on Numerical Analysis},
+  year = {2010},
+  volume = {37},
+  pages = {123-146},
 }
-@Article{gry,
-    title = {{Two-Particle Collisions. II. Coulomb Collisions in the
-        Laboratory System of Coordinates}},
-    author = {Gryzi\`nski Micha\l},
-    journal = {Physical Review},
-    year = {1965},
-    month = {April},
-    volume = {138},
-    number = {2A},
-    pages = {A322-A335},
+@Article{agmg2,
+  title = {{An algebraic multigrid method with guaranteed convergence rate}},
+  author = {Artem Napov and Yvan Notay},
+  journal = {Report GANMN 10-03},
 }
-@Article{berger2,
-    title = {{Monte-Carlo Calculation of the Penetration and Diffusion of Fast
-        Charged Particles}},
-    author = {Martin J. Berger},
-    journal = {Methods in Computational Physics},
-    year = {1963},
-    volume = {1},
+@Book{amg,
+  title = {{A Multigrid Tutorial}},
+  author = {William L. Briggs and Van Emden Henson and Steve F. McCormick},
+  year = {2000},
+  edition = {Second},
 }
-@Article{zerby,
-    title = {{Electron Transport Theory, Calculations, and Experiments}},
-    author = {C. D. Zerby and F. K. Keller},
-    journal = {Nuclear Science and Engineering},
-    year = {1967},
-    volume = {27},
-    number = {2},
-    pages = {190-218},
+@Article{dfem,
+  title = {{Discontinuous Finite Element $S_N$ Methods on Three-Dimensional
+    Unstructured Grids}},
+  author = {Todd A. Wareing and John M. McGhee and Jim E. Morel and Shawn D.
+    Pautz},
+  journal = {Nuclear Science and Engineering},
+  year = {2011},
+  month = {January},
+  volume = {138},
+  pages = {256-268}
+}
+@Article{Eisenstat,
+ title = {{Efficient implementation of a class of preconditioned conjugate
+   gradient methods}},
+ author = {Stanley C. Eisestat},
+ journal = {SIAM Journal on Scientific and Statistical Computing},
+ year = {1983},
+ month = {March},
+ volume = {2},
+ number =  {1},
+ pages = {1-4},
+}
+@Misc{pyamg,
+  author = {Bell, W. N. and Olson, L. N. and Schroder, J. B.},
+  title = {{PyAMG : Algebraic Multigrid Solvers in Python v2.0}},
+  year = {2011},
+  url = {http://www.pyamg.org},
+  note = {Release 2.0},
+}
+@Article{dd_csd,
+  title = {{Multigroup Legendre Coefficients for the Diamond Difference
+    Continuous Slowing Down Operator}},
+  author = {J. E. Morel},
+  journal = {Nuclear Science and Engineering},
+  year = {1985},
+  volume = {91},
+  pages ={324-331},
+}
+@Article{ld_csd,
+  title = {{A Linear Discontinuous Galerkin Approximation for the Continuous
+    Slowing Down Operator}},
+  author = {Maximo S. Lazo and J. E. Morel},
+  journal = {Nuclear Science and Engineering},
+  year = {1986},
+  volume = {92},
+  pages= {98-106},
+}
+@Article{cepxs,
+    title = {{CEPXS/ONELD 1.0 manual user}},
+    journal = {RSICC Computer Code Collection},
+}
+@Article{comet,
+  title = {{A heterogeneous coarse mesh method for coupled photon electron
+    transport problems}},
+  author = {Dingkang Zhang and Farzad Rahnema},
+  journal = {Transport Theory ans Statistical Physics},
+  year = {2011},
+  volume = {40},
+  number = {4},
+  pages = {127-152},
+}
+@Book{reuss,
+  title = {{Neutron Physics}},
+  author = {Paul Reuss},
+  publisher = {EDP Sciences},
+  year = {2008},
+}
+@Article{ttg,
+  title = {{A Transport Acceleration Scheme for Multigroup Discrete Ordinates
+    with Upscattering}},
+  author = {Thomas M. Evans and Kevin T. Clarno and Jim E. Morel},
+  journal = {Nuclear Science and Engineering},
+  year = {2010},
+  volume = {165},
+  year = {2010},
+  month = {July},
+  pages = {292-304},
 }
 @Article{lathrop,
-    title = {{Anisotropic Scattering Approximations in the Monoenergetic
-        Boltzmann Equation}},
-    author = {K. D. Lathrop},
-    journal = {Nuclear Science and Engineering},
-    year = {1965},
-    volume = {21},
-    pages = {498-508},
+  title = {{Anisotropic Scattering Approximations in the Monoenergetic
+    Botzmann Equation}},
+  author = {K. D. Lathrop},
+  journal = {Nuclear Science and Engineering},
+  volume = {21},
+  year = {1965},
+  pages = {498-508},
 }
-@Book{python,
-    title = {{ACM Transactions on Mathenatical Software}},
-    author = {C. Zhu and R. H. Byrd and J. Nocedal},
-    year = {1997},
+@Article{kba,
+  title = {{An $S_n$ algorithm for the massively parallel CM-200 computer}},
+  author = { R. S. Baker and K. R. Koch},
+  journal = {Nuclear Science and Engineering},
+  volume = {128},
+  year = {1998},
+  pages = {312-320},
 }
-@Book{livre,
-    title = {{Global Optimization with Non-Convex Constraints}},
-    author = {Roman G. Strongin and Yaroslav D. Sergeyev},
-    year = {2000},
+@Phdthesis{yaqi,
+  title = {{Adaptive Mesh Refinement Solution Technique for the Multigroup SN
+    Transport Equation Using a Higher-Order Discontinuous Finite Element
+      Method}},
+  author = {Yaqi Wang},
+  school = {Texas A\&M University},
+  year = {2009},
 }
-@Book{radiation,
-    title = {{Atoms, Radiation, and Radiation Protection}},
-    author = {James E. Turner},
-    publisher = {John Wiley \& Sons, Inc.},
-    edition = {second},
-    year = {1995},
+@Article{dgfem,
+  title = {{Discontinuous Finite Element Transport Solutions in Thick
+    Diffusive Problems}},
+  author = {Marvin L. Adams},
+  journal = {Nuclear Science and Engineering},
+  volume = {137},
+  pages = {298-333},
+  year = {2001},
+  month = {march}
 }
-@Book{barjon,
-    title = {{Physique des REACTEURS NUCLEAIRES de Puissance}},
-    author = {Robert Barjon},
-    publisher = {Imprimerie de la Biblioth\`{e}que Interuniversitaire de
-        Grenoble},
-    edition = {first},
-    year = {1975},
+@Article{pwld_2d,
+  title = {{A piecewise linear finite element basis with application to
+    particle transport}},
+  author = {Hiromi G. Stone and Marvin L. Adams},
+  journal = {Nuclear Mathematical and Computational Sciences : A Century in
+    Review, A Century Anew, Gatlinburg, Tennessee},
+  year = {2003},
+  month = {April},
 }
-@Book{shielding,
-    title = {{Radiation shielding and dosimetry}},
-    author = {A. Edward Profio},
-    publisher = {John Wiley \& Sons, Inc.},
-    edition = {first},
-    year = {1979},
+@Phdthesis{pwld_3d,
+  title = {{The piecewise linear discontinuous finite element method applied
+    to the RZ and XYZ transport equations}},
+  author ={Theresa S. Bailey},
+  school = {Texas A\&M University},
+  year = {2008}
 }
-@Book{icru,
-    title = {{Stopping powers for electrons and positrons}},
-    author = {International Commission on Radiation Units and Measurements},
-    year = {1984},
+@Article{pomraning,
+  title = {{The Fokker-Planck operator as an asymptotic limit}},
+  author = {G.C. Pomraning},
+  journal = {Mathematical models and Methods in Applied Sciences},
+  volume = {2},
+  number = {1},
+  pages = {21-36},
+  year = {1992}
+}
+@Book{century_review,
+  title = {{Nuclear Computational Science A Century in Review}},
+  author = {Yousry Azmy and Enrico Sartori},
+  publisher = {Springer},
+  year = {2010},
+}   
+@Article{pencil_beam,
+  title = {{Limitations of a pencil beam approach to photon dose calculations
+    in lung tissue}},
+  author = {Tommy Kn\"{o}\"{o}st and Andres Ahnesj\"{o} and Per Nilsson and
+    Lars Webert},
+  journal = {Physics in Medicine and Biology},
+  volume = {40},
+  number = {9},
+  pages = {1411-1420},
+  year = {1995},
+}
+@TechReport{ml-guide,
+  author = {M.W. Gee and C.M. Siefert and J.J. Hu and R.S. Tuminaro and M.G.
+    Sala},
+  title = {{ML 5.0 Smoothed Aggregation User's Guide}},
+  institution = {Sandiad National Laboratories},
+  year = {2006},
+  number = {SAND2006-2649},
+}
+@Article{ligou,
+  title = {{Numerical Analysis of the Boltzmann Equation Including
+    Fokker-Planck Terms}},
+  author = {K. Przybylski and J. Ligou},
+  journal = {Nuclear Science and Engineering},
+  volume = {81},
+  pages = {92-109},
+  year = {1982}
 }

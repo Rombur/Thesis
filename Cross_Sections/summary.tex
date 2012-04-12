@@ -1,0 +1,79 @@
+\subsection{Summary}
+
+\subsubsection{Elastic scattering}
+The cross section data of Riley, et. al. is used at non-relativistic energies
+($<256 keV$). The Mott cross section with Moliere screening is used at
+relativistic energies ($>256keV$). The extended transport correction is applied
+to these elastic-scattering cross sections to make them amenable to
+representation by a low-order Legendre expansion.
+
+\subsubsection{Inelastic scattering}
+The M\o ller cross section is used for large-energy loss collisions. For other
+collisions, the restricted CSD approximation is used. In this approximation,
+the restricted collisional stopping power, $S^C$, specifies the energy loss
+the electron per pathlength due to small-energy loss collisions. In CEPXS,
+$S^C$ is calculated as the difference between the total collisional stopping
+power, $\mathcal{S}^C$, and that portion of $\mathcal{S}^C$ that is due to
+large-energy loss collisions. The total collisional stopping power is
+tabulated at discrete energies for all elements in the set of electron data
+called DATAPAC. For electron energies greater than 10keV, these collisional
+stopping powers (which are derived from Bethe theory) are employed. CEPXS
+employs an extrapolation of the stopping power for those elections with energy
+less than 10 keV
+
+\subsubsection{Knock-on production}
+The M\o ller cross section is used to determine the production of knock-on
+electrons with energies down to the cutoff energy. Knock-on production and
+impact ionization are not correlated in CEPXS.
+
+\subsubsection{Radiative energy loss and bremsstrahlung photon production}
+The bremsstrahlung cross section is based on a formulation by Berger et al.,
+involving Born-approximation cross sections. This
+cross section is used to describe both bremsstrahlung photon production and
+the slowing down of an electron by radiative events, the restricted CSD
+approximation is used. In this approximation, the restricted radiative
+stopping power, $S^B$, specifies the energy loss of the electron per
+pathlength due to radiative emission in which the energy loss is small. In
+CEPXS, $S^B$ is calculated as the difference between the total radiative
+stopping power, $\mathcal{S}^B$, and that portion of $\mathcal{S}^B$ that is
+due to large-energy loss radiative events. The total radiative stopping power
+is tabulated at discrete energies for all elements in DATAPAC.\\
+Bremsstrahlung photons are produced with energies greater than or equal to the
+cutoff energy. 
+
+\subsubsection{Impact ionization}
+The Gryzinski impact ionization cross sections are used for the K,L1,L2,L3 and
+M shells. With the NO-PCODE option, impact ionization is limited to the
+K-shell and the Kolbenstvedt cross section is used. Following impact
+ionization, a cascade of fluorescence photons and Auger electrons will be
+produced. 
+
+\subsubsection{Compton incoherent scattering and electron production}
+The Klein-Nishina cross section is used for Compton incoherent scattering and
+electron production. 
+
+\subsubsection{Photoelectric absorption and photoelectron production}
+The Biggs-Lighthill cross sections are used for photoelectric absorption. When
+using the NO-PCODE option, photoelectrons emerge with either the energy of the
+photon or with kinetic energy equal to that of the photon less the K-shell
+binding energy. The angular distributions devised by Fischer and Sauter are
+used for the emitted electrons. The relaxation cascade that accompanies
+photoionization is the same as that which accompanies impact ionization.
+
+\subsubsection{Pair interaction and the production of charged secondaries}
+The Biggs-Lighthill cross sections are used for the absorption of photons by
+pair interactions. The energy distribution of the charged secondaries produced
+by a pair interaction are obtained from Bethe-Heitler theory. Since
+Bremsstrahlung production and pair production are inverse processes, the same
+angular distribution is used for both bremsstrahlung photons and the
+secondaries produced by pair interactions.\\
+While positrons can be treated as a separate species of particles in CEPXS,
+the default option is that positrons are assumed to be electrons. This
+assumption has only a minor effect on the spatial profile of the energy
+deposition. Namely, annihilation radiation is produced at the site of the pair 
+interaction rather than where a positron is absorbed. However, the
+assumption that a positron is identical to a electron has a major impact on
+the charge deposition profile. Under this assumption, two electronic charges
+are removed from the medium at the site  of the pair interaction. In an actual
+pair interaction, no charge removal occurs at the site of the interaction.
+

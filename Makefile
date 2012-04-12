@@ -1,11 +1,10 @@
 pdf : main.tex\
-	Cross_Sections/cross_sections.tex\
 	Boltzmann_Equations/boltzmann_equations.tex\
 	biblio.bib
-	pdflatex main.tex
+	pdflatex main
 	bibtex main
-	pdflatex main.tex
-	pdflatex main.tex
+	pdflatex main
+	pdflatex main
 
 .PHONY : clean
 
