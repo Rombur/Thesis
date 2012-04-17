@@ -4,5 +4,8 @@
 \contentsline {subsection}{\numberline {1.1.2}Pomraning's derivation: Fokker-Planck equation as a limit of Boltzmann equation}{4}
 \contentsline {subsubsection}{Transport equation}{4}
 \contentsline {subsubsection}{Fokker-Planck development}{6}
-\contentsline {section}{\numberline {1.2}Fokker-Planck cross section}{10}
-\contentsline {section}{\numberline {1.3}Galerkin}{10}
+\contentsline {subsection}{\numberline {1.1.3}Limit of the Boltzmann-Fokker-Planck approximation.}{10}
+\contentsline {subsubsection}{Henyey-Greenstein scattering}{10}
+\contentsline {subsubsection}{Screened Rutherford scattering}{12}
+\contentsline {section}{\numberline {1.2}Fokker-Planck cross section}{14}
+\contentsline {section}{\numberline {1.3}Galerkin}{14}

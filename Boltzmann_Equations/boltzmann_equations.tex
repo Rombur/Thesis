@@ -503,8 +503,297 @@ measure of the scattering in such a medium, it is equally likely for a
 particle to be scattered to the left or to the right, and thus the mean
 scattering angle is zero.
 
-\begin{itemize}
-\item montrer le foirage sur Henyey-Greintein et que screened rutherford works
-\end{itemize}
+\subsection{Limit of the Boltzmann-Fokker-Planck approximation.}
+\subsubsection{Henyey-Greenstein scattering}
+The Henyey-Greenstein\cite{H-G} differential scattering kernel is defined by
+\cite{larsen_fp}:
+\begin{equation}
+f(\mu_0) = \frac{1-\bar{\mu}_0^2}{4\pi(1-2\bar{\mu}_0\mu +\bar{\mu}_0^2)^{3/2}}
+\label{H-G}
+\end{equation}
+where the mean scattering cosine $\mu_0$ ranges from $-1<\bar{\mu}_0<1$. An
+important feature of this kernel is that its Legendre polynomial expansion,
+$f(\mu_0)=\sum_{l=0}^{\infty}\frac{2l+1}{4\pi}f_l P_l(\mu_0)$, is very simple; 
+the expansion coefficients $f_n$ are given by:
+\begin{equation}
+f_l = \bar{\mu}_0^l,\ n\geq 0
+\end{equation}
+We now consider the operator:
+\begin{equation}
+\Sigma_s\mathcal{L}_B = \Sigma_s\(\int_{4\pi}
+f(\bo\cdot\bo')\Psi(\br,\bo',E)d\bo'-\Psi(\br,\bo,E)\)
+\end{equation}
+using the Henyey-Greenstein kernel, equation (\ref{H-G}), with:
+\begin{align}
+&\Sigma_s = \frac{\sigma}{\epsilon}\\
+&\mu_0 = 1-\epsilon
+\end{align}
+where $\sigma$ is fixed and $\epsilon \approx 0$. Then, as desired, the
+scattering mean free path tends to zero, the mean scattering cosine tends to
+unity, and in the absence of absorption, the transport cross section:
+\begin{equation}
+\Sigma_{tr}=\Sigma_s(1-\bar{\mu}_0) = \frac{sigma}{\epsilon}\cdot \epsilon =
+\epsilon
+\end{equation}
+is fixed.
+
+In the limit of small $\epsilon$, the eigenvalues of $\Sigma_s\mathcal{L}_s$
+become:
+\begin{equation}
+\begin{split}
+-\Sigma_s(1-f_l) &= -\frac{\sigma}{\epsilon}\(1-(1-\epsilon)^l\)\\
+&=-\frac{\sigma}{\epsilon}\(l\epsilon-\frac{l(l-1)}{2}\epsilon^2+O(\epsilon^3)\)\\
+&= \sigma(1+\epsilon)(-l)-\frac{\sigma \epsilon}{2}(-l(l+1))+O(\epsilon^2)
+\end{split}
+\label{eps_eig}
+\end{equation}
+Using (\ref{L_B_smooth}), (\ref{L_FP_smooth}), (\ref{L_3/2_smooth}) and
+(\ref{eps_eig}), we get:
+\begin{equation}
+\Sigma_s\mc{L}_B = \sigma(1+\epsilon) \mc{L}_{3/2} - \frac{\sigma
+\epsilon}{2} \mc{L}_{FP} + O(\epsilon^2)
+\label{HG_approx}
+\end{equation}
+Using equation (\ref{HG_approx}), we find that the leading-order approximation
+to $\Sigma_s \mc{L}_B$ is defined entirely by $\mc{L}_{3/2}$:
+\begin{equation}
+\Sigma_s \mc{L}_B = \Sigma_s(1-\bar{\mu}_0) \mc{L}_{3/2} +O(\epsilon)
+\end{equation}
+The first-order approximation to $\mc{L}_B$ contains both $\mc{L}_{3/2}$ and
+$\mc{L}_{FP}$:
+\begin{equation}
+\Sigma_s\mc{L}_B = \Sigma_s(1-\bar{\mu}_0)(2-\bar{\mu}_0) \mc{L}_{3/2} -
+\frac{\Sigma_s}{2}(1-\bar{\mu}_0)^2\mc{L}_{FP} + O(\epsilon^2)
+\end{equation}
+The Henyey-Greenstein kernel was proposed\cite{H-G}, and has found wide use,
+primarily because of its great simplicity. The exact Henyey-Greenstein kernel
+does not arise from a deeper theory as the differential scattering kernel for
+any known physical process \cite{larsen_fp}. However, as a model for certain
+transport processes, it has been successful.
+
+
+\red{A mettre quelque part}
+\begin{equation}
+\mathcal{L}_{FP}\psi(\bo) = \(\frac{\partial}{\partial
+\mu}(1-\mu^2)\frac{\partial}{\partial
+\mu}+\frac{1}{1-\mu^2}\frac{\partial^2}{\partial\varphi^2}\)\psi(\bo)
+\end{equation}
+\begin{align}
+&\mathcal{L}_B Y_l^m(\bo) = -(1-f_l) Y_l^m(\bo)\\
+&\mathcal{L}_{FP} Y_l^m(\bo) = -l(l+1)Y_l^m(\bo)
+\end{align}
+For a sufficiently smooth function $\Psi(\bo)$, $\mathcal{L}_B$ may be
+written:
+\begin{equation}
+\begin{split}
+\mathcal{L}_B\Psi(\bo) &= \int_{4\pi}\(\sum_{l=0}^{\infty} \frac{2l+1}{4\pi}
+f_l P_l(\bo\cdot\bo')\)\Psi(\bo')d\bo'-\Psi(\bo)\\
+&=\sum_{l=0}^{\infty} f_l\int_{4\pi} \(\sum_{m=l}^l Y_l^m(\bo)
+Y_l^{m,*}(\bo')\) \Psi(\bo')dbo' - \sum_{l=0}^{\infty}\sum_{m=-l}^l Y_l^m(\bo)
+\int_{4\pi}Y_l^{m,*}(\bo') \Psi(\bo') d\bo'\\
+&= \sum_{l=0}^{\infty} \sum_{m=-l}^l \(-\(1-f_l\)\)Y_l^m(\bo)\int_{4\pi}
+Y_l^{m,*} (\bo')\Psi(\bo') d\bo'
+\end{split}
+\label{L_B_smooth}
+\end{equation}
+If $\Psi(\bo)$ is sufficiently smooth, $\mc{L}_{FP}\Psi(\bo)$ may be
+written:
+\begin{equation}
+\mathcal{L}_{FP}\Psi(\bo) = \sum_{l=0}^{\infty} \sum_{m=-l}^l (-l(l+1))
+Y_l^m(\bo)\int_{4\pi} Y_l^{m,*} \int_{4\pi} Y_l^{m,*}(\bo')\Psi(\bo') d\bo'
+\label{L_FP_smooth}
+\end{equation}
+Now we need to introduce the operator:
+\begin{equation}
+\mc{L}_{3/2}\Psi(\bo) = \frac{1}{4\pi\sqrt{2}} \int_{4\pi}
+\frac{\Psi(\bo')-\Psi(\bo)}{\(1-\bo\cdot\bo'\)^{3/2}} d\bo'
+\label{L_3/2}
+\end{equation}
+For this integral to exist, it must be interpreted as a principal value.
+$\mathcal{L}_{3/2}$ satisfies:
+\begin{equation}
+\mathcal{L}_{3/2}Y_l^m(\bo) = -lY_l^m(\bo)
+\end{equation}
+Thus, if $\Psi(\bo)$ is sufficiently smooth, $\mc{L}_{3/2}\Psi(\bo)$ may be
+written:
+\begin{equation}
+\mathcal{L}_{3/2}\Psi(\bo) = \sum_{l=0}^{\infty} \sum_{m=-l}^l -l Y_l^m(\bo)
+\int_{4\pi} Y_l^{m,*} (\bo) \int_{4\pi} \int_{4\pi} Y_l^m(\bo') \Psi(\bo')
+d\bo'
+\label{L_3/2_smooth}
+\end{equation}
+A simple relationship between $\mathcal{L}_{3/2}$ and $\mathcal{L}_{FP}$ is:
+\begin{equation}
+\mathcal{L}_{FP} = -\mathcal{L}_{3/2}^2+\mathcal{L}_{3/2}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\mc{L}_{3/2}\Psi(\bo) &= \frac{1}{\sigma} \lim_{\epsilon \to 0} \Sigma_s
+\mc{L}_B \Psi(\bo)\\
+&= \lim_{\epsilon \to 0} \frac{\Sigma_S}{\sigma}
+\(\frac{1-\bar{\mu}_0^2}{4\pi} \int_{4\pi} \frac{\Psi(\bo')}{(1-2\bar{\mu}_0
+\bo\cdot\bo' +\bar{\mu}_0^2)^{3/2}} - \Psi(\bo)\)\\
+&=\lim_{\epsilon \to 0} \frac{\Sigma_s}{\sigma} \frac{1-\bar{\mu}_0^2}{4\pi}
+\int_{4\pi}\frac{\Psi(\bo')-\Psi(\bo)}{(1-2\bar{\mu}_0 \bo\cdot \bo' +
+\bar{\mu}_0^2)^{3/2}}d\bo'\\
+&= \lim_{\epsilon \to 0} \frac{2-\epsilon}{4\pi} \int_{4\pi} \frac{\Psi(\bo')
+- \Psi(\bo)}{(1-2(1-\epsilon) \bo\cdot\bo'+(1-\epsilon)^2)^{3/2}} d\bo'\\
+& = \frac{1}{4\pi\sqrt{2}} \int_{4\pi}
+\frac{\Psi(\bo')-\Psi(\bo)}{(1-\bo\cdot\bo')^{3/2}}d\bo'
+\end{split}
+\end{equation}
+For this last integral to exist, it must be interpreted as a principal value:
+one takes the limit as $\delta\rightarrow 0$ of the integral over the unit
+sphere excluding the small disk $1-\bo'\cdot\bo <\delta$.\\
+The operator $\mc{L}_{3/2}$ is an unbounded pseudodifferential operator (its
+eigenvalues tend to $-\infty$). If it were possible to split the integral into
+two integrals, the first would represent a standard Boltzmann
+``out-scattering'' term, while the second would represent an ``in-scattering''
+term. However, this split cannot be performed because the two integrals
+individually diverge, due to the singularity in the denominator at $\bo'=\bo$.
+Thus, $\mc{L}_{3/2}$ only exists when the two integrals are combined. Then,
+the numerator and denominator both vanish at $\bo'=\bo$ in such a way that the
+single integral exists as a principal value. In effect, $\mc{L}_{3/2}$ defines
+a limiting linear transport process in which the total cross section is
+infinite (the mean free path is zero).
+
+\subsubsection{Screened Rutherford scattering}
+The screened Rutherford differential scattering kernel, which is widely used
+for the Coulomb scattering of non-relativistic electrons, is defined by:
+\begin{equation}
+f(\mu_0) = \frac{\eta(1+\eta)}{\pi(1+2\eta-\mu_0)^2}
+\end{equation}
+where $\eta>0$ is the screening parameter. We consider $\eta\approx 0$, for
+which $f(\mu_0)$ is forward-peaked. In the Legendre expansion of $f(\mu_0)$,
+one has:
+\begin{align}
+&f_0 = 1\\
+&f_1 = \bar{\mu}_0 = 1 -2\eta \((1+\eta)\ln\(1+\frac{1}{\eta}\)-1\)
+\label{f_1}
+\end{align}
+Using:
+\begin{equation}
+\mu P_l(\mu) = \frac{(l+1)P_{l+1}(\mu)+lP_{l-1}(\mu)}{2l+1}
+\end{equation}
+we get:
+\begin{equation}
+lf_{l+1} - (1+2\eta)(2l+1)f_l+(l+1)f_{l-1} = 0
+\label{recursion}
+\end{equation}
+Equation (\ref{recursion}) may be written:
+\begin{equation}
+\frac{f_{l+1}-f_l}{l+1} - \frac{f_l-f_{l-1}}{l} = 2 \eta \frac{2l+1}{l(l+1)} f_l
+\end{equation}
+Summing from $l=1$ to $m-1$ and then multiplying by $m$, we obtain:
+\begin{equation}
+f_m-f_{m-1}-(\bar{\mu}_0-1)m = 2 \eta m \sum_{k=1}^{m-1} \frac{2k+1}{k(k+1)} f_k
+\end{equation}
+Summing thus result from $m=1$ to $l$ and using the identity:
+\begin{equation}
+\sum_{m=1}^l m = \frac{l(l+1)}{2}
+\label{sum_m}
+\end{equation}
+we obtain:
+\begin{equation}
+\begin{split}
+f_l-1-(\bar{\mu}_0-1)\frac{l(l+1)}{2} &= 2 \eta \sum_{m=1}^l m\sum_{k=1}^{m-1}
+\frac{2k+1}{k(k+1)}f_k\\
+&= 2\eta \sum_{k=1}^{l-1} \(\sum_{m=k+1}^l m\) \frac{2k+1}{k(k+1)} f_k\\
+&= 2\eta\sum_{k=1}^{l-1}\(\frac{l(l+1)}{2}-\frac{k(k+1)}{2}\)\frac{2k+1}{k(k+1)}f_k
+\end{split}
+\end{equation}
+Hence:
+\begin{equation}
+f_n = 1-(1-\bar{\mu}_0)\frac{l(l+1)}{2}+\eta\sum_{k=1}^{l-1}
+\(\frac{l(l+1)}{k(k+1)}-1\) (2k+1) f_k
+\label{f_n_R}
+\end{equation}
+This result is algebraically equivalent to equation (\ref{recursion}) for all
+$l\geq 0$ and $\eta >0$ if the summation term is interpreted as zero for $l=0$
+and 1.
+
+To proceed, we assume for $\eta \ll 1$ the expansion:
+\begin{equation}
+f_l = f_{l,0}+\eta f_{l,1} + O(\eta^2)
+\end{equation}
+Introducing this into equation (\ref{f_n_R}) and equating the coefficients of
+$\eta^0$ and $\eta^1$ (note that we do not expand $\bar{\mu}_0$ for small
+$\eta$), we obtain:
+\begin{align}
+& f_{l,0} = 1 - (1-\bar{\mu}_0) \frac{l(l+1)}{2}\\
+& f_{l,1} =
+\sum_{k=1}^{l-1}\(\frac{l(l+1)}{k(k+1)}-1\)(2k+1)\(1-(1-\bar{\mu}_0)
+\frac{k(k+1)}{2}\)
+\end{align}
+From equation (\ref{f_1}), we have:
+\begin{equation}
+1-\bar{\mu}_0 = O\(\eta \ln\(\frac{1}{\eta}\)\)
+\label{weakly_small}
+\end{equation}
+Therefore, we get:
+\begin{equation}
+f_l = 1+\(\frac{1-\bar{\mu}_0}{2}\) \(-l(l+1)\)+\eta \(\sum_{k=1}^{l-1}
+\(\frac{l(l+1)}{k(k+1)}-1\)(2k+1)\) + O\(\eta^2\ln\(\frac{1}{\eta}\)\)
+\label{eq_58}
+\end{equation}
+Now using equation (\ref{sum_m}) and:
+\begin{equation}
+\frac{1}{k(k+1)} = \frac{1}{k+1}-\frac{1}{k}
+\end{equation}
+we get:
+\begin{equation}
+\sum_{k=1}^{l-1} \(\frac{l(l+1)}{k(k+1)}-1\)(2k+1) = 2 l(l+1) \(\(\sum_{k=1}^l
+\frac{1}{k}\)-1\)
+\end{equation}
+for $l\geq 0$.
+
+Thus, equation (\ref{eq_58}) may be written:
+\begin{equation}
+f_l=1+\(\frac{1-\bar{\mu}_0}{2}\)\(-l(l+1)+2\eta\(-l(l+1)\)\)\(1-\sum_{k=1}^l
+\frac{1}{k}\) + O(\eta^2\ln\(\frac{1}{\eta}\))
+\end{equation}
+We define $\Sigma_s$ as:
+\begin{equation}
+\Sigma_s = \frac{\sigma}{1-\bar{\mu}_0}
+\end{equation}
+Then for small $\eta$, the eigenvalues of $\Sigma_s \mc{L}_B$ become:
+\begin{equation}
+-\Sigma_s (1-f_n) = \frac{\sigma}{2}
+\(-l(l+1)\)+\frac{2\eta\sigma}{1-\bar{\mu}_0} (-l(l+1))\(1-\sum_{k=1}^l
+\frac{1}{k}\)+O(\eta)
+\end{equation}
+So we finally get:
+\begin{equation}
+\begin{split}
+\Sigma_s \mc{L}_B &= \frac{\sigma}{2}\mc{L}_{FP} + \frac{2\eta
+\sigma}{1-\bar{\mu}_0} \mc{L}_{FP}(I+\mc{L}_1) + O(\eta)\\
+&= \frac{\Sigma_s(1-\bar{\mu}_0}{2} \mc{L}_{FP} + 2 \eta \Sigma_s \mc{L}_{FP}
+(I+\mc{L}_1) + O(\eta)
+\end{split}
+\end{equation}
+where:
+\begin{equation}
+\mc{L}_1 \Psi(\bo) = \frac{1}{4\pi} \int_{4\pi}
+\frac{\Psi(\bo')-\Psi(\bo)}{1-\bo\cdot\bo'}d\bo'
+\end{equation}
+and:
+\begin{equation}
+\mc{L}_1 Y_l^m(\bo) = \(-\sum_{k=1}^l\frac{1}{k}\) Y_l^m(\bo)
+\end{equation}
+The first term in this expansion is the standard Fokker-Planck operator which
+is $O(1)$. The second term in the expansion is weakly small; by equation
+(\ref{weakly_small}) it is $O(1/\ln(1/\eta))$. 
+
+The conventional Fokker-Planck operator occurs in the asymptotic
+approximations of $\mc{L}_B$ for both Henyey-Greenstein and screened
+Rutherford scattering. For Henyey-Greenstein scattering, $\mc{L}_{FP}$ is
+dominated by a pseudodifferential operator $\mc{L}_{3/2}$, and for screened
+Rutherford scattering, $\mc{L}_{FP}$ weakly dominates another
+pseudodifferential operator $\mc{L}_{FP}\mc{L}_1$. In neither case can one
+write the write the leading plus first-order approximations to $\mc{L}_B$ as
+pure differential operators-additional pseudodifferential operators, with
+unbounded spectra, must be included.
+
 \section{Fokker-Planck cross section}
 \section{Galerkin}
