@@ -8,4 +8,5 @@
 \contentsline {subsubsection}{Henyey-Greenstein scattering}{10}
 \contentsline {subsubsection}{Screened Rutherford scattering}{12}
 \contentsline {section}{\numberline {1.2}Fokker-Planck cross section}{14}
-\contentsline {section}{\numberline {1.3}Galerkin}{14}
+\contentsline {subsection}{\numberline {1.2.1}Coefficients for $\Sigma ^{\alpha }$}{17}
+\contentsline {section}{\numberline {1.3}Galerkin}{20}
