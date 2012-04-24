@@ -1,0 +1,82 @@
+\chapter{Introduction}
+\section{Transport equation}
+\begin{itemize}
+\item $\mu_0 = \bo'\cdot \bo$ is the cosine of the polar angle
+\item $\bo$ is a unit vector in the flight direction
+\item $\mu = \cos(\theta)$, where $\theta$ is a polar angle
+\end{itemize}
+The transport equation is given by:
+\begin{equation}
+\bo\cdot \bn \Psi(\br,\bo,E) + \Sigma_t(\br,E)\Psi(\br,\bo,E) =
+\int_0^{\infty}dE'\int_{4\pi}d\bo'\ 
+\Sigma_s(\br,\bo'\cdot\bo,E'\rightarrow E)\Psi(\br,\bo',E')+Q(\br,\bo,E)
+\label{transport_p}
+\end{equation}
+Here $\Psi(E,\bo)$ is defined by:
+\begin{equation}
+\Psi(E,\bo) = vf(E,\bo)
+\end{equation}
+where $v$ is the particle speed, $\Sigma_t(E)$ is the total cross-section
+given by:
+\begin{equation}
+\Sigma_t(E) = \Sigma_a(E)+\Sigma_s(E)
+\end{equation}
+and $Q(E,\bo)$ represents any source of particles. We are not concern about
+boundary conditions.
+
+The in-scattering term can be represented as a sum over its a surface harmonic
+components. To this end, we expand the scattering kernel in Legendre
+polynomials according to:
+\begin{equation}
+\Sigma_s(\br,\bo'\cdot\bo,E'\rightarrow E)=\sum_{l=0}^{\infty}
+\Sigma_{s,l}(\br,E'\rightarrow E)P_l(\bo'\cdot\bo)
+\end{equation}
+The orthogonality of the Legendre polynomials allows us to write the expansion
+coefficients as:
+\begin{align}
+&\Sigma_{s,l}(\br,E'\rightarrow E) = \int_{-1}^1 d\mu_0 P_l(\mu_0) 
+\Sigma_s(\br,\mu_0,E'\rightarrow E)\\
+&\Sigma_s(\br,\mu_0,E'\rightarrow E) = \sum_{l=0}^{\infty}
+\Sigma_{s,l}(\br,E\rightarrow E) P_l(\mu_0)
+\end{align}
+Further, we expand the solution $\Psi(\br,\bo,E)$ in surface harmonics according
+to:
+\begin{equation}
+\Psi(\br,\bo,E) = \sum_{l=0}^{\infty}\sum_{m=-l}^l \phi_{l,m}(\br,E) Y_l^m(\bo)
+\label{ang_flux}
+\end{equation}
+The expansion coefficients $\phi_{l,m}$ are given by:
+\begin{equation}
+\phi_{l,m}(\br,E) = \int_{4\pi} d\bo\ Y_{l}^{m,*}(\bo) \Psi(\br,\bo,E)
+\label{moments}
+\end{equation}
+A property of the surface harmonics is that they satisfy the partial equation
+given by:
+\begin{equation}
+\[\frac{\partial}{\partial\mu}(1-\mu^2)\frac{\partial}{\partial
+\mu}+\(\frac{1}{1-\mu^2}\)\frac{\partial^2}{\partial \varphi}+l(l+1)\]Y_l^m(\bo)=0
+\label{eigenvalue}
+\end{equation}
+Using the addition theorem:
+\begin{equation}
+P_l(\bo\cdot\bo') = \frac{1}{2\pi} P_l(\mu_0) = \frac{2}{2l+1} \sum_{m=-l}^l 
+Y_l^m(\bo)\cdot
+Y_l^{m,*}(\bo')
+\end{equation}
+we get:
+\begin{equation}
+\bo\cdot\bn \Psi(\br,\bo,E) +
+\Sigma_t(\br,E)\Psi(\br,\bo,E)=\sum_{l=0}^{\infty}\sum_{m=-l}^{l} Y_l^m(\bo) 
+\int_0^{\infty} dE'\ \Sigma_{s,l}(\br,E'\rightarrow E)\Psi_{l,m}(\br,E') +
+Q(\br,\bo,E)
+\end{equation}
+or equivalently:
+\begin{equation}
+\begin{split}
+&\bo\cdot\bn \Psi(\br,\bo,E) +
+\(\Sigma_a(\br,E)+\Sigma_s(\br,E)\)\Psi(\br,\bo,E) =\\
+&\sum_{l=0}^{\infty}\sum_{m=-l}^l Y_l^m(\bo) \int_0^{\infty}dE'\
+\Psi_{l,m}(\br,E') \int_{-1}^1 d\mu_0\ P_l(\mu_0)
+\Sigma_{s}(\br,\mu_0,E'\rightarrow E)+Q(\br,\bo,E)
+\end{split}
+\end{equation}

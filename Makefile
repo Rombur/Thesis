@@ -1,5 +1,8 @@
 pdf : main.tex\
+	Introduction/introduction.tex\
 	Boltzmann_Equations/boltzmann_equations.tex\
+	Boltzmann_Equations/fp_xs.tex\
+	Boltzmann_Equations/galerkin.tex\
 	biblio.bib
 	pdflatex main
 	bibtex main

@@ -1,12 +1,13 @@
-\contentsline {chapter}{\numberline {1}Transport equation}{2}
-\contentsline {section}{\numberline {1.1}Derivation of the Boltzmann-Fokker-Planck equation}{2}
-\contentsline {subsection}{\numberline {1.1.1}Ligou's derivation}{2}
-\contentsline {subsection}{\numberline {1.1.2}Pomraning's derivation: Fokker-Planck equation as a limit of Boltzmann equation}{4}
-\contentsline {subsubsection}{Transport equation}{4}
-\contentsline {subsubsection}{Fokker-Planck development}{6}
-\contentsline {subsection}{\numberline {1.1.3}Limit of the Boltzmann-Fokker-Planck approximation.}{10}
+\contentsline {chapter}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {1.1}Transport equation}{2}
+\contentsline {chapter}{\numberline {2}Transport equation}{4}
+\contentsline {section}{\numberline {2.1}Introduction}{4}
+\contentsline {section}{\numberline {2.2}Derivation of the Boltzmann-Fokker-Planck equation}{4}
+\contentsline {subsection}{\numberline {2.2.1}Ligou's derivation}{4}
+\contentsline {subsection}{\numberline {2.2.2}Pomraning's derivation: Fokker-Planck equation as a limit of Boltzmann equation}{6}
+\contentsline {subsection}{\numberline {2.2.3}Limit of the Boltzmann-Fokker-Planck approximation.}{10}
 \contentsline {subsubsection}{Henyey-Greenstein scattering}{10}
 \contentsline {subsubsection}{Screened Rutherford scattering}{12}
-\contentsline {section}{\numberline {1.2}Fokker-Planck cross section}{14}
-\contentsline {subsection}{\numberline {1.2.1}Coefficients for $\Sigma ^{\alpha }$}{17}
-\contentsline {section}{\numberline {1.3}Galerkin}{20}
+\contentsline {section}{\numberline {2.3}Fokker-Planck cross section}{15}
+\contentsline {subsection}{\numberline {2.3.1}Coefficients for $\Sigma ^{\alpha }$}{16}
+\contentsline {section}{\numberline {2.4}Galerkin}{19}
