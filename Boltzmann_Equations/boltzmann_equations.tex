@@ -1,46 +1,27 @@
-\chapter{Transport equation}
+\chapter{Charged particle transport}
 \section{Introduction}
-In charged particle transport, the scattering kernel is very peaked about both
+The scattering kernel in charged particle transport is very peaked about both
 a zero energy transfer and a zero direction change. However, the number of
-scattering collisions is very large. The average distance a particle travels
-between scattering events (the scattering mean free path) is very small. The
-slight effect of a single scattering can loosely be characterized as an
-$O(\epsilon \ll 1)$ effect, and the small scattering mean free path can be
-characterized as an $O(\Delta \ll 1)$ distance. Thus, in an $O(1)$ distance in
-the medium, one can possibly observe a significant change in the energy and
-direction of the particle, depending upon the relationship between $\epsilon$
-and $\Delta$\cite{pomraning}.
+scattering collisions is very large and therefore, the scattering mean free
+path (average distance between two scattering collisions) is very small. 
 
-To solve such a scattering transport problem numerically using deterministic
-methods is very difficult since the mesh size in such a calculation must be on
-the same scale as the mean free path, which in this case is very small. This
-implies an unrealistically fine degree of numerical resolution. Likewise, a
-Monte-Carlo simulation is very time consuming since a very large number of
-scattering interactions must be followed for each particle before its demise
-by either absorption or leakage out of the system. To circumvent these
-difficulties, it has been suggested to replace the integral scattering
-operator in the transport equation with a differential Fokker-Planck operator.
-The effect of this replacement is that the dominant (large) in and out
-scattering terms cancel, thus effectively increasing the mean free
-path\cite{pomraning}.
+The Boltzmann equation could be used, from a theoretical point of view, but
+the scattering cross sections are so forward peaked that a Legendre expansion
+of the cross section would require too many terms. Moreover, to obtain an
+accurate solution using a deterministic method is very difficult since the
+mesh size must be on the same scale as the mean free path which is very
+small\cite{pomraning}. To avoid these problems, a Fokker-Planck operator can
+be used to represent the highly forward peaked scattering. Since this operator 
+cannot represent the large angles scattering, a Legendre expansion can be
+used to give the Boltzmann-Fokker-Planck equation (BFP equation)\cite{ligou}.
 
-The Boltzmann equation cannot be used to describe charged particles transport.
-The Boltzmann equation is valid from the theoretical point of view but the
-scattering cross sections are so forward peaked that a polynomial expansion
-would require too many terms (slow convergence of the expansion). To avoid the
-cross section expansion, the Boltzmann equation can be replaced by a
-Fokker-Planck equation. The Fokker-PlancK equation can be used to represent
-the highly forward peaked scattering but it cannot represent the large angles
-scattering. The Boltzmann-Fokker-Planck (BFP) equation uses a polynomial expansion
-for the large angle scattering and a Fokker-Planck term for the forward peaked
-scattering\cite{ligou}.
-\section{Derivation of the Boltzmann-Fokker-Planck equation}
-\subsection{Ligou's derivation}
-Following \cite{ligou}, the BFP equation can be derived starting from the Boltzmann 
+\section{Boltzmann-Fokker-Planck equation}
+\subsection{Derivation of the Boltzmann-Fokker-Planck equation}
+Following \cite{ligou}, the BFP equation is be derived starting from the Boltzmann 
 equation:
 \begin{equation}
 \begin{split}
-&\bo\cdot\bn\Psi(\br,\bo,E) + \(\Sigma_s(\br,E)+\Sigma_a(\br,E)\)\Psi(\br,bo,E)
+&\bo\cdot\bn\psi(\br,\bo,E) + \(\Sigma_s(\br,E)+\Sigma_a(\br,E)\)\psi(\br,bo,E)
 =\\ 
 &\sum_{l=0}^{\infty}\sum_{m=-l}^l \int_{0}^{\infty} \Sigma_{s,l}\(\br,E'\rightarrow
 E\) \phi_{l,m}(\br,E')Y_l^m(\bo)\ dE' + Q(\br,\bo,E)
@@ -74,9 +55,9 @@ Now the differential scattering cross section is split into two parts:
 \Sigma_s(\br,\mu_c) = \Sigma_{s,reg}(\br,\mu_c) + \Sigma_{s,sing}(\br,\mu_c)
 \end{equation}
 The first term is a ``regular'' cross section which does not increase too much
-when $\mu$ goes to one. By definition, a expansion on the Legendre polynomials
-of this term will converge quickly. The second term is the ``singular'' cross section 
-which is highly forward peaked. This term is only important when $\mu_c\approx
+when $\mu$ goes to one. An expansion on the Legendre polynomials of this term 
+will converge quickly by definition. The second term is the ``singular'' cross 
+section which is highly forward peaked and is only important when $\mu_c\approx
 1$. The scattering term in \cref{b_2} can be written as:
 \begin{equation}
 q = q'+q''
@@ -104,11 +85,11 @@ Q_{l,m}''(E)
 \Sigma_{s,l}'(E'\rightarrow E)\\
 \Sigma_{s,l}''(E' \rightarrow E)
 \end{bmatrix}
+\label{prec}
 \end{equation}
 where $\Sigma_{s,l}'$ and $\Sigma_{s,l}''$ are the Legendre kernels
 corresponding to $\sigma_s'$ and $\sigma_s''$ through \cref{eq7}.
-In the preceding equation, it is more convenient to use $\mu_c$ instead of
-$E'$ as a new integration variable:
+Using $\mu_c$ instead of $E'$ as integration variable in \cref{prec}, we get:
 \begin{equation}
 q_{l,m}''(E) = 2\pi N\int_{-1}^1\frac{E'}{E}\sigma_s''(E',\mu_c)
 P_l\[\mu_L(\mu_c)\] \phi_{l,m}(E')d\mu_c
@@ -144,51 +125,50 @@ q_{l,m}''(E) = \Sigma_s''(E) \phi_{l,m}(E) +\frac{\partial}{\partial E} S''(E)
 where:
 \begin{align}
 &\Sigma_s''(E) = N 2 \pi \int_{-1}^{1}\sigma_s''(E,\mu_c)\ d\mu_c\\
-&T''(E) = \frac{N}{2} 2 \pi \int_{-1}^1 (1-\mu_L)\sigma_s''(E,\mu_c)\ d\mu_c\\
-&S''(E) = \frac{4E}{A}T''(E)
+&T(E) = \frac{N}{2} 2 \pi \int_{-1}^1 (1-\mu_L)\sigma_s''(E,\mu_c)\ d\mu_c\\
+&S(E) = \frac{4E}{A}T(E)
 \end{align}
 Using \cref{ang_flux,eigenvalue}, we get:
 \begin{equation}
-q''(E,\bo) = \Sigma_s''(E)\Psi(\br,\bo,E)+\frac{\partial}{\partial
-E}S''(E)\Psi(\br,\bo,E) + T''(E)\[\frac{\partial}{\partial \mu} (1-\mu^2)
+q''(E,\bo) = \Sigma_s''(E)\psi(\br,\bo,E)+\frac{\partial}{\partial
+E}S''(E)\psi(\br,\bo,E) + T''(E)\[\frac{\partial}{\partial \mu} (1-\mu^2)
 \frac{\partial}{\partial \mu}+\frac{1}{1-\mu^2}\frac{\partial^2}{\partial
-\varphi^2}\] \Psi(\br,\bo,E)
+\varphi^2}\] \psi(\br,\bo,E)
 \end{equation}
 Finally, we get:
 \begin{equation}
 \begin{split}
-&\bo\cdot\Psi+(\Sigma_s'+\Sigma_a)\Psi=\sum_{l=0}^{\infty}\sum_{m=-l}^l
-Y_l^m(\bo)\int_E^{E/\alpha}\Sigma_{s,l}(E'\rightarrow
+&\bo\cdot\psi+(\Sigma_s'+\Sigma_a)\psi=\sum_{l=0}^{\infty}\sum_{m=-l}^l
+Y_l^m(\bo)\int_E^{E/\alpha}\Sigma_{s,l}'(E'\rightarrow
 E)\phi_{l,m}(E')dE'+\\
-&\frac{\partial}{\partial E}S''\Psi+T''\[\frac{\partial}{\partial
+&\frac{\partial}{\partial E}S\psi+T\[\frac{\partial}{\partial
 \mu}(1-\mu^2) \frac{\partial}{\partial
-\mu}+\frac{1}{(1-\mu^2)}\frac{\partial^2}{\partial\varphi^2}\]\Psi+Q
+\mu}+\frac{1}{(1-\mu^2)}\frac{\partial^2}{\partial\varphi^2}\]\psi+Q
 \end{split}
 \label{bfp}
 \end{equation}
 
-\subsection{Pomraning's derivation: Fokker-Planck equation as a limit of
-Boltzmann equation}
+\subsection{Fokker-Planck equation as a limit of Boltzmann equation}
+In \cite{pomraning}, Pomraning showed that the Fokker-Planck equation is an
+asymptotic limit of the Boltzmann equation when the mean free path goes to
+zero and $\mu_0$ goes to one. Since his development will help us to understand
+the limitation of the Boltzmann-Fokker-Planck, we will recall it here.
 
-\red{Change $\Sigma_{s,l}(\br,\bo\cdot\bo',E'\rightarrow E) \rightarrow
-\Sigma_{s,l}(\br,\mu_0,E',E)$ }
-We begin by assuming that the unit of distance is chosen such that the
-characteristic size of the system in which the particle transport is $O(1)$.
-In such a length unit, we take the scattering mean free path to be small, and
-since this mean free path is the reciprocal of the scattering cross-section,
-we have $\Sigma_s(E) \gg 1$. Accordingly, we scale $\Sigma_s(E)$ as:
+Let is assume that the unit of distance is chosen such that the characteristic
+size of the system in which the particle transport is $O(1)$ and that the
+scattering mean free path is small $(\Sigma_s \gg 1)$. Therefore, we scale
+$\Sigma_s$ as:
 \begin{equation}
 \Sigma_s(E) = \frac{\hat{\Sigma}_s(E)}{\Delta}
 \label{sigma_s}
 \end{equation}
 where $\hat{\Sigma}_s=O(1)$ and $\Delta \ll 1$. We apply this same scaling to
-the scattering kernel $\Sigma_s(\mu_0,E',E)$, and additionally introduce the
-fast variables:
+the scattering kernel $\Sigma_s(\mu_0,E',E)$, and we introduce the fast variables:
 \begin{align}
 &x=\frac{E'-E}{\epsilon}, & \epsilon \ll 1 \label{x}\\
 &y=\frac{1-\mu_0}{\delta}, & \delta \ll 1 \label{y}
 \end{align}
-Thus, we scale the scattering kernel as:
+The scattering kernel is scaled as:
 \begin{equation}
 \begin{split}
 \Sigma_s(\mu_0,E',E) &= \frac{1}{\Delta}
@@ -198,28 +178,24 @@ Thus, we scale the scattering kernel as:
 \end{equation}
 where $\hat{\Sigma}_s(y,E',x)$ is $O(1)$ and the derivatives of this kernel
 with respect to both $x$ and $y$ are assumed to be $O(1)$ as
-$\epsilon,\delta\rightarrow 0$. Physically, the smallness parameter $\delta$
-is a measure of the peaking of the scattering kernel in angle, and can be
-roughly thought of as the deviation from unity of the cosine of a
-characteristic scattering angle. Likewise, the smallness parameter $\epsilon$
-is a measure of the peaking of the scattering kernel in energy, and can be
-thought of as a characteristic value of the fractional energy change due to a
-single scattering. That is, these scalings imply that the scattering
-cross-section is large, and that the scattering kernel is very peaked about
-$\mu_0=1$ and $E=E'$. Inserting the scalings given, we then have the scaled
-transport equation:
+$\epsilon,\delta\rightarrow 0$. $\delta$ is a measure of the peaking of the
+scattering kernel in angle. It roughly represents the deviation from one of the 
+cosine of characteristic scattering angle. $\epsilon$ is a measure of the peaking of
+the scattering kernel in energy. It represents a characteristic value of the
+fractional energy change due to a single scattering. These scalings imply that
+the cross-section is large and that the scattering kernel is very peaked bout
+$\mu_0$ and $E=E'$. These scalings give the scaled transport equation:
 \begin{equation}
 \begin{split}
-&\bo\cdot\bn\Psi(E,\bo)+\(\Sigma_a(E)+\frac{\hat{\Sigma}_s}{\Delta}\)\Psi(E,\bo)=\\
+&\bo\cdot\bn\psi(E,\bo)+\(\Sigma_a(E)+\frac{\hat{\Sigma}_s}{\Delta}\)\psi(E,\bo)=\\
 &\frac{1}{\Delta}\sum_{l=0}^{\infty}\sum_{m=-l}^{l}Y_l^m(\bo)
 \int_0^{\infty}dE'\ \phi_{l,m}(E')\int_{-1}^1d\mu_0\
 P_l(\mu_0)\hat{\Sigma}_s\(\frac{1-\mu_0}{\delta},E',\frac{E'-E}{\epsilon}\)+Q(E,\bo)
 \end{split}
 \label{scaled_transport}
 \end{equation}
-We see the asymptotic limit as the three smallness parameters
-$\epsilon,\delta$ and $\Delta$ approach zero.\\
-To this end, we consider the term $K$, defined to be:
+We are interested in  the asymptotic limit as the three smallness parameters
+$\epsilon,\delta$ and $\Delta$ approach zero. To this end, we consider the term $K$:
 \begin{equation}
 K = \frac{2\pi}{\Delta} \int_0^{\infty}dE'\int_{-1}^1 d\mu_0 P_n(\mu_0)
 \hat{\Sigma}_s(\frac{1-\mu_0}{\delta},E',\frac{E'-E}{\epsilon}) \phi_{l,m}(E')
@@ -231,11 +207,8 @@ K = \frac{2\pi\epsilon\delta}{\Delta}\int_{-E/\epsilon}^{2/\delta}dy\
 P_l(1-\delta y)\hat{\Sigma}_s(y,E+\epsilon x,x)\phi_{l,m}(E+\epsilon x)
 \label{K_def}
 \end{equation}
-We now Taylor expand the integrand about $\epsilon=\delta=0$. We carry linear
-terms in $\delta$ and quadratic terms in $\epsilon$. We will discuss the
-reason for this asymmetry in the two expansions at the end of out development.
-We then find, indicating the errors in the neglected terms in the Taylor
-expansions,
+Now, we use a Taylor expansion of the integrand about $\epsilon=\delta=0$. We
+keep linear terms in $\delta$ and the quadratic terms in $\epsilon$:
 \begin{equation}
 \begin{split}
 K=& \frac{2\pi \epsilon \delta}{\Delta}\int_{-E/\epsilon}^{\infty}dx\
@@ -246,20 +219,18 @@ E}+\frac{\epsilon^2x^2}{2}\frac{\partial^2}{\partial E^2}+O(\epsilon^3)\]
 \end{split}
 \label{error}
 \end{equation}
-To proceed, we assume that we can replace the lower limit of integration over
-$E'$ by $-\infty$, and that the error we make in doing this is
-$O(\epsilon^3)$ or smaller. This is certainly legitimate if the scattering
-kernel falls off exponentially in energy from its peak at $x=0$. However, if
-the kernels falls off algebraically at too weak a rate, this replacement may
-increase the error in the Fokker-Planck treatment over the $O(\epsilon^3)$
-error indicated in \cref{error}. We note that even if the kernel
-falls off exponentially in energy from its peak, this integration limit
-replacement does introduce an error, but this error is exponentially small. It
-is this exponential error that makes the present development an asymptotic,
-rather than a convergent, procedure. At this point, we also neglect the cross
-terms angle and energy in \cref{error}. It is not necessary to
-neglect these terms to obtain a clean result, but the standard Fokker-Planck
-operator does not have the contributions that arise from these terms.
+To proceed, it is necessary to replace the lower limit of integration over
+$E'$ by $\-infty$. We assume that the error due to this operation is at most
+$O(\epsilon^3)$. This is true if the scattering kernels falls off
+exponentially in energy from its peak at $x=0$. However, if the kernels falls
+off algebraically at a rate too weak, this replacement may increase the error
+over the $O(\epsilon^3)$ error indicated in \cref{error}. Even when the kernel
+falls off exponentially in energy, this integration limit replacement does
+introduce an error but this error is exponentially small. This exponential
+error makes the present development an asymptotic, rather than convergent,
+procedure. At this point, the cross terms in angle and energy in \cref{error}
+are neglected. It is not necessary to neglect these terms but the standard
+Fokker-Planck operator does not have any contributions from these terms.
 
 In view of the above discussion, we then rewrite \cref{error},
 using \cref{p_l,p_l_p} as:
@@ -285,7 +256,7 @@ We now change integration variables in all four double integrals in
 x&= \frac{E-E'}{\epsilon}\label{x2}\\
 y&= \frac{1-\mu_0}{\delta}\label{y2}
 \end{align}
-We note that \cref{y2} is identical to \cref{y}, but
+It is important to note that \cref{y2} is identical to \cref{y}, but
 equation \cref{x2} is not identical to \cref{x} (the $E$ and $E'$
 are interchanged). This gives:
 \begin{equation}
@@ -317,8 +288,8 @@ then have:
 \begin{equation}
 \begin{split}
 K=&\Sigma_{s}(E)\phi_{l,m}(E)-l(l+1)T(E)
-\phi_{l,m}(E)+\frac{\partial}{\partial E}S(E)\phi_{l,m}\\
-&\frac{\partial^2}{\partial
+\phi_{l,m}(E)+\frac{\partial}{\partial E}S(E)\phi_{l,m}+\\
+&\frac{1}{2}\frac{\partial^2}{\partial
 E^2}R(E)\phi_{l,m}(E)+O\(\frac{\delta^2+\epsilon\delta+\epsilon^3}{\Delta}\)
 \end{split}
 \label{K2}
@@ -333,102 +304,133 @@ O\(\frac{\delta}{\Delta}\) \label{T}\\
 &R(E) = 2 \pi \int_0^{\infty}dE'\int_{-1}^1 d\mu_0 (E-E')^2 \Sigma_s
 (\mu_0,E,E') = O\(\frac{\epsilon^2}{\Delta}\) \label{R}
 \end{align}
-The order assigned to the terms in \crefrange{T}{R}
-seemingly follows from the fact that since $x$ and $y$ are $O(1)$ variables,
-then according to \cref{x2,y2}) $(1-\mu_0)$ is
-$O(\delta)$, $(E-E')$ is $O(\epsilon)$, and $(E-E')^2$ is $O(\epsilon^2)$,
-with $\Sigma_s(E,E',\mu_0)$ being $O\(\frac{1}{\Delta}\)$. However, these
-ordering are integrand, the assumption we have made in writing \cref{T,R} is 
-that the integrations do not change the
-ordering. The same holds true for taking the
-$O(\delta^2+\epsilon\delta+\epsilon^3)$ out from under the integrals in going
-from \crefrange{K}{K2}. It is not obvious that the
-integrations do not change the ordering since $\Sigma_s(E,E',\mu_0)$ contains
-the smallness parameters $\epsilon$ and $\delta$. The situation again depends
-upon the rate fall off of the scattering kernel from its peaks in energy and
-angle. For exponential fall off, \crefrange{K2}{R} are
-corrected ordered, but for algebraic fall off the order of one or more of
-these terms may be larger than indicated. This observation again places a
-restriction on the scattering kernel for the  Fokker-Planck differential
-operator to be an asymptotic limit of the exact integral operator.
-
-With the above caution in mind concerning the validity of the expression for
+The function $\alpha = 2T$ is known as the momentum transfer while $S$ and $R$
+are the stopping power and the mean square stopping, respectively. With the
+previous caution in mind concerning the validity of the expression for
 $K$, we proceed to complete our development. Recalling the definition of $K$
 according to \cref{K_def}, substitution of \cref{K2} into
 the scaled transport \cref{scaled_transport}, yields, also making
 use of \cref{sigma_s} for $\hat{\Sigma}_s(E)$:
 \begin{equation}
 \begin{split}
-&\bo\cdot \bn\Psi(\br,\bo,E) + \(\Sigma_a(\br,E)+\Sigma_s(\br,E)\)
-\Psi(\br,\bo,E)=\\
+&\bo\cdot \bn\psi(\br,\bo,E) + \(\Sigma_a(\br,E)+\Sigma_s(\br,E)\)
+\psi(\br,\bo,E)=\\
 &\sum_{l=0}^{\infty}\sum_{m=-l}^l Y_l^m(\bo)\Big(\Sigma_s(\br,E) \phi_{l,m}(\br,E) -
 l(l+1) T(\br,E) \phi_{l,m}(\br,E)+\\
 &\left. \frac{\partial}{\partial
-E}S(\br,E)\phi_{l,m}(\br,E)+\frac{\partial^2}{\partial E^2}R(\br,E)\phi_{l,m}(\br,E)\)
-+Q(\br,\bo,E)+O\(\frac{\delta^2+\epsilon\delta+\epsilon^3}{\Delta}\)
+E}S(\br,E)\phi_{l,m}(\br,E)+\frac{1}{2}\frac{\partial^2}{\partial E^2} R(\br,E)
+\phi_{l,m}(\br,E)\) +Q(\br,\bo,E)+O\(\frac{\delta^2+\epsilon\delta+\epsilon^3}
+{\Delta}\)
 \end{split}
 \label{final_m1}
 \end{equation}
 The $l(l+1)$ factor in \cref{final_m1} can be eliminated by making
-use of the equation satisfied by the $Y_l^m(\bo)$, namely \cref{eigenvalue}, 
-and then we can sum over the surface harmonics according
-to \cref{moments} to obtain our final result. This is given by:
+use of namely \cref{eigenvalue}, and then we can sum over the spherical harmonics 
+according to \cref{moments} to obtain our final result. This is given by:
 \begin{equation}
 \begin{split}
-&\bo\cdot \bn \Psi(\br,\bo,E) + \Sigma_a(\br,E) \Psi(\br,\bo,E) =\\
+&\bo\cdot \bn \psi(\br,\bo,E) + \Sigma_a(\br,E) \psi(\br,\bo,E) =\\
 &T(E) \(\frac{\partial}{\partial \mu}(1-\mu^2)\frac{\partial}{\partial\mu}+
-\(\frac{1}{1-\mu^2}\)\frac{\partial^2}{\partial \varphi^2}\)\Psi(\br,\bo,E)\\
-&+\frac{\partial}{\partial E} S(\br,E)\Psi(\br,\bo,E) + \frac{\partial^2}{\partial
-E^2} R(\br,E) \Psi(\br,\bo,E)\\
+\(\frac{1}{1-\mu^2}\)\frac{\partial^2}{\partial \varphi^2}\)\psi(\br,\bo,E)\\
+&+\frac{\partial}{\partial E} S(\br,E)\psi(\br,\bo,E) + \frac{\partial^2}{\partial
+E^2} R(\br,E) \psi(\br,\bo,E)\\
 & Q(\br,\bo,E)+O\(\frac{\delta^2+\epsilon\delta+\epsilon^3}{\Delta}\)
 \end{split}
 \label{final}
 \end{equation}
-We note that the dominant scattering term, $\Sigma_s(E) \Psi(E,\bo)$, has
+We note that the dominant scattering term, $\Sigma_s(E) \psi(E,\bo)$, has
 canceled out in this equation.
 
-\Cref{final} is the conventional Fokker-Planck equation for linear
-particle transport in an isotropic medium. As we noted during the course of
-its derivation, a necessary but not sufficient condition for \cref{final} to be 
-an asymptotic limit of \cref{transport_p} is that the scattering the kernel be 
-peaked in both energy and angle. The additional sufficient condition is that 
-this peaking be either exponential or strongly algebraic. Assuming that the 
-scattering kernel is such that \cref{final} is a valid asymptotic limit, it 
-is clear, from the order of the $T$, $S$ and $R$ terms as given by
-\crefrange{T}{R},that the smallness parameters $\epsilon$, $\delta$ and $\Delta$ 
-must tend to zero in a correlated way. That is, we must have $O(\delta)=O(\Delta)$ 
-in order to obtain a meaningful (finite and nonzero) angular term in 
-\cref{final}, and we must and we must have $O(\epsilon)=O(\Delta)$ to obtain
-a meaningful energy term in \cref{final}. The physical meaning of
-thos is that as the peaking in the scattering kernel increases
-$(\epsilon,\delta \rightarrow 0)$, the magnitude of the scattering
-cross-section must increase $(\Delta \rightarrow 0)$ in such a corresponding
-way that the momentum transfer remains bounded and nonzero. Only in this case
-does \cref{final} have any meaning.
+\Cref{final} is the conventional Fokker-Planck equation for linear particle
+transport in an isotropic medium. A necessary but not sufficient condition for
+\cref{final} to be an asymptotic limit of \cref{transport_p} is that the
+scattering kernel is peaked in both energy and angle. The additional
+sufficient condition is that the fall off is either exponential or strongly
+algebraic. Assuming that the scattering kernel is such that \cref{final} is a
+valid asymptotic limit, it is clear from \crefrange{T}{R} that the
+$\epsilon$, $\delta$ and $\Delta$ must tend to zero in a correlated way. We
+must have $O(\delta)=O(\Delta)$ in order to obtain a finite and nonzero
+angular term in \cref{final}. In the same way, we must have
+$O(\epsilon)=O(\Delta)$ in order to obtain a finite and nonzero energy term in
+\cref{final}. The physical meaning of these conditions is that as the
+scattering kernel becomes more peaked ($\epsilon \rightarrow 0$ and $\delta
+\rightarrow 0$), the magnitude of the scattering cross-section must increase
+($\Delta \rightarrow 0$) in such a corresponding way that the momentum
+transfer remains bounded and nonzero. Only in this case \cref{final} has any
+meaning.
 
-Finally, we note that since $R=O\(\frac{\delta}{\Delta}\)$, one could in an
-asymptotically consistent manner always set $R$ to zero and still maintain the
-leading order behavior in energy transfer. In applications, this is often
-done, but not always. The reason for retaining $R$, even though it is a higher
-order term, ist that the $R$ term in \cref{final} describes entirely
-different physics than doe the $S$ term. The $S$ term, the so-called stopping
-power term, is convective in nature, whereas the $R$ term is diffusive. In
-certain applications the diffusion of particles in the energy variable,
-although small, can be an important effect. To see any such diffusive
-behavior, the $R$ term in the Fokker-Planck operator mus be retained. We also
-note that the $T$ term in \cref{final} decribes diffusion in angle ,
-and for aesthetic reasons it seems reasonable for the Fokker-Planck operator
-to describe diffusion in both energy and angle. The reason that no convective
-term in angle appears in \cref{final} is that we have restricted our
-attention to an isotropic background medium. Upon scattering in such a medium,
-it is equally likely for a particle to be scattered to the left or to the
-right, and thus the mean scattering angle is zero. The lowest order nonzero
-measure of the scattering in such a medium, it is equally likely for a
-particle to be scattered to the left or to the right, and thus the mean
+Finally, we note that since $R=O\(\frac{\epsilon^2}{\Delta}\)$, we could set
+$R$ to zero and still maintain the leading order behavior in energy transfer.
+In applications, this is often but not always done. The reason for retaining
+$R$, even though it is a higher order term, is that the $R$ term in
+\cref{final} describes a different physics than does the $S$ term. The $S$
+term (stopping power term), is convective whereas the $R$ term is diffusive.
+In certain applications the diffusion of particles in the energy variable,
+although small, can be an important effect\cite{pomraning}. To see any
+diffusive behavior the $R$ term in the Fokker-Planck operator must be
+retained. The $T$ term describes diffusion in angle. The reason that no
+convective term in angle appears in \cref{final} is that we have assumed an
+isotropic medium. Upon scattering in such a medium, it is equally likely for a
+particle to be scattered to the left or the right, and thus the mean
 scattering angle is zero.
 
-\subsection{Limit of the Boltzmann-Fokker-Planck approximation.}
-\subsubsection{Henyey-Greenstein scattering}
+The Fokker-Planck equation is not an asymptotic limit of the transport
+equation unless the scattering kernel is such that:
+\begin{equation}
+\frac{\la\overline{\(1-\mu_0\)^2}\ra}{\la\(1-\bar{\mu}_0\)\ra}\rightarrow 0
+\end{equation}
+as $\bar{\mu}_0 \rightarrow 1$.
+
+\subsection{Limits of the Boltzmann-Fokker-Planck approximation}
+\subsubsection{Introduction}
+In this section, we will show the limitation of the Fokker-Planck operator and
+therefore of the Boltzmann-Fokker-Planck equation on two well-known scattering
+kernels: the Henyey-Greenstein scattering kernel and the Rutherford scattering
+kernel\cite{larsen_fp}. The Henyey-Greenstein scattering kernel mimics the angular 
+dependence of light scattering by small particles, whereas the screened Rutherford
+scattering kernel modelizes the scattering of electrons by a screened atomic
+nucleus. 
+
+First we need to define the following operators\cite{larsen_fp}:
+\begin{align}
+\mc{L}_B\psi(\bo) &= \int_{4\pi} \(\sum_{l=0}^{\infty} \frac{2l+1}{4\pi} f_l
+P_l(\bo\cdot\bo'\) \psi(\bo')d\bo'-\psi(\bo) \label{L_B}\\
+\mc{L}_{FP}\psi(\bo) &= \(\frac{\partial}{\partial \mu}
+(1-\mu^2)\frac{\partial}{\partial
+\mu}+\frac{1}{1-\mu^2}\frac{\partial^2}{\partial \phi^2}\)\psi(\bo)
+\label{L_FP}\\
+\mc{L}_1 \psi(\bo) &= \frac{1}{4\pi} \int_{4\pi}
+\frac{\psi(\bo')-\psi(\bo)}{1-\bo'\cdot\bo}d\bo'
+\label{L_1}\\
+\mc{L}_{3/2} \psi(\bo) &= \frac{1}{4\pi\sqrt{2}} \int_{4\pi}
+\frac{\psi(\bo')-\psi(\bo)}{(1-\bo'\cdot\bo)^{3/2}} d\bo'\label{L_3/2}
+\end{align}
+where $f(\bo\cdot\bo')d\bo$ is the probability that a particle, entering a
+scattering event with direction $\bo'$, will emerge from the event with a
+direction in $d\bo$ about $\bo$.\\
+If $\psi(\bo)$ is sufficiently smooth, \crefrange{L_B}{L_3/2} become:
+\begin{align}
+\mc{L}_B\psi(\bo) &= \sum_{l=0}^{\infty} \sum_{m=-l}^l (1(1-f_l))Y_l^m(\bo)
+\int_{4\pi}Y_l^{m,*}(\bo')\psi(\bo')d\bo' \label{L_B_smooth}\\
+\mc{L}_{FP}\psi(\bo) &= \sum_{l=0}^{\infty} \sum_{m=-l}^l (-l(l+1))
+Y_l^m(\bo) \int_{4\pi} Y_l^{m,*}(bo')\psi(\bo')d\bo' \label{L_FP_smooth}\\
+\mc{L}_1 \psi(\bo) &= \sum_{l=0}^{\infty} \sum_{m=-l}^l \(-\sum_{k=1}^l
+\frac{1}{k}\) Y_l^m(\bo) \int_{4\pi} Y_l^{m,*}(\bo')\psi(\bo')d\bo'
+\label{L_1_smooth}\\
+\mc{L}_{3/2} \psi(\bo) &= \sum_{l=0}^{\infty} \sum_{m=-l}^l (-l) Y_l^m(\bo)
+\int_{4\pi} Y_l^{m,*}(\bo') \psi(\bo') d\bo' \label{L_3/2_smooth}
+\end{align}
+Therefore, the spherical harmonics are eigenfunctions of
+\crefrange{L_B_smooth}{L_3/2_smooth}:
+\begin{align}
+\mc{L}_B Y_l^m(\bo) &= -(1-f_l) Y_l^m(\bo) \label{L_b_eig}\\
+\mc{L}_{FP} Y_l^m(\bo) &= -l(l+1) Y_l^m(\bo) \label{L_FP_eig}\\
+\mc{L}_1 Y_l^m(\bo) &= \(-\sum_{k=1}^l \frac{1}{k}\) Y_l^m(\bo)
+\label{L_1_eig}\\
+\mc{L}_{3/2} Y_l^m(\bo) &= -l Y_l^m(\bo) \label{L_3/2_eig}
+\end{align}
+%
+\subsubsection{Henyey-Greenstein scattering kernel}
 The Henyey-Greenstein\cite{H-G} differential scattering kernel is defined by
 \cite{larsen_fp}:
 \begin{equation}
@@ -448,7 +450,7 @@ f_l = \bar{\mu}_0^l,\ n\geq 0
 We now consider the operator:
 \begin{equation}
 \Sigma_s\mathcal{L}_B = \Sigma_s\(\int_{4\pi}
-f(\bo\cdot\bo')\Psi(\br,\bo',E)d\bo'-\Psi(\br,\bo,E)\)
+f(\bo\cdot\bo')\psi(\br,\bo',E)d\bo'-\psi(\br,\bo,E)\)
 \end{equation}
 using the Henyey-Greenstein kernel, \cref{H-G}, with:
 \begin{align}
@@ -462,8 +464,7 @@ unity, and in the absence of absorption, the transport cross section:
 \Sigma_{tr}=\Sigma_s(1-\bar{\mu}_0) = \frac{\hat{\Sigma}_s}{\epsilon}\cdot \epsilon =
 \epsilon
 \end{equation}
-is fixed.
-
+is fixed.\\
 In the limit of small $\epsilon$, the eigenvalues of $\Sigma_s\mathcal{L}_s$
 become:
 \begin{equation}
@@ -492,108 +493,22 @@ $\mc{L}_{FP}$:
 \Sigma_s\mc{L}_B = \Sigma_s(1-\bar{\mu}_0)(2-\bar{\mu}_0) \mc{L}_{3/2} -
 \frac{\Sigma_s}{2}(1-\bar{\mu}_0)^2\mc{L}_{FP} + O(\epsilon^2)
 \end{equation}
-The Henyey-Greenstein kernel was proposed\cite{H-G}, and has found wide use,
-primarily because of its great simplicity. The exact Henyey-Greenstein kernel
-does not arise from a deeper theory as the differential scattering kernel for
-any known physical process \cite{larsen_fp}. However, as a model for certain
-transport processes, it has been successful.
+Therefore, the Fokker-Planck operator cannot be used when the scattering
+kernel is the Henyey-Greenstein kernel. This kernel was proposed in\cite{H-G}, 
+and has found wide use, primarily because of its great simplicity. The exact 
+Henyey-Greenstein kernel does not arise from a deeper theory as the differential 
+scattering kernel for any known physical process \cite{larsen_fp}. However, as 
+a model for certain transport processes, it has been successful.
 
-
-\red{A mettre quelque part}
-\begin{equation}
-\mathcal{L}_{FP}\psi(\bo) = \(\frac{\partial}{\partial
-\mu}(1-\mu^2)\frac{\partial}{\partial
-\mu}+\frac{1}{1-\mu^2}\frac{\partial^2}{\partial\varphi^2}\)\psi(\bo)
-\end{equation}
-\begin{align}
-&\mathcal{L}_B Y_l^m(\bo) = -(1-f_l) Y_l^m(\bo)\\
-&\mathcal{L}_{FP} Y_l^m(\bo) = -l(l+1)Y_l^m(\bo)
-\end{align}
-For a sufficiently smooth function $\Psi(\bo)$, $\mathcal{L}_B$ may be
-written:
-\begin{equation}
-\begin{split}
-\mathcal{L}_B\Psi(\bo) &= \int_{4\pi}\(\sum_{l=0}^{\infty} \frac{2l+1}{4\pi}
-f_l P_l(\bo\cdot\bo')\)\Psi(\bo')d\bo'-\Psi(\bo)\\
-&=\sum_{l=0}^{\infty} f_l\int_{4\pi} \(\sum_{m=l}^l Y_l^m(\bo)
-Y_l^{m,*}(\bo')\) \Psi(\bo')d\bo' - \sum_{l=0}^{\infty}\sum_{m=-l}^l Y_l^m(\bo)
-\int_{4\pi}Y_l^{m,*}(\bo') \Psi(\bo') d\bo'\\
-&= \sum_{l=0}^{\infty} \sum_{m=-l}^l \(-\(1-f_l\)\)Y_l^m(\bo)\int_{4\pi}
-Y_l^{m,*} (\bo')\Psi(\bo') d\bo'
-\end{split}
-\label{L_B_smooth}
-\end{equation}
-If $\Psi(\bo)$ is sufficiently smooth, $\mc{L}_{FP}\Psi(\bo)$ may be
-written:
-\begin{equation}
-\mathcal{L}_{FP}\Psi(\bo) = \sum_{l=0}^{\infty} \sum_{m=-l}^l (-l(l+1))
-Y_l^m(\bo)\int_{4\pi} Y_l^{m,*}(\bo')\Psi(\bo') d\bo'
-\label{L_FP_smooth}
-\end{equation}
-Now we need to introduce the operator:
-\begin{equation}
-\mc{L}_{3/2}\Psi(\bo) = \frac{1}{4\pi\sqrt{2}} \int_{4\pi}
-\frac{\Psi(\bo')-\Psi(\bo)}{\(1-\bo\cdot\bo'\)^{3/2}} d\bo'
-\label{L_3/2}
-\end{equation}
-For this integral to exist, it must be interpreted as a principal value.
-$\mathcal{L}_{3/2}$ satisfies:
-\begin{equation}
-\mathcal{L}_{3/2}Y_l^m(\bo) = -lY_l^m(\bo)
-\end{equation}
-Thus, if $\Psi(\bo)$ is sufficiently smooth, $\mc{L}_{3/2}\Psi(\bo)$ may be
-written:
-\begin{equation}
-\mathcal{L}_{3/2}\Psi(\bo) = \sum_{l=0}^{\infty} \sum_{m=-l}^l -l Y_l^m(\bo)
-\int_{4\pi} Y_l^{m,*} (\bo) \int_{4\pi} \int_{4\pi} Y_l^m(\bo') \Psi(\bo')
-d\bo'
-\label{L_3/2_smooth}
-\end{equation}
-A simple relationship between $\mathcal{L}_{3/2}$ and $\mathcal{L}_{FP}$ is:
-\begin{equation}
-\mathcal{L}_{FP} = -\mathcal{L}_{3/2}^2+\mathcal{L}_{3/2}
-\end{equation}
-
-\begin{equation}
-\begin{split}
-\mc{L}_{3/2}\Psi(\bo) &= \frac{1}{\hat{\Sigma}_s} \lim_{\epsilon \to 0} \Sigma_s
-\mc{L}_B \Psi(\bo)\\
-&= \lim_{\epsilon \to 0} \frac{\Sigma_s}{\hat{\Sigma}_s}
-\(\frac{1-\bar{\mu}_0^2}{4\pi} \int_{4\pi} \frac{\Psi(\bo')}{(1-2\bar{\mu}_0
-\bo\cdot\bo' +\bar{\mu}_0^2)^{3/2}} - \Psi(\bo)\)\\
-&=\lim_{\epsilon \to 0} \frac{\Sigma_s}{\hat{\Sigma}_s} \frac{1-\bar{\mu}_0^2}{4\pi}
-\int_{4\pi}\frac{\Psi(\bo')-\Psi(\bo)}{(1-2\bar{\mu}_0 \bo\cdot \bo' +
-\bar{\mu}_0^2)^{3/2}}d\bo'\\
-&= \lim_{\epsilon \to 0} \frac{2-\epsilon}{4\pi} \int_{4\pi} \frac{\Psi(\bo')
-- \Psi(\bo)}{(1-2(1-\epsilon) \bo\cdot\bo'+(1-\epsilon)^2)^{3/2}} d\bo'\\
-& = \frac{1}{4\pi\sqrt{2}} \int_{4\pi}
-\frac{\Psi(\bo')-\Psi(\bo)}{(1-\bo\cdot\bo')^{3/2}}d\bo'
-\end{split}
-\end{equation}
-For this last integral to exist, it must be interpreted as a principal value:
-one takes the limit as $\delta\rightarrow 0$ of the integral over the unit
-sphere excluding the small disk $1-\bo'\cdot\bo <\delta$.\\
-The operator $\mc{L}_{3/2}$ is an unbounded pseudodifferential operator (its
-eigenvalues tend to $-\infty$). If it were possible to split the integral into
-two integrals, the first would represent a standard Boltzmann
-``out-scattering'' term, while the second would represent an ``in-scattering''
-term. However, this split cannot be performed because the two integrals
-individually diverge, due to the singularity in the denominator at $\bo'=\bo$.
-Thus, $\mc{L}_{3/2}$ only exists when the two integrals are combined. Then,
-the numerator and denominator both vanish at $\bo'=\bo$ in such a way that the
-single integral exists as a principal value. In effect, $\mc{L}_{3/2}$ defines
-a limiting linear transport process in which the total cross section is
-infinite (the mean free path is zero).
-
-\subsubsection{Screened Rutherford scattering}
+\subsubsection{Screened Rutherford scattering kernel}
 The screened Rutherford differential scattering kernel, which is widely used
-for the Coulomb scattering of non-relativistic electrons, is defined by:
+to model the Coulomb scattering of non-relativistic electrons, is defined by:
 \begin{equation}
 f(\mu_0) = \frac{\eta(1+\eta)}{\pi(1+2\eta-\mu_0)^2}
 \end{equation}
 where $\eta>0$ is the screening parameter. We consider $\eta\approx 0$, for
 which $f(\mu_0)$ is forward-peaked. In the Legendre expansion of $f(\mu_0)$,
-one has:
+we have:
 \begin{align}
 &f_0 = 1\\
 &f_1 = \bar{\mu}_0 = 1 -2\eta \((1+\eta)\ln\(1+\frac{1}{\eta}\)-1\)
@@ -616,7 +531,7 @@ Summing from $l=1$ to $m-1$ and then multiplying by $m$, we obtain:
 \begin{equation}
 f_m-f_{m-1}-(\bar{\mu}_0-1)m = 2 \eta m \sum_{k=1}^{m-1} \frac{2k+1}{k(k+1)} f_k
 \end{equation}
-Summing thus result from $m=1$ to $l$ and using the identity:
+Summing this result from $m=1$ to $l$ and using the identity:
 \begin{equation}
 \sum_{m=1}^l m = \frac{l(l+1)}{2}
 \label{sum_m}
@@ -690,7 +605,7 @@ Then for small $\eta$, the eigenvalues of $\Sigma_s \mc{L}_B$ become:
 \(-l(l+1)\)+\frac{2\eta\sigma}{1-\bar{\mu}_0} (-l(l+1))\(1-\sum_{k=1}^l
 \frac{1}{k}\)+O(\eta)
 \end{equation}
-So we finally get:
+Using \cref{L_1_eig}, we finally get:
 \begin{equation}
 \begin{split}
 \Sigma_s \mc{L}_B &= \frac{\sigma}{2}\mc{L}_{FP} + \frac{2\eta
@@ -699,34 +614,18 @@ So we finally get:
 (I+\mc{L}_1) + O(\eta)
 \end{split}
 \end{equation}
-where:
-\begin{equation}
-\mc{L}_1 \Psi(\bo) = \frac{1}{4\pi} \int_{4\pi}
-\frac{\Psi(\bo')-\Psi(\bo)}{1-\bo\cdot\bo'}d\bo'
-\end{equation}
-and:
-\begin{equation}
-\mc{L}_1 Y_l^m(\bo) = \(-\sum_{k=1}^l\frac{1}{k}\) Y_l^m(\bo)
-\end{equation}
 The first term in this expansion is the standard Fokker-Planck operator which
 is $O(1)$. The second term in the expansion is weakly small; by \cref{weakly_small}
-it is $O(1/\ln(1/\eta))$. 
+it is $O(1/\ln(1/\eta))$. Therefore, $1/\ln(1/\eta)$ must be very small for
+the Fokker-Planck description to be valid. This logarithmic behavior implies
+that $\eta$ must be exceedingly small. Realistic values of $\eta$ are not
+small enough\cite{pencil_pomraning}.
 
-The conventional Fokker-Planck operator occurs in the asymptotic
-approximations of $\mc{L}_B$ for both Henyey-Greenstein and screened
-Rutherford scattering. For Henyey-Greenstein scattering, $\mc{L}_{FP}$ is
-dominated by a pseudodifferential operator $\mc{L}_{3/2}$, and for screened
-Rutherford scattering, $\mc{L}_{FP}$ weakly dominates another
-pseudodifferential operator $\mc{L}_{FP}\mc{L}_1$. In neither case can one
-write the write the leading plus first-order approximations to $\mc{L}_B$ as
-pure differential operators-additional pseudodifferential operators, with
-unbounded spectra, must be included.
-
-
-The screened Rutherford scattering process, applicable to electron transport,
-is only very marginally representable by the differential Fokker-Planck
-operator. Letting $\eta$ denote the screening parameter, $\eta$ must be
-exceedingly small to legitimately employ the Fokker-Planck approximation.
-Realistic values of $\eta$ are not small enough in this
-regard\cite{pencil_pomraning}.
-
+The Fokker-Planck operator appears in the asymptotic approximations of $\mc{L}_B$ 
+for both Henyey-Greenstein and screened Rutherford scattering. For 
+Henyey-Greenstein scattering, $\mc{L}_{FP}$ is dominated by a pseudodifferential 
+operator $\mc{L}_{3/2}$, and for screened Rutherford scattering, $\mc{L}_{FP}$ 
+weakly dominates another pseudodifferential operator $\mc{L}_{FP}\mc{L}_1$. In 
+neither case can one write the leading plus first-order approximations to 
+$\mc{L}_B$ as pure differential operators, additional pseudodifferential 
+operators, with unbounded spectra, must be included\cite{larsen_fp}.

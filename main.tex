@@ -11,7 +11,10 @@
 \usepackage{moreverb} % permet d'utiliser verbatimtab : conservation la tabulation
 \usepackage{url}
 \usepackage[noabbrev]{cleveref} % permet d'utiliser cref et Cref (e(E)quation(s) (..)
+\usepackage{amsthm}
 
+%\usepackage{setspace}
+%\doublespacing
 
 \setlength {\textwidth}{16cm}
 \setlength {\textheight}{21cm}
@@ -32,6 +35,10 @@
 \renewcommand{\[}{\left[}
 \renewcommand{\]}{\right]}
 
+\newtheorem{algorithm}{Algorithm}[section]
+\newtheorem{criterion}{Criterion}[section]
+\newtheorem{definition}{Definition}[section]
+
 
 \begin{document}
 \title{Acceleration techniques for coupled electron-photon transport}
@@ -45,6 +52,8 @@
 \input{./Boltzmann_Equations/boltzmann_equations}
 \input{./Boltzmann_Equations/fp_xs}
 \input{./Boltzmann_Equations/galerkin}
+\input{./Anmg/anmg}
+\input{./Dsa/algebraic_multigrid}
 
 % bibliography
 \bibliographystyle{unsrt}

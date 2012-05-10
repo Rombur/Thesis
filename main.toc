@@ -1,13 +1,33 @@
 \contentsline {chapter}{\numberline {1}Introduction}{2}
 \contentsline {section}{\numberline {1.1}Transport equation}{2}
-\contentsline {chapter}{\numberline {2}Transport equation}{4}
+\contentsline {chapter}{\numberline {2}Charged particle transport}{4}
 \contentsline {section}{\numberline {2.1}Introduction}{4}
-\contentsline {section}{\numberline {2.2}Derivation of the Boltzmann-Fokker-Planck equation}{4}
-\contentsline {subsection}{\numberline {2.2.1}Ligou's derivation}{4}
-\contentsline {subsection}{\numberline {2.2.2}Pomraning's derivation: Fokker-Planck equation as a limit of Boltzmann equation}{6}
-\contentsline {subsection}{\numberline {2.2.3}Limit of the Boltzmann-Fokker-Planck approximation.}{10}
-\contentsline {subsubsection}{Henyey-Greenstein scattering}{10}
-\contentsline {subsubsection}{Screened Rutherford scattering}{12}
-\contentsline {section}{\numberline {2.3}Fokker-Planck cross section}{15}
-\contentsline {subsection}{\numberline {2.3.1}Coefficients for $\Sigma ^{\alpha }$}{16}
-\contentsline {section}{\numberline {2.4}Galerkin}{19}
+\contentsline {section}{\numberline {2.2}Boltzmann-Fokker-Planck equation}{4}
+\contentsline {subsection}{\numberline {2.2.1}Derivation of the Boltzmann-Fokker-Planck equation}{4}
+\contentsline {subsection}{\numberline {2.2.2}Fokker-Planck equation as a limit of Boltzmann equation}{6}
+\contentsline {subsection}{\numberline {2.2.3}Limits of the Boltzmann-Fokker-Planck approximation}{10}
+\contentsline {subsubsection}{Introduction}{10}
+\contentsline {subsubsection}{Henyey-Greenstein scattering kernel}{10}
+\contentsline {subsubsection}{Screened Rutherford scattering kernel}{12}
+\contentsline {section}{\numberline {2.3}Fokker-Planck cross section}{14}
+\contentsline {subsection}{\numberline {2.3.1}Legendre polynomial expansion of $\Sigma _s^{\alpha }$}{15}
+\contentsline {section}{\numberline {2.4}Galerkin}{16}
+\contentsline {chapter}{\numberline {3}Angular multigrid}{28}
+\contentsline {section}{\numberline {3.1}Introduction}{28}
+\contentsline {section}{\numberline {3.2}Iterative schemes for highly forward-peaked scattering}{29}
+\contentsline {subsection}{\numberline {3.2.1}Source Iteration and DSA}{29}
+\contentsline {section}{\numberline {3.3}Review of previous angular multigrid work}{30}
+\contentsline {subsection}{\numberline {3.3.1}One dimensional geometry: the Morel and Manteuffel (MM) method}{30}
+\contentsline {subsection}{\numberline {3.3.2}Multidimensional geometry: the Pautz-Adams-Morel (PAM) methods}{31}
+\contentsline {section}{\numberline {3.4}Angular multigrid as preconditioner for Krylov Solvers}{32}
+\contentsline {subsection}{\numberline {3.4.1}ANMG-DSA}{32}
+\contentsline {subsection}{\numberline {3.4.2}ANMG-P1SA}{33}
+\contentsline {chapter}{\numberline {4}MIP}{35}
+\contentsline {section}{\numberline {4.1}Algebraic multigrid}{35}
+\contentsline {section}{\numberline {4.2}Interpolation methods}{38}
+\contentsline {section}{\numberline {4.3}Aggregation methods}{41}
+\contentsline {section}{\numberline {4.4}ML: Multilevel Preconditioning package}{43}
+\contentsline {subsection}{\numberline {4.4.1}Smoothed Aggregation Options}{44}
+\contentsline {subsection}{\numberline {4.4.2}Interpolation Options}{44}
+\contentsline {section}{\numberline {4.5}Tire de \cite {mis} MIS = Maximally Independent Sets}{45}
+\contentsline {section}{\numberline {4.6}AGMG \cite {agmg_guide}}{47}

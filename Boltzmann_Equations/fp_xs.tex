@@ -1,134 +1,22 @@
 \section{Fokker-Planck cross section}
-%\red{Premiere partie redondante avec Ligou, on utilise \cite{morel_81}}
-%\begin{equation}
-%\bo\cdot\bn \Psi + \Sigma_a \Psi = \Gamma_B\Psi +Q
-%\end{equation}                                
-%with:
-%\begin{equation}
-%\Gamma_B \Psi = \int_{4\pi}
-%\(\Sigma_s(E',\mu_0)\Psi(\mu',E)-\Sigma_s(E,\mu_0)\Psi(\mu,E)\)d\bo_0
-%\label{gamma_b}
-%\end{equation}
-%where:
-%\begin{equation}
-%\mu_0 = \cos(\theta_0)
-%\end{equation}
-%and:
-%\begin{equation}
-%\mu' = \mu \cos(\theta_0) - \sqrt{1-\mu^2}\sin(\theta_0) \cos(\theta_0)
-%\label{mu_p}
-%\end{equation}
-%Performing a Taylor a series expansion about $\theta_0=0$ and retaining terms
-%up to $\theta_0^2$ gives:
-%\begin{equation}
-%\Sigma_s(E',\mu_0) \Psi(\mu',E) - \Sigma_s(E,\mu_0)\Psi(\mu,E) = I_1+I_2
-%\end{equation}
-%where:
-%\begin{equation}
-%I_1 = \Sigma_s(E,\mu_0) \(\frac{\partial}{\partial \mu}\Psi(\mu,E)
-%\(\frac{\partial \mu'}{\partial \theta_0}\theta_0 +\frac{1}{2}
-%\frac{\partial^2\mu'}{\partial \theta_0^2}\theta_0^2\) +\frac{1}{2}
-%\frac{\partial^2}{\partial \mu^2}\Psi(\mu,E) \(\frac{\partial \mu'}{\partial
-%\theta_0}\)^2 \theta_0^2 \)
-%\label{I_1}
-%\end{equation}
-%and:
-%\begin{equation}
-%I_2 = \frac{\partial}{\partial E}\Sigma_s(E,\mu_0) \Psi(\mu,E)
-%\(\frac{\partial E'}{\partial \theta_0}\theta_0 +
-%\frac{1}{2}\frac{\partial^2 E'}{\partial \theta_0^2}\theta_0^2\)+\frac{1}{2}
-%\frac{partial^2}{\partial E^2} \Sigma_s(E,\mu_0) \Psi(\mu,E) \(\frac{\partial
-%E'}{\partial \theta_0}\)^2 \theta_0^2
-%\label{I_2}
-%\end{equation}
-%Using \cref{mu_p} to evaluate the derivatives in \cref{I_1} gives:
-%\begin{equation}
-%I_1 = \Sigma_s(E,\mu_0) \theta_0^2 \(-\frac{\mu}{2}\frac{\partial
-%\Psi}{\partial \mu} + \frac{(1-\mu^2)}{2} (\cos(\varphi_0))^2 \frac{\partial^2
-%\Psi}{\partial \mu^2}\)
-%\label{I_1_bis}
-%\end{equation}      
-%Because $E=E_s(E',\theta_0)$ and $E'=E$ when $\theta_0=0$, it follows that:
-%\begin{equation}
-%\begin{split}
-%\frac{\partial E'}{\partial \theta_0}\theta_0 + \frac{1}{2}\frac{\partial^2
-%E'}{\partial \theta_0^2}\theta_0^2 +\hdots &= -\frac{\partial E_s}{\partial
-%\theta_0} \theta_0 - \frac{1}{2} \frac{\partial E_s}{\partial
-%\theta_0^2}\theta_0^2+\hdots\\
-%&= E-E_s(E,\theta_0) 
-%\end{split}
-%\end{equation}
-%Taking this into account, \cref{I_2} becomes:
-%\begin{equation}
-%I_2 = \frac{\partial}{\partial E}\Sigma_s(E,\mu_0) \Psi(\mu,E) (E-E_s) +
-%\frac{1}{2}\frac{\partial^2}{\partial E^2} \Sigma_s(E,\mu_0) \Psi(\mu,E)
-%(E-E_s)^2
-%\label{I_2_bis}
-%\end{equation}
-%Substituting \cref{I_1_bis,I_2_bis} into \cref{gamma_b} and integrating gives:
-%\begin{equation}
-%\Gamma_B \Psi \approx \Gamma_{FP} \Psi
-%\end{equation}
-%where:
-%\begin{equation}
-%\Gamma_{FP}\Psi = \frac{\alpha}{2} \frac{\partial}{\partial \mu} (1-\mu^2)
-%\frac{\partial}{\partial \mu} \Psi + \frac{\partial}{\partial E} \beta \Psi +
-%\frac{1}{2}\frac{\partial^2}{\partial^2}\gamma \Psi
-%\label{gamma_fp}
-%\end{equation}
-%and:
-%\begin{align}
-%\alpha &= 2\pi \int_{-1}^1 \Sigma_s(E,\mu_0) (1-\mu_0) d\mu_0 \label{alpha}\\
-%\beta &= \int_0^{\infty} \Sigma_s(E\rightarrow E') (E-E') dE' \label{beta}\\
-%\gamma &= \int_0^{\infty} \Sigma_s(E\rightarrow E') (E-E')^2 dE' \label{gamma}
-%\end{align}
-
-
-
-We recall \cref{bfp}:
+We recall the BFP equation \cref{bfp}:
 \begin{equation}
 \begin{split}
-&\bo\cdot\Psi+(\Sigma_s'+\Sigma_a)\Psi=\sum_{l=0}^{\infty}\sum_{m=-l}^l
-Y_l^m(\bo)\int_E^{E/\alpha}\Sigma_{s,l}(E'\rightarrow
+&\bo\cdot\psi+(\Sigma_s'+\Sigma_a)\psi=\sum_{l=0}^{\infty}\sum_{m=-l}^l
+Y_l^m(\bo)\int_E^{E/\alpha}\Sigma_{s,l}'(E'\rightarrow
 E)\phi_{l,m}(E')dE'+\\
-&\frac{\partial}{\partial E}S''\Psi+T''\[\frac{\partial}{\partial
+&\frac{\partial(S\psi)}{\partial E}+\frac{\alpha}{2}\(\frac{\partial}{\partial
 \mu}(1-\mu^2) \frac{\partial}{\partial
-\mu}+\frac{1}{(1-\mu^2)}\frac{\partial^2}{\partial\varphi^2}\]\Psi+Q
+\mu}+\frac{1}{(1-\mu^2)}\frac{\partial^2}{\partial\varphi^2}\)\psi+Q
 \end{split}
 \end{equation}
-
-We refer to $\mc{L}_{FP}$ as the Fokker-Planck scattering operator. The
-function $\alpha=2T$, $S$ and $R$ are known as the momentum transfer,
-stopping power, and means square stopping power, respectively. We refer to
-them collectively as the Fokker-Planck functions. The equation that we seek to
-solve:
-\begin{equation}
-\bo\cdot\bn\Psi +\Sigma_a \Psi = \mc{L}_{FP} \Psi+Q
-\end{equation}
-%If the angular flux is sufficiently smooth, the expansions given in \cref{I_1,I_2} 
-%are accurate for ``small'' values of $\theta_0$.
-%If the scattering is highly forward peaked, the integrand in \cref{gamma_b} is 
-%significantly nonzero over only a ``small'' region about
-%$\theta_0=0$. 
-If the angular flux is sufficiently smooth and the scattering is higly forward
-peaked, one would expect that with sufficiently forward that with
-sufficiently forward-peaked scattering, the dominant contribution to the
-Boltzmann integral would come from the range of $\theta_0$ values over which
-the expansions are accurate and that $\mc{L}_{FP}\Psi$ would thereby closely
-approximate $\mc{L}_B\Psi$. Experience has shown that good results for scalar
-quantities (angle and energy integrated), such as energy and charge deposition
-profiles, can be expected in charged-particle calculations. However, results
-for detailed differential quantities are generally inadequate. The
-Fokker-Planck equation is very useful in spite of this deficiency because it
-is the scalar rather than differential quantities that are most often of
-applied interest.
-
+where we used $\alpha = 2T$.
 Let us define:
 \begin{align}
-\mc{L}_{FP}^{\alpha} \Psi &= \frac{\alpha}{2} \frac{\partial}{\partial \mu}
-(1-\mu^2) \frac{\partial}{\partial \mu}\Psi \label{gamma_alpha}\\
-\mc{L}_{FP}^e\Psi &=\frac{\partial}{\partial E}S\Psi +
-\frac{1}{2}\frac{\partial^2}{\partial E^2} T \Psi \label{gamma_e}
+\mc{L}_{FP}^{\alpha} \psi &= \frac{\alpha}{2} \frac{\partial}{\partial \mu}
+(1-\mu^2) \frac{\partial}{\partial \mu}\psi \label{gamma_alpha}\\
+\mc{L}_{FP}^e\psi &=\frac{\partial}{\partial E}S\psi +
+\frac{1}{2}\frac{\partial^2}{\partial E^2} R \psi \label{gamma_e}
 \end{align}
 We note that $\mc{L}_{FP}^{\alpha}$ causes particles to redistribute in
 direction without energy change, while $\mc{L}_ {FP}^e$ causes particles to
@@ -157,14 +45,14 @@ The Boltzmann scattering operators corresponding to $\Sigma_s^{\alpha}$ and
 $\Sigma_s^e$ are given by:
 \begin{align}
 & \mc{L}_B^{\alpha} = \int_{4\pi} \Sigma_s^{\alpha}(E,\mu_0)
-\(\Psi(\mu')-\Psi(\mu)\) d\bo' \label{gamma_b_alpha}\\
-& \mc{L}_B^e = \int_{0}^{\infty} \(\Sigma_s^e(E'\rightarrow E) \Psi(E') -
-\Sigma_s^e(E\rightarrow E') \Psi(E)\)dE' \label{gamma_b_e}
+\(\psi(\mu')-\psi(\mu)\) d\bo' \label{gamma_b_alpha}\\
+& \mc{L}_B^e = \int_{0}^{\infty} \(\Sigma_s^e(E'\rightarrow E) \psi(E') -
+\Sigma_s^e(E\rightarrow E') \psi(E)\)dE' \label{gamma_b_e}
 \end{align}
 Expanding the integrand in \cref{gamma_b_alpha} about $\theta_0=0$,
 where $\theta_0$ keeping terms up to $\theta_0^2$ and integrating gives:
 \begin{equation}
-\mc{L}_B^{\alpha} = \mc{L}_{FP}^{\alpha}\Psi
+\mc{L}_B^{\alpha} = \mc{L}_{FP}^{\alpha}\psi
 \end{equation}
 with:
 \begin{equation}
@@ -173,15 +61,8 @@ with:
 Expanding the integrand in \cref{gamma_b_e} about $\tau=0$, where
 $\tau=E'-E$, keeping terms up to $\tau^2$, and integrating gives:
 \begin{equation}
-\mc{L}_B^e\Psi =\mc{L}_{FP}^e\Psi
+\mc{L}_B^e\psi =\mc{L}_{FP}^e\psi
 \end{equation}
-with:
-\begin{align}
-&S = 2\pi \int_0^{\infty}\int_{-1}^1 \Sigma_s^e(\mu_0,E\rightarrow E')
-(E-E')d\mu_0 dE'\\
-&R = 2\pi\int_0^{\infty}\int_{-1}^1  \Sigma_s^e(E\rightarrow E') (E-E')^2
-d\mu_0 dE'
-\end{align}
 An argument, completely analogous to that presented for the coupled case, can
 be used to show $\mc{L}_B^{\alpha}$ and $\mc{L}_{FP}^{\alpha}$ better
 approximate one another as $\Sigma^{\alpha}$ becomes increasingly peaked about
@@ -189,73 +70,77 @@ $\mu_0=1$. For similar reasons, $\mc{L}_B^e$ and $\mc{L}_{FP}^e$ better
 approximate one another as $\Sigma_s^e$ becomes increasingly peaked about
 $E'=E$. 
 
-\subsection{Coefficients for $\Sigma^{\alpha}$}
+\subsection{Legendre polynomial expansion of $\Sigma_s^{\alpha}$}
+Now we want to find the Legendre polynomial expansion of $\Sigma_s^{\alpha}$
+as it has been done in \cite{morel_81,morel_89,morel_96}.
 Because $\Sigma_s^{\alpha}$ does not change particle energy, it corresponds to a
-within-group cross section. Thus, we need only to define the Legendre
-coefficients, $\{\Sigma_{s,l}^{\alpha}\}_{l=0}^{N-1}$. This is fairly
-straightforward to do once two fundamental properties of $\mc{L}_B^{\alpha}$
-and $\mc{L}_{FP}^{\alpha}$ are noted. Let $\{P_l(\mu)\}_{l=0}^{\infty}$ denote
-the Legendre polynomials. By expanding $\Sigma_s^{\alpha}$ in such polynomials
-and invoking the addition theorem for the spherical harmonics, the following
-well-known result can be demonstrated:
-\begin{equation}
-\mc{L}_B^{\alpha}P_l(\mu) = (\Sigma_{s,l}^{\alpha}-\Sigma_{s,0}^{\alpha}) P_l(\mu_0)
-\label{gamma_b_alpha_p}
-\end{equation}
-with:
+within-group cross section. We have already shown that:
 \begin{align}
-&l=0,\hdots,\infty\\
-&\Sigma_{s,l}^{\alpha} = 2\pi \int_{-1}^1 \Sigma_s^{\alpha} (E,\mu_0) P_l(\mu_0)
-d\mu_0
-\end{align}
-Using standard recurrence relations for the Legendre polynomials, it is not
-difficult to show that:
-\begin{equation}
-\mc{L}_{FP}^{\alpha} P_l(\mu) = \frac{\alpha}{2} l(l+1) P_l(\mu)
+\mc{L}_B^{\alpha}Y_l^m(\bo) &= (\Sigma_{s,l}^{\alpha}-\Sigma_{s,0}^{\alpha})
+Y_l^m(\bo) \label{gamma_b_alpha_p}\\
+\mc{L}_{FP}^{\alpha} Y_l^m(\bo) &= -\frac{\alpha}{2} l(l+1) Y_l^m(\bo) 
 \label{gamma_fp_alpha_p}
+\end{align}
+with:
+\begin{equation}
+\Sigma_{s,l}^{\alpha} = 2\pi \int_{-1}^1 \Sigma_s^{\alpha} (\mu_0) P_l(\mu_0)
+d\mu_0
 \end{equation}
 If the angular flux is expressible as a polynomial of arbitrary degree $L$:
 \begin{equation}
-\Psi(\mu) = \sum_{l=0}^L \frac{2l+1}{4\pi} \phi_l P_l(\mu)
+\psi(\bo) = \sum_{l=0}^L \sum_{m=-l}^l \phi_{l,m} Y_l^m(\bo)
 \end{equation}
 then it follows from \cref{gamma_b_alpha_p,gamma_fp_alpha_p} that we can define 
 $\Sigma_s^{\alpha}$ so that:
 \begin{equation}
-\mc{L}_B^{\alpha}\Psi=\mc{L}_{FP}^{\alpha}\Psi
+\mc{L}_B^{\alpha}\psi=\mc{L}_{FP}^{\alpha}\psi
 \end{equation}
 by setting:
 \begin{equation}
-\Sigma_{s,0}^{\alpha}-\Sigma_{s,l}^{\alpha} = \frac{\alpha}{2}l(l+1)
+\Sigma_{s,l}^{\alpha}-\Sigma_{s,0}^{\alpha} = -\frac{\alpha}{2}l(l+1)
 \label{sigma_m_sigma}
 \end{equation}
 with $l=1,\hdots,L$.\\
+Another method to show that $\mc{L}_B^{\alpha}$ and $\mc{L}_{FP}^{\alpha}$
+become equivalent in the limit as $\mu_s\rightarrow 1$, consists of expanding the 
+eigenvalues of $\mc{L}_B^{\alpha}$ in a first-order Taylor series about $\mu_s=1$:
+\begin{equation}
+\begin{split}
+\Sigma_{s,l}^{\alpha} - \Sigma_{s,0}^{\alpha} &= \frac{\alpha}{1-\mu_s}
+(P_l(\mu_s)-1)\\
+&=\frac{\alpha}{1-\mu_s} \(P_l(1)+\frac{\partial}{\partial x}P_l(x)\Big|_{x=1}
+(\mu_s-1)-1\)
+\end{split}
+\label{sig_comp}
+\end{equation}
+Using \cref{p_l,p_l_p}, \cref{sig_comp} becomes:
+\begin{equation}
+\Sigma_{s,l}^{\alpha} - \Sigma_{s,0}^{\alpha} = -\frac{\alpha}{2}l(l+1)
+\end{equation}
+We find that the eigenvalues of $B_{\alpha}$ converge to the eigenvalues of
+$F_{\alpha}$ in the limit as $\mu_s\rightarrow 1$. Thus, these two operators
+become equivalent in this limit.
 Choosing $\Sigma_{s,L}=0$ so as to minimize the resulting value for
 $\Sigma_{s,0}^{\alpha}$, \cref{sigma_m_sigma} gives:
 \begin{equation}
-\Sigma_s^{\alpha}(E,\mu_0) = \sum_{l=0}^L \frac{2l+1}{4\pi} \Sigma_{s,l}^{\alpha}
+\Sigma_s^{\alpha}(\mu_0) = \sum_{l=0}^L \frac{2l+1}{4\pi} \Sigma_{s,l}^{\alpha}
 P_l(\mu_0)
 \end{equation}
 where:
 \begin{equation}
 \Sigma_{s,l}^{\alpha} = \frac{\alpha}{2}\(L(L+1)-l(l+1)\),\ \  l=0,\hdots,L
 \end{equation}
-Thus, with an expansion degree of $L$ for $\Sigma_s^{\alpha}$, we see that
-$\mc{L}_B^{\alpha}$ and $\mc{L}_{FP}^{\alpha}$ are completely equivalent when
-operating on polynomials of degree $L$ or less. With appropriate quadrature
-sets and expansion orders, the $S_n$ representation for $\mc{L}_{FP}^{\alpha}$
-is equivalent to that obtained by interpolating the discrete angular flux
-values with a polynomial and operating on that polynomial with
-$\mc{L}_{FP}^{\alpha}$.
+Thus, with appropriate quadrature sets and expansion orders, the $S_n$
+representation of $\mc{L}_{FP}^{\alpha}$ is equivalent to that obtained by
+interpolating the discrete angular flux values with a polynomial and operating 
+on that polynomial with $\mc{L}_{FP}^{\alpha}$.
 
-It is instructive to consider the behavior of $\Sigma_s^{\alpha}$ in the limit
-as the degree of the expansion is increased. Previous analysis show that
-$\Sigma_s^{\alpha}$ better approximated $\mc{L}_B^{\alpha}$ as it becomes
-increasingly forward-peaked. In addition, it should obviously have the correct
-momentum transfer. Thus, we first take note that regardless of expansion order
-the momentum transfer of $\Sigma_s^{\alpha}$ is exact:
+It is interesting to consider the behavior of $\Sigma_s^{\alpha}$ in the limit
+as the degree of the expansion is increased. First, we should note that regardless 
+of expansion order the momentum transfer of $\Sigma_s^{\alpha}$ is exact:
 \begin{equation}
 \begin{split}
-2\pi \int_{-1}^1 \Sigma_s^{\alpha}(E,\mu_0) (1-\mu_0) d\mu_0 &=
+2\pi \int_{-1}^1 \Sigma_s^{\alpha}(\mu_0) (1-\mu_0) d\mu_0 &=
 \Sigma_{s,0}-\Sigma_{s,1}\\
 &=\frac{\alpha}{2} L(L+1) - \frac{\alpha}{2} (L(L+1)-2)\\
 &=\alpha
@@ -280,141 +165,15 @@ Expressing the momentum transfer as follows:
 \end{equation}
 it is seen that $\Sigma_{s,0}^{\alpha}$ must increase without bound if the
 momentum transfer is to remain constant as $\Sigma_s^{\alpha}$ becomes
-increasingly forward-peaked. This show that $\mc{L}_{FP}^{\alpha}$ corresponds
-to a type of continuous-deflection approximation. The $\mc{L}_{FP}^{\alpha}$
-operator effectively causes particles to scatter continuously while incurring
-a differential deflection in each scattering event. The net result is that
-particles continuously deflect with the mean deflection per unit pathlength
-given by the momentum transfer.
+increasingly forward-peaked. This shows that $\mc{L}_{FP}^{\alpha}$ corresponds
+to a type of continuous-deflection approximation. The particles are continuously 
+deflected with the mean deflection per unit pathlength given by the momentum transfer.
 
-\red{Vu qu'on fait que du 1 groupe, pas la peine de regarder aux autres
-termes, meme development dans \cite{morel_89}}
-
-\red{Partie prise de  \cite{morel_96}}
-%In this section, we take the first step in the development of our approximate
-%BFP equation by replacing the angular Fokker-Planck operator with a Boltzmann
-%operator. The angular Fokker-Planck operator is replaced with the scattering
-%operator $B_{\alpha}$:
-%\begin{equation}
-%B_{\alpha} = \int_{4\pi} \Sigma_{\alpha} (E,\mu_0)
-%\Psi(\bo',E)d\bo'-\Sigma_{\alpha}\Psi
-%\end{equation}
-%where:
-%\begin{equation}
-%\Sigma_{\alpha}(E,\mu_0) = \frac{\alpha(E)}{1-\mu_s} \frac{1}{2\pi}
-%\delta(\mu_0-\mu_s)
-%\end{equation}
-%and where $\mu_s$, which we refer to as the Fokker-Planck scattering angle, is
-%a variable parameter. Note that there is no energy loss associated with
-%$B_{\alpha}$ and further that there is only one polar angle of scatter. The
-%cosine of this scattering angle is equal to $\mu_s$. To avoid confusion
-%between the smooth-component Boltzmann operator and $B_{\alpha}$, we refer to
-%all quantities associated with the smooth-component Boltzmann operator as
-%``smooth-component'' quantities and all quantities associated with
-%$B_{\alpha}$ as ``continuous-scattering'' quantities. For instance, we refer
-%to $\Sigma_{\alpha}$ as the continuous-scattering cross section and to
-%$\Sigma_t$ as the smooth-component total cross section.
-%
-%We now demonstrate that $B_{\alpha}$ converges to the continuous-scattering
-%operator int the limit as $\mu_s\rightarrow 1$. In particular, we show that
-%any fixed number of eigenvalues and eigenfunctions of the
-%continuous-scattering operator can be preserved to an arbitrary degree of
-%accuracy as a function of $\mu_s$. Expanding the scattering cross section in
-%Legendre polynomials, applying the spherical-harmonics addition theorem, and
-%then operating on the function $Y_l^m$, we find that:
-%\begin{equation}
-%B_{\alpha} Y_l^M = \(\Sigma_{\alpha}^l-\Sigma_{\alpha}^0\)Y_l^m
-%\end{equation}
-%where:
-%\begin{equation}
-%\Sigma_{\alpha}^0 = \frac{\alpha}{1-\mu_s}
-%\label{sigma_a_0}
-%\end{equation}                            
-%and:
-%\begin{equation}
-%\Sigma_{\alpha}^l = \frac{\alpha}{1-\mu_s} P_l(\mu_s)
-%\end{equation}
-%From \cref{sigma_a_0}, it follows that the spherical-harmonic
-%functions are eigenfunctions of $B_{\alpha}$.
-%The associated Legendre function $P_l^m$ satisfies Legendre's associated
-%differential equation:
-%\begin{equation}
-%\frac{\partial}{\partial \mu} \((1-\mu^2)\frac{\partial}{\partial \mu}P_l^m\)
-%+ \(l(l+1) - \frac{m^2}{1-\mu^2}\)P_l^m=0
-%\label{fp_op_eig}
-%\end{equation}
-Applying the Fokker-Planck angular operator to $Y_l^m$ and using
-\cref{eigenvalue}, we find that:
-\begin{equation}
-\mc{L}_{FP}^{\alpha}Y_l^m = -\frac{\alpha}{2} l(l+1) Y_l^m
-\label{F_a_y_l_m}
-\end{equation}
-where:
-\begin{equation}
-\mc{L}_{FP}^{\alpha} \Psi = \frac{\alpha}{2}\(\frac{\partial}{\partial \mu} 
-\((1-\mu^2) \frac{\partial \Psi}{\partial \mu}\) +
-\frac{1}{1-\mu^2}\frac{\partial^2\Psi}{\partial \varphi^2}\)
-\end{equation}
-It follows from \cref{F_a_y_l_m} that the spherical-harmonic
-functions are eigenfunctions of the Fokker-Planck angular operator. Thus, the
-spherical-harmonics functions are the eigenfunctions of both $\mc{L}_B^{\alpha}$ and
-the angular Fokker-Planck operator.
-To show that $\mc{L}_B^{\alpha}$ becomes equivalent to $\mc{L}_{FP}^{\alpha}$ in 
-the limit as $\mu_s\rightarrow 1$, we expand the eigenvalues of $\mc{L}_B^{\alpha}$ 
-in a first-order Taylor series about $\mu_s=1$:
-\begin{equation}
-\begin{split}
-\Sigma_{s,l}^{\alpha} - \Sigma_{s,0}^{\alpha} &= \frac{\alpha}{1-\mu_s}
-(P_l(\mu_s)-1)\\
-&=\frac{\alpha}{1-\mu_s} \(P_l(1)+\frac{\partial}{\partial x}P_l(x)\Big|_{x=1}
-(\mu_s-1)-1\)
-\end{split}
-\label{sig_comp}
-\end{equation}
-Using \cref{p_l,p_l_p}, \cref{sig_comp} becomes:
-\begin{equation}
-\Sigma_{s,l}^{\alpha} - \Sigma_{s,0}^{\alpha} = -\frac{\alpha}{2}l(l+1)
-\end{equation}
-We find that the eigenvalues of $B_{\alpha}$ converge to the eigenvalues of
-$F_{\alpha}$ in the limit as $\mu_s\rightarrow 1$. Thus, these two operators
-become equivalent in this limit.
-
-The error in each eigenvalue monotonically decreases as $\mu_s$ is increased,
-but for any fixed value of $\mu_s$, the error monotonically increases with
-increasing eigenvalue index. Thus, while $B_{\alpha}$ does in fact converge to
+The error made by using  $\mc{L}_B$ instead of $\mc{L}_{FP}$ in each eigenvalue 
+monotonically decreases as $\mu_s$ is increased, but for any fixed value of $\mu_s$, 
+the error monotonically increases with increasing eigenvalue
+index\cite{morel_96}. Thus, while $\mc{L}_B^{\alpha}$ does in fact converge to
 $\mc{L}_{FP}^{\alpha}$ as $\mu_s\rightarrow 1$, it does so nonuniformly. Thus, for any
 fixed value of $\mu_s$, the high-order eigenvalues of $\mc{L}_{FP}^{\alpha}$ are 
 grossly underestimated by $\mc{L}_B^{\alpha}$. Fortunately, this is error in the 
-high-order eigenvalues is usually unimportant. To explain why this is so, we first we
-first consider the following time-dependent transport equation:
-\begin{equation}
-\frac{\partial}{\partial t}\Psi(t,\mu) = \frac{\alpha}{2}
-\frac{\partial}{\partial \mu} \((1-\mu^2)\frac{\partial \Psi}{\partial \mu}\)
-\end{equation}
-with initial condition:
-\begin{equation}
-\Psi(0,\mu) = \frac{1}{2\pi} \delta(\mu-1)
-\label{init_cond}
-\end{equation}
-The solution to \cref{init_cond} is:
-\begin{equation}
-\Psi = \frac{1}{2\pi} \sum_{l=0}^{\infty} \exp(-\lambda_l t)P_l(\mu)
-\label{exp}
-\end{equation}
-where $\lambda_l$ is the eigenvalue of $\mc{L}_{FP}^{\alpha}$ with Legendre index $l$.
-Note from \cref{exp} that the $l^{th}$ Legendre moment of the
-angular flux solution is exponentially attenuated in proportion to
-$\lambda_l$. Since these eigenvalues become unbounded for large $l$, it
-follows that the high-order flux moments will be ``very small'' for all
-nonzero values of $t$. A gross underestimate of $\lambda_l$ will still result
-in a very small flux moment if the approximate of eigenvalue is large
-relative to $1/t$. Thus, for sufficiently large times, an accurate solution
-can be obtained even though the high-order eigenvalues are grossly
-underestimated. 
-
-This example illustrates the following basic idea. In problems with highly
-forward-peaked scattering, the high-order flux moments are much more rapidly
-attenuated than the low-order moments as the particle distribution evolves in
-space and time. Thus, errors in the eigenvalues are large relative to the
-temporal and spatial scale lengths associated with a given problem.
-
+high-order eigenvalues is usually unimportant\cite{morel_96}.

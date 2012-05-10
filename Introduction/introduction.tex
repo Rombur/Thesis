@@ -7,14 +7,14 @@
 \end{itemize}
 The transport equation is given by:
 \begin{equation}
-\bo\cdot \bn \Psi(\br,\bo,E) + \Sigma_t(\br,E)\Psi(\br,\bo,E) =
+\bo\cdot \bn \psi(\br,\bo,E) + \Sigma_t(\br,E)\psi(\br,\bo,E) =
 \int_0^{\infty}dE'\int_{4\pi}d\bo'\ 
-\Sigma_s(\br,\bo'\cdot\bo,E'\rightarrow E)\Psi(\br,\bo',E')+Q(\br,\bo,E)
+\Sigma_s(\br,\bo'\cdot\bo,E'\rightarrow E)\psi(\br,\bo',E')+Q(\br,\bo,E)
 \label{transport_p}
 \end{equation}
-Here $\Psi(E,\bo)$ is defined by:
+Here $\psi(E,\bo)$ is defined by:
 \begin{equation}
-\Psi(E,\bo) = vf(E,\bo)
+\psi(E,\bo) = vf(E,\bo)
 \end{equation}
 where $v$ is the particle speed, $\Sigma_t(E)$ is the total cross-section
 given by:
@@ -24,8 +24,8 @@ given by:
 and $Q(E,\bo)$ represents any source of particles. We are not concern about
 boundary conditions.
 
-The in-scattering term can be represented as a sum over its a surface harmonic
-components. To this end, we expand the scattering kernel in Legendre
+The in-scattering term can be represented as a sum over its a spherical harmonic
+harmonics. To this end, we expand the scattering kernel in Legendre
 polynomials according to:
 \begin{equation}
 \Sigma_s(\br,\bo'\cdot\bo,E'\rightarrow E)=\sum_{l=0}^{\infty}
@@ -39,18 +39,18 @@ coefficients as:
 &\Sigma_s(\br,\mu_0,E'\rightarrow E) = \sum_{l=0}^{\infty}
 \Sigma_{s,l}(\br,E\rightarrow E) P_l(\mu_0)
 \end{align}
-Further, we expand the solution $\Psi(\br,\bo,E)$ in surface harmonics according
+Further, we expand the solution $\psi(\br,\bo,E)$ in surface harmonics according
 to:
 \begin{equation}
-\Psi(\br,\bo,E) = \sum_{l=0}^{\infty}\sum_{m=-l}^l \phi_{l,m}(\br,E) Y_l^m(\bo)
+\psi(\br,\bo,E) = \sum_{l=0}^{\infty}\sum_{m=-l}^l \phi_{l,m}(\br,E) Y_l^m(\bo)
 \label{ang_flux}
 \end{equation}
 The expansion coefficients $\phi_{l,m}$ are given by:
 \begin{equation}
-\phi_{l,m}(\br,E) = \int_{4\pi} d\bo\ Y_{l}^{m,*}(\bo) \Psi(\br,\bo,E)
+\phi_{l,m}(\br,E) = \int_{4\pi} d\bo\ Y_{l}^{m,*}(\bo) \psi(\br,\bo,E)
 \label{moments}
 \end{equation}
-A property of the surface harmonics is that they satisfy the partial equation
+A property of the spherical harmonics is that they satisfy the partial equation
 given by:
 \begin{equation}
 \[\frac{\partial}{\partial\mu}(1-\mu^2)\frac{\partial}{\partial
@@ -65,18 +65,38 @@ Y_l^{m,*}(\bo')
 \end{equation}
 we get:
 \begin{equation}
-\bo\cdot\bn \Psi(\br,\bo,E) +
-\Sigma_t(\br,E)\Psi(\br,\bo,E)=\sum_{l=0}^{\infty}\sum_{m=-l}^{l} Y_l^m(\bo) 
-\int_0^{\infty} dE'\ \Sigma_{s,l}(\br,E'\rightarrow E)\Psi_{l,m}(\br,E') +
+\bo\cdot\bn \psi(\br,\bo,E) +
+\Sigma_t(\br,E)\psi(\br,\bo,E)=\sum_{l=0}^{\infty}\sum_{m=-l}^{l} Y_l^m(\bo) 
+\int_0^{\infty} dE'\ \Sigma_{s,l}(\br,E'\rightarrow E)\psi_{l,m}(\br,E') +
 Q(\br,\bo,E)
 \end{equation}
 or equivalently:
 \begin{equation}
 \begin{split}
-&\bo\cdot\bn \Psi(\br,\bo,E) +
-\(\Sigma_a(\br,E)+\Sigma_s(\br,E)\)\Psi(\br,\bo,E) =\\
+&\bo\cdot\bn \psi(\br,\bo,E) +
+\(\Sigma_a(\br,E)+\Sigma_s(\br,E)\)\psi(\br,\bo,E) =\\
 &\sum_{l=0}^{\infty}\sum_{m=-l}^l Y_l^m(\bo) \int_0^{\infty}dE'\
-\Psi_{l,m}(\br,E') \int_{-1}^1 d\mu_0\ P_l(\mu_0)
+\psi_{l,m}(\br,E') \int_{-1}^1 d\mu_0\ P_l(\mu_0)
 \Sigma_{s}(\br,\mu_0,E'\rightarrow E)+Q(\br,\bo,E)
 \end{split}
 \end{equation}
+\red{Ecrire sn transport}
+\begin{equation}
+\begin{split}       
+&\bo\cdot\bn \psi(\br,\bo_k) +
+\end{split}
+\label{transport_sn}
+\end{equation}
+
+We can write the equation using operators:
+\begin{equation}
+\bs{L}\Psi = \bs{M\Sigma D}\Psi + \bs{Q}
+\label{transport_operator}
+\end{equation}
+
+Charged particles transport can be described by the Boltzmann equation, 
+discretized in energy using the standard multigroup method
+and in angle using the discrete ordinate method ($S_n$)
+\cite{morel_81,galerkin_morel,cepxs}. For the purpose of this paper, 
+we restrict ourselves to the one-group $S_n$ equation; however, the techniques described here
+apply straightforwardly to the multigroup equations.

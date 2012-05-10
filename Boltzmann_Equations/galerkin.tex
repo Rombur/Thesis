@@ -1,16 +1,14 @@
 \section{Galerkin}
-\red{Analyse tiree de \cite{pautz_fp} Dire que l'on travaille que sur 1 seul
-groups}
-The Fokker-Planck equation is not an asymptotic limit of the transport
-equation unless the scattering kernel is such that:
-\begin{equation}
-\frac{\la\overline{\(1-\mu_0\)^2}\ra}{\la\(1-\bar{\mu}_0\)\ra}\rightarrow 0
-\end{equation}
-as $\bar{\mu}_0 \rightarrow 1$.
+Until now, we have explained which quadrature should be used. We have only
+said that we need an appropriate quadrature but we did not explain what we
+needed. In this section, we will introduce the Galerkin quadrature. Morel
+first introduced the Galerkin quadrature in \cite{galerkin_morel} but here we
+will follow \cite{pautz_fp}. 
 
+First, we start by recalling the definition of $\psi$ and $\phi_{l,m}$:
 \begin{equation}
 \begin{split}
-\phi_{l,m}(\br) &= \int_{4\pi} d\bo' \Psi(\br,\bo') Y_l^{m,*}\\
+\phi_{l,m}(\br) &= \int_{4\pi} d\bo' \psi(\br,\bo') Y_l^{m,*}\\
 &=(D \Psi)_{l,m}
 \end{split}
 \label{D2M}
@@ -19,30 +17,31 @@ where $D$ is the directions-to-moments operator.
 \begin{equation}
 \begin{split}
 \Psi(\br,\bo) &= \sum_{l=0}^{\infty} \sum_{m=-l}^l Y_l^m(\bo)\phi_{l,m}(\br)\\
-&= M\phi(\bo)
+&= M\Phi(\bo)
 \end{split}
 \label{M2D}
 \end{equation}
 where $M$ is the moments-to-directions operator. \Cref{D2M,M2D} define the 
-transformations from $\phi$ to $\Psi$ (``moments to
+transformations from $\Phi$ to $\Psi$ (``moments to
 directions'') and from $\Psi$ to $\Phi$ (``directions to moments''). By
-combining \cref{D2M,M2D}, we obtain the following requirement:
+combining \cref{D2M,M2D}, we obtain the following properties:
 \begin{equation}
 (I-MD)\Psi = 0
+\label{identity_alpha}
 \end{equation}
-$M=D^{-1}$ for analytic transport (\red{pris a l'interieur de la derivation de
-la forme analytique})
+since for analytic transport $M=D^{-1}$.
 
-Let us define:
+Now, let us define:
 \begin{align}
-\Sigma_a &= \hat{\Sigma}_a\\
-\Sigma_{s,l} &= \frac{\hat{\Sigma}_{s,l}(\br)}{\epsilon}\\
+\Sigma_a &= \hat{\Sigma}_a \label{hat_sig_a_0}\\
+\Sigma_{s,l} &= \frac{\hat{\Sigma}_{s,l}(\br)}{\epsilon} \label{hat_sig_a_1}\\
 \Sigma_{s,l}(\br) &=\Sigma_{s,0}(\br) \(1-\frac{l(l+1)}{2}A(\br)\epsilon +
-O(\gamma)\)
+O(\gamma)\) \label{hat_sig_a_2}
 \end{align}
+Using \crefrange{hat_sig_a_0}{hat_sig_a_2} in \cref{transport_sn}, we get:
 \begin{equation}
 \begin{split}
-&\bo_k\cdot\bn\Psi_k(\br) + \(\Sigma_a(\br)+\Sigma_{s,0}(\br)\) \Psi_k(\br)
+&\bo_k\cdot\bn\psi_k(\br) + \(\Sigma_a(\br)+\Sigma_{s,0}(\br)\) \psi_k(\br)
 =\\
 & \sum_{l=0}^{N-1} \sum_{m=-l}^l Y_l^m(\bo_k) \phi_{l,m}(\br)
 \frac{\hat{\Sigma}_{s,0}(\br)}{\epsilon}\(1-\frac{l(l+1)}{2}A(\br)\epsilon +
@@ -52,8 +51,8 @@ O(\gamma)\) + q(\br,bo_k)
 \end{equation}
 where:
 \begin{align}
-\Psi_k(\br) &= \Psi(\br,\bo_k)\\
-\phi_{l,m}(\br) &= \sum_{k=1}^K w_k Y_l^{m,*}(\bo_k) \Psi_k(\br) \label{phi_p}
+\psi_k(\br) &= \psi(\br,\bo_k)\\
+\phi_{l,m}(\br) &= \sum_{k=1}^K w_k Y_l^{m,*}(\bo_k) \psi_k(\br) \label{phi_p}
 \end{align}
 Here, the $w_k$ and $\bo_k$ are the quadrature weights and directions,
 respectively, of a quadrature set of order $N$. In level-symmetric quadrature
@@ -62,8 +61,8 @@ in the standard discrete ordinates treatment, the scattering order \cref{discr_e
 is truncated at $N-1$. Manipulation of \cref{discr_eps} yields:
 \begin{equation}
 \begin{split}
-&\bo_k\cdot\bn \Psi_k(\br) +\hat{\Sigma}_a(\br)\Psi_k(\br)\\
-&\frac{\hat{\Sigma}_{s,0}(\br)}{\epsilon} \(\Psi_k(\br)-\sum_{l=0}^{N-1}
+&\bo_k\cdot\bn \psi_k(\br) +\hat{\Sigma}_a(\br)\psi_k(\br)+\\
+&\frac{\hat{\Sigma}_{s,0}(\br)}{\epsilon} \(\psi_k(\br)-\sum_{l=0}^{N-1}
 \sum_{m=-l}^m  Y_l^m(\bo_k) \phi_{l,m}^{\br}\)\\
 &=-\frac{\(\Sigma_{tr}(\br)-\hat{\Sigma}_a(\br)\)}{2} \sum_{l=0}^{N-1}
 \sum_{m=-l}^{l} l(l+1) Y_l^m(\bo_k) \phi_l^m(\br)+\\
@@ -73,25 +72,25 @@ is truncated at $N-1$. Manipulation of \cref{discr_eps} yields:
 \end{equation}
 We insert the ansatz:
 \begin{align}
-\Psi &= \Psi^{(0)} + \epsilon \Psi^{(1)} + \epsilon^2\Psi^{(2)}+\hdots\\
+\psi &= \psi^{(0)} + \epsilon \psi^{(1)} + \epsilon^2\psi^{(2)}+\hdots\\
 \phi_{l,m} &= \phi_{l,m}^{(0)} + \epsilon \phi_{l,m}^{(1)} + \epsilon^2
 \phi_{l,m}^{(2)}+\hdots
 \end{align}
 into \cref{discr_eps} and consider terms of $O(1)$ to find:
 \begin{equation}
 \begin{split}
-\phi_{l,m}^{(0)}(\br) &= \sum_{k=1}^K w_k Y_l^{m,*}(\bo_k) \Psi_k^(0)(\br)\\ 
+\phi_{l,m}^{(0)}(\br) &= \sum_{k=1}^K w_k Y_l^{m,*}(\bo_k) \psi_k^(0)(\br)\\ 
 &= (D_N\Psi^{(0)})_{l,m}
 \end{split}
 \label{D2M_disc}
 \end{equation}
-We insert the ansatz into \cref{discr_eps_manip} and consider terms
+We insert the ansatz into \cref{discr_eps_manip} and consider the terms
 of $O(\epsilon^{-1})$ to find:
 \begin{equation}
 \begin{split}
 \Psi_k^{(0)}(\br) &=\sum_{l=0}^{N-1} \sum_{m=-l}^l Y_l^m(\bo_k) 
 \phi_{l,m}^{(0)}(\br)\\
-&= (M_N\phi^{(0)})_k
+&= (M_N\Phi^{(0)})_k
 \end{split}
 \label{M2D_disc}
 \end{equation}
@@ -100,10 +99,10 @@ $\gamma\rightarrow 0$ as $\epsilon\rightarrow 0$, i.e., that there are no
 $O(1)$ components in $\gamma$. \Cref{D2M_disc,M2D_disc} may be combined to give:
 \begin{align}
 &(I-M_ND_N)\Psi^{(0)} = 0 \label{identity_a}\\
-&(I-D_NM_N)\phi^{(0)} = 0 \label{identity_b}
+&(I-D_NM_N)\Phi^{(0)} = 0 \label{identity_b}
 \end{align}
 i.e., $\Psi^{(0)}$ must be in the null space of $I-M_N D_N$ and $\phi^{(0)}$
-must be in the null space of $I-D_N M_N$. Since $\phi$ is always constructed
+must be in the null space of $I-D_N M_N$. Since $\Phi$ is always constructed
 from $\Psi$ according to \cref{phi_p}, \cref{identity_b}
 is equivalent to:
 \begin{equation}
@@ -113,24 +112,22 @@ which is always satisfied if \cref{identity_a} is satisfied.
 Therefore, we need only to show that equation \cref{identity_a} is satisfied
 in order to satisfy \cref{D2M_disc,M2D_disc}.
 
-A sufficient (although not strictly necessary) condition for satisfying
-\cref{identity_a} is that $M_ND_N=I$. This will be always be true if
-$M_N$ and $D_N$ are inverse of each other (as in analytic transport), in which
-case there are as many moments in the scattering expansion as there are
-discrete angles. It may or may not be true of there are fewer moments than
-angles. (These assertions follow directly from the dimensions of the
-matrices.) In one-dimensional slab and spherical geometry, it will be true if
-and only if the quadrature set exactly integrates polynomials of degree
-$2N-2$, as is the case with the Gauss-Legendre set. In standard
-multidimensional implementations, there are generally more discrete angles
-than scattering moments, so in these cases $M_N D_N \neq I$. If $M_N
-D_N\approx I$, then \cref{identity_b} will be satisfied only if some
-other (generally nonphysical) constraints are met. (Specifically, $\Psi^{(0)}$
-must be constrained to live in the null space of $I-M_N D_N$.) If equation
-\cref{identity_b} is not satisfied, the asymptotic ansatz is not valid. In
-such a case, there is no $O(1)$ solution to \cref{discr_eps,phi_p}. Later, we will 
-describe a relatively simple alteration of the
-standard discrete ordinates method that will ensure that $M_N D_N = I$.
+A sufficient condition for satisfying \cref{identity_a} is that $M_N D_N =I$.
+This is of course true if $M_N=D_N^{-1}$ like in analytic transport,
+\cref{identity_alpha}. For $M_N$ and $D_N$ to be inverse of each other, it is
+necessary for the matrices to be square. Thus, the number of moments in the
+scattering expansion is equal to number of discrete angles. In one-dimension,
+this property is satisfied if the quadrature set integrates exactly any
+polynomials of degree $2N-2$, as it is the case with the Gauss-Legendre
+quadrature. In multidimensional problems, the standard quadratures use more
+discrete angles than there are scattering moments. Therefore, $M_N$ and $D_N$
+are rectangular matrices and they cannot be inverse of each other. If $M_N D_N
+\neq 1$, then \cref{identity_a} will be satisfied only if $\Psi^{(0)}$ is a vector
+of the null space of $I-M_N D_N$. For $\Psi^{(0)}$ to be in the null space of
+$I-M_N D_N$, $\Psi^{(0)}$ needs to satisfy some constraints which are
+generally nonphysical\cite{pautz_fp}. If equation \cref{identity_a} is not 
+satisfied, the asymptotic ansatz is not valid. In such a case, there is no $O(1)$ 
+solution to \cref{discr_eps,phi_p}. 
 
 If we assume that $M_N D_N=I$, then the $O(\epsilon)$ terms in \cref{phi_p} yields:
 \begin{equation}
@@ -144,13 +141,12 @@ If we assume that $M_N D_N=I$, then the $O(\epsilon)$ terms in \cref{phi_p} yiel
 The $O(1)$ terms in \cref{discr_eps_manip} yield:
 \begin{equation}
 \begin{split}
-&\bo_k\cdot \bn \Psi_k^{(0)}(\br) + \hat{\Sigma}_a(\br)\Psi_k(\br)\\
-&\hat{\Sigma}_{s,0}(\br) \(\Psi_k^{(1)} (\br) - \sum_{n=0}^{N-1}
-\sum_{m=-l}^{l}\(\frac{2l+1}{4\pi}\) Y_l^m (\bo_k)\phi_{l,m}^{(1)}(\br)\)\\
+&\bo_k\cdot \bn \psi_k^{(0)}(\br) + \hat{\Sigma}_a(\br)\psi_k(\br) +
+\hat{\Sigma}_{s,0}(\br) \(\psi_k^{(1)} (\br) - \sum_{n=0}^{N-1}
+\sum_{m=-l}^{l} Y_l^m (\bo_k)\phi_{l,m}^{(1)}(\br)\)\\
 &=-\frac{\Sigma_{tr}(\br)-\hat{\Sigma}_a(\br)}{2} \sum_{l=0}^{N-1}
-\sum_{m=-l}^l \(\frac{2l+1}{4\pi}\) l(l+1) Y_l^m(\bo_k)
-\phi_{l,m}^{(0)}(\br)\\
-&+ q(\br,\bo_k) + O\(\frac{\gamma}{\epsilon}\)
+\sum_{m=-l}^l  l(l+1) Y_l^m(\bo_k)
+\phi_{l,m}^{(0)}(\br)+ q(\br,\bo_k) + O\(\frac{\gamma}{\epsilon}\)
 \end{split}
 \label{O_1_terms}
 \end{equation}
@@ -162,7 +158,10 @@ The scattering term on the left side of \cref{O_1_terms} will disappear only if:
 where:
 \begin{equation}
 \begin{split}
-\Psi_k^{(1),*} &= \sum_{l=0}^{N-1}\sum_{m=-l}^l \(\)
+\Psi_k^{(1),*} &= \sum_{l=0}^{N-1}\sum_{m=-l}^l Y_l^m(\bo_k)
+\phi_{l,m}^{(1)}(\br)\\
+&= (M_N\phi^{(1)})_k\\
+&=(M_N D_N \Psi^{(1)})_k
 \end{split}
 \label{psi_1_star}
 \end{equation}   
@@ -180,45 +179,35 @@ This is satisfied under the assumption that $M_N D_N$ is the identity.
 \label{last_pautz}
 \end{equation}
 where $k=1,\hdots,K$ and $\tilde{\Psi}^{(0)}(\br,\bo)$ is an interpolant
-through the points $\{\bo,_k,\Psi_k^{(0)}(\br,\bo)\}$. Thus, if
-$O\(\frac{\gamma}{\epsilon}\) \rightarrow 0$ as $\epsilon \rightarrow 0$,
-\cref{last_pautz} is a pseudo-spectral discretization of the angular
-variable in the exact Fokker-Planck equation. (Pseudo-spectral methods use
-collocation to determine coefficients in global function expansions.) In
-one-dimensional slab and spherical geometry, $\tilde{\Psi}^{(0)}(\br,\bo)$ is
-the $(N-1)$-order polynomial interpolant through the points
-$\{\bo_k,\Psi_k^{(0)}(\br)\}$. The definition in multidimensional geometry
-will be described in the following discussion.
+through the points $\{\bo_k,\Psi_k^{(0)}(\br,\bo)\}$. In one-dimensional 
+slab and spherical geometry, $\tilde{\Psi}^{(0)}(\br,\bo)$ is the $(N-1)$-order 
+polynomial interpolant through the points $\{\bo_k,\Psi_k^{(0)}(\br)\}$.
 
-The foregoing discussion indicated that the transformation from discrete
-values to angular moments and back to discrete values to angular moments and
-back to discrete values should be the identity. If \cref{phi_p,psi_1_star} define 
-the discrete-to-moments and moments-to-discrete transformations, then we will 
-not have the identity unless the quadrature set is Gauss-Legendre in one-dimensional 
-slab or spherical geometry. Given a different quadrature set of multidimensional 
-geometry then, the $S_N$ method may not limit to a discretization of the 
-Fokker-Planck equation unless \cref{phi_p} and/or \cref{psi_1_star} is replaced.
+If \cref{phi_p,psi_1_star} define the discrete-to-moments and
+moments-to-discrete transformations, then the relation $M_N D_N=I$ will not be
+satisfied except in one-dimensional slab or spherical geometry when the
+Gauss-Legendre quadrature is used. In multidimensional geometry, \cref{phi_p}
+and/or \cref{psi_1_star} must be replace in order to have the Fokker-Planck
+equation as a limit of the $S_N$ method.
 
-Morel\cite{galerkin_morel} reached the same conclusion via a completely
-different analysis and offered suggestions for replacing the offending
-equation(s). The simplest suggestion in one-dimensional slab and spherical
-geometry is to use $\tilde{\phi}_{l,0}$ the exact moments of the $(N-1)$-order
-polynomial, $\tilde{\Psi}$, that goes through the points
-$\{\bo_k,\Psi_k(\br)\}$; thereby redefining $D_N$ to be $M_N^{-1}$. Morel
-labeled this the ``Galerkin'' quadrature set, since he derived it by means of
-a Galerkin weighting method. The use of the exact moments causes
-\cref{psi_1_star_old} to be satisfied regardless of quadrature set, and
-\cref{last_pautz} then follows.
-
-In multidimensional geometries, the Galerkin quadrature has a more complex
-definition. Recall that there are fewer moments than discrete angles in
-standard multidimensional implementations of the discrete ordinates method.
-To satisfy \cref{psi_1_star_old} in all circumstances, we must first
-increase the number of spherical harmonics in our flux expansion by using
-harmonics of higher orders. Morel\cite{galerkin_morel} and Reed\cite{reed}
-proposed suitable spherical harmonics interpolation space for multidimensional
-geometries. For two-dimensional geometries, the following interpolation space
-is suggested:
+In \cite{galerkin_morel}, Morel reached the same result via a different
+analysis. He made the following suggestions to find the correct limit using
+the $S_N$:
+\begin{description}
+\item [In one-dimensional slab and spherical geometry:] using for $\phi_{l,0}$ 
+the exact moments of the $(N-1)$-order polynomial, $\tilde{\Psi}$, that goes 
+through the points $\{\bo_k,\Psi_k(\br)\}$; thereby redefining $D_N$ to be 
+$M_N^{-1}$ in one-dimensional slab and spherical geometry. Morel called this 
+quadrature, the ``Galerkin'' quadrature since he derived it by means of a Galerkin 
+weighting method. The use of the exact moments causes \cref{psi_1_star_old} to be
+satisfied regardless of the quadrature set, and \cref{last_pautz} then follows.
+\item [Multidimensional geometries:] there are fewer moments than discrete
+angles in standard multidimensional discrete ordinates methods. To satisfy
+\cref{psi_1_star}, the number of spherical harmonics in the flux expansion needs 
+to be increased by using harmonics of higher orders. Morel in
+\cite{galerkin_morel} and Reed in \cite{reed} proposed suitable spherical 
+harmonics interpolation space for multidimensional geometries. For two-dimensional 
+geometries, the following interpolation space is suggested:
 \begin{equation}
 Y_l^m = \left\{
 \begin{aligned}
@@ -237,8 +226,6 @@ Y_l^m = \left\{
 \end{aligned}
 \right.
 \end{equation}
-\red{The selection rules for more general quadratures (triangular and
-product) are given in \cite{galerkin_sanchez}.}
 
 The Galerkin quadrature is then defined by adjusting the limits of the
 summations in \cref{psi_1_star} to augment $M_N$ and then redefining
@@ -251,6 +238,9 @@ $\{\bo_k,\Psi_k^{(0)}(\br)\}$.
 We note that the use of the Galerkin quadrature allows the selection of a
 greater variety of discrete angle sets in \cref{discr_eps} since the
 corresponding quadrature weights (if they are defined) are not actually used.
+General necessary conditions and explanations of the heuristic rules above
+have been in analyzed in \cite{galerkin_sanchez}.
+\end{description}
 
 More can be said about the effects of using a non-Gaussian or non-Galerkin
 quadrature to evaluate \cref{phi_p}. Let us define the scattering
@@ -273,41 +263,25 @@ term (and hence each eigenvalue of $\bs{C}$) will be nonnegative and will not
 exceed unity. If, however, inexact integrations are used, not only will
 $\bs{C}$ differ from $\frac{\bs{\Sigma}}{\Sigma_t}$, but there is also the
 possibility of introducing one or more eigenvalues whose absolute values
-exceed unity. This is physically equivalent to artificially introducing
-multiplication into the medium. Depending on the amount of leakage present,
-\cref{discr_eps,phi_p} may not have a steady-state
+exceed unity\cite{pautz_fp,galerkin_morel}. This is physically equivalent 
+to artificially introducing multiplication into the medium. Depending on the 
+amount of leakage present, \cref{discr_eps,phi_p} may not have a steady-state
 solution as $\epsilon\rightarrow 0$. This inconsistency is clearly
-unacceptable when a steady-state solution is known to exist.
+unacceptable when a steady-state solution is known to exist.\\
 
-\red{Aussi dand \cite{galerkin_morel}}
-We note that while the condition $D_N=M_N^{-1}$ is certainly sufficient for
-obtaining the correct Fokker-Planck limit, it is not strictly necessary. We
-need only to satisfy \cref{identity_a}, i.e., that $\tilde{\Psi}$ be
-in the null space of $I-M_ND_N$. If $M_N D_N\neq I$, then certain angular
-eigenmodes cannot be present in a stable solution, i.e., $\tilde{\Psi}$ must
-be in a restricted subspace of the domain of $M_N D_N$. It is entirely
-possible that a contrived selection of boundary conditions and sources could
-result in a solution that does not contain any of the unstable modes; however,
-this would suggest that physically realistic boundary conditions and
-sources could result in a solution that does not contain any of the unstable
-modes. Alternatively, one could filter out the unstable mode components of the
-scattering source; this would stabilize the solution, but this would yield a
-different solution than that obtained when exact integrations are used. Our
-recommendation is to avoid these complications altogether by simply using the
-exact inverse of $M_N$.\\
-
-\red{Pris de \cite{galerkin_morel} 1D equation}\\
-We begin by considering the interpolatory trial space angular flux
-representation on which this method is based:
+It is interesting to recall the development made in \cite{galerkin_morel} to
+really understand the Galerkin quadrature. We begin by considering the 
+interpolatory trial space angular flux representation (for the one-dimensional
+geometry) on which this method is based:
 \begin{equation}
 \Psi(\mu) = \sum_{m=1}^N \Psi_m B_m(\mu)
 \label{psi_b}
 \end{equation}
 Methods for generating the interpolatory basis function appearing in 
 \cref{psi_b} are discussed in \cite{galerkin_morel}. The scattering source
-corresponding to this representation is given by:
+corresponding to this representation (we ) is given by:
 \begin{equation}
-S(\mu) = \int_{4\pi} \Sigma_s(\mu_0)\Psi(\mu')d\bo'
+\mc{S}(\mu) = \int_{4\pi} \Sigma_s(\mu_0)\Psi(\mu')d\bo'
 \label{S_mu}
 \end{equation}
 where:
@@ -328,23 +302,23 @@ spherical harmonics addition theorem to express $P_l(\mu_0)$ in terms of
 $\mu'$ and $\mu$ and completing the integrations over $\mu$ and $\varphi$, we
 get:
 \begin{align}
-&S(\mu) = \sum_{l=0}^{\infty} \frac{2l+1}{2} \xi_l P_l(\mu) \label{S_mu_2}\\
+&\mc{S}(\mu) = \sum_{l=0}^{\infty} \frac{2l+1}{2} \xi_l P_l(\mu) \label{S_mu_2}\\
 &\xi_l = \Sigma_{s,l} \phi_l \label{xi_l_s}\\
 &\phi_l = \int_{-1}^1 \Psi(\mu)P_l(\mu)d\mu \label{phi_l_int}
 \end{align}
 Let $\tilde{S}(\mu)$ denote the trial approximation to $S(\mu)$ that we seek:
 \begin{equation}
-\tilde{S}(\mu) = \sum_{m=1}^N \tilde{S}_m B_m(\mu)
+\tilde{i\mc{S}}(\mu) = \sum_{m=1}^N \tilde{\mc{S}}_m B_m(\mu)
 \label{tilde_s_mu}
 \end{equation}
-As previously stated, the Galerkin method requires that the residual
+The Galerkin method requires that the residual 
 associated with the trial space approximation be orthogonal to the weighting
 space. The residual associated with \cref{tilde_s_mu} is given by:
 \begin{equation}
-Res(\mu) = \tilde{S}(\mu) - S(\mu)
+Res(\mu) = \tilde{\mc{S}}(\mu) - \mc{S}(\mu)
 \label{R_mu}
 \end{equation}
-The weighting space associated with our method is the space of global
+The weighting space associated with the method is the space of global
 polynomials of degree $N-1$ or less form a basis for this space, it follows
 that the residual must satisfy:
 \begin{equation}
@@ -355,27 +329,21 @@ Substituting from \cref{S_mu_2,tilde_s_mu,R_mu}) into \cref{int_r_mu},
 performing the integration, rearranging the resulting equation, we obtain:
 \begin{align}
 &\tilde{\xi}_l = \xi_l,\ \ l=0,\hdots,N-1 \label{xi_vs_xi}\\
-&\tilde{\xi}_l = \int_{-1}^1 \tilde{S}(\mu) P_l(\mu) d\mu\\
-&\xi_l = \int_{-1}^1 S(\mu) P_l(\mu) d\mu
+&\tilde{\xi}_l = \int_{-1}^1 \tilde{\mc{S}}(\mu) P_l(\mu) d\mu\\
+&\xi_l = \int_{-1}^1 \mc{S}(\mu) P_l(\mu) d\mu
 \end{align}
-The central theme of our method becomes clear on examination of 
-\cref{xi_vs_xi}: the discrete scattering source values are chosen such that
-the interpolatory representation for that scattering source has the same
-Legendre moments through degree $N-1$ as the exact scattering source
-calculated with the interpolatory representation for the angular flux. Thus,
-the Galerkin formalism, when applied with an appropriate weighting space,
-yields a very straightforward approximation. One highly desirable property of
-this approximation is that only the cross-section moments through degree $N-1$
-are required. This property is directly due to our choice of weighting space.
-Specifically, this property is obtained because all elements of the weighting
-space are orthogonal to the Legendre polynomials of degree $N$ or greater.
+The main idea of the Galerkin quadrature can be seen on \cref{xi_vs_xi}: the
+discrete scattering source values are chosen such that the inrepolatory
+representation for that scattering source has the same Legendre moments
+through degree $N-$ as the exact scattering source calculated with the
+interpolatory representation for the angular flux. Because all the elements of
+the weighting space are orthogonal to the Legendre polynomials of degree $N$
+or greater, only the cross-section moments through degree $N-1$ are needed.
 
 The Galerkin scattering matrix can be conveniently represented in terms of
 three matrices: the discrete-to-moment matrix, the cross-section matrix, and
-the moment-to-discrete matrix. The discrete-to-moment matrix $D$ maps a vector
-of discrete angular flux values to a corresponding vector of Legendre flux
-moments. These flux moments are calculated with the interpolatory flux
-representation defined by the discrete angular flux vector:
+the moment-to-discrete matrix. These flux moments are calculated with the 
+interpolatory flux representation defined by the discrete angular flux vector:
 \begin{equation}
 \bs{\phi} = \bs{D\Psi}
 \end{equation}
@@ -404,12 +372,10 @@ where:
 &\bs{\Sigma} = diag(\Sigma_{s,0},\Sigma_{s,1},\hdots,\Sigma_{s,N-1})
 \label{bs_sigma}
 \end{align}
-Note that \cref{bs_xi} follows directly from \cref{tilde_s_mu}. The 
-moment-to-discrete matrix $M$ maps a vector of
-Legendre moments to a corresponding vector of discrete angular flux values.
-The trial space element obtained by interpolating the discrete flux values has
-the Legendre moments defined by the moment vector. Thus, the
-moment-to-discrete matrix matrix is inverse of the discrete-to-moment matrix:
+Note that \cref{bs_xi} follows directly from \cref{tilde_s_mu}. The trial space 
+element obtained by interpolating the discrete flux values has the Legendre moments 
+defined by the moment vector. Thus, the moment-to-discrete matrix matrix is inverse 
+of the discrete-to-moment matrix:
 \begin{equation}
 \bs{M} = \bs{D}^{-1}
 \end{equation}
@@ -418,12 +384,12 @@ construction of the Galerkin inscatter matrix. First, we note that the
 vector of Legendre moments corresponding to the trial space element obtained
 by interpolating the discrete angular flux values is given by:
 \begin{equation}
-\bs{\Phi} = \bs{D}\psi
+\bs{\Phi} = \bs{D\psi}
 \end{equation}
 The Legendre moments of the scattering source calculated with the trial space
 element and the exact scattering cross section are given by:
 \begin{equation}
-\bs{\xi} = \bs{\Sigma D}\Psi
+\bs{\xi} = \bs{\Sigma D\Psi}
 \label{bs_xi_2}
 \end{equation}
 Our Galerkin approximation requires that the trial space element obtained by
@@ -431,7 +397,7 @@ interpolating the discrete scattering source value have the same moments as
 those given by \cref{bs_xi_2}. Mathematically stated, the discrete
 scattering source vector $\bs{S}$ must satisfy:
 \begin{equation}
-\bs{DS} = \bs{\Sigma D}\psi
+\bs{DS} = \bs{\Sigma D\psi}
 \label{bs_ds}
 \end{equation}
 where:
@@ -441,21 +407,19 @@ where:
 Solving \cref{bs_ds} for $\bs{S}$, we obtain the desired
 relationship:
 \begin{equation}
-\bs{S} = \bs{M\Sigma D}\psi
+\bs{S} = \bs{M\Sigma D\psi}
 \label{bs_s}
 \end{equation}
 The matrix $\bs{\Sigma}$ is the scattering matrix obtained with the spherical
 harmonic approximation of degree $N-1$ (the $P_{N-1}$ approximation). Since
-$\bs{M}$ is the inverse of $\bs{D}$, it follows that the Galerkin scattering
-matrix $\bs{S}$ is equivalent to the $P_{N-1}$ scattering matrix $\bs{\Sigma}$
+$\bs{M}$ is the inverse of $\bs{D}$, Galerkin scattering matrix $\bs{S}$ is 
+equivalent to the $P_{N-1}$ scattering matrix $\bs{\Sigma}$
 under the similarity transformation defined by the discrete-to-moments and
 moment-to-discrete matrices. Furthermore, if a global polynomial trial space
-is used, it follows from \cref{bs_s} that our Galerkin scattering
-source is identical to the spherical harmonic scattering source. Thus, our
+is used, it follows from \cref{bs_s} that the Galerkin scattering
+source is identical to the spherical harmonic scattering source. Thus, the
 Galerkin quadrature method can be characterized as a type of generalized
-spherical harmonics scattering source approximation. We fell that this
-characterization leads to considerable insight into the basic nature of our
-method.
+spherical harmonics scattering source approximation. 
 
 It is easily shown that delta function scattering of the following type is
 treated exactly with the Galerkin method:
@@ -466,28 +430,27 @@ We begin by noting that the cross-section matrix defined by \cref{bs_sigma}
 is the identity matrix. Substituting the identity matrix for the cross-section 
 matrix in \cref{bs_ds}, we obtain the following expression:
 \begin{equation}
-\bs{S} = \bs{MD}\psi
+\bs{S} = \bs{MD\psi}
 \label{bs_s2}
 \end{equation}
 Recalling that $\bs{M}$ is the inverse of $\bs{D}$, we find that \cref{bs_s2} gives:
 \begin{equation}
-\bs{S} = \psi
+\bs{S} = \bs{\psi}
 \end{equation}
 which is the exact result. Exactly treating this type of scattering has two
-important ramifications for charged-particle transport. First, in
-charged-particle transport, cross sections of the following form arise:
+important consequences for charged-particle transport. First, in
+charged-particle transport, some cross sections have the following form:
 \begin{equation}
 \Sigma^{k\rightarrow g}(\mu_0) = \Sigma^{k\rightarrow g} \delta(\mu_0-1)
 \end{equation}
 where $\Sigma^{k\rightarrow g}(\mu_0)$ denotes the differential cross section
 associated with a transfer from group $k$ to group $g$. Thus, it is essential
-that delta function scattering be treated exactly. Second, for relativistic
-electron scattering, the extended transport correction reduces within-group
-scattering cross sections by two orders of magnitude or more. Without this
-reduction, the dominance ratio are so close to unity in practical calculations
-that source iteration has a prohibitively slow convergence rate. Thus, from
-the viewpoint of computational efficiency, it is essential that the extended
-transport correction be applied. Because the Galerkin method treats delta
+that delta function scattering be treated exactly. Second, for electron scattering, 
+the extended transport correction reduces within-group scattering cross sections by 
+two orders of magnitude or more\cite{morel_79}. Without the extended transport
+correction, the high order of the flux moments are very important and
+therefore the source iteration even accelerated by DSA convergence very
+slowly. Because the Galerkin method treats delta
 function  scattering exactly, an extended transport correction of the
 within-group cross-section moments leaves the solution
 invariant\cite{morel_79}. This is a highly desirable property since it allows
@@ -523,28 +486,30 @@ $S_n$ and Galerkin quadrature methods, the computational work required by
 these methods is identical.
 
 We have thus far compared the Galerkin and $S_n$ methods under the assumption
-that the $S_n$ method is used with an $N$-pont quadrature set and a $P_{N-1}$
+that the $S_n$ method is used with an $N$-point quadrature set and a $P_{N-1}$
 cross-section expansion. Before considering more general cases, we must first
-discuss the concept os a cross-section ``expansion'' as it relates to the
-Galerkin and $S_n$ approximations. Our Galerkin method with an $N$-point flux
-representation is said to require cross -section expansions of degree $N-1$.
-This is true insofar as the cross-section mometns through degree $N-$ are used
-but, as previously discussed, we do not actually use the Legendre expansion of
-degree $N-1$ accurately represents the cross section. Conversely, the standard
-$S_n$ method actually uses the Legendre expansion to represent the cross
-section. Thus, with the Galerkin method, one need not be concerned with the
-accuracy of the Legendre expansion, but rather meed only be concerned with the
-accuracy with which $\tilde{S}(\mu)$ approximates $S(\mu)$. This is a very
-desirable property when the cross section is highly forward-peaked, and,
-represent the main advantage of the Galerkin method relative to the standard
-$S_n$ method. For instance, a delta function cross-section expansion of finite
-degree is never converged, yet the scattering source for such a cross section
-is treatedd exactly with the Galerkin method.
+discuss the concept of a cross-section ``expansion'' as it relates to the
+Galerkin and $S_n$ approximations. The Galerkin method with an $N$-point flux
+representation is said to require cross-section expansions of degree $N-1$.
+This is true insofar as the cross-section moments through degree $N-$ are used
+but we do not actually use the Legendre expansion of
+degree $N-1$ to calculate the scattering source. The source is fully
+consistent whit the exact cross section, independent of whether or not the
+Legendre cross-section expansion of degree $N-1$ accurately represents the 
+cross section. Conversely, the standard $S_n$ method actually uses the Legendre 
+expansion to represent the cross section. Thus, with the Galerkin method, one 
+need not be concerned with the accuracy of the Legendre expansion, but rather 
+need only be concerned with the accuracy with which $\tilde{S}(\mu)$ approximates 
+$S(\mu)$. This is a very desirable property when the cross section is highly 
+forward-peaked, and, represent the main advantage of the Galerkin method relative 
+to the standard $S_n$ method. For instance, a delta function cross-section expansion 
+of finite degree is never converged, yet the scattering source for such a cross 
+section is treated exactly with the Galerkin method.
 
 If the $S_n$ method is used with an expansion of degree >$N-1$, the Galerkin
 method obviously require less computational work, but most importantly, we
 argue that in general one cannot expect greater accuracy with the standard
-$S_n$ method simply because more cross-section moments are being usede. On the
+$S_n$ method simply because more cross-section moments are being used. On the
 other hand, if the scattering is isotropic, it is clearly a disadvantage for
 the Galerkin method if one must use $N-1$ expansion coefficients with all but
 the first being zeros. Fortunately, if the cross-section moments, are nonzero
@@ -558,16 +523,16 @@ to be retained:
 &S_m = \sum_{l=0}^L \bs{M}_{m,l} \xi_l,& m=1,\hdots,N \label{40_c}
 \end{align}
 \Cref{40_a,40_b,40_c} are algebraically equivalent to the standard $S_n$
-method with a cross-section expansion of degree $L$. Thus, the galerkin and
-standrad $S_n$ methods require the same computational work, provided that the
+method with a cross-section expansion of degree $L$. Thus, the Galerkin and
+standard $S_n$ methods require the same computational work, provided that the
 cross-section expansion order used in the $S_n$ method is $\leq N-1$. The
 standard $S_n$ method, a quadrature set simply consists of cosines and weights
-that are used to construc the $\bs{M}$ and $\bs{D}$ matrices. In the Galerkin
+that are used to construct the $\bs{M}$ and $\bs{D}$ matrices. In the Galerkin
 method, these matrices are defined in terms of an angular flux interpolation
-scheme. Thus, an $N$-pont Galerkin quadrature set consists of the quadrature
+scheme. Thus, an $N$-point Galerkin quadrature set consists of the quadrature
 points, $\{\mu_m\}_{m=1}^N$, and the matrices $\bs{M}$ and $\bs{D}$, with the
 restrictions that $\bs{D}$ must give the Legendre moments corresponding to a
-specific interpolation of the angula flux values at the quadrature points, and
+specific interpolation of the angular flux values at the quadrature points, and
 $\bs{M}$ must be the inverse of $\bs{D}$. As previously discussed, there is a
 standard quadrature set, called the companion set, that corresponds to each
 Galerkin quadrature set. This set consists of the Galerkin quadrature points
@@ -580,7 +545,7 @@ compose the first row of the $\bs{D}$ matrix:
 &=\sum_{m=1}^N \psi_m w_m
 \end{split}
 \end{equation}
-Standard $S_n$ codes generallly require weights that sum to unity. The
+Standard $S_n$ codes generally require weights that sum to unity. The
 definitions that we have weights that sum to 2. To obtain matrices that are
 consistent with weights that sum to unity, simply scale the $\bs{D}$ matrix by
 $\frac{1}{2}$ and the $\bs{M}$ matrix by 2.
