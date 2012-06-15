@@ -2,3 +2,15 @@
 \contentsline {section}{\numberline {1.1}Purpose}{2}
 \contentsline {section}{\numberline {1.2}Linear Boltzmann equation}{4}
 \contentsline {section}{\numberline {1.3}Organization of the Dissertation}{6}
+\contentsline {chapter}{\numberline {2}Charged particle transport}{8}
+\contentsline {section}{\numberline {2.1}Introduction}{8}
+\contentsline {section}{\numberline {2.2}Boltzmann-Fokker-Planck equation}{8}
+\contentsline {subsection}{\numberline {2.2.1}Derivation of the Boltzmann-Fokker-Planck equation}{8}
+\contentsline {subsection}{\numberline {2.2.2}Fokker-Planck equation as a limit of Boltzmann equation}{10}
+\contentsline {subsection}{\numberline {2.2.3}Limits of the Boltzmann-Fokker-Planck approximation}{13}
+\contentsline {subsubsection}{Introduction}{13}
+\contentsline {subsubsection}{Henyey-Greenstein scattering kernel}{14}
+\contentsline {subsubsection}{Screened Rutherford scattering kernel}{15}
+\contentsline {section}{\numberline {2.3}Fokker-Planck cross section}{18}
+\contentsline {subsection}{\numberline {2.3.1}Legendre polynomial expansion of $\Sigma _s^{\alpha }$}{18}
+\contentsline {section}{\numberline {2.4}Galerkin}{19}
