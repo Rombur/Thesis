@@ -1,0 +1,39 @@
+\chapter*{ABSTRACT}
+\addcontentsline{toc}{part}{ABSTRACT}
+\pagestyle{plain}
+\pagenumbering{roman}
+\setcounter{page}{2}
+\indent In this thesis, we focus on methods to speed up photon-electron transport
+calculations. Since electrons interact with the surrounding environment 
+through Coulomb interaction, the scattering kernel is very forward peaked. 
+This has two consequences: first, the standard Legendre expansion of the 
+scattering kernel requires too many terms for the equation to be solved 
+efficiently. In this work, we introduce the Boltzmann-Fokker-Planck 
+equation which uses a Boltzmann operator for large angle scattering 
+collisions and a Fokker-Planck operator for the forward peaked scattering 
+collisions. We show that the Fokker-Planck operator is an asymptotic 
+limit of the Boltzmann operator when the scattering is forward peaked. 
+Limitations of the Fokker-Planck operator are discussed and Fokker-Planck 
+cross sections are introduced. Then, the importance of the Galerkin 
+quadratures is explained. The second consequence of the forward peaked 
+scattering is that Diffusion Synthetic Acceleration (DSA) does not speed 
+up the calculation like it does when the scattering is weakly anisotropic. 
+In the past, Morel and Manteuffel developed an one dimensional angular 
+multigrid which proved to be very effective when the scattering is 
+highly anisotropic. Later, Pautz et al. generalized this scheme to 
+multidimensional geometries but this method had to be stabilized by 
+a diffusive filter that degrades the spectral radius: when the anisotropy 
+increases the spectral radius goes to unity. In this work, we recast the 
+multidimensional angular multigrid method without the filter (ANMG) as 
+a preconditioner for a Krylov solver. This new method is always stable 
+and effective. It is increasingly more effective and efficient as the 
+anisotropy increases compared to DSA. We also adapt the Modified Interior 
+Penalty (MIP) DSA developed for triangles to arbitrary polygonal meshes 
+using the PieceWise Linear Discontinuous finite elements. The advantages 
+of polygonal cells are that the number of unknowns to mesh a domain can 
+be decreased and adaptive mesh refinement is simplified. This DSA is used 
+at the coarsest level of ANMG. To further speed up the calculation, we 
+compared different preconditioners for MIP. We show that algebraic multigrid 
+methods are much better than more common preconditioners like symmetric
+Gauss-Seidel.
+\pagebreak{}

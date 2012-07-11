@@ -1,0 +1,10 @@
+\section{Conclusions}
+ANMG-DSA preconditioning is much more efficient than DSA preconditioning when
+the scattering kernel is highly forward peaked. Unlike MM, the number of 
+iterations needed to solve a problem with ANMG-DSA does not saturate as the 
+anisotropy increases. However, whereas the extra work due to the additional
+sweeps for MM is at most equivalent to the work done during the sweeps of a
+standard iteration, the extra work for ANMG-DSA is at most a sweep on 
+$\frac{n^2}{6}+n$ different directions. This number must be compared to the 
+$\frac{n^2}{2}+n$ directions of a standard iteration. Thus, ANMG-DSA becomes 
+cheaper compared to standard iteration as the anisotropy increases.

@@ -1,134 +1,54 @@
-\chapter{Angular multigrid}
-\section{Introduction}
-The discrete ordinates method has been shown to be quite accurate for electron
-and coupled electron-photon transport \cite{morel_81,accuracy_1,accuracy_2}, 
-which is required in the development of radiation therapy protocols, satellite 
-electronics shielding, flash x-ray machine design, and a wide variety of other 
-applications. Charged particles interact through Coulomb interactions with the 
-background medium. Such interactions predominately result in extremely small changes 
-in particle direction and energy. These interactions are well characterized by the
-Fokker-Planck limit of the transport equation \cite{fp_limit,morel_96}. In this limit,
-the directional and energy changes are decoupled with the former modeled by the
-continuous scattering operator and the latter modeled by the continuous-slowing-down 
-operator. In this chapter, we consider the discrete-ordinate ($S_n$) angular 
-discretization of the transport equation with a focus upon iterative solution methods 
-for problems with highly forward-peaked scattering characteristic of the 
-Fokker-Planck limit. In this limit, the mean-free-path and the directional 
-change per scattering interaction goes to zero while the momentum transfer 
-(also called the transport-corrected scattering cross section) remains fixed.
-
-When the scattering is highly forward-peaked, solving the $S_n$ transport
-equation can be challenging due to the slow convergence of standard iterative
-algorithm, such as Source Iteration (SI). To speed up iterative convergence,
-acceleration schemes such as Diffusion Synthetic Acceleration (DSA) are used.
-With isotropic or weakly anisotropic scattering, DSA is generally highly
-effective \cite{dsa_ref}, but it becomes completely ineffective in the
-Fokker-Planck limit \cite{multigrid_1d}.
-
-To address this deficiency, a 1-D angular multigrid method for the $S_n$
-equations was developed by Morel and Manteuffel (MM) \cite{multigrid_1d}. This
-method was extremely efficient yielding a maximum spectral radius for 
-a model infinite-medium problem of approximately 0.6 at a cost of
-approximatively twice that of DSA. This maximum spectral radius is approached
-in the Fokker-Planck limit. In this same limit, the spectral radius of DSA
-approaches 1. 
-
-Pautz, Adams, and Morel (PAM) \cite{multigrid_2d} generalized the MM method to
-2-D, but it was found to be stable only for weakly forward-peaked scattering.
-The instability arose from high-frequency spatial error amplification that
-occurred in the transfer of error estimates between angular grids (a sequence
-of different $S_n$ orders). Stabilization was achieved by filtering the error
-estimates via diffusion operators. However, this filtering was expensive and
-significantly degraded the effectiveness of the method such that the spectral
-radius approaches $1$ in the Fokker-Planck limit.  Nonetheless, the method was 
-always more efficient than the DSA method for the test problems considered.
-
-In this chapter, the PAM method with no filtering (PAMNF) is recast as a 
-preconditioner and used in conjunction with the GMRES Krylov method. In this form, 
-stability of the iteration scheme is guaranteed. Krylov subspace methods have been 
-developed to solve large sparse linear systems. Their application to the transport 
-equation has been extensively studied in the past \cite{faber,oliveira,patton,warsa} 
-where the importance of preconditioning was highlighted. In \cite{oliveira}, the 
-authors used successfully the 1D MM angular method as a preconditioner for GMRES and 
-CGS. These preconditioned Krylov methods were significantly faster than MM. In this 
-work, we compute the eigenvalues of preconditioned system for a model problem and 
-compare the spectrum with those of preconditioners based upon transport sweeps and 
-DSA. It is found that relative to these preconditioners, PAMNF preconditioning moves 
-the eigenvalues away from zero while leaving them constrained to a reasonably small 
-portion of the complex plane. These are desirable properties for a preconditioner 
-because the convergence rate of GMRES is proportional to the size of the eigenvalue 
-cluster and/or the distance between the clusters \cite{warsa,campbell}. The 
-eigenvalues close to zero slow down the convergence of GMRES because they can be 
-viewed as single values that are processed one at the time \cite{warsa,campbell}.
-We also compare the convergence rates and efficiency of these preconditioners for 
-various test problems with forward-peaked scattering. We find that PAMNF 
-preconditioning is significantly more efficient than DSA preconditioning, and 
-become increasingly so as the Fokker-Planck limit is approached. However, the 
-number of iterations required for convergence nonetheless increases as this limit 
-is approached. Thus, optimal multigrid performance is not achieved. In spite of 
-this fact, the PAMNF-preconditioned Krylov method achieves good efficiency without 
-the costly filtering associated with the original PAM fixed-point iteration scheme, 
-and appears to be more effective than other existing algorithms for solving the 
-$S_n$ equations with highly forward-peaked scattering.
-
-One key features of the angular multigrid method is that transport sweeps can
-strongly damp the high frequency error modes (upper half of the flux moments)
-with the use of an ``optimal'' transport correction \cite{multigrid_1d}. This
-``optimal'' transport correction is a variant of the well-known extended
-transport correction \cite{lathrop,morel_79}.
-
 \section{Iterative schemes for highly forward-peaked scattering}
-\red{Citer le papier quand il sera publier}
 \subsection{Source Iteration and DSA}
 \Cref{transport_operator} can be solved using the Source Iteration (SI)
-method, which is a Richardson iteration or a Krylov method. The Source
+method, which is a Richardson iteration, or a Krylov method. The Source
 Iteration method at the $k^{th}$ iteration is given by:
 \begin{equation}
-\Phi^{(k+1)} = \bs{DL}^{-1} \bs{M\Sigma}\Phi^{(k)}+\bs{DL}^{-1}Q
+\phi^{(k+1)} = \bs{DL}^{-1} \bs{M\Sigma}\phi^{(k)}+\bs{DL}^{-1}Q
 \end{equation}
-When the scattering ratio $c=\max\(\frac{\Sigma_{s,l}}{\Sigma_t}\)$ is close
-to one, the spectral radius of SI can become arbitrary close to one. Since
+When the scattering ratio $c=\max_{l}\(\frac{\Sigma_{s,l}}{\Sigma_t}\)$ is close
+to one, the spectral radius of SI can become arbitrary close to one and the
+convergence becomes arbitrary slow. Since
 most physical forward-peaked scattering produces $\Sigma_{s,0} >
-\Sigma_{s,1}>\hdots$, the flat modes are the ones which should be accelerated.
-The Diffusion Synthetic Acceleration scheme \cite{dsa_ref} is commonly used to
-accelerate these flat modes. The SI+DSA scheme is given by a transport sweep:
+\Sigma_{s,1}>\hdots$, the flat modes are the ones which should be accelerated
+that is why the DSA scheme is used. The SI+DSA scheme is given by a transport sweep:
 \begin{equation}
-\Phi^{(k+1/2)} = \bs{DL}^{-1}\bs{M\Sigma}\Phi^{(k)} +\bs{DL}^{-1}Q,
+\phi^{(k+1/2)} = \bs{DL}^{-1}\bs{M\Sigma}\phi^{(k)} +\bs{DL}^{-1}Q,
 \label{dsa_sweep}
 \end{equation}
 followed by a diffusion synthetic acceleration for the correction:
 \begin{equation}
-\delta \Phi^{(k)} = \bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow0}
-\(\Phi^{(k+1/2)}-\Phi^{(k)}\),
+\delta \phi^{(k)} = \bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow0}
+\(\phi^{(k+1/2)}-\phi^{(k)}\),
 \label{correction}
 \end{equation}
 yielding the next iterate for the flux moments:
 \begin{equation}
-\Phi^{(k+1)} = \Phi^{(k+1/2)} + \bs{P}_{0/1\rightarrow n} \delta \Phi^{(k)}
+\phi^{(k+1)} = \phi^{(k+1/2)} + \bs{P}_{0/1\rightarrow n} \delta \phi^{(k)}
 \label{si_dsa_it}
 \end{equation}
 Finally, using \crefrange{dsa_sweep}{si_dsa_it}, we obtain:
 \begin{equation}
 \begin{split}
-\Phi^{(k+1)} =& \((\bs{I}+\bs{P}_{0/1\rightarrow n}\bs{\mc{T}}_0^{-1} \bs{R}_{n
+\phi^{(k+1)} =& \((\bs{I}+\bs{P}_{0/1\rightarrow n}\bs{\mc{T}}_0^{-1} \bs{R}_{n
 \rightarrow 0}\bs{DL}^{-1} \bs{M\Sigma} - \bs{P}_{0/1\rightarrow n}
-\bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow 0}\) \Phi^{(k)}\\
-&+ (\bs{I} + bs{P}_{0/1\rightarrow n}\bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow
+\bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow 0}\) \phi^{(k)}\\
+&+ (\bs{I} + \bs{P}_{0/1\rightarrow n}\bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow
 0}) \bs{DL}^{-1} Q
 \end{split}
 \label{dsa_it}
 \end{equation}
 where $\bs{\mc{T}}_0$ is the matrix associated to the DSA operator $\mc{T}_0$,
-$\bs{R}_{n\rightarrow 0}$ is the restriction matrix of $\Phi_n$ (all moments)
-to $\Phi_0$ (only $0^{th}$ moment) and $\bs{P}_{0/1\rightarrow n}$ the
-projection matrix of $\Phi_0$ of $\Phi_1$, depending whether only the zeroth
-or the zeroth and the first moment are accelerated, onto $\Phi_n$. When only
+$\bs{R}_{n\rightarrow 0}$ is the restriction matrix of $\phi_n$ (all moments)
+to $\phi_0$ (only $0^{th}$ moment) and $\bs{P}_{0/1\rightarrow n}$ the
+projection matrix of $\phi_0$ or $\phi_1$, depending whether only the zeroth
+or the zeroth and the first moment are accelerated, onto $\phi_n$. When only
 the zeroth moment is accelerated, the scheme is always stable and the spectral
 radius is max $\(\rho_{iso},\frac{\Sigma_{s,1}}{\Sigma_t}\)$ where
 $\rho_{iso}$ is the spectral radius when the scattering is isotropic. In
 multidimensional geometry, when both the zeroth and the first moments are
 accelerated, the scheme is not always stable and the spectral radius is given
-by $\(\rho_{iso}.\frac{\Sigma_{s,1}}{\Sigma_{t}-\Sigma_{s,1}}\)$
+by $\(\rho_{iso},\frac{\Sigma_{s,1}}{\Sigma_{t}-\Sigma_{s,1}}\)$
 \cite{multisweep}. For highly forward peaked scattering, accelerating the
 zeroth moment is ineffective $\(\frac{\Sigma_{s,1}}{\Sigma_t}\rightarrow 1\)$,
 whereas accelerating both moments can be unstable
@@ -148,7 +68,8 @@ the $S_{n/2}$ equations. These $S_{n/2}$ equations are themselves accelerated
 using $S_{n/4}$ equations. The order of the transport operator is divided by
 two until the $S_4$ equations. The order of the transport operator is divided
 by two until the $S_4$ level. At this point, the $P_1$ equations are used to
-accelerate the $S_4$ equations. Following Morel and Mateuffel, we define:
+accelerate the $S_4$ equations. For the general where $n/2^i$ is odd, we need
+to define:
 \begin{equation}
 Half(n) = \left\{
 \begin{aligned}
@@ -189,6 +110,7 @@ factor being given by:
 \begin{equation}
 \rho_s =\max\(|\Sigma_{s,n/2}|/\Sigma_{s,0},|\Sigma_{s,n/2+1}|/\Sigma_{s,0},
 \hdots,|\Sigma_{s,n-1}/\Sigma_{s,0}\)
+\label{rho_s}
 \end{equation}
 To compare the effectiveness of the angular multigrid method with DSA,
 Fokker-Planck scattering cross sections (\cref{sigma_m_sigma}) can be used. In
@@ -197,14 +119,29 @@ L)$ becomes closer to $\Sigma_{s,0}$. Therefore, in the limit as $L\rightarrow
 \infty$, DSA no longer accelerates the convergence of SI for Fokker-Planck
 scattering (the spectral radius tends to 1.0). However, the spectral radius of
 the angular multigrid method has an upper bound of $0.6$ when $L\rightarrow
-\infty$.
+\infty$. It can be easily shown by using \cref{rho_s} and the fact that for
+Fokker-Planck scattering cross sections the cross-section moments decrease
+monotonically:
+\begin{equation}
+  \begin {split}
+  \rho_s &= \frac{\Sigma_{s,N/2}^*}{\Sigma_{s,0}}\\
+         &= \frac{3N-6}{5N-6}
+  \end{split}
+\end{equation}
+which tends to 0.6 when $N$ goes to infinity.
+
+The MM method converges in less iterations than DSA but it is important to
+look at the cost of each MM iterations: one sweep in each $N$ directions + one
+DSA iteration + one sweep in each ($\frac{N}{2}+\frac{N}{4}+\hdots$)
+directions. Since $\frac{N}{2}+\frac{N}{4}+\hdots \leq N$, the cost of one MM 
+iteration is less than: two sweeps in each $N$ directions + one DSA iteration.
 
 \subsection{Multidimensional geometry: the Pautz-Adams-Morel (PAM) methods}
 In the multidimensional case, DSA becomes unstable when both the zeroth and
 the first flux moments are accelerated and $\frac{\Sigma_{s,1}}{\Sigma_t}\geq
 0.5$, \cite{multisweep}. In \cite{multigrid_2d}, the authors modified the one
 dimensional angular multigrid method by accelerating only the zeroth flux
-moment with the DSA and by using $S_2$ as lowest transport sweep instead of an
+moment with the DSA and by using $S_2$ as lowest transport sweep instead of
 $S_4$. Even so, the proposed method (PAMNF, with ``NF'' for no-filtering) was
 unstable and a filter was needed to stabilize the scheme (PAMF). Therefore,
 the angular multigrid method was modified as follows \cite{multigrid_2d}:
@@ -230,7 +167,7 @@ corrections which are well attenuated by SI alone but it keeps the low
 frequency corrections. The filter is given by:
 \begin{equation}
 \(-\bn\cdot \frac{\beta_f}{3\Sigma_f}\bn + \Sigma_f\) f_{corr} = \Sigma_f
-\(\phi)_{n_2}+P_{n_4\rightarrow n_2}\phi_{n_4}+\hdots+P_{2\rightarrow
+\(\phi_{n_2}+P_{n_4\rightarrow n_2}\phi_{n_4}+\hdots+P_{2\rightarrow
 n_2}\phi_2\)
 \end{equation}
 where $\Sigma_f$ is the filter cross section and $\beta_f$ is the filter
@@ -250,7 +187,7 @@ equations with highly-forward peaked scattering and to use a Krylov solver
 instead. When using a Krylov solver, \cref{transport_operator} is rewritten as
 follows:
 \begin{equation}
-(\bs{I}-\bs{DL}^{-1}\bs{M\Sigma}\Phi = \bs{DL}^{-1}Q
+(\bs{I}-\bs{DL}^{-1}\bs{M\Sigma})\phi = \bs{DL}^{-1}Q
 \label{krylov_transport_operator}
 \end{equation}
 \Cref{krylov_transport_operator} is \cref{transport_operator} preconditioned
@@ -260,7 +197,7 @@ system of equations solved with a Krylov method is:
 \begin{equation}
 \begin{split}
 &\((\bs{I} + \bs{P}_{0/1\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow
-0})(\bs{I}-\bs{DL}^{-1}\bs{M\Sigma})\) \Phi=\\
+0})(\bs{I}-\bs{DL}^{-1}\bs{M\Sigma})\) \phi=\\
 &(\bs{I}+\bs{P}_{0/1\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow 0})
 \bs{DL}^{-1} Q
 \end{split}
@@ -286,46 +223,46 @@ for a Krylov solver. First, we write the SI sweep equation, the successive
 corrections and the new iterate built from the sweep values plus all the
 successive corrections:
 \begin{align}
-& \Phi_n^{(k+1/2)} = \bs{D}_n\bs{L}_n^{-1}\bs{M}_n\bs{\Sigma}_n\Phi_n^{(k)} +
+& \phi_n^{(k+1/2)} = \bs{D}_n\bs{L}_n^{-1}\bs{M}_n\bs{\Sigma}_n\phi_n^{(k)} +
 \bs{D}_n \bs{L}_n^{-1} Q\\
-& \delta \Phi_{n_2}^{(k)} = \bs{D}_n\bs{L}_{n_2}^{-1} \bs{M}_{n_2}
+& \delta \phi_{n_2}^{(k)} = \bs{D}_n\bs{L}_{n_2}^{-1} \bs{M}_{n_2}
 \bs{\Sigma}_{n_2} \bs{R}_{n\rightarrow n_2}
-\(\Phi_n^{(k+1/2)}-\Phi_n^{(k)}\)\\
+\(\phi_n^{(k+1/2)}-\phi_n^{(k)}\)\\
 & \hdots\\
-& \delta \Phi_2^{(k)} = \bs{D}_2 \bs{L}_2^{-1} \bs{M}_2 \bs{\Sigma}_2
-\bs{R}_{4\rightarrow 2}\delta \Phi_4\\
-& \delta \Phi_0^{(k)} = \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}\delta
-\Phi_2^{(k)}\\
-& \Phi_n^{(k+1)} = \Phi_n^{(k+1/2)} + \bs{P}_{n_2\rightarrow n} \delta
-\Phi_{n_2}^{(k)} + \hdots + \bs{P}_{2\rightarrow n} \delta \Phi_2^{(k)} +
-\bs{P}_{0\rightarrow n} \delta \Phi_0^{(k)} \label{mom_update}
+& \delta \phi_2^{(k)} = \bs{D}_2 \bs{L}_2^{-1} \bs{M}_2 \bs{\Sigma}_2
+\bs{R}_{4\rightarrow 2}\delta \phi_4\\
+& \delta \phi_0^{(k)} = \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}\delta
+\phi_2^{(k)}\\
+& \phi_n^{(k+1)} = \phi_n^{(k+1/2)} + \bs{P}_{n_2\rightarrow n} \delta
+\phi_{n_2}^{(k)} + \hdots + \bs{P}_{2\rightarrow n} \delta \phi_2^{(k)} +
+\bs{P}_{0\rightarrow n} \delta \phi_0^{(k)} \label{mom_update}
 \end{align}
-Now, all the corrections $\delta \Phi_0^{(k)}$ through $\delta \Phi_{n_2}^{k}$
+Now, all the corrections $\delta \phi_0^{(k)}$ through $\delta \phi_{n_2}^{k}$
 are substituted into the moment update equation, \cref{mom_update}, yielding:
 \begin{equation}
 \begin{split}
-\Phi_n^{(k+1)} =& \bs{T}_n \Phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q +
+\phi_n^{(k+1)} =& \bs{T}_n \phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q +
 \bs{P}_{n_2\rightarrow n}\(\bs{T}_{n_2}\bs{R}_{n\rightarrow n_2}
-\(\Phi_n^{(k+1/2)}-\Phi_n^{(k)}\)\)+\hdots\\
-&+\bs{P}_{2\rightarrow n} \bs{T}_2\bs{R}_{4\rightarrow 2} \delta \Phi_4^{(k)}
+\(\phi_n^{(k+1/2)}-\phi_n^{(k)}\)\)+\hdots\\
+&+\bs{P}_{2\rightarrow n} \bs{T}_2\bs{R}_{4\rightarrow 2} \delta \phi_4^{(k)}
 + \bs{P}_{0\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0} \delta
-\Phi_2^{(k)}\\
-=& \bs{T}_n\Phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q + \bs{P}_{n_2\rightarrow n}
-\(\bs{T}_{n_2} \bs{R}_{n\rightarrow n_2} \(\bs{T}_n \Phi_n^{(k)} +\bs{D}_n
-\bs{L}_n^{-1} Q -\Phi_n^{(k)}\)\)\\
-&+\hdots+\bs{P}_{2\rightarrow n} \bs{T})2 \bs{R}_{4\rightarrow 2}\( \bs{T}_4
-\bs{R}_{8\rightarrow 4} \(\hdots\(\bs{T}_n \Phi_n^{(k)} + \bs{D}_n
-\bs{L}_n^{-1} Q -\Phi_n^{(k)}\)\)\)\\
+\phi_2^{(k)}\\
+=& \bs{T}_n\phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q + \bs{P}_{n_2\rightarrow n}
+\(\bs{T}_{n_2} \bs{R}_{n\rightarrow n_2} \(\bs{T}_n \phi_n^{(k)} +\bs{D}_n
+\bs{L}_n^{-1} Q -\phi_n^{(k)}\)\)\\
+&+\hdots+\bs{P}_{2\rightarrow n} \bs{T}_2 \bs{R}_{4\rightarrow 2}\( \bs{T}_4
+\bs{R}_{8\rightarrow 4} \(\hdots\(\bs{T}_n \phi_n^{(k)} + \bs{D}_n
+\bs{L}_n^{-1} Q -\phi_n^{(k)}\)\)\)\\
 &+ \bs{P}_{0\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
-\(\bs{T}_2 \bs{R}_{4\rightarrow 2}\(\hdots\( \bs{T}_N\Phi_n^{(k)} + \bs{D}_n
-\bs{L}_n^{-1}Q -\Phi_n^{(k)}\)\)\)\\
+\(\bs{T}_2 \bs{R}_{4\rightarrow 2}\(\hdots\( \bs{T}_N\phi_n^{(k)} + \bs{D}_n
+\bs{L}_n^{-1}Q -\phi_n^{(k)}\)\)\)\\
 =& \( \bs{T}_n + \bs{P}_{n_2\rightarrow n} \bs{T}_{n_2} \bs{R}_{n\rightarrow
 n_2} (\bs{T}_n -\bs{I}) + \hdots + \bs{P}_{2\rightarrow n} \bs{T}_2
 \bs{R}_{4\rightarrow 2} \(\bs{T}_4 \bs{R}_{8\rightarrow
 4}\(\hdots\(\bs{T}_n-\bs{I}\)\)\)\right.\\
 &\left.+\bs{P}_{0\rightarrow n}\bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
 \bs{R}_{2\rightarrow 0} \(\bs{T}_2 \bs{R}_{4\rightarrow
-2}\(\hdots\(\bs{T}_n-\bs{I}\)\)\)\) \Phi_n^{(k)} +
+2}\(\hdots\(\bs{T}_n-\bs{I}\)\)\)\) \phi_n^{(k)} +
 \(bs{I}+\bs{P}_{n_2\rightarrow n}\bs{T}_{n_2} \bs{R}_{n\rightarrow n_2}+
 \hdots +\right.\\
 &\bs{P}_{2\rightarrow n} \bs{T}_2 \bs{R}_{4\rightarrow 2} \(\bs{T}_4
@@ -339,15 +276,15 @@ n_2}\)\)\)\) \bs{D}_n \bs{L}^{-1} Q
 where we defined $\bs{T}_n = \bs{D}_n \bs{L}_n^{-1} \bs{M}_n \bs{\Sigma}_n$
 (the subscript $n$ denotes the $S_n$ level). Finally, the linear system to be
 solved is given by:
-\begin{equation}
-\bs{P}^{MG/DSA}(\bs{I}-\bs{T}_n) \Phi_n = \bs{P}^{MG/DSA}\bs{D}_n\bs{L}_n^{-1}
-Q
-\label{p_mg_dsa}
-\end{equation}
-where the multigrid preconditioner $P^{MG/DSA}$ is given by:
+\begin{align}
+  &\(\bs{I}-\bs{T}_n\) \bs{P}^{MG/DSA} \xi_n = \bs{D}_n \bs{L}_n^{-1} Q
+  \label{p_mg_dsa_1}\\
+  &\bs{P}^{MG/DSA} \phi_n = \xi_n \label{p_mg_dsa_2}
+\end{align}
+where the multigrid preconditioner $\bs{P}^{MG/DSA}$ is given by:
 \begin{equation}
 \begin{split}
-&P^{MG/DSA} =\\
+  &\bs{P}^{MG/DSA} =\\
 &\(\bs{I}+\bs{P}_{n_2\rightarrow n} \bs{T}_{n_2}
 \(\bs{I}+\bs{P}_{n_4\rightarrow n_2}
 \bs{T}_{n_4}\(\hdots\(\bs{I}+\bs{P}_{0\rightarrow 2}
@@ -358,10 +295,10 @@ n_4}\) \bs{R}_{n\rightarrow n_2}\)
 At this point, it is necessary to choose a DSA for implementation. Various DSA
 schemes have been reviewed in \cite{dsa_ref,multisweep,consistent_p1,larsen_91,
 wareing,trans_87}. We have chosen to employ the Modified Interior Penalty
-(MIP) DSA scheme developed by Wang and Ragusa \cite{mip}. The MIP-DSA scheme
-is based on a discretization of the diffusion equation rather than the $P1$
-equations. More specifically, MIP uses a bilinear \emph{discontinuous} trial
-space, which is the same trial space as the one used for the $S_n$ transport
+(MIP) DSA scheme developed by Wang and Ragusa \cite{mip} (see next Chapter). 
+The MIP-DSA scheme is based on a discretization of the diffusion equation rather 
+than the $P1$ equations. More specifically, MIP uses a bilinear \emph{discontinuous} 
+trial space, which is the same trial space as the one used for the $S_n$ transport
 equations. However, the MIP equations are not fully consistent with the
 bilinear-discontinuous spatial discretization of the transport equation. Full
 consistency requires discretization of the $P1$ equations. The consistency
@@ -373,11 +310,12 @@ gradient technique, preconditioned with SSOR to solve the MIP equation.
 
 \subsection{ANMG-P1SA}   
 Using $S_4$ as the lowest $S_n$ order followed by a $P1SA$ acceleration
-(instead $S_2$ followed by DSA) in \cref{p_mg_dsa} yields the following linear
-system:
-\begin{equation}
-P^{MG/P1DSA}(\bs{I}-\bs{T}_n) \Phi_n = P^{MG/P1SA} \bs{D}_n \bs{L}_n^{-1} Q
-\end{equation}
+(instead $S_2$ followed by DSA) in \cref{p_mg_dsa_1,p_mg_dsa_2} yields the 
+following linear system:
+\begin{align}
+  &\(\bs{I}-\bs{T}_n\)\bs{P}^{MG/P1SA} \xi_n = \bs{D}_n\bs{L}_n^{-1} Q\\
+  & \bs{P}^{MG/P1SA} \phi_n = \xi_n
+\end{align}
 where the multigrid preconditioner $P^{MG/P1SA}$ is now given by:
 \begin{equation}
 \begin{split}
@@ -386,8 +324,7 @@ where the multigrid preconditioner $P^{MG/P1SA}$ is now given by:
 \(\bs{I}+\bs{P}_{n_4\rightarrow n_2}
 \bs{T}_{n_4}\(\hdots\(\bs{I}+\bs{P}_{1\rightarrow 4}\bs{\mc{T}}_1^{-1}
 \bs{R}_{4\rightarrow 1}\)\hdots\)\bs{R}_{n_2\rightarrow n_4}\)
-\bs{R}_{n\rightarrow n_2}\) \(\bs{I}+\bs{P}_{n_2\rightarrow n}
-\bs{T}_{n_2}\)
+\bs{R}_{n\rightarrow n_2}\) 
 \end{split}
 \end{equation}
 where $\bs{\mc{T}}_1$ is the matrix associated to the $P1SA$ operator
@@ -397,3 +334,50 @@ definite (PD), but not symmetric. In principle, the analytic $P1$ equations
 can be put in a second-order diffusion form and discretized using the MIP
 approach. However, the first moments of the angular flux will be treated wit
 less accuracy than the zeroth moment, which is undesirable.
+
+\section{Eigenspectrum comparisons}
+In this section, we compare the eigenvalue spectrum for a given model problem.
+This is instructive because the convergence of GMRES is proportional to the
+relative radii of the eigenvalue clusters and/or the maximal distance between
+two clusters; furthermore, the eigenvalues close to zero are considered as
+outliers that are processed one at a time and increase the asymptotic error
+constant \cite{campbell}.  We use a $S_8$ Gauss-Legendre-Chebyshev Galerkin
+triangular quadrature. The domain, a 5$cm-$side square uniformly discretized
+using a 25 cells, is homogeneous. Fokker-Planck cross sections, with
+$\alpha=1$ and $L=8$, are employed. For the spatial discretization, BiLinear
+Discontinuous (BLD) finite elements are used (see next Chapter). $\Sigma_t$ 
+is chosen to be equal to $\Sigma_{s,0}$. Figs. \ref{eig_sweep}-\ref{eig_anmg} 
+show the eigenvalue spectrum for sweep preconditioning (Fig. \ref{eig_sweep}), 
+DSA preconditioning (Fig. \ref{eig_dsa}), and angular multigrid preconditioning
+(Fig. \ref{eig_anmg}). The eigenvalues were obtained using implicit QR
+decomposition \cite{implicitQR}. Even though the global matrices are never
+formed in transport solution techniques, we constructed them here for the
+purposes of the eigenspectrum analysis (specifically, the $j^{th}$ column of
+any matrix $A$ is obtained by multiplying it by the canonical basis vector
+$e_j$).
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{./Anmg/s8_5_5}
+  \caption{Eigenspectrum of the sweep preconditioned system}
+  \label{eig_sweep}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{./Anmg/d_s8_5_5}
+  \caption{Eigenspectrum of the DSA preconditioned system}
+  \label{eig_dsa}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{./Anmg/p_s8_5_5}
+  \caption{Eigenspectrum of the ANMG (DSA variant) preconditioned system}
+  \label{eig_anmg}
+\end{figure}
+On these figures, we can note that sweep preconditioning is not effective as
+many eigenvalues are located near zero. DSA moves the eigenvalues away from
+zero. This explains the faster convergence of GMRES with DSA preconditioning
+compared to sweep preconditioning. ANMG moves the eigenvalues even further
+aways from zero than DSA and clusters them more compared to DSA. It is obvious
+from these figures that ANMG preconditioning should converge much faster than
+DSA preconditioning.
+

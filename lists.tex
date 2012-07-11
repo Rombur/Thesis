@@ -1,0 +1,79 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  New template code for TAMU Theses and Dissertations starting Fall 2012.  
+%  For more info about this template or the 
+%  TAMU LaTeX User's Group, see http://www.howdy.me/.
+%
+%  Author: Wendy Lynn Turner 
+%	 Version .9.2
+%  Last updated 6/21/2012
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%       TABLE OF CONTENTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\addcontentsline{toc}{part}{TABLE OF CONTENTS}  % Needs to be set to part, so the TOC doesnt add 'CHAPTER ' prefix in the TOC.
+\begin{singlespace}
+\renewcommand\contentsname{\normalfont} {\centerline{TABLE OF CONTENTS}}
+
+
+
+
+%%%%%%%%%%%%%  Adds Page above the page number in TOC
+\setlength{\cftaftertoctitleskip}{1em}
+\renewcommand{\cftaftertoctitle}{%
+\hfill{\normalfont {Page}\par}}
+
+
+
+\tableofcontents
+
+\end{singlespace}
+
+\pagebreak{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                           lIST OF FIGURES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\addcontentsline{toc}{part}{LIST OF FIGURES}  % Needs to be set to part, so the TOC doesnt add 'CHAPTER ' prefix in the TOC.
+
+
+\renewcommand{\cftloftitlefont}{\center\normalfont\MakeUppercase}
+
+\setlength{\cftbeforeloftitleskip}{-12pt} %% Positions the LOF title vertically to match the chapter titles
+
+\renewcommand{\cftafterloftitleskip}{12pt}
+\renewcommand{\cftafterloftitle}{%
+\\[\baselineskip]\mbox{}\hfill{\normalfont Page}}
+\begin{center}
+\listoffigures
+\end{center}
+\pagebreak{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                           lIST OF TABLES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+\addcontentsline{toc}{part}{LIST OF TABLES}  % Needs to be set to part, so the TOC doesnt add 'CHAPTER ' prefix in the TOC.
+
+
+\renewcommand{\cftlottitlefont}{\center\normalfont\MakeUppercase}
+
+\setlength{\cftbeforelottitleskip}{-12pt} %% Positions the LOF title vertically to match the chapter titles
+
+\renewcommand{\cftafterlottitleskip}{12pt}
+\renewcommand{\cftafterlottitle}{%
+\\[\baselineskip]\mbox{}\hfill{\normalfont Page}}
+
+\begin{center}
+
+\listoftables
+
+\end{center}
+
+\pagebreak{}  % Need this for the pagenumbering to be correct. 

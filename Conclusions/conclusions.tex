@@ -1,0 +1,60 @@
+\chapter{\uppercase{Conclusions and future work}}
+\section{Conclusions}
+In this dissertation, we first recalled the development of the
+Boltzmann-Fokker-Planck and the limitations of the Fokker-Planck operators.
+The Boltzmann-Fokker-Planck was introduced for charged particle transport
+because the scattering kernel is so forward peaked that a standard Legendre
+expansion of the scattering kernel would require hundreds of terms. We also
+shown that the Fokker-Planck operator is an asymptotic limit of the Boltzmann 
+operator when the scattering is forward peaked and that the energy transfer 
+during a collision tends to zero. The Fokker-Planck operator is used to model 
+the highly forward-peaked scattering collisions whereas the Boltzmann operator 
+is used for the wide angle scattering collisions. The Fokker-Planck operator 
+simplifies the calculation of the transport equation but it is valid only if 
+the kernel is peaked enough. For instance, realistic screened Rutherford 
+cross sections are not peaked enough. Then, we introduced the Fokker-Planck 
+cross sections which mimic the Fokker-Planck operator when using the Boltzmann
+operator. Since Fokker-Planck cross sections are the most forward peaked cross
+section (transport correction makes the delta scattering equivalent to pure
+absorption), we used them for our tests. Finally, we introduced the Galerkin 
+quadratures. Galerkin quadratures are capital to have correct results when 
+the scattering is highly anisotropic. Galerkin quadratures are equivalent
+to standard quadratures when the scattering is weakly anisotropic but when the
+scattering is highly anisotropic, using a standard quadrature can introduce
+non physical solutions.
+
+After that, we introduced the angular multigrid methods to speed up
+the calculation in highly anisotropic medium. When the medium is highly
+anisotropic, the Diffusion Synthetic Acceleration (DSA) is not effective
+anymore because it cannot speed up the convergence of high order of the 
+flux moments. The initial work on this topic was done by Morel and Manteuffel. 
+They developed an one dimensional angular multigrid method that they used to
+accelerate the convergence of Source Iteration (SI). This angular multigrid 
+method uses an $S_{n/2}$ sweep to correct the $S_n$ sweep. The $S_{n/2}$ 
+correction is itself corrected by a $S_{n/4}$ correction, etc. until the 
+$S_4$ correction is corrected by $P1$ equations. They shown that when 
+Fokker-Planck cross sections are used the spectral radius of the new 
+method is bounded by 0.6 whereas the spectral radius of DSA can become 
+arbitrary close to unity. Pautz et al. generalized the angular multigrid 
+method to multidimensional geometries. In this case, the successive correction
+used an $S_2$ sweep before DSA. Unfortunately, the generalized method was 
+unstable. To stabilize it, the corrections need to be filter with a 
+diffusion equation. The effect of this diffusive filter is take out the high 
+frequencies of the correction. This method is better than DSA but when the
+anisotropy increases, the spectral radius can become arbitrary close to one.
+In this research, we recast the angular multigrid method for
+multidimensional geometries without filtering as a preconditioner for a Krylov
+subspace solver. The new method is always more effective and efficient than 
+DSA and is more effective as the anisotropy increases but unlike the one 
+dimensional method, the number of iterations does not saturate with 
+increasing anisotropy.
+
+We also extended the Modified Interior Penalty (MIP) DSA
+developed for triangular cells to arbitrary polygonal meshes using the
+PieceWise Linear Discontinuous (PWLD) finite elements. Arbitrary polygonal
+meshes can potentially decrease the number of unknowns to mesh a domain and
+they simplifies adaptive mesh refined by suppressing hanging nodes. Then, 
+we compared the Algebraic MultiGrid (AMG) preconditioner with the more 
+common Symmetric Gauss-Seidel (SGS) preconditioner. AMG was shown to be much 
+more efficient than SGS. Among the different AMG methods tested the AGMG 
+was the fastest and about 20 times faster than CG used without preconditioning.

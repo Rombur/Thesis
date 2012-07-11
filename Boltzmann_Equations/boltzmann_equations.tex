@@ -1,4 +1,4 @@
-\chapter{Charged particle transport}
+\chapter{\uppercase{Charged particle transport}}
 \section{Introduction}
 For charged particle transport, the scattering kernel is very peaked about both
 a zero energy transfer and a zero direction change. However, because the
@@ -102,12 +102,17 @@ with:
 \end{equation}
 Assuming that $\phi_{l,m}(E')$ is a smooth function, we can perform the
 following Taylor expansions:
-\begin{align}
-&E'\sigma_{s,sing}(\mu_c,E')\phi_{l,m} (E') = E\sigma_{s,sing}(\mu_c,E)
-\phi_{l,m}(E) + (E'-E)\frac{\partial}{\partialE}\(E\sigma_{s,sing}(\mu_c,E)
-\phi_{l,m}(E)\)+\hdots\\
-& P_l(\mu_L) = P_l(1)-(1-\mu_L)P_l'(1)+\hdots
-\end{align}
+\begin{equation}
+  \begin{split}
+    &E'\sigma_{s,sing}(\mu_c,E')\phi_{l,m} (E') = E\sigma_{s,sing}(\mu_c,E)
+    \phi_{l,m}(E) +\\ 
+    &(E'-E)\frac{\partial}{\partial E}\(E\sigma_{s,sing}(\mu_c,E)
+    \phi_{l,m}(E)\)+\hdots
+  \end{split}
+\end{equation}
+\begin{equation}
+  P_l(\mu_L) = P_l(1)-(1-\mu_L)P_l'(1)+\hdots
+\end{equation}
 with:
 \begin{align}
 & P_l(1)=1 \label{p_l}\\
@@ -146,9 +151,8 @@ Finally, we get the BFP equation:
 \begin{equation}
 \begin{split}
 &\bo\cdot\psi+(\Sigma_{s,reg}+\Sigma_a)\psi=\sum_{l=0}^{\infty}\sum_{m=-l}^l
-Y_l^m(\bo)\int_E^{E/\alpha}\Sigma_{s,l,reg}(E'\rightarrow
-E)\phi_{l,m}(E')dE'+\\
-&\frac{\partial}{\partial E}S\psi+T\[\frac{\partial}{\partial
+Y_l^m(\bo)\int_E^{E/\alpha}\Sigma_{s,l,reg}(E'\rightarrow E) \times \\
+&\phi_{l,m}(E')dE'+ \frac{\partial}{\partial E}S\psi+T\[\frac{\partial}{\partial
 \mu}(1-\mu^2) \frac{\partial}{\partial
 \mu}+\frac{1}{(1-\mu^2)}\frac{\partial^2}{\partial\varphi^2}\]\psi+Q
 \end{split}
@@ -194,13 +198,13 @@ where $\hat{\Sigma}_s(x,E',y)$ is $O(1)$ and $\frac{\partial
 This scaling implies that the cross section is large and very peaked about
 $\mu_0=1$ and $E=E'$. The scaled transport equation is given by:
 \begin{equation}
-\begin{split}
-&\bo\cdot\bn\psi+\(\Sigma_a+\frac{\hat{\Sigma}_s}{\Delta}\)\psi=\\
-&\frac{1}{\Delta}\sum_{l=0}^{\infty}\sum_{m=-l}^{l}Y_l^m
-\int_0^{\infty}dE'\ \phi_{l,m}(E')\int_{-1}^1d\mu_0\
-P_l(\mu_0)\hat{\Sigma}_s\(\frac{1-\mu_0}{\delta},E',\frac{E'-E}{\epsilon}\)+Q
-\end{split}
-\label{scaled_transport}
+  \begin{split}
+    &\bo\cdot\bn\psi+\(\Sigma_a+\frac{\hat{\Sigma}_s}{\Delta}\)\psi= \frac{1}{\Delta}
+    \sum_{l=0}^{\infty}\sum_{m=-l}^{l}Y_l^m \times\\
+    &\int_0^{\infty}dE'\ \phi_{l,m}(E')\int_{-1}^1d\mu_0\
+    P_l(\mu_0)\hat{\Sigma}_s\(\frac{1-\mu_0}{\delta},E',\frac{E'-E}{\epsilon}\)+Q
+  \end{split}
+  \label{scaled_transport}
 \end{equation}
 We are interested in the asymptotic limit when the three parameters
 $\epsilon,\delta$ and $\Delta$ approach zero. Let us consider the following term:
@@ -341,7 +345,7 @@ We note that $\Sigma_s(\br,E) \psi(\br,\bo,E)$ has canceled out in this equation
 transport in an isotropic medium. Like said previously, the fact that the
 scattering kernel is peaked in energy ($E'\approx E$) and angle ($\mu_0\approx
 1$) is a necessary but not sufficient condition for \cref{final} to be an
-asymptotic limit of \cred{transport_p}. The additional sufficient condition 
+asymptotic limit of \cref{transport_p}. The additional sufficient condition 
 is that the fall off is either exponential or strongly algebraic. Assuming that 
 \cref{final} is a valid asymptotic limit, it is clear from 
 \crefrange{T}{R} that $\epsilon$, $\delta$ and $\Delta$ must tend to zero 

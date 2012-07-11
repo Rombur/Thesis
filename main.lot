@@ -1,0 +1,16 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\vskip -10pt
+\contentsline {table}{\numberline {3.1}{\ignorespaces Comparison of the number of GMRES iterations needed in ANMG-DSA and ANMG-$P1$SA\relax }}{57}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Comparison of the number of GMRES iterations needed to solve the volumetric source test problem using sweep preconditioning (S), DSA preconditioning, and ANMG-DSA preconditioning.\relax }}{58}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Elapsed time (s) to solve the volumetric source test problem using sweep preconditioning (S), DSA preconditioning, and ANMG-DSA preconditioning\relax }}{59}
+\contentsline {table}{\numberline {3.4}{\ignorespaces GMRES iterations to solve the heterogeneous problem using sweep preconditioning (S), DSA preconditioning, and ANMG-DSA preconditioning.\relax }}{60}
+\contentsline {table}{\numberline {3.5}{\ignorespaces Elapsed time (s) to solve the heterogeneous problem using sweep preconditioning (S), DSA preconditioning, and ANMG-DSA preconditioning.\relax }}{61}
+\addvspace {10\p@ }
+\vskip -10pt
+\contentsline {table}{\numberline {4.1}{\ignorespaces Orthogonal length of the cell for different cells.\relax }}{70}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Comparison of preconditioners with quadrilateral cells.\relax }}{88}
+\contentsline {table}{\numberline {4.3}{\ignorespaces Comparison of preconditioners with polygonal cells.\relax }}{90}
+\contentsline {table}{\numberline {4.4}{\ignorespaces Comparison of preconditioners with heterogeneous medium.\relax }}{92}
+\addvspace {10\p@ }

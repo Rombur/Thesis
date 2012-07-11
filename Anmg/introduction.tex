@@ -1,0 +1,84 @@
+\chapter{\uppercase{Angular Multigrid Preconditioner for $S_n$ equations with Highly
+Forward-Peaked Scattering Kernel}}
+\section{Introduction}
+The discrete ordinates method has been shown to be quite accurate for electron
+and coupled electron-photon transport \cite{morel_81,accuracy_1,accuracy_2}, 
+which is required in the development of radiation therapy protocols, satellite 
+electronics shielding, flash x-ray machine design, and a wide variety of other 
+applications. Charged particles interact through Coulomb interactions with the 
+background medium. Such interactions predominately result in extremely small changes 
+in particle direction and energy. These interactions are well characterized by the
+Fokker-Planck limit of the transport equation \cite{fp_limit,morel_96}. In this 
+limit, the directional and energy changes are decoupled with the former modeled 
+by the continuous scattering operator and the latter modeled by the continuous 
+slowing-down operator. In this chapter, we consider the discrete-ordinate ($S_n$) 
+angular discretization of the transport equation with a focus upon iterative 
+solution methods for problems with highly forward-peaked scattering characteristic 
+of the Fokker-Planck limit. In this limit, the mean-free-path and the directional 
+change per scattering interaction goes to zero while the momentum transfer 
+(also called the transport-corrected scattering cross section) remains fixed.
+
+When the scattering is highly forward-peaked, solving the $S_n$ transport
+equation can be challenging due to the slow convergence of standard iterative
+algorithm, such as Source Iteration (SI). To speed up iterative convergence,
+acceleration schemes such as Diffusion Synthetic Acceleration (DSA) are used.
+With isotropic or weakly anisotropic scattering, DSA is generally highly
+effective \cite{dsa_ref}. This is because, in such case, the quickly varying
+error modes are strongly attenuated by the transport sweep whereas the
+diffusion operator attenuates the slowly varying error modes. However, DSA is
+completely ineffective in the Fokker-Planck limit \cite{multigrid_1d} because
+the diffusion operator does not attenuate all the slowly varying anymore.
+
+To address this deficiency, a 1-D angular multigrid method for the $S_n$
+equations was developed by Morel and Manteuffel (MM) \cite{multigrid_1d}. This
+method was extremely efficient yielding a maximum spectral radius for 
+a model infinite-medium problem of approximately 0.6 at a cost of
+approximatively twice that of DSA. This maximum spectral radius is approached
+in the Fokker-Planck limit. In this same limit, the spectral radius of DSA
+approaches 1. 
+
+Pautz, Adams, and Morel (PAM) \cite{multigrid_2d} generalized the MM method to
+2-D, but it was found to be stable only for weakly forward-peaked scattering.
+The instability arose from high-frequency spatial error amplification that
+occurred in the transfer of error estimates between angular grids (a sequence
+of different $S_n$ orders). Stabilization was achieved by filtering the error
+estimates via diffusion operators. However, this filtering was expensive and
+significantly degraded the effectiveness of the method such that the spectral
+radius approaches $1$ in the Fokker-Planck limit.  Nonetheless, the method was 
+always more efficient than the DSA method for the test problems considered.
+
+In this chapter, the PAM method with no filtering (PAMNF) is recast as a 
+preconditioner and used in conjunction with the GMRES Krylov method. In this form, 
+stability of the iteration scheme is guaranteed. Krylov subspace methods have been 
+developed to solve large sparse linear systems. Their application to the transport 
+equation has been extensively studied in the past \cite{faber,oliveira,patton,warsa} 
+where the importance of preconditioning was highlighted. In \cite{oliveira}, the 
+authors used successfully the 1D MM angular method as a preconditioner for GMRES 
+and CGS. These preconditioned Krylov methods were significantly faster than MM. 
+In this research, we compute the eigenvalues of preconditioned system for a model 
+problem and compare the spectrum with those of preconditioners based upon transport 
+sweeps and DSA. It is found that relative to these preconditioners, PAMNF 
+preconditioning moves the eigenvalues away from zero while leaving them 
+constrained to a reasonably small portion of the complex plane. These are 
+desirable properties for a preconditioner because the convergence rate of GMRES 
+is proportional to the size of the eigenvalue cluster and/or the distance between 
+the clusters \cite{warsa,campbell}. The eigenvalues close to zero slow down the 
+convergence of GMRES because they can be viewed as single values that are processed 
+one at the time \cite{warsa,campbell}. We also compare the convergence rates and 
+efficiency of these preconditioners for various test problems with forward-peaked 
+scattering. We find that PAMNF preconditioning is significantly more efficient 
+than DSA preconditioning, and become increasingly so as the Fokker-Planck limit 
+is approached. However, the number of iterations required for convergence 
+nonetheless increases as this limit is approached. Thus, optimal multigrid 
+performance is not achieved. In spite of this fact, the PAMNF-preconditioned 
+Krylov method achieves good efficiency without the costly filtering associated 
+with the original PAM fixed-point iteration scheme, and appears to be more 
+effective than other existing algorithms for solving the $S_n$ equations with 
+highly forward-peaked scattering.
+
+One key features of the angular multigrid method is that transport sweeps can
+strongly damp the high frequency error modes (upper half of the flux moments)
+with the use of an ``optimal'' transport correction \cite{multigrid_1d}. This
+``optimal'' transport correction is a variant of the well-known extended
+transport correction \cite{lathrop,morel_79}.
+
