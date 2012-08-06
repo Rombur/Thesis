@@ -1,19 +1,19 @@
 \section{Future work}
 There are several ways to continue this work:
 \begin{description}
-  \item[Extension for medical applications:] Modern radiotherapy uses the
-    Intensity Modulated Radiation Therapy (IMRT) as one of the methods to
+  \item[Extension for medical applications:] Modern radiotherapy uses Intensity 
+    Modulated Radiation Therapy (IMRT) as one of the methods to
     treat cancer. IMRT uses photons to ionize the water present in the cells
     to form free radicals. These free radicals will damage the DNA of the
-    cancer cells causing them to die. IMRT allows to have several beams with 
+    cancerous cells causing them to die. IMRT allows to have several beams with 
     different intensity  profiles. To optimize the intensity profile, it is 
     very common to divide the beams in small beamlets of constant intensity. 
     In real application, the number of beamlets is around a few thousands. 
     The optimization of the position and the intensity of all these beamlets
     is a very complex problem and a lot of objective functions and 
-    constraints have been proposed \cite{math,complexity,minima,dose-volume}.
+    constraints have been proposed \cite{minima,dose-volume,complexity,math}.
     Due to the large number of variables, the number of dose calculation is
-    very high and any speed up of this calculation can significantly decreases
+    very high and any speed up of this calculation can significantly decrease
     the time needed for the optimization to complete.
     To be able to compute the dose in a human body, the existing code needs 
     to be extended to handle three dimensional geometries. BiLinear 
@@ -24,14 +24,13 @@ There are several ways to continue this work:
     Electron-Photon cross sections (XS) in order to \cite{cepxs}:
     \begin{itemize}
       \item generate coupled electron-photon cross sections which can be used by
-        standard discrete ordinates code to solve electron-photon transport
-        calculations.
+        standard discrete ordinates codes.
       \item model the same physical interactions as Version 2.1 of the
         Integrated-TIGER-Series (ITS) code package.
     \end{itemize}
   \item[AMG for DSA on massively parallel computers:] Like a lot of other
     solvers, AMG algorithms have been developed for massively parallel
-    computers \cite{amg_parallel,amg_multicore} and for GPU \cite{nvidia}.
+    computers \cite{amg_multicore,amg_parallel} and for GPU \cite{nvidia}.
     While developing an AMG method for massively parallel computer, two steps
     of the algorithm must be designed carefully: the coarsening step and the
     smoothing step. In \cite{mis}, the authors explore different coarsening

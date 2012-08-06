@@ -19,7 +19,7 @@ Gauss-Legendre-Chebyshev triangular Galerkin quadrature. The GMRES solver is
 converged to a relative tolerance, $\(\frac{\|\textrm{residual}\|_2}{\|\textrm{right 
 hand side}\|_2}\)$, of $10^{-4}$. $P1$SA is solved using BiCGSTAB with a relative 
 tolerance of $10^{-6}$. DSA is solved with CG preconditioned by an algebraic 
-multigrid technique \cite{amg,pyamg} with a relative tolerance of $10^{-6}$. The 
+multigrid technique \cite{pyamg,amg} with a relative tolerance of $10^{-6}$. The 
 number of GMRES iterations needed to solve ANMG-DSA (multigrid preconditioner 
 with $S_2$ as coarsest transport level and diffusion solve) and ANMG-$P1$SA 
 (multigrid preconditioner with $S_4$ as coarsest transport level and $P1$SA solve) 
@@ -59,7 +59,8 @@ thickness of the domain varies from 50 to 2690 mean-free-path (the total cross
 section varies with $L$ for Fokker-Planck cross sections: $\Sigma_{t,S_4}=10cm^{-1},
 \Sigma_{t,S_8}=36cm^{-1}, \Sigma_{t,S_{16}}=136cm^{-1}, 
 \Sigma_{t,S_{32}}=528cm^{-1}$) but stays constant at five transport
-mean-free-path. The relative tolerance on GMRES is $10^{-6}$ whereas the
+mean-free-path. The relative tolerance on GMRES, which is restarted every 30
+iterations, is $10^{-6}$ whereas the
 relative convergence on DSA, solved by AGMG (see next Chapter), is $10^{-8}$.
 The solution for $S_{32}$ calculation is given by:
 \begin{figure}[H]
@@ -120,8 +121,7 @@ In this test, we apply a boundary source of intensity 10 $n/(cm^2 s)$ to the
 entire left side of the domain $y \in [0cm,5cm]$. The top, the bottom, 
 and the right boundary conditions are vacuum. The beam intensity is only 
 non-zero in the most-normal directions of the quadrature. An $S_{16}$ Galerkin 
-Gauss-Legendre-Chebyshev quadrature is used. The relative tolerance GMRES is
-$10^{-8}$ and $10^{-10}$ for relative tolerance for DSA.The domain
+Gauss-Legendre-Chebyshev quadrature is used. The domain
 is discretized using $50 \times 50$ cells and is composed of two materials:
 \begin{description}
   \item[Material 1:] for $x\in [0cm,3cm]$, Fokker-Planck cross section is used with 
@@ -129,8 +129,8 @@ is discretized using $50 \times 50$ cells and is composed of two materials:
   \item[Material 2:] for $x\in [3cm,5cm]$, Fokker-Planck cross section is used with 
     $\alpha=9.999$, $\Sigma_t = 1360 cm^{-1}$, $c=0.99$
 \end{description}
-Like previously, the relative tolerance on GMRES is $10^{-6}$ and the relative
-tolerance on DSA is $10^{-8}$. 
+Like previously, the relative tolerance on GMRES, which is restarted every 30
+iterations, is $10^{-6}$ and the relative tolerance on DSA is $10^{-8}$. 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{Anmg/heterog_anmg_crop}

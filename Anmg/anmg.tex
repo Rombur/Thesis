@@ -1,6 +1,6 @@
 \section{Iterative schemes for highly forward-peaked scattering}
 \subsection{Source Iteration and DSA}
-\Cref{transport_operator} can be solved using the Source Iteration (SI)
+\Cref{transport_operator} can be solved using the Source Iteration 
 method, which is a Richardson iteration, or a Krylov method. The Source
 Iteration method at the $k^{th}$ iteration is given by:
 \begin{equation}
@@ -38,7 +38,7 @@ Finally, using \crefrange{dsa_sweep}{si_dsa_it}, we obtain:
 \end{split}
 \label{dsa_it}
 \end{equation}
-where $\bs{\mc{T}}_0$ is the matrix associated to the DSA operator $\mc{T}_0$,
+where $\bs{\mc{T}}_0$ is the matrix associated to the DSA operator,
 $\bs{R}_{n\rightarrow 0}$ is the restriction matrix of $\phi_n$ (all moments)
 to $\phi_0$ (only $0^{th}$ moment) and $\bs{P}_{0/1\rightarrow n}$ the
 projection matrix of $\phi_0$ or $\phi_1$, depending whether only the zeroth
@@ -65,10 +65,9 @@ extended transport correction \cite{lathrop} to attenuate the ``upper half''
 of the flux moments (higher frequencies) thanks to transport sweeps. The
 ``lower half'' of the flux moments (lower frequencies) is accelerated using
 the $S_{n/2}$ equations. These $S_{n/2}$ equations are themselves accelerated
-using $S_{n/4}$ equations. The order of the transport operator is divided by
-two until the $S_4$ equations. The order of the transport operator is divided
+using $S_{n/4}$ equations. The order of the transport operator is divided
 by two until the $S_4$ level. At this point, the $P_1$ equations are used to
-accelerate the $S_4$ equations. For the general where $n/2^i$ is odd, we need
+accelerate the $S_4$ equations. For the general case where $n/2^i$ is odd, we need
 to define:
 \begin{equation}
 Half(n) = \left\{
@@ -101,7 +100,7 @@ Every time a transport sweep is performed, the optimal transport correction
 needs to be used \cite{multigrid_1d}. For a $P_{n-1}$ expansion of the cross
 sections, the corrected cross sections are given by:
 \begin{equation}
-\Sigma_{s,j}^* = \Sigma_{s,j} - \frac{\Sigma_{s,n/2}+\Sigma_{s,n-1}}{2}
+\Sigma_{s,j}^* = \Sigma_{s,j} = \frac{\Sigma_{s,n/2}+\Sigma_{s,n-1}}{2}
 \textrm{with }j-\{t\}\textrm{ or }\{s,l\}
 \end{equation}
 This correction is said to be optimal because for an infinite homogeneous
@@ -240,37 +239,37 @@ successive corrections:
 Now, all the corrections $\delta \phi_0^{(k)}$ through $\delta \phi_{n_2}^{k}$
 are substituted into the moment update equation, \cref{mom_update}, yielding:
 \begin{equation}
-\begin{split}
-\phi_n^{(k+1)} =& \bs{T}_n \phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q +
-\bs{P}_{n_2\rightarrow n}\(\bs{T}_{n_2}\bs{R}_{n\rightarrow n_2}
-\(\phi_n^{(k+1/2)}-\phi_n^{(k)}\)\)+\hdots\\
-&+\bs{P}_{2\rightarrow n} \bs{T}_2\bs{R}_{4\rightarrow 2} \delta \phi_4^{(k)}
-+ \bs{P}_{0\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0} \delta
-\phi_2^{(k)}\\
-=& \bs{T}_n\phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q + \bs{P}_{n_2\rightarrow n}
-\(\bs{T}_{n_2} \bs{R}_{n\rightarrow n_2} \(\bs{T}_n \phi_n^{(k)} +\bs{D}_n
-\bs{L}_n^{-1} Q -\phi_n^{(k)}\)\)\\
-&+\hdots+\bs{P}_{2\rightarrow n} \bs{T}_2 \bs{R}_{4\rightarrow 2}\( \bs{T}_4
-\bs{R}_{8\rightarrow 4} \(\hdots\(\bs{T}_n \phi_n^{(k)} + \bs{D}_n
-\bs{L}_n^{-1} Q -\phi_n^{(k)}\)\)\)\\
-&+ \bs{P}_{0\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
-\(\bs{T}_2 \bs{R}_{4\rightarrow 2}\(\hdots\( \bs{T}_N\phi_n^{(k)} + \bs{D}_n
-\bs{L}_n^{-1}Q -\phi_n^{(k)}\)\)\)\\
-=& \( \bs{T}_n + \bs{P}_{n_2\rightarrow n} \bs{T}_{n_2} \bs{R}_{n\rightarrow
-n_2} (\bs{T}_n -\bs{I}) + \hdots + \bs{P}_{2\rightarrow n} \bs{T}_2
-\bs{R}_{4\rightarrow 2} \(\bs{T}_4 \bs{R}_{8\rightarrow
-4}\(\hdots\(\bs{T}_n-\bs{I}\)\)\)\right.\\
-&\left.+\bs{P}_{0\rightarrow n}\bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
-\bs{R}_{2\rightarrow 0} \(\bs{T}_2 \bs{R}_{4\rightarrow
-2}\(\hdots\(\bs{T}_n-\bs{I}\)\)\)\) \phi_n^{(k)} +
-\(bs{I}+\bs{P}_{n_2\rightarrow n}\bs{T}_{n_2} \bs{R}_{n\rightarrow n_2}+
-\hdots +\right.\\
-&\bs{P}_{2\rightarrow n} \bs{T}_2 \bs{R}_{4\rightarrow 2} \(\bs{T}_4
-\bs{R}_{8\rightarrow 4}\(\hdots \(\bs{T}_{n_2} \bs{R}_{n\rightarrow
-n_2}\)\)\)+\\
-&\left. \bs{P}_{0\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
-\(\bs{T}_2 \bs{R}_{4\rightarrow 2}\(\hdots\(\bs{T}_{n_2} \bs{R}_{n\rightarrow
-n_2}\)\)\)\) \bs{D}_n \bs{L}^{-1} Q
+  \begin{split}
+    \phi_n^{(k+1)} =& \bs{T}_n \phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q +
+     \bs{P}_{n_2\rightarrow n}\(\bs{T}_{n_2}\bs{R}_{n\rightarrow n_2}
+     \(\phi_n^{(k+1/2)}-\phi_n^{(k)}\)\)+\hdots\\
+     &+\bs{P}_{2\rightarrow n} \bs{T}_2\bs{R}_{4\rightarrow 2} \delta \phi_4^{(k)}
+     + \bs{P}_{0\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0} \delta
+     \phi_2^{(k)}\\
+    =& \bs{T}_n\phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q + \bs{P}_{n_2\rightarrow n}
+     \(\bs{T}_{n_2} \bs{R}_{n\rightarrow n_2} \(\bs{T}_n \phi_n^{(k)} +\bs{D}_n
+     \bs{L}_n^{-1} Q -\phi_n^{(k)}\)\)\\
+     &+\hdots+\bs{P}_{2\rightarrow n} \bs{T}_2 \bs{R}_{4\rightarrow 2}\( \bs{T}_4
+     \bs{R}_{8\rightarrow 4} \(\hdots\(\bs{T}_n \phi_n^{(k)} + \bs{D}_n
+     \bs{L}_n^{-1} Q -\phi_n^{(k)}\)\)\)\\
+     &+ \bs{P}_{0\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
+     \(\bs{T}_2 \bs{R}_{4\rightarrow 2}\(\hdots\( \bs{T}_N\phi_n^{(k)} + \bs{D}_n
+     \bs{L}_n^{-1}Q -\phi_n^{(k)}\)\)\)\\
+    =& \(\bs{T}_n + \bs{P}_{n_2\rightarrow n} \bs{T}_{n_2} \bs{R}_{n\rightarrow
+     n_2} (\bs{T}_n -\bs{I}) + \hdots + \bs{P}_{2\rightarrow n} \bs{T}_2
+     \bs{R}_{4\rightarrow 2}\right.\\ 
+     &\left.\(\bs{T}_4 \bs{R}_{8\rightarrow 4}\(\hdots\(\bs{T}_n-\bs{I}\)\)\)+
+     \bs{P}_{0\rightarrow n}\bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
+     \bs{R}_{2\rightarrow 0}\right.\\ 
+     &\left. \(\bs{T}_2 \bs{R}_{4\rightarrow 2}\(\hdots\(\bs{T}_n-\bs{I}\)\)\)\) 
+     \phi_n^{(k)} + \(\bs{I}+\bs{P}_{n_2\rightarrow n}\bs{T}_{n_2} 
+     \bs{R}_{n\rightarrow n_2}+ \hdots +\right.\\
+     &\bs{P}_{2\rightarrow n} \bs{T}_2 \bs{R}_{4\rightarrow 2} \(\bs{T}_4
+     \bs{R}_{8\rightarrow 4}\(\hdots \(\bs{T}_{n_2} \bs{R}_{n\rightarrow
+     n_2}\)\)\)+\\
+     &\left. \bs{P}_{0\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
+     \(\bs{T}_2 \bs{R}_{4\rightarrow 2}\(\hdots\(\bs{T}_{n_2} \bs{R}_{n\rightarrow
+     n_2}\)\)\)\) \bs{D}_n \bs{L}^{-1} Q
 \end{split}
 \end{equation}
 where we defined $\bs{T}_n = \bs{D}_n \bs{L}_n^{-1} \bs{M}_n \bs{\Sigma}_n$
@@ -293,8 +292,8 @@ n_4}\) \bs{R}_{n\rightarrow n_2}\)
 \end{split}
 \end{equation}
 At this point, it is necessary to choose a DSA for implementation. Various DSA
-schemes have been reviewed in \cite{dsa_ref,multisweep,consistent_p1,larsen_91,
-wareing,trans_87}. We have chosen to employ the Modified Interior Penalty
+schemes have been reviewed in \cite{dsa_ref,multisweep,trans_87,wareing,larsen_91, 
+consistent_p1}. We have chosen to employ the Modified Interior Penalty
 (MIP) DSA scheme developed by Wang and Ragusa \cite{mip} (see next Chapter). 
 The MIP-DSA scheme is based on a discretization of the diffusion equation rather 
 than the $P1$ equations. More specifically, MIP uses a bilinear \emph{discontinuous} 
@@ -327,9 +326,9 @@ where the multigrid preconditioner $P^{MG/P1SA}$ is now given by:
 \bs{R}_{n\rightarrow n_2}\) 
 \end{split}
 \end{equation}
-where $\bs{\mc{T}}_1$ is the matrix associated to the $P1SA$ operator
-$\mc{T}_1$ operator. The $P1SA$ discretization used here is the $P1C$ method,
-defined in \cite{yaqiPhD,P1C_MC2009}. This $P1SA$ preconditioner is positive
+where $\bs{\mc{T}}_1$ is the matrix associated to the $P1SA$ operator. The 
+$P1SA$ discretization used here is the $P1C$ method,
+defined in \cite{P1C_MC2009,yaqiPhD}. This $P1SA$ preconditioner is positive
 definite (PD), but not symmetric. In principle, the analytic $P1$ equations
 can be put in a second-order diffusion form and discretized using the MIP
 approach. However, the first moments of the angular flux will be treated wit

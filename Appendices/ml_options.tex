@@ -1,0 +1,54 @@
+\chapter{\uppercase{ML options}}
+
+Some of the available coarsening schemes:
+\begin{description}
+  \item[Uncoupled:] Attempt to construct aggregates of optimal size ($3^d$
+    nodes in $d$ dimensions). Each process works independently and aggregates
+    cannot span processes.
+  \item[MIS:] Uses maximal independent set techniques to define aggregates.
+    Aggregates can span processes. May provide better quality aggregates than
+    {\bf Uncoupled}, but computationally more expensive because it requires
+    matrix-matrix product.
+\end{description}
+Some of the smoothers:
+\begin{description}
+  \item[Jacobi]
+  \item[Symmetric Gauss-Seidel]
+\end{description}
+Some of the coarse solvers:
+\begin{description}
+  \item[Jacobi]
+  \item[Symmetric Gauss-Seidel]
+  \item[Amesos-KLU:] Use {\bf KLU} through {\bf Amesos}. Coarse grid problem
+    is shipped to processor 0, solved, and solution is broadcast.
+  \item[Amesos-UMFPACK:] Use {\bf UMFPACK} through {\bf Amesos}. Coarse grid
+    problem is shipped to processor 0, solved, and solution is broadcast.
+  \item[Amesos-MUMPS:] Use double precision version of {\bf MUMPS} through
+    {\bf Amesos}.
+\end{description}
+The MultiLevelPreconditioner class provide default values for five different
+preconditioner types:
+\begin{itemize}
+  \item Classical smoothed aggregation for symmetric positive definite or
+    nearly symmetric definite systems (used here)
+  \item Classical smoothed aggregation-based two-level domain decomposition.
+  \item Three-level algebraic domain decomposition.
+  \item Eddy current formulation of Maxwell's equation.
+  \item Energy-based minimizing smoothed aggregation suitable for highly
+    convective nonsymmetric fluid flow problems.
+\end{itemize}
+\begin{description}
+  \item[option name:] SA
+  \item[max levels:] 10
+  \item[prec type:] $V-$cycle
+  \item[aggregation type:] uncoupled-MIS
+  \item[aggregation damping factor:] 4/3
+  \item[eigen-analysis type:] cg
+  \item[eigen-analysis iterations:] 10
+  \item[smoother sweeps:] 2
+  \item[smoother damping factor:] 1.0
+  \item[smoother pre or post:] both
+  \item[smoother type:] symmetric Gauss-Seidel
+  \item[coarse type:] Amesos-KLU
+  \item[coarse max size:] 128
+\end{description}

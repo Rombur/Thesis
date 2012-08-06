@@ -1,6 +1,6 @@
 \section{Fokker-Planck cross section}
 In this section, we derive the Fokker-Planck scattering cross section such
-that the Fokker-Planck operator can approximated by the Boltzmann operator.  
+that the Fokker-Planck operator can be approximated by the Boltzmann operator.  
 First we recall the BFP equation \cref{bfp}:
 \begin{equation}
 \begin{split}
@@ -27,7 +27,8 @@ $\mc{L}_{FP}^{\alpha}$ can be approximated using the following cross section:
 \begin{equation}
 \Sigma_s(\mu_0,E'\rightarrow E) = \Sigma_s^{\alpha}(\mu_0,E) \delta(E'-E)
 \end{equation}
-where $\Sigma_{\alpha}^{(0)}=\frac{\alpha}{1-\mu_s}$ and ; while $\Gamma_{FP}^e$ 
+where $\Sigma_{s}^{\alpha} (\mu_0,E) = \frac{\alpha(E)}{1\mu_s} \frac{1}{2\pi}
+\delta(\mu_0-\mu_s)$ and $\mu_s$ is a parameter; while $\Gamma_{FP}^e$ 
 should be approximated by a cross section of the form:
 \begin{equation}
 \Sigma_s(\mu_0,E'\rightarrow E) = \Sigma_s^e(E'\rightarrow E) \frac{1}{2\pi}
@@ -43,14 +44,14 @@ that the Fokker-Planck scattering operator can also be derived assuming
 
 \subsection{Legendre polynomial expansion of $\Sigma_s^{\alpha}$}
 Now we expressed the Legendre polynomial expansion of $\Sigma_s^{\alpha}$
-as it has been done in \cite{morel_81,morel_96,morel_89}. We will focus on
+as it has been done in \cite{morel_89,morel_81,morel_96}. We will focus on
 $\mc{L}_{FP}^{\alpha}$ since this research we solve the energy-integrated
 Boltzmann equation. Therefore, the $\mc{L}_{FP}^e$ operator does not appear in
 the equation that we want to solve. Because $\Sigma_s^{\alpha}$ does not change 
 particle energy, it corresponds to a within-group cross section. We define:
 \begin{align}
   \mc{L}_B^{\alpha} &= \Sigma_s^{\alpha} \mc{L}_B\\
-  \mc{L}_{FP}^{\alpha} &= \frac{alpha}{2}\mc{L}_{FP}
+  \mc{L}_{FP}^{\alpha} &= \frac{\alpha}{2}\mc{L}_{FP}
 \end{align}
 and thus:
 \begin{align}
@@ -69,8 +70,8 @@ by setting:
 \Sigma_{s,l}^{\alpha}-\Sigma_{s,0}^{\alpha} = -\frac{\alpha}{2}l(l+1)
 \label{sigma_m_sigma}
 \end{equation}
-with $l=1,\hdots,L$. Choosing $\Sigma_{s,L}=0$ to minimize $\Sigma_{s,0}^{\alpha}$ 
-and \cref{sigma_m_sigma} becomes:
+with $l=1,\hdots,L$. Choosing $\Sigma_{s,L}^{\alpha}=0$ to minimize 
+$\Sigma_{s,0}^{\alpha}$ and \cref{sigma_m_sigma} becomes:
 \begin{equation}
 \Sigma_{s,l}^{\alpha} = \frac{\alpha}{2}\(L(L+1)-l(l+1)\),\ \  l=0,\hdots,L
 \end{equation}

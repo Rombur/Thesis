@@ -12,16 +12,16 @@ deterministic method to solve the Boltzmann equation requires cells of
 the same scale as the very small mean free path \cite{pomraning}. 
 To avoid these difficulties, a Fokker-Planck operator can
 be used to represent the highly forward peaked scattering. Since this operator 
-cannot represent the large angles scattering, a Legendre expansion is used for
-these collisions. The addition of the Fokker-Planck operator to the Boltzmann
-equation gives the Boltzmann-Fokker-Planck equation (BFP equation) \cite{ligou}.
+cannot represent the large angle scattering collisions, a Legendre expansion 
+is used for them collisions. The addition of the Fokker-Planck operator to the 
+Boltzmann equation gives the Boltzmann-Fokker-Planck equation \cite{ligou}.
 
 \section{Boltzmann-Fokker-Planck equation}
 In this section, we start by deriving the Boltzmann-Fokker-Planck equation.
 Then, we show that the Fokker-Planck equation is an asymptotic limit of the Boltzmann
 equation when the energy transfer and the direction change during a collision go 
-to zero. We conclude this section with an analyze of the validity of the Fokker-Planck
-equation and of the Boltzmann-Fokker-Planck equation.
+to zero. We conclude this section with an analyze of the validity of the 
+Fokker-Planck and Boltzmann-Fokker-Planck equations.
 \subsection{Derivation of the Boltzmann-Fokker-Planck equation}
 Following \cite{ligou}, the BFP equation is be derived starting from the Boltzmann 
 equation:
@@ -53,13 +53,19 @@ First, the differential scattering cross section is split into two parts:
 \end{equation}
 where:
 \begin{itemize}
-\item $\Sigma_{s,reg}$ is a ``regular'' cross section which does not increase 
-too much when $\mu$ goes to one. By definition, a Legendre polynomial
+\item $\Sigma_{s,reg}$ is the ``regular'' cross section which does not increase 
+too much when $\mu_c$ goes to one. By definition, a Legendre polynomial
 expansion of this cross section converges quickly.
 \item $\Sigma_{s,sing}$ is the ``singular'' cross section which is highly forward 
 peaked and is not negligible only when $\mu_c\approx 1$. 
 \end{itemize}
-Then, the scattering term in \cref{b_2} is split:
+Then, the scattering term in \cref{b_2}: 
+\begin{equation}
+q=\sum_{l=0}^{\infty} \sum_{m=-l}^l
+\int_0^{\infty} \Sigma_{s,l}(\br,E'\rightarrow E) \phi_{l,m}(\br,E')
+Y_l^m(\bo)dE'
+\end{equation}
+is split:
 \begin{equation}
 q = q_{reg}+q_{sing}
 \end{equation}
@@ -199,8 +205,8 @@ This scaling implies that the cross section is large and very peaked about
 $\mu_0=1$ and $E=E'$. The scaled transport equation is given by:
 \begin{equation}
   \begin{split}
-    &\bo\cdot\bn\psi+\(\Sigma_a+\frac{\hat{\Sigma}_s}{\Delta}\)\psi= \frac{1}{\Delta}
-    \sum_{l=0}^{\infty}\sum_{m=-l}^{l}Y_l^m \times\\
+    &\bo\cdot\bn\psi+\(\Sigma_a+\frac{\hat{\Sigma}_s}{\Delta}\)\psi=
+    \frac{2\pi}{\Delta} \sum_{l=0}^{\infty}\sum_{m=-l}^{l}Y_l^m \times\\
     &\int_0^{\infty}dE'\ \phi_{l,m}(E')\int_{-1}^1d\mu_0\
     P_l(\mu_0)\hat{\Sigma}_s\(\frac{1-\mu_0}{\delta},E',\frac{E'-E}{\epsilon}\)+Q
   \end{split}
@@ -266,7 +272,7 @@ relationships:
 x&= \frac{1-\mu_0}{\delta}\label{x2}\\
 y&= \frac{E-E'}{\epsilon}\label{y2}
 \end{align}
-\Cref{x,x2} are identical, but equation \cref{y,y2} are different ($E$ and $E'$
+\Cref{x,x2} are identical, but \cref{y,y2} are different ($E$ and $E'$
 are interchanged). Therefore, we get:
 \begin{equation}
 \begin{split}
@@ -309,8 +315,9 @@ O\(\frac{\delta}{\Delta}\) \label{T}\\
 (\mu_0,E,E') = O\(\frac{\epsilon^2}{\Delta}\) \label{R}
 \end{align}
 The function $\tilde{\alpha} = 2\tilde{T}$ is known as the momentum transfer while
-$\tilde{S}$ and $\tilde{R}$ are the stopping power and the mean square stopping, 
-respectively. Note that that the difference with the restricted parameters
+$\tilde{S}$ and $\tilde{R}$ are the stopping power and the mean square
+stopping power, 
+respectively. Note that the difference with the restricted parameters
 defined earlier is that $\Sigma_s$ is used instead of $\Sigma_{s,sing}$. Using 
 \cref{K_def}, substituting \cref{K2} into
 the scaled transport \cref{scaled_transport}, and using \cref{sigma_s} for 
@@ -325,24 +332,25 @@ $\hat{\Sigma}_s(E)$, we get:
   \end{split}
   \label{final_m1}
 \end{equation}
-Thanks to \cref{eigenvalue}, the $l(l+1)$ factor can be eliminated, and then we can 
+Using \cref{eigenvalue}, the $l(l+1)$ factor can be eliminated, then we can 
 sum over the spherical harmonics according to \cref{moments} to obtain our final 
 result:
 \begin{equation}
-\begin{split}
-&\bo\cdot \bn \psi(\br,\bo,E) + \Sigma_a(\br,E) \psi(\br,\bo,E) =
-T(\br,E) \(\frac{\partial}{\partial \mu}(1-\mu^2)\frac{\partial}{\partial\mu}+
-\(\frac{1}{1-\mu^2}\)\frac{\partial^2}{\partial \varphi^2}\)\psi(\br,\bo,E)\\
-&+\frac{\partial}{\partial E} S(\br,E)\psi(\br,\bo,E) + \frac{\partial^2}{\partial
-E^2} R(\br,E) \psi(\br,\bo,E)+ Q(\br,\bo,E)+ 
-O\(\frac{\delta^2+\epsilon\delta+\epsilon^3}{\Delta}\)
+  \begin{split}
+    &\bo\cdot \bn \psi(\br,\bo,E) + \Sigma_a(\br,E) \psi(\br,\bo,E) =
+    \tilde{T}(\br,E) \(\frac{\partial}{\partial \mu}(1-\mu^2) 
+    \frac{\partial}{\partial\mu}+\right.\\
+    &\left. \(\frac{1}{1-\mu^2}\)\frac{\partial^2}{\partial \varphi^2}\)
+    \psi(\br,\bo,E) +\frac{\partial}{\partial E} \tilde{S}(\br,E)\psi(\br,\bo,E) 
+    + \frac{\partial^2}{\partial E^2} \tilde{R}(\br,E) \psi(\br,\bo,E)+\\
+    &Q(\br,\bo,E)+O\(\frac{\delta^2+\epsilon\delta+\epsilon^3}{\Delta}\)
 \end{split}
 \label{final}
 \end{equation}
 We note that $\Sigma_s(\br,E) \psi(\br,\bo,E)$ has canceled out in this equation.
 
 \Cref{final} is the Fokker-Planck equation for linear particle
-transport in an isotropic medium. Like said previously, the fact that the
+transport in an isotropic medium. Like mentioned previously, the fact that the
 scattering kernel is peaked in energy ($E'\approx E$) and angle ($\mu_0\approx
 1$) is a necessary but not sufficient condition for \cref{final} to be an
 asymptotic limit of \cref{transport_p}. The additional sufficient condition 
@@ -355,7 +363,7 @@ $O(\delta)=O(\Delta)$ to have a finite and nonzero angular term in
 O(\Delta)$ for \cref{final} to have a finite and nonzero energy term.
 Therefore, when the scattering becomes more peaked ($\epsilon \rightarrow 0$
 and $\delta \rightarrow 0$), the magnitude of the cross section must increase
-have the momentum transfer to stay finite and nonzero.
+to have the momentum transfer to stay finite and nonzero.
 
 Since $\tilde{R}$ is $O\(\frac{\epsilon^2}{\Delta}\)$, we do not need $\tilde{R}$ 
 to keep the leading order behavior in energy transfer. In a lot of
@@ -382,13 +390,13 @@ dependence of light scattering by small particles, whereas the screened Rutherfo
 scattering kernel modelizes the scattering of electrons by a screened atomic
 nucleus. 
 
-First we need to define the following operators \cite{larsen_fp}:
+First, we need to define several operators \cite{larsen_fp}:
 \begin{align}
 \mc{L}_B\psi(\bo) &= \int_{4\pi} \(\sum_{l=0}^{\infty} \frac{2l+1}{4\pi} f_l
-P_l(\bo\cdot\bo'\) \psi(\bo')d\bo'-\psi(\bo) \label{L_B}\\
+P_l(\bo\cdot\bo')\) \psi(\bo')d\bo'-\psi(\bo) \label{L_B}\\
 \mc{L}_{FP}\psi(\bo) &= \(\frac{\partial}{\partial \mu}
 (1-\mu^2)\frac{\partial}{\partial
-\mu}+\frac{1}{1-\mu^2}\frac{\partial^2}{\partial \phi^2}\)\psi(\bo)
+\mu}+\frac{1}{1-\mu^2}\frac{\partial^2}{\partial \varphi^2}\)\psi(\bo)
 \label{L_FP}\\
 \mc{L}_1 \psi(\bo) &= \frac{1}{4\pi} \int_{4\pi}
 \frac{\psi(\bo')-\psi(\bo)}{1-\bo'\cdot\bo}d\bo'
@@ -414,7 +422,7 @@ Y_l^m(\bo) \int_{4\pi} Y_l^{m,*}(\bo')\psi(\bo')d\bo' \label{L_FP_smooth}\\
 Therefore, the spherical harmonics are eigenfunctions of
 \crefrange{L_B_smooth}{L_3/2_smooth}:
 \begin{align}
-\mc{L}_B Y_l^m(\bo) &= -(1-f_l) Y_l^m(\bo) \label{L_b_eig}\\
+\mc{L}_B Y_l^m(\bo) &= -(1-f_l) Y_l^m(\bo) \label{L_B_eig}\\
 \mc{L}_{FP} Y_l^m(\bo) &= -l(l+1) Y_l^m(\bo) \label{L_FP_eig}\\
 \mc{L}_1 Y_l^m(\bo) &= \(-\sum_{k=1}^l \frac{1}{k}\) Y_l^m(\bo)
 \label{L_1_eig}\\
@@ -433,7 +441,7 @@ its great simplicity. The exact Henyey-Greenstein kernel does not arise from
 a deeper theory of any known physical process \cite{larsen_fp}. The Legendre 
 polynomial expansion of the kernel, 
 $f(\mu_0)=\sum_{l=0}^{\infty}\frac{2l+1}{2}f_l P_l(\mu_0)$, is very simple,
-since the expansion coefficients $f_n$ are given by:
+since the expansion coefficients, $f_n$, are given by:
 \begin{equation}
 f_l = \bar{\mu}_0^l,\ n\geq 0
 \end{equation}
@@ -442,7 +450,7 @@ We look at:
 \Sigma_s\mathcal{L}_B = \Sigma_s\(\int_{4\pi}
 f(\bo\cdot\bo')\psi(\br,\bo',E)d\bo'-\psi(\br,\bo,E)\)
 \end{equation}
-with th scaled Henyey-Greenstein kernel:
+with the scaled Henyey-Greenstein kernel:
 \begin{align}
 &\Sigma_s = \frac{\hat{\Sigma}_s}{\epsilon}\\
 &\mu_0 = 1-\epsilon
@@ -450,7 +458,7 @@ with th scaled Henyey-Greenstein kernel:
 where $\hat{\Sigma}_s$ is fixed and $\epsilon \approx 0$. When the
 scattering mean free path tends to zero, the mean scattering cosine tends to
 one. In the absence of absorption, the transport cross section is independent
-of:
+of $\epsilon$:
 \begin{equation}
   \Sigma_{tr}=\Sigma_s(1-\bar{\mu}_0) = \frac{\hat{\Sigma}_s}{\epsilon}\cdot 
   \epsilon = \hat{\Sigma}_s
@@ -467,7 +475,7 @@ O(\epsilon^2)
 \end{split}
 \label{eps_eig}
 \end{equation}
-Using \cref{L_B_smooth,L_FP_smooth,L_3/2_smooth,eps_eig}, we get:
+Using \cref{L_B_eig,L_FP_eig,L_3/2_eig,eps_eig}, we get:
 \begin{equation}
 \Sigma_s\mc{L}_B = \hat{\Sigma}_s(1+\epsilon) \mc{L}_{3/2} -
 \frac{\hat{\Sigma}_s \epsilon}{2} \mc{L}_{FP} + O(\epsilon^2)
@@ -501,21 +509,21 @@ coefficient of $f(\mu_0)$ are given by:
 &f_1 = \bar{\mu}_0 = 1 -2\eta \((1+\eta)\ln\(1+\frac{1}{\eta}\)-1\)
 \label{f_1}
 \end{align}
-Using \cref{scr_rut}, $f_l = 2\pi \int_{-1}^1 P_l(\mu) f(\mu)\ d\mu$,  and:
+Using \cref{scr_rut}, $f_k = 2\pi \int_{-1}^1 P_k(\mu) f(\mu)\ d\mu$,  and:
 \begin{equation}
-\mu P_l(\mu) = \frac{(l+1)P_{l+1}(\mu)+lP_{l-1}(\mu)}{2l+1},
+\mu P_k(\mu) = \frac{(k+1)P_{k+1}(\mu)+kP_{k-1}(\mu)}{2k+1},
 \end{equation}
 we get:
 \begin{equation}
-lf_{l+1} - (1+2\eta)(2l+1)f_l+(l+1)f_{l-1} = 0
+kf_{k+1} - (1+2\eta)(2k+1)f_k+(k+1)f_{k-1} = 0
 \label{recursion}
 \end{equation}
 or equivalently:
 \begin{equation}
-\frac{f_{l+1}-f_l}{l+1} - \frac{f_l-f_{l-1}}{l} = 2 \eta \frac{2l+1}{l(l+1)} f_l
-\label{frac_l}
+\frac{f_{k+1}-f_k}{k+1} - \frac{f_k-f_{k-1}}{k} = 2 \eta \frac{2k+1}{k(k+1)} f_k
+\label{frac_k}
 \end{equation}
-Summing \cref{frac_l} from $l=1$ to $m-1$ and then multiplying by $m$, we get:
+Summing \cref{frac_k} from $k=1$ to $m-1$ and then multiplying by $m$, we get:
 \begin{equation}
 f_m-f_{m-1}-(\bar{\mu}_0-1)m = 2 \eta m \sum_{k=1}^{m-1} \frac{2k+1}{k(k+1)} f_k
 \label{f_f}
@@ -565,11 +573,7 @@ f_l = 1+\(\frac{1-\bar{\mu}_0}{2}\) \(-l(l+1)\)+\eta \(\sum_{k=1}^{l-1}
 \(\frac{l(l+1)}{k(k+1)}-1\)(2k+1)\) + O\(\eta^2\ln\(\frac{1}{\eta}\)\)
 \label{eq_58}
 \end{equation}
-Now using \cref{sum_m} and:
-\begin{equation}
-\frac{1}{k(k+1)} = \frac{1}{k+1}-\frac{1}{k}
-\end{equation}
-we get:
+Now using \cref{sum_m}, we get:
 \begin{equation}
 \sum_{k=1}^{l-1} \(\frac{l(l+1)}{k(k+1)}-1\)(2k+1) = 2 l(l+1) \(\(\sum_{k=1}^l
 \frac{1}{k}\)-1\)

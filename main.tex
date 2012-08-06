@@ -19,8 +19,8 @@
 \usepackage{array}
 \usepackage{color}
 \usepackage{graphicx}
-\usepackage{float} %utiliser H pour forcer a mettre l'image ou on veut
-\usepackage{lscape} %utilisation du mode paysage
+\usepackage{float} % utiliser H pour forcer a mettre l'image ou on veut
+\usepackage{lscape} % utilisation du mode paysage
 \usepackage{mathbbol} % permet d'avoir le vrai symbol pour les reels grace a mathbb
 \usepackage{enumerate}
 \usepackage{marvosym}
@@ -30,6 +30,8 @@
 \usepackage[noabbrev]{cleveref} % permet d'utiliser cref et Cref (e(E)quation(s) (..)
 \usepackage{amsthm}
 \usepackage{subfig}
+\usepackage{mdwlist} % permet de redefinir l'environnement description
+\usepackage{xtab}
 
 \newcommand\bn{\boldsymbol{\nabla}}
 \newcommand\bo{\boldsymbol{\Omega}}
@@ -50,10 +52,24 @@
 \renewcommand{\[}{\left[}
 \renewcommand{\]}{\right]}
 
+% Si la description est trop longue elle est coupee en plusieurs ligne
+\renewenvironment{description}%
+{
+  \begin{basedescript}{
+      \desclabelstyle{\nextlinelabel}
+      \renewcommand{\makelabel}[1]{%
+        \parbox[b]{\textwidth}{\bfseries##1}%
+      }%
+  \desclabelwidth{2em}}}
+  {
+  \end{basedescript}
+}
+
 \newtheorem{algorithm}{Algorithm}[section]
 \newtheorem{criterion}{Criterion}[section]
 \newtheorem{definition}{Definition}[section]
 
+\includeonly{dsa}
 
 \begin{document}
 \renewcommand{\tamumanuscripttitle}{Acceleration Techniques for Coupled
@@ -79,31 +95,21 @@ Electron-Photon Transport}
 \include{lists}  % This is simply a file that formats and adds your toc, lof, and lot, please do not edit this unless you have a specific need. .
 
 
-\input{./Introduction/introduction}
+\include{introduction}
 
-\input{./Boltzmann_Equations/boltzmann_equations}
-\input{./Boltzmann_Equations/fp_xs}
-\input{./Boltzmann_Equations/galerkin}
+\include{boltzmann_equations}
 
-\input{./Anmg/introduction}
-\input{./Anmg/anmg}
-\input{./Anmg/results}
-\input{./Anmg/conclusions}
+\include{anmg}
 
-\input{./Dsa/introduction}
-\input{./Dsa/mip}
-\input{./Dsa/algebraic_multigrid}
-\input{./Dsa/results}
-\input{./Dsa/conclusions}
+\include{dsa}
 
-\input{./Conclusions/conclusions}
-\input{./Conclusions/future_work}
+\include{conclusions}
 
 % bibliography
-\addcontentsline{toc}{part}{REFERENCES}
-\renewcommand{\bibname}{{\normalsize\rm REFERENCES}}
-\bibliographystyle{plain}
-\bibliography{biblio}
+\include{bibliography}
+
+% appendix
+\include{appendices}
 
 \end{document}
 

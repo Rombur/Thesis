@@ -2,7 +2,7 @@
 Forward-Peaked Scattering Kernel}}
 \section{Introduction}
 The discrete ordinates method has been shown to be quite accurate for electron
-and coupled electron-photon transport \cite{morel_81,accuracy_1,accuracy_2}, 
+and coupled electron-photon transport \cite{accuracy_2,morel_81,accuracy_1}, 
 which is required in the development of radiation therapy protocols, satellite 
 electronics shielding, flash x-ray machine design, and a wide variety of other 
 applications. Charged particles interact through Coulomb interactions with the 
@@ -14,9 +14,7 @@ by the continuous scattering operator and the latter modeled by the continuous
 slowing-down operator. In this chapter, we consider the discrete-ordinate ($S_n$) 
 angular discretization of the transport equation with a focus upon iterative 
 solution methods for problems with highly forward-peaked scattering characteristic 
-of the Fokker-Planck limit. In this limit, the mean-free-path and the directional 
-change per scattering interaction goes to zero while the momentum transfer 
-(also called the transport-corrected scattering cross section) remains fixed.
+of the Fokker-Planck limit. 
 
 When the scattering is highly forward-peaked, solving the $S_n$ transport
 equation can be challenging due to the slow convergence of standard iterative
@@ -62,19 +60,18 @@ preconditioning moves the eigenvalues away from zero while leaving them
 constrained to a reasonably small portion of the complex plane. These are 
 desirable properties for a preconditioner because the convergence rate of GMRES 
 is proportional to the size of the eigenvalue cluster and/or the distance between 
-the clusters \cite{warsa,campbell}. The eigenvalues close to zero slow down the 
+the clusters \cite{campbell,warsa}. The eigenvalues close to zero slow down the 
 convergence of GMRES because they can be viewed as single values that are processed 
-one at the time \cite{warsa,campbell}. We also compare the convergence rates and 
+one at the time \cite{campbell,warsa}. We also compare the convergence rates and 
 efficiency of these preconditioners for various test problems with forward-peaked 
 scattering. We find that PAMNF preconditioning is significantly more efficient 
 than DSA preconditioning, and become increasingly so as the Fokker-Planck limit 
 is approached. However, the number of iterations required for convergence 
-nonetheless increases as this limit is approached. Thus, optimal multigrid 
-performance is not achieved. In spite of this fact, the PAMNF-preconditioned 
-Krylov method achieves good efficiency without the costly filtering associated 
-with the original PAM fixed-point iteration scheme, and appears to be more 
-effective than other existing algorithms for solving the $S_n$ equations with 
-highly forward-peaked scattering.
+nonetheless increases as this limit is approached. In spite of this fact, 
+the PAMNF-preconditioned Krylov method achieves good efficiency without the 
+costly filtering associated with the original PAM fixed-point iteration scheme, 
+and appears to be more effective than other existing algorithms for solving 
+the $S_n$ equations with highly forward-peaked scattering.
 
 One key features of the angular multigrid method is that transport sweeps can
 strongly damp the high frequency error modes (upper half of the flux moments)

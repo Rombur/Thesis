@@ -1,39 +1,39 @@
 \section{Galerkin quadratures}
 Until now, we have not explained which quadrature should be used. We have only
 said that we need an appropriate quadrature but we did not explain what we
-needed. In this section, we will introduce the Galerkin quadrature. Morel
+required. In this section, we introduce the Galerkin quadrature. Morel
 first introduced them in \cite{galerkin_morel} but here we
 will introduce them as it was done in \cite{pautz_fp}. 
 
 First, we start by recalling the definition of $\psi$ and $\phi_{l,m}$:
 \begin{equation}
-\begin{split}
-\phi_{l,m}(\br) &= \int_{4\pi} d\bo' \psi(\br,\bo') Y_l^{m,*}\\
-&=(D \psi)_{l,m}
-\end{split}
-\label{D2M}
+  \begin{split}
+    \phi_{l,m}(\br) &= \int_{4\pi} d\bo' \psi(\br,\bo') Y_l^{m,*}\\
+                    &=(\bs{D} \psi)_{l,m}
+  \end{split}
+  \label{D2M}
 \end{equation}
-where $D$ is the directions-to-moments operator. We also have:
+where $\bs{D}$ is the directions-to-moments operator. We also have:
 \begin{equation}
-\begin{split}
-\psi(\br,\bo) &= \sum_{l=0}^{\infty} \sum_{m=-l}^l Y_l^m(\bo)\phi_{l,m}(\br)\\
-&= M\phi(\bo)
-\end{split}
-\label{M2D}
+  \begin{split}
+    \psi(\br,\bo) &= \sum_{l=0}^{\infty} \sum_{m=-l}^l Y_l^m(\bo)\phi_{l,m}(\br)\\
+                  &= \bs{M}\phi(\br)
+  \end{split}
+  \label{M2D}
 \end{equation}
-where $M$ is the moments-to-directions operator. By combining \cref{D2M,M2D}, 
+where $\bs{M}$ is the moments-to-directions operator. By combining \cref{D2M,M2D}, 
 we obtain:
 \begin{equation}
-(I-MD)\Psi = 0
-\label{identity_alpha}
+  (\bs{I}-\bs{MD})\Psi = 0
+  \label{identity_alpha}
 \end{equation}
-since for analytic transport $M=D^{-1}$.
+since for analytic transport $M=D^{-1}$. $\bs{I}$ is the identity operator.
 
 Now, we define:
 \begin{align}
-  \epsilon &= 1 - \la \bar{\mu_0}\ra \label{eps_pautz} \\
+\epsilon &= 1 - \la \bar{\mu}_0\ra \label{eps_pautz} \\
     \gamma &= \la\overline{(1-\mu_0)^2}\ra \label{gamma_pautz}\\
-    A(\br) &= \frac{1-\bar{\mu_0}(\br)}{\epsilon}\label{A_pautz}\\
+    A(\br) &= \frac{1-\bar{\mu}_0(\br)}{\epsilon}\label{A_pautz}\\
   \Sigma_a &= \hat{\Sigma}_a \label{hat_sig_a_0}\\
 \Sigma_{s,l} &= \frac{\hat{\Sigma}_{s,l}(\br)}{\epsilon} \label{hat_sig_a_1}\\
 \Sigma_{s,l}(\br) &=\Sigma_{s,0}(\br) \(1-\frac{l(l+1)}{2}A(\br)\epsilon +
@@ -98,53 +98,53 @@ there is no $O(\gamma)$ term, since $\gamma\rightarrow 0$ when
 $\epsilon\rightarrow 0$, i.e., that there are no
 $O(1)$ components in $\gamma$. \Cref{D2M_disc,M2D_disc} may be combined to give:
 \begin{align}
-&(I-M_ND_N)\psi^{(0)} = 0 \label{identity_a}\\
-&(I-D_NM_N)\phi^{(0)} = 0 \label{identity_b}
+  &(\bs{I}-\bs{M}_N\bs{D}_N)\psi^{(0)} = 0 \label{identity_a}\\
+  &(\bs{I}-\bs{D}_N\bs{M}_N)\phi^{(0)} = 0 \label{identity_b}
 \end{align}
 This means that $\psi^{(0)}$, respectively $\phi^{(0)}$, must be in the kernel
-of $I-M_N D_N$, respectively $I-D_N M_N$. Using \cref{phi_p},
-\cref{identity_b} becomes:
+of $\bs{I}-\bs{M}_N \bs{D}_N$, respectively $\bs{I}-\bs{D}_N \bs{M}_N$. Using 
+\cref{phi_p}, \cref{identity_b} becomes:
 \begin{equation}
-D_N(I-M_N D_N)\Psi^{(0)} = 0
+  \bs{D}_N(\bs{I}-\bs{M}_N \bs{D}_N)\Psi^{(0)} = 0
 \end{equation}
 which is always satisfied if \cref{identity_a} is satisfied.
 Therefore, if \cref{identity_a} is satisfied, \cref{D2M_disc,M2D_disc} are
 automatically satisfied.
 
-A sufficient condition to satisfy \cref{identity_a} is that $M_N D_N =I$.
-This is of course true if $D_N=M_N^{-1}$ like in analytic transport. Obviously
-for $M_N$ and $D_N$ to be inverse of each other, the matrices have to be square. 
-Thus, the number of moments in the scattering expansion must be equal to number 
-of discrete angles. In one-dimension, $D_N = M_N^{-1}$ is satisfied if the 
+A sufficient condition to satisfy \cref{identity_a} is that $\bs{M}_N \bs{D}_N
+=\bs{I}$. This is of course true if $\bs{D}_N=\bs{M}_N^{-1}$ like in analytic 
+transport. Obviously for $\bs{M}_N$ and $\bs{D}_N$ to be inverse of each other, 
+the matrices have to be square. Thus, the number of moments in the scattering 
+expansion must be equal to number of discrete angles. In one-dimension,
+$\bs{D}_N = \bs{M}_N^{-1}$ is satisfied if the 
 quadrature set integrates exactly any polynomials of degree $2N-2$, like the 
 Gauss-Legendre quadrature does. In multidimensional problems, the standard 
 quadrature sets use more discrete angles than there are scattering moments. 
-Therefore, $M_N$ and $D_N$ are rectangular matrices and they cannot be inverse 
-of each other. In this case, \cref{identity_a} can only be satisfied if 
-$\Psi^{(0)}$ is in the kernel of $(I-M_ND_N)$. This can be achieved only if 
-$\Psi^{(0)}$ satisfies nonphysical constraints \cite{pautz_fp}. If 
+Therefore, $\bs{M}_N$ and $\bs{D}_N$ are rectangular matrices and they cannot 
+be inverse of each other. In this case, \cref{identity_a} can only be satisfied if 
+$\Psi^{(0)}$ is in the kernel of $(\bs{I}-\bs{M}_N\bs{D}_N)$. This can be achieved 
+only if $\Psi^{(0)}$ satisfies nonphysical constraints \cite{pautz_fp}. If 
 \cref{identity_a} is not satisfied, the asymptotic ansatz is not valid and 
 there is no $O(1)$ solution to \cref{discr_eps,phi_p}.\\
-If we assume that $M_N D_N=I$, then the $O(\epsilon)$ terms in \cref{phi_p}
-give:
+If we assume that $\bs{M}_N \bs{D}_N=\bs{I}$, then the $O(\epsilon)$ terms in 
+\cref{phi_p} give:
 \begin{equation}
-\begin{split}
-\phi_{l,m}^{(1)}(\br) &= \sum_{k=1}^K w_k Y_{l}^{m,*} (\bo_k)
-\psi_k^{(1)}(\br)\\
-&=(D_N\Psi^{(1)})_{l,m}
-\end{split}
+  \begin{split}
+    \phi_{l,m}^{(1)}(\br) &= \sum_{k=1}^K w_k Y_{l}^{m,*} (\bo_k) \psi_k^{(1)}(\br)\\
+                          &=(\bs{D}_N\Psi^{(1)})_{l,m}
+  \end{split}
 \end{equation}
 In \cref{discr_eps_manip}, the $O(1)$ terms give:
 \begin{equation}
-\begin{split}
-&\bo_k\cdot \bn \psi_k^{(0)}(\br) + \hat{\Sigma}_a(\br)\psi_k(\br) +
-\hat{\Sigma}_{s,0}(\br) \(\psi_k^{(1)} (\br) - \sum_{n=0}^{N-1}
-\sum_{m=-l}^{l} Y_l^m (\bo_k)\phi_{l,m}^{(1)}(\br)\)\\
-&=-\frac{\Sigma_{tr}(\br)-\hat{\Sigma}_a(\br)}{2} \sum_{l=0}^{N-1}
-\sum_{m=-l}^l  l(l+1) Y_l^m(\bo_k)
-\phi_{l,m}^{(0)}(\br)+ Q(\br,\bo_k) + O\(\frac{\gamma}{\epsilon}\)
-\end{split}
-\label{O_1_terms}
+  \begin{split}
+    &\bo_k\cdot \bn \psi_k^{(0)}(\br) + \hat{\Sigma}_a(\br)\psi_k^{(0)}(\br) +
+    \hat{\Sigma}_{s,0}(\br) \(\psi_k^{(1)} (\br) - \sum_{n=0}^{N-1}
+    \sum_{m=-l}^{l} Y_l^m (\bo_k)\phi_{l,m}^{(1)}(\br)\)\\
+    &=-\frac{\Sigma_{tr}(\br)-\hat{\Sigma}_a(\br)}{2} \sum_{l=0}^{N-1}
+    \sum_{m=-l}^l  l(l+1) Y_l^m(\bo_k)
+    \phi_{l,m}^{(0)}(\br)+ Q(\br,\bo_k) + O\(\frac{\gamma}{\epsilon}\)
+  \end{split}
+  \label{O_1_terms}
 \end{equation}
 Now, we want the scattering term on the left side of \cref{O_1_terms} to
 disappear to keep only $\psi_k^{(0)}$ and $\phi_{l,m}^{(0)}$. This is possible
@@ -155,36 +155,35 @@ only if:
 \end{equation}
 where:
 \begin{equation}
-\begin{split}
-\psi_k^{(1),*} &= \sum_{l=0}^{N-1}\sum_{m=-l}^l Y_l^m(\bo_k)
-\phi_{l,m}^{(1)}(\br)\\
-&= (M_N\phi^{(1)})_k\\
-&=(M_N D_N \psi^{(1)})_k
-\end{split}
-\label{psi_1_star}
+  \begin{split}
+    \psi_k^{(1),*} &= \sum_{l=0}^{N-1}\sum_{m=-l}^l Y_l^m(\bo_k) 
+    \phi_{l,m}^{(1)}(\br)\\
+                   &= (\bs{M}_N\phi^{(1)})_k\\
+                   &=(\bs{M}_N \bs{D}_N \psi^{(1)})_k
+  \end{split}
+  \label{psi_1_star}
 \end{equation}   
-which is satisfied because of our previous assumption that $M_N D_N = I$.
-\Cref{O_1_terms} yields:
+which is satisfied because of our previous assumption that $\bs{M}_N \bs{D}_N
+= \bs{I}$. \Cref{O_1_terms} yields:
 \begin{equation}
 \begin{split}
   &\bo_k \cdot \bn \psi_k^{(0)}(\br)+\hat{\Sigma}_a(\br) \psi_k^{(0)}(\br) =
   \frac{\Sigma_{tr}(\br)-\hat{\Sigma}_a(\br)}{2}
-  \(\(\frac{\partial}{\partial \mu}(1-\mu^2)\frac{\partial}{\partial \mu}+
-  \(\frac{1}{1-\mu^2}\)\frac{\partial^2}{\partial \varphi^2}\)\tilde{\Psi}^{(0)}
-  (\br,\bo)\)_{\bo=\bo_k}\\
-  &+ Q(\br,\bo_k) + O\(\frac{\gamma}{\epsilon}\)
+  \(\(\frac{\partial}{\partial \mu}(1-\mu^2)\frac{\partial}{\partial
+  \mu}+\right. \right.\\
+  &\left.\left. \(\frac{1}{1-\mu^2}\)\frac{\partial^2}{\partial \varphi^2}\)
+  \tilde{\Psi}^{(0)} (\br,\bo)\)_{\bo=\bo_k}+ Q(\br,\bo_k) + 
+  O\(\frac{\gamma}{\epsilon}\)
 \end{split}
 \label{last_pautz}
 \end{equation}
 where $k=1,\hdots,K$ and $\tilde{\psi}^{(0)}(\br,\bo)$ is an interpolant
-through the points $P_k=\{\bo_k,\Psi_k^{(0)}(\br,\bo)\}$. In one-dimensional 
-slab and spherical geometry, $\tilde{\Psi}^{(0)}(\br,\bo)$ is the $(N-1)$-order 
-polynomial interpolant through the points $\{\bo_k,\Psi_k^{(0)}(\br)\}$.
-``In one-dimensional geometry, $\tilde{\Psi}^{(0)}(\br,\bo)$ is the $(N-1)-$order
+through the points $P_k=\{\bo_k,\Psi_k^{(0)}(\br,\bo)\}$. ``In one-dimensional 
+geometry, $\tilde{\Psi}^{(0)}(\br,\bo)$ is the $(N-1)-$order
 polynomial interpolant through the points $P_k$. In multidimensional
 geometries, $\tilde{\psi}^{(0)}(\br,\bo)$ is the spherical harmonic
-interpolant through the points $P_k$ \cite{pautz_fp}.'' A quadrature which 
-satisfies the relation $D_N = M_N^{-1}$ is called a ``Galerkin'' quadrature 
+interpolant through the points $P_k$'' \cite{pautz_fp}. A quadrature which 
+satisfies the relation $\bs{D}_N = \bs{M}_N^{-1}$ is called a ``Galerkin'' quadrature 
 because Morel derived it by using a Galerkin weighting method \cite{galerkin_morel}.
 
 In \cite{galerkin_morel}, Morel made the following suggestions to find the 
@@ -193,38 +192,45 @@ correct limit using the $S_N$:
 \item [One-dimensional geometry:] The Gauss-Legendre quadrature set is the
   only quadrature set which is a Galerkin quadrature.
 \item [Multidimensional geometry:] The standard quadrature sets have fewer 
-  moments than discrete. Therefore to satisfy \cref{psi_1_star}, spherical
+  moments than discrete angles. Therefore to satisfy $\bs{D}=\bs{M}^{-1}$, spherical
   harmonics of higher order need to be added to increase the number of moments
   up to the number of angular flux. Morel in \cite{galerkin_morel} and Reed in 
-  \cite{reed} proposed an heuristic algorithm choice to choose the spherical 
-  harmonics for multidimensional geometries. For two-dimensional triangular 
-  quadrature sets, the spherical harmonics to build $M$ are the following:
+  \cite{reed} proposed an heuristic algorithm to choose the spherical 
+  harmonics for multidimensional geometries. If we use the real spherical
+  harmonics defined by:
   \begin{equation}
-    Y_l^m = \left\{
+    Y_{l,m}^c = \left\{
       \begin{aligned}
-        &0\leq m \leq n, & \textrm{if }0\leq l\leq N-1 \\
-        &0< l\textrm{ odd }\leq N, & \textrm{if }l=N
+        &Y_l^0 & \textrm{ if } m=0\\
+        &\frac{1}{\sqrt{2}} \(Y_l^m+(-1)^{m} Y_l^{-m}\) & \textrm{ if } m> 0
       \end{aligned}
       \right.
   \end{equation}
+  \begin{equation}
+    Y_{l,m}^s = \frac{1}{i\sqrt{2}}(Y_l^{-m}-(-1)^{m}Y_l^m) \textrm{ if } m<0
+  \end{equation}
+  and a two-dimensional triangular quadrature set, the selection rules to build 
+  $\bs{M}$ are the following:
+  \begin{itemize}
+    \item Take $Y_{l,m}^c$ if $l\in[0,N-1]$, $m\in[0,l]$, and $l+m$ is even.
+    \item Take $Y_{l,m}^s$ if ($l \in [1,N-1]$, $m\in[1,l]$, and $l+m$ is
+      even) or if ($l=N$, $m\in[1,l]$, and $l+m$ is even).
+  \end{itemize}
   For three dimensional triangular quadrature sets, the spherical harmonics
   are:
-  \begin{equation}
-    Y_l^m = \left\{
-      \begin{aligned}
-        &-l\leq m \leq l, & \textrm{if }0\leq l \leq N-1\\
-        &-l\leq m <0 \textrm{ and } 0<l\textrm{ odd }\leq l, & \textrm{if }l=N\\
-        &-l\leq m\textrm{ even }<0,& \textrm{l=N+1}
-      \end{aligned}
-      \right.
-  \end{equation}
+  \begin{itemize}
+    \item Take $Y_{l,m}^c$ if ($l \in [0,N-1]$ and $m\in[0,l]$) or if ($l =
+      N$, $m\in[1,N-1]$, and $m$ is odd).
+    \item Take $Y_{l,m}^s$ if ($l\in [1,N]$ and $m\in[1,l]$) or if ($l=N+1$,
+      $m\in[2,N]$ and $m$ is even).
+  \end{itemize}
   General necessary conditions and explanations of the heuristic rules above
   have been analyzed in \cite{galerkin_sanchez}.
 \end{description}
 
 It is very important to use a Galerkin quadrature for charged particle
 transport. Using a standard quadrature may lead to an unphysical solution. To
-show it, we need to define the scattering ratio $\bs{C}$ by:
+show it, we need to define the scattering ratio matrix $\bs{C}$ by:
 \begin{equation}
 \bs{C} = \frac{1}{\Sigma_t}\bs{D}\bs{M}\bs{\Sigma}
 \end{equation}
@@ -260,12 +266,12 @@ where $\Sigma^{k\rightarrow g}(\mu_0)$ is the differential cross section
 associated with a transfer from group $k$ to group $g$. Thus, it is essential
 that delta function scattering be treated exactly. The second reason, which is
 more important for us since we work with energy-integrated equation, is that for 
-electron scattering, the extended transport correction can be used to reduce
-the within-group scattering cross sections by two orders of magnitude or more 
-\cite{morel_79}. Without the extended transport correction, the high order of 
-the flux moments are very important and DSA does not accelerate the
-convergence of the solver. Because the Galerkin method treats delta
-function  scattering exactly, the extended transport correction does not
+electron scattering, the extended transport correction \cite{lathrop} can be 
+used to reduce the within-group scattering cross sections by two orders of 
+magnitude or more \cite{morel_79}. Without the extended transport correction, 
+the high order of the flux moments are very important and DSA does not 
+accelerate the convergence of the solver. Because the Galerkin method treats 
+delta function  scattering exactly, the extended transport correction does not
 modify the solution of the problem \cite{morel_79}. This is very interesting 
 since it allows to reduce significantly the higher moments of the scattering
 cross-section expansion without losing of accuracy. Showing this property is
@@ -277,7 +283,7 @@ we have:
 When the scattering source is discretized, we have $\bs{\Sigma}=\bs{I}$.
 Therefore, it is obvious that:
 \begin{equation}
-  \bs{D\Sigma M}\psi = \psi
+  \bs{D\Sigma M}\Psi = \Psi
 \end{equation}
 
 To really understand the Galerkin quadrature, it is interesting to recall 
@@ -331,10 +337,10 @@ combination of Legendre polynomials $P_l$ with $l<N$ and $\int_{-1}^{1}
 P_l(x)P_m(x)\ dx=0$ for $l\neq m$, only the first $N-1$ cross-section moments
 are needed.
 
-Now, we compare the cross-section ``expansion'' for the Galerkin method and
+Now, we compare the cross-section expansion for the Galerkin method and
 the $S_n$ method. Both the Galerkin method and the standard $S_n$ method use
 the Legendre expansion of the cross section. However, whereas the $S_n$ method
-actually uses the Legendre expansion, the ``Galerkin'' scattering source is
+actually uses the Legendre expansion, the Galerkin scattering source is
 fully consistent with the exact cross section. It is not
 important whether or not the Legendre cross-section expansion represent
 accurately the scattering cross section. What is important is that

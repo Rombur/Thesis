@@ -7,24 +7,25 @@
 \vskip -10pt
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Eigenspectrum of the sweep preconditioned system\relax }}{55}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Eigenspectrum of the DSA preconditioned system\relax }}{55}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Eigenspectrum of the ANMG (DSA variant) preconditioned system\relax }}{55}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Eigenspectrum of the ANMG (DSA variant) preconditioned system\relax }}{56}
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Scalar flux for the $S_{32}$ calculation.\relax }}{58}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Scalar flux for the $S_{32}$ calculation.\relax }}{60}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Scalar flux for the $S_{32}$ calculation.\relax }}{61}
 \addvspace {10\p@ }
 \vskip -10pt
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Hexagonal cell versus triangle cells.\relax }}{62}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces AMR mesh.\relax }}{63}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces PWLD basis function\relax }}{65}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {First basis function}}}{65}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Second basis function}}}{65}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Third basis function}}}{65}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Fourth basis function}}}{65}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Sub-cell in the cell\relax }}{66}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces $V-$ and $W-$ cycles.\relax }}{72}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Fourier analysis as a function of the mesh optical thickness, homogeneous infinite medium case.\relax }}{86}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Fourier analysis as a function of the mesh optical thickness, homogeneous infinite medium case for different aspect ratios.\relax }}{87}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Quadrilateral cells.\relax }}{88}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Polygonal cells.\relax }}{89}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Zones of the domain.\relax }}{91}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Hexagonal cells.\relax }}{91}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Hexagonal cell versus triangle cells.\relax }}{63}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces AMR mesh.\relax }}{64}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces PWLD basis function\relax }}{66}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {First basis function}}}{66}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Second basis function}}}{66}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Third basis function}}}{66}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Fourth basis function}}}{66}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Sub-cell in the cell\relax }}{67}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces $V-$ and $W-$ cycles.\relax }}{73}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Fourier analysis as a function of the mesh optical thickness, homogeneous infinite medium case.\relax }}{84}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Fourier analysis as a function of the mesh optical thickness, homogeneous infinite medium case for different aspect ratios.\relax }}{85}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Quadrilateral cells.\relax }}{86}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Polygonal cells.\relax }}{88}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Zones of the domain.\relax }}{89}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Hexagonal cells.\relax }}{90}
+\addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -1,22 +1,23 @@
 \chapter{\uppercase{Conclusions and future work}}
 \section{Conclusions}
 In this dissertation, we first recalled the development of the
-Boltzmann-Fokker-Planck and the limitations of the Fokker-Planck operators.
-The Boltzmann-Fokker-Planck was introduced for charged particle transport
-because the scattering kernel is so forward peaked that a standard Legendre
+Boltzmann-Fokker-Planck equation and the limitations of the Fokker-Planck operator.
+The Boltzmann-Fokker-Planck equation was introduced for charged particle transport
+because the scattering kernel is so forward-peaked that a standard Legendre
 expansion of the scattering kernel would require hundreds of terms. We also
 shown that the Fokker-Planck operator is an asymptotic limit of the Boltzmann 
-operator when the scattering is forward peaked and that the energy transfer 
-during a collision tends to zero. The Fokker-Planck operator is used to model 
+operator when the scattering is forward-peaked and that the energy transfer 
+during a collision tends to zero. In the Boltzmann-Fokker-Planck equation, the 
+Fokker-Planck operator is used to model 
 the highly forward-peaked scattering collisions whereas the Boltzmann operator 
 is used for the wide angle scattering collisions. The Fokker-Planck operator 
 simplifies the calculation of the transport equation but it is valid only if 
 the kernel is peaked enough. For instance, realistic screened Rutherford 
 cross sections are not peaked enough. Then, we introduced the Fokker-Planck 
 cross sections which mimic the Fokker-Planck operator when using the Boltzmann
-operator. Since Fokker-Planck cross sections are the most forward peaked cross
-section (transport correction makes the delta scattering equivalent to pure
-absorption), we used them for our tests. Finally, we introduced the Galerkin 
+operator. Since Fokker-Planck cross sections are the most forward-peaked cross
+section (the extended transport correction renders the delta scattering equivalent 
+to pure absorption), we used them for our tests. Finally, we introduced the Galerkin 
 quadratures. Galerkin quadratures are capital to have correct results when 
 the scattering is highly anisotropic. Galerkin quadratures are equivalent
 to standard quadratures when the scattering is weakly anisotropic but when the
@@ -53,8 +54,8 @@ We also extended the Modified Interior Penalty (MIP) DSA
 developed for triangular cells to arbitrary polygonal meshes using the
 PieceWise Linear Discontinuous (PWLD) finite elements. Arbitrary polygonal
 meshes can potentially decrease the number of unknowns to mesh a domain and
-they simplifies adaptive mesh refined by suppressing hanging nodes. Then, 
+they simplifies adaptive mesh refinement by suppressing hanging nodes. Then, 
 we compared the Algebraic MultiGrid (AMG) preconditioner with the more 
 common Symmetric Gauss-Seidel (SGS) preconditioner. AMG was shown to be much 
-more efficient than SGS. Among the different AMG methods tested the AGMG 
+more efficient than SGS. Among the different AMG methods tested the AGMG code 
 was the fastest and about 20 times faster than CG used without preconditioning.

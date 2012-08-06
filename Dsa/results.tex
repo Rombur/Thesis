@@ -1,5 +1,5 @@
 \section{Results} \label{sec_res}
-In this section, we show two Fourier analysis: one where the $S_n$ order is
+In this section, we show two Fourier analysis of MIP: one where the $S_n$ order is
 varied and one where the aspect ratio is varied. We also compare different
 methods to solve MIP: congugate gradient (CG), conjugate gradient
 preconditioned with symmetric Gauss-Seidel (PCG-SGS), conjugate gradient
@@ -7,15 +7,13 @@ preconditioned with ML using uncoupled aggregation (PCG-ML-Uncoupled),
 conjugate gradient preconditioned with ML using mis aggregation (PCG-ML-MIS),
 and AGMG. The options used for ML can be found in the Appendix.
 \subsection{Fourier Analysis}
-Analysing Source Iteration accelerated with DSA is often performed thanks to
+Analysing Source Iteration accelerated with DSA is often performed using
 Fourier analysis \cite{larsen_dsa,consistent_p1}. When a Fourier analysis is
 performed, the error is decomposed into different modes and by inspecting the 
 damping of the different error modes, the effectiveness of the DSA scheme can 
 be studied. The largest damping factor is the spectral radius of the method. 
 The smaller the spectral radius is, the faster the scheme converges. If the 
-spectral radius is greater than one, the method is unstable. Next, we present 
-two Fourier analysis. In the first one, the $S_n$ order is varied whereas in 
-the second one, the aspect ratio of the cell is modified.
+spectral radius is greater than one, the method is unstable. 
 \subsubsection{$S_n$ order varied}
 This Fourier analysis was carried on a square cell, using a
 Gauss-Legendre-Chebyshev (GLC) quadrature. The medium is homogeneous, the scattering
@@ -30,7 +28,7 @@ $S_{16}$.
 homogeneous infinite medium case.}
 \end{figure}
 MIP is stable for every cell size. The spectral radius is always less than
-0.5, except for $S_2$ where it is about 0.7.
+0.5, except for $S_2$ where it peaks at about 0.7.
 \subsubsection{Aspect ratio varied}
 For this Fourier analysis, we use a $S_{16}$ GLC quadrature, a homogeneous
 medium, $c=0.9999$ and periodic boundary conditions. The $x-$axis is the mesh
@@ -45,10 +43,10 @@ $\frac{Y}{X}=4$ and $\frac{Y}{X}=16$.
 homogeneous infinite medium case for different aspect ratios.}
 \end{figure}
 MIP is stable for every aspect ratio and the maximum of the spectral radius
-is at about 0.5
+peaks at about 0.5
 
 \subsection{Homogeneous medium}
-Next we compare different solvers for MIP on a homogeneous medium, 10cm $\times$
+Next, we compare different solvers for MIP on a homogeneous medium, 10cm $\times$
 10cm, $\Sigma_t=1$cm$^{-1}$ and $\Sigma_s=0.99$cm$^{-1}$, with vacuum boundary 
 conditions and a source of intensity 1cm$^{-3}$s$^{-1}$. We use a $S_8$
 Gauss-Legendre-Chebyshev quadrature, a Source Iteration solver with relative
@@ -59,12 +57,12 @@ to 39960 degrees of freedom. The solution is:
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\textwidth]{./Dsa/homog_quad_crop}
-\caption{Quadrilateral cells.}
+\caption{Scalar flux on a mesh composed of quadrilateral cells.}
 \end{figure}
 In the next table, the different solvers are compared:
 \begin{table}[H]
 \begin{center}
-\caption{Comparison of preconditioners with quadrilateral cells.}
+\caption{Comparison of different preconditioners for quadrilateral cells.}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
  & No-DSA & CG & PCG-SGS & PCG-MLU & PCG-MLM & AGMG\\
@@ -79,11 +77,11 @@ Total (s) & 309.395 & 172.181 & 211.933 & 80.1548 & 80.0387 &
 \end{tabular}
 \end{center}
 \end{table}
-In this Table, SI iterations is the number iteration of Source Iteration
-needed to solve the problem, Precond init is the time in seconds needed to
-initialize the preconditioner used by CG, MIP calculation is the total time in
-seconds spent solving DSA during the calculation, CG iterations is the total number 
-of CG iterations used to solve MIP, and Total calculation is the time in
+In this Table, SI iter is the number iteration of Source Iteration
+needed to solve the problem, Prec is the time in seconds needed to
+initialize the preconditioner used by CG, MIP is the total time in
+seconds spent solving DSA during the calculation, CG iter is the total number 
+of CG iterations used to solve MIP, and Total is the time in
 seconds needed to solve the problem.
 
 Using MIP decreases significantly the number of SI iterations and the
@@ -103,12 +101,12 @@ cell. The solution and the mesh are:
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\textwidth]{./Dsa/homog_poly_crop}
-\caption{Polygonal cells.}
+\caption{Scalar flux on a mesh composed of polygonal cells.}
 \end{figure}
 The different solvers are compared in the next Table:
 \begin{table}[H]
 \begin{center}
-\caption{Comparison of preconditioners with polygonal cells.}
+\caption{Comparison of different preconditioners for polygonal cells.}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
  & No-DSA & CG & PCG-SGS & PCG-MLU & PCG-MLM & AGMG\\
@@ -149,12 +147,12 @@ The scalar flux for this problem is:
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\textwidth]{./Dsa/heterog_hex_crop}
-\caption{Hexagonal cells.}
+\caption{Scalar flux on a mesh composed of hexagonal cells.}
 \end{figure}
 The different solvers are compared in the next Table:
 \begin{table}[H]
 \begin{center}
-\caption{Comparison of preconditioners with heterogeneous medium.}
+\caption{Comparison of different preconditioners for a heterogeneous medium.}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
  & No-DSA & CG & PCG-SGS & PCG-MLU & PCG-MLM & AGMG\\
@@ -169,59 +167,5 @@ Total (s) & 379.175 & 121.798 & 147.094   & 94.7139 & 94.8013 & 65.5546 \\
 \end{center}
 \end{table}
 We can see that the comments that were done for the homogeneous tests are
-still valid. MIP is effective even with heterogeneous medium and the AGMG is
+still valid. MIP is effective even with heterogeneous medium and AGMG is
 still the fastest solver.
-
-\subsection{ML options}
-Some of the available coarsening schemes:
-\begin{description}
-  \item[Uncoupled:] Attempt to construct aggregates of optimal size ($3^d$
-    nodes in $d$ dimensions). Each process works independently and aggregates
-    cannot span processes.
-  \item[MIS:] Uses maximal independent set techniques to define aggregates.
-    Aggregates can span processes. May provide better quality aggregates than
-    {\bf Uncoupled}, but computationally more expensive because it requires
-    matrix-matrix product.
-\end{description}
-Some of the smoothers:
-\begin{description}
-  \item[Jacobi]
-  \item[Symmetric Gauss-Seidel]
-\end{description}
-Some of the coarse solvers:
-\begin{description}
-  \item[Jacobi]
-  \item[Symmetric Gauss-Seidel]
-  \item[Amesos-KLU:] Use {\bf KLU} through {\bf Amesos}. Coarse grid problem
-    is shipped to processor 0, solved, and solution is broadcast.
-  \item[Amesos-UMFPACK:] Use {\bf UMFPACK} through {\bf Amesos}. Coarse grid
-    problem is shipped to processor 0, solved, and solution is broadcast.
-  \item[Amesos-MUMPS:] Use double precision version of {\bf MUMPS} through
-    {\bf Amesos}.
-\end{description}
-The MultiLevelPreconditioner class provide default values for five different
-preconditioner types:
-\begin{itemize}
-  \item Classical smoothed aggregation for symmetric positive definte or
-    nearly symmetric definite systems.
-  \item Classical smoothed aggregation-based two-level domain decomposition.
-  \item Three-level algebraic domain decomposition.
-  \item Eddy current formulation of Maxwell's equation.
-  \item Energy-based minimizing smoothed aggregation suitable for highly
-    convective nonsymmetric fluid flow problems.
-\end{itemize}
-\begin{description}
-  \item[option name:] SA
-  \item[max levels:] 10
-  \item[prec type:] $V-$cycle
-  \item[aggregation type:] uncoupled-MIS
-  \item[aggregation damping factor:] 4/3
-  \item[eigen-analysis type:] cg
-  \item[eigen-analysis iterations:] 10
-  \item[smoother sweeps:] 2
-  \item[smoother damping factor:] 1.0
-  \item[smoother pre or post:] both
-  \item[smoother type:] symmetric Gauss-Seidel
-  \item[coarse type:] Amesos-KLU
-  \item[coarse max size:] 128
-\end{description}
