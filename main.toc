@@ -36,7 +36,7 @@
 \contentsline {subsection}{\numberline {3.6.1}Comparison between ANMG-DSA and ANMG-$P1$SA}{57}
 \contentsline {subsection}{\numberline {3.6.2}Test Case with a Volumetric Source}{58}
 \contentsline {subsection}{\numberline {3.6.3}Test Case with a Heterogeneous Medium (Beam problem)}{60}
-\contentsline {section}{\numberline {3.7}Conclusions}{62}
+\contentsline {section}{\numberline {3.7}Conclusions}{61}
 \contentsline {chapter}{\numberline {4}\uppercase {Modified Interior Penalty on Arbitrary Polygonal Cells}}{63}
 \contentsline {section}{\numberline {4.1}Introduction}{63}
 \contentsline {section}{\numberline {4.2}MIP on arbitrary polygonal cells}{65}
@@ -48,16 +48,16 @@
 \contentsline {subsection}{\numberline {4.3.3}ML}{77}
 \contentsline {subsection}{\numberline {4.3.4}AGMG}{79}
 \contentsline {section}{\numberline {4.4}Results}{83}
-\contentsline {subsection}{\numberline {4.4.1}Fourier Analysis}{84}
+\contentsline {subsection}{\numberline {4.4.1}Fourier Analysis}{83}
 \contentsline {subsubsection}{\numberline {4.4.1.1}$S_n$ order varied}{84}
-\contentsline {subsubsection}{\numberline {4.4.1.2}Aspect ratio varied}{85}
+\contentsline {subsubsection}{\numberline {4.4.1.2}Aspect ratio varied}{84}
 \contentsline {subsection}{\numberline {4.4.2}Homogeneous medium}{85}
-\contentsline {subsubsection}{\numberline {4.4.2.1}Quadrilateral cells}{86}
+\contentsline {subsubsection}{\numberline {4.4.2.1}Quadrilateral cells}{85}
 \contentsline {subsubsection}{\numberline {4.4.2.2}Polygonal cells}{87}
-\contentsline {subsection}{\numberline {4.4.3}Heterogeneous medium}{89}
-\contentsline {section}{\numberline {4.5}Conclusions}{91}
-\contentsline {chapter}{\numberline {5}\uppercase {Conclusions and future work}}{92}
-\contentsline {section}{\numberline {5.1}Conclusions}{92}
-\contentsline {section}{\numberline {5.2}Future work}{94}
-\contentsline {part}{REFERENCES}{97}
-\contentsline {chapter}{\uppercase {Appendix} \numberline {A}\uppercase {ML options}}{109}
+\contentsline {subsection}{\numberline {4.4.3}Heterogeneous medium}{88}
+\contentsline {section}{\numberline {4.5}Conclusions}{90}
+\contentsline {chapter}{\numberline {5}\uppercase {Conclusions and future work}}{91}
+\contentsline {section}{\numberline {5.1}Conclusions}{91}
+\contentsline {section}{\numberline {5.2}Future work}{93}
+\contentsline {part}{REFERENCES}{96}
+\contentsline {chapter}{\uppercase {Appendix} \numberline {A}\uppercase {ML options}}{108}

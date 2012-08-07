@@ -53,7 +53,7 @@
 \renewcommand{\]}{\right]}
 
 % Si la description est trop longue elle est coupee en plusieurs ligne
-\renewenvironment{description}%
+\newenvironment{long_description}%
 {
   \begin{basedescript}{
       \desclabelstyle{\nextlinelabel}
@@ -68,8 +68,6 @@
 \newtheorem{algorithm}{Algorithm}[section]
 \newtheorem{criterion}{Criterion}[section]
 \newtheorem{definition}{Definition}[section]
-
-\includeonly{dsa}
 
 \begin{document}
 \renewcommand{\tamumanuscripttitle}{Acceleration Techniques for Coupled

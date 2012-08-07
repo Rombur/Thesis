@@ -1,6 +1,6 @@
 \chapter{\uppercase{ML options}}
 
-Some of the available coarsening schemes:
+Some of the available coarsening schemes in ML \cite{ml_guide}:
 \begin{description}
   \item[Uncoupled:] Attempt to construct aggregates of optimal size ($3^d$
     nodes in $d$ dimensions). Each process works independently and aggregates
@@ -29,14 +29,15 @@ Some of the coarse solvers:
 The MultiLevelPreconditioner class provide default values for five different
 preconditioner types:
 \begin{itemize}
-  \item Classical smoothed aggregation for symmetric positive definite or
-    nearly symmetric definite systems (used here)
+  \item Classical smoothed aggregation for symmetric and positive definite or
+    nearly symmetric and definite systems (used here)
   \item Classical smoothed aggregation-based two-level domain decomposition.
   \item Three-level algebraic domain decomposition.
   \item Eddy current formulation of Maxwell's equation.
   \item Energy-based minimizing smoothed aggregation suitable for highly
     convective nonsymmetric fluid flow problems.
 \end{itemize}
+The options used in this work are:
 \begin{description}
   \item[option name:] SA
   \item[max levels:] 10

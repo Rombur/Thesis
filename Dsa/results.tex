@@ -3,8 +3,8 @@ In this section, we show two Fourier analysis of MIP: one where the $S_n$ order 
 varied and one where the aspect ratio is varied. We also compare different
 methods to solve MIP: congugate gradient (CG), conjugate gradient
 preconditioned with symmetric Gauss-Seidel (PCG-SGS), conjugate gradient
-preconditioned with ML using uncoupled aggregation (PCG-ML-Uncoupled),
-conjugate gradient preconditioned with ML using mis aggregation (PCG-ML-MIS),
+preconditioned with ML using uncoupled aggregation (PCG-MLU),
+conjugate gradient preconditioned with ML using MIS aggregation (PCG-MLM),
 and AGMG. The options used for ML can be found in the Appendix.
 \subsection{Fourier Analysis}
 Analysing Source Iteration accelerated with DSA is often performed using
@@ -93,7 +93,7 @@ the most efficient solver, the number of CG iteration is slightly lower
 than PCG-ML but the MIP calculation is 20 times faster than CG.
 
 \subsubsection{Polygonal cells}
-In this problem the mesh is composed of 13654 triangles, 250 quadrilaterals,
+In this problem, the mesh is composed of 13654 triangles, 250 quadrilaterals,
 1400 pentagons, 1306 hexagons, 228 heptagons, and 6 octagons, for a total of
 16844 cells and 58442 degrees of freedoms. This example will allow us to test
 MIP and the different preconditioners on a mesh composed of different types of

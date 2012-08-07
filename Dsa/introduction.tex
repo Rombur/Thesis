@@ -36,17 +36,19 @@ Linear Discontinuous (PWLD) finite elements \cite{pwld_3d,pwld_2d}
 have been successfully used to solve the transport equation on arbitrary
 polygonal meshes. Another variant of the PieceWise Linear finite elements, the
 PieceWise Linear Continuous finite elements were also developed and used 
-to discretize the diffusion equation. They have shown to be second order and to
-produce a symmetric positive matrix \cite{pwl_diffusion}. However, no 
-DSA \cite{dsa_ref,larsen_dsa,consistent_p1} 
-was developed using this discretization. In this work, we remedy this lack by 
-adapting the Modified Interior Penalty (MIP) DSA developed in \cite{mip} for 
-triangular cells. By using PWLD finite elements with MIP, MIP will be able to 
-to be used on arbitrary polygonal cells. Since MIP produces SPD equations, it 
-has usually been solved using conjugate gradient preconditioned by SSOR. In 
-this work, the effectiveness of algebraic multigrid methods (AMG) to precondition 
-the Krylov solver \cite{amg,amg_course} will be tested. Algebraic multigrid methods 
-allow to use multigrid techniques when there is no grid or when the mesh is 
-unstructured. Instead of using a succession of grids based on the geometry of the 
-problems, the grids are based on properties of the matrix. Therefore, AMG can
-be used as black-box solver or preconditioner.
+to discretize the diffusion equation. They have shown to be a second order
+accuracy method and to produce a symmetric and positive definite matrix 
+\cite{pwl_diffusion} contrarily to others discretization for arbitrary
+polygonal meshes \cite{pwl_diffusion}. However, no DSA 
+\cite{dsa_ref,larsen_dsa,consistent_p1} was developed using this discretization. 
+In this work, we remedy this lack by adapting the Modified Interior Penalty 
+(MIP) DSA developed in \cite{mip} for triangular cells. By using PWLD finite 
+elements with MIP, MIP will be able to to be used on arbitrary polygonal cells. 
+Since MIP produces SPD equations, it has usually been solved using conjugate 
+gradient preconditioned by SSOR. In this work, the effectiveness of algebraic 
+multigrid methods (AMG) to precondition the Krylov solver \cite{amg,amg_course} 
+will be tested. Algebraic multigrid methods allow to use multigrid techniques 
+when there is no grid or when the mesh is unstructured. Instead of using a 
+succession of grids based on the geometry of the problems, the grids are based 
+on properties of the matrix. Therefore, AMG can be used as black-box solver or 
+preconditioner.

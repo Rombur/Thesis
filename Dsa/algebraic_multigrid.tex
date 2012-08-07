@@ -2,7 +2,8 @@
 \subsection{Introduction}
 As mentioned earlier, the most common way to solve a SPD system is to use
 conjugate gradient preconditioned with SSOR (PCG-SSOR). In this research, we
-will compare the calculation time using PCG-SSOR with the time needed by CG 
+will compare the calculation time using PCG-SGS, which is a particular version
+of PCG-SSOR, with the time needed by CG 
 preconditioned with an algebraic multigrid method. This is not a new idea: The 
 first multigrid methods developed were geometric multigrid used as stand-alone 
 solvers. In many applications, they achieve the so-called ``textbook multigrid
@@ -43,7 +44,7 @@ defined on the grid $\Gamma_f$.  The two-grid algorithm is given by :
     correction to $u$: $u=u+\bs{P}v$
   \item $\nu_2$ post-smoothing iterations: $u = S^{\nu_2}(u,b_f)$
 \end{enumerate}
-When using AMG, the matrix $A_c$ on the coarse grid is given by the Galerkin
+When using AMG, the matrix $\bs{A}_c$ on the coarse grid is given by the Galerkin
 approximation:
 \begin{equation}
   \bs{A}_c = \bs{R}\bs{A}_f \bs{P}
@@ -57,7 +58,7 @@ This yields the multigrid method. When $\gamma = 1$, respectively $\gamma =
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.5\textwidth]{./Dsa/v_w_cycles}
-  \caption{$V-$ and $W-$ cycles.}
+  \caption{$V-$ and $W-$cycles.}
 \end{figure}
 A dot represents a smoothing operation and a square a direct inversion. The grid 
 transfer operators are symbolized by lines.
@@ -251,7 +252,7 @@ This tentative prolongator could be used as prolongator but smoothing it
 allows to have a more robust scheme. Let $\bs{S}_k$ be a smoother, for example
 damped Jacobi, the prolongator matrix is given by:
 \begin{equation}
-  \bs{P}_k = \bs{\tilde{S}}_k \bs{\tilde{P}}_k
+  \bs{P}_k = \bs{S}_k \bs{\tilde{P}}_k
 \end{equation}
 
 Like for classical AMG, it can be interesting to ignore small values in
