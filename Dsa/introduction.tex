@@ -1,12 +1,13 @@
 \chapter{\uppercase{Modified Interior Penalty on Arbitrary Polygonal Cells}}
+\label{mip_chapter}
 \section{Introduction}
-In the previous Chapter, we saw that at the coarsest level of ANMG a Diffusion
+In Chapter \ref{anmg_chapter}, we saw that at the coarsest level of ANMG a Diffusion
 Synthetic Acceleration needs to be solved. DSA is very often used to speed up the
 calculation when the scattering is isotropic or weakly anisotropic. This is
 because the transport sweep attenuates the quickly varying error modes whereas
 the diffusion operator attenuates the slowly varying error modes.  Another
 important property of the diffusion operator is that it is easily inverted. 
-In this Chapter, we introduce the Modified Interior Penalty DSA on arbitrary 
+In this Chapter, we introduce the Modified Interior Penalty (MIP) DSA on arbitrary 
 polygonal mesh. Several discretization methods haven been developed for 
 arbitrary polygonal meshes \cite{pwld_3d,pwl_diffusion,palmer_fe,mimetic,
 cell_centered_diff,palmer_proc,palmer_ane,pwld_2d,wachspress}. Using polygonal 
@@ -40,11 +41,11 @@ to discretize the diffusion equation. They have shown to be a second order
 accuracy method and to produce a symmetric and positive definite matrix 
 \cite{pwl_diffusion} contrarily to others discretization for arbitrary
 polygonal meshes \cite{pwl_diffusion}. However, no DSA 
-\cite{dsa_ref,larsen_dsa,consistent_p1} was developed using this discretization. 
-In this work, we remedy this lack by adapting the Modified Interior Penalty 
-(MIP) DSA developed in \cite{mip} for triangular cells. By using PWLD finite 
-elements with MIP, MIP will be able to to be used on arbitrary polygonal cells. 
-Since MIP produces SPD equations, it has usually been solved using conjugate 
+\cite{dsa_ref,larsen_dsa,consistent_p1} was developed using PWLD finite
+elements. In this work, we remedy this lack by adapting the Modified Interior 
+Penalty (MIP) DSA developed in \cite{mip} for triangular cells. By using PWLD 
+finite elements with MIP, MIP will be able to to be used on arbitrary polygonal 
+cells. Since MIP produces SPD equations, it has usually been solved using conjugate 
 gradient preconditioned by SSOR. In this work, the effectiveness of algebraic 
 multigrid methods (AMG) to precondition the Krylov solver \cite{amg,amg_course} 
 will be tested. Algebraic multigrid methods allow to use multigrid techniques 

@@ -239,7 +239,7 @@ where:
 
 
 \section{Organization of the Dissertation}
-\noindent In Chapter II, we introduce the Boltzmann-Fokker-Planck (BFP)
+\noindent In Chapter 2, we introduce the Boltzmann-Fokker-Planck (BFP)
 equation used to describe the transport of charged particles. To obtain the
 BFP equation, the Fokker-Planck operator is added in the Boltzmann equation in 
 order to simplify
@@ -254,34 +254,37 @@ section that allows to reduce the Fokker-Planck equation and the BFP equation
 to a Boltzmann equation. Fokker-Planck cross sections cannot be used with any
 quadrature, special quadratures known as Galerkin quadratures must be adopted.
 The importance and the properties of these quadratures are explained in
-details at the end of Chapter II.\\
+details at the end of Chapter 2.\\
 
-\noindent In Chapter III, we introduce the angular multigrid methods for 
-transport with highly forward-peaked scattering. We recall the previous works 
-on the topic and we discuss the issues encountered for multidimensional 
-geometries. The original angular multigrid method for one-dimensional geometry
-shown rapid convergence for problems with highly forward-peaked
-scattering whereas DSA is ineffective. Unfortunately, the generalization to
-multidimensional geometries required a filter to stabilized the methods which
-was not as efficient as in one dimensional geometry. When the scattering
-becomes very anisotropic, the angular multigrid method become ineffective. In
-that Chapter, we show that if the angular multigrid method is recast as a
-preconditioner for a Krylov solver, the method does not need to be stabilized
-and is always effective and efficient.\\
+\noindent In Chapter \ref{anmg_chapter}, we introduce the angular multigrid 
+methods for transport with highly forward-peaked scattering. We recall the 
+previous works on the topic and we discuss the issues encountered for 
+multidimensional geometries. The original angular multigrid method for 
+one-dimensional geometry shown rapid convergence for problems with highly 
+forward-peaked scattering whereas DSA is ineffective. Unfortunately, the 
+generalization to multidimensional geometries required a filter to stabilized 
+the methods which was not as efficient as in one dimensional geometry. When 
+the scattering becomes very anisotropic, the angular multigrid method become 
+ineffective. In that Chapter, we show that if the angular multigrid method is 
+recast as a preconditioner for a Krylov solver, the method does not need to be 
+stabilized and is always effective and efficient.\\
 
-\noindent In Chapter IV, we discuss two spatial discretizations: BiLinear
-Discontinuous finite elements (BLD) and PieceWise Linear Discontinuous finite
-elements (PWLD). The BLD finite elements are used on rectangular cells while
-the PWLD finite elements can be used on any polygonal cells. Then, 
-we adapt the Modified Interior Penalty (MIP) DSA developed for triangular cells to
-rectangular and polygonal cells. This DSA discretization is used as the
-coarsest level of the angular multigrid method developed in Chapter III. In
-Chapter IV, we also investigate algebraic multigrid methods as preconditioners
-to solve MIP. Since MIP is symmetric and definite-positive, the most
-common method to solve it, is to use conjugate gradient (CG) preconditioned by
-SSOR. It is not the only method and we show that CG preconditioned by
-algebraic multigrid methods is superior if the matrix associated to MIP can be
-stored.\\
+\noindent In Chapter \ref{spatial_chapter}, we discuss two spatial 
+discretizations: BiLinear Discontinuous finite elements (BLD) and PieceWise 
+Linear Discontinuous finite elements (PWLD). The BLD finite elements are used 
+on rectangular cells while the PWLD finite elements can be used on any polygonal 
+cells.\\
 
-\noindent In Chapter V, we finish with some concluding remarks and suggestions for
+\noindent In Chapter \ref{mip_chapter}, we adapt the Modified Interior 
+Penalty (MIP) DSA developed for triangular cells to rectangular and polygonal 
+cells. This DSA discretization is used as the coarsest level of the angular 
+multigrid method developed in Chapter \ref{anmg_chapter}. In Chapter
+\ref{mip_chapter}, we also investigate algebraic multigrid methods as 
+preconditioners to solve MIP. Since MIP is symmetric and definite-positive, 
+the most common method to solve it, is to use conjugate gradient (CG) 
+preconditioned by SSOR. It is not the only method and we show that CG 
+preconditioned by algebraic multigrid methods is superior if the matrix 
+associated to MIP can be stored.\\
+
+\noindent In Chapter 6, we finish with some concluding remarks and suggestions for
 future developments.

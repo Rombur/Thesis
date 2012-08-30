@@ -1,0 +1,80 @@
+\chapter{\uppercase{Spatial discretizations}} \label{spatial_chapter}
+\section{Introduction}
+In this Chapter, we introduce the two spatial discretizations used
+in this research: the BiLinear Discontinuous finite elements (BLD) 
+\cite{thick_dgfem,lumping_bld} and the PieceWise Linear Discontinuous finite 
+elements (PWLD) \cite{pwld_3d,pwld_2d}. The BLD discretization is being used on
+rectangular cells whereas PWLD is being used on arbitrary convex polygonal
+cells. Both of these discretizations give the correct result in the diffusion 
+limit. Using finite elements to spatially discretize \cref{transport_sn}, we
+get after expanding $\psi_s$ and $\phi$ on the basis functions $b_j^K(\br)$, 
+multiplying the equation by the test function $b_i^K(\br)$, and integrating 
+on the cell $K$ (the superscript $K$ is used for a variable defined on $K$):
+\begin{equation}
+  \begin{split}
+    &\int_{K} b_i^K(\br) \bo_d \cdot \bn \(\sum_j \psi_{d,j}^K b_j^K(\br)\)\ d\br + 
+    \int_{K} b_i^K(\br) \Sigma_t^K(\br) \(\sum_j \psi_{d,j}^K b_j^K(\br)\)\ d\br =\\
+    &\int_{K} b_i^K(\br) \sum_{l=0}^L \Sigma_{s,l}^K(\br) \sum_{m=-l}^l
+    \(\sum_j \phi_{l,m,j}^K b_j^K(\br)\) Y_l^m(\bo_d)\ d\br + \int_{K} b_i^K(\br)
+    Q_d^K(\br)\ d\br
+  \end{split}
+\end{equation}
+where $\oint_{\partial K}$ is the integral over the boundary $\partial K$ of
+cell $K$ and $\bs{n}_b^K$ is the external normal. Using Stokes' theorem, the 
+previous equation becomes:
+\begin{equation}
+  \begin{split}
+    &\oint_{\partial K} b_i^K(\br) \bo_d \cdot \bs{n}_b^K \(\sum_j \psi_{d,j}^K
+    b_j^K(\br)\)\ d\br -\int_{K} \(\sum_j \psi_{d,j}^K b_j^K(\br)\) \bo_d \cdot 
+    \bn b_i^K(\br)\ d\br +\\
+    &\int_{K} b_i^K(\br) \Sigma_t^K(\br) \(\sum_j \psi_{d,j}^K b_j^K(\br)\)\ d\br =
+    \int_{K} b_i^K(\br) \sum_{l=0}^L \Sigma_{s,l}^K(\br) \times\\
+    &\sum_{m=-l}^l \(\sum_j \phi_{l,m,j}^K b_j^K(\br)\) Y_l^m(\bo_d)\ d\br + 
+    \int_{K} b_i^K(\br) Q_d^K(\br)\ d\br
+  \end{split}
+\end{equation} 
+Using upwind on the first term of the previous equation, we obtain:
+\begin{equation}
+  \begin{split}
+    &\oint_{\partial K} b_i^K(\br) \bo_d \cdot \bs{n}_b^K \(\sum_j \psi_{d,j}^K 
+    b_j^K(\br)\)\ d\br = \int_{\partial J \cap \partial K} b_i^{J}(\br) \bo_d 
+    \cdot \bs{n}_b^J  \times\\
+    &\(\sum_j \psi_{d,j}^J b_j^J(\br)\)d\br+ \int_{\partial K\backslash\(
+    \partial J \cap \partial K\)} b_i^K(\br) \bo_d \cdot \bs{n}_b^K \(\sum_j 
+    \psi_{d,j}^K b_j^K(\br)\)d\br
+  \end{split}
+\end{equation}
+where $J$ is a cell adjacent to $K$ associated to the edge of $K$ such that
+$\bs{n}_B^K \cdot \bo_d < 0$, $\partial J$ is the boundary of $J$, and
+the basis functions $b_j^J$ and test function $b_i^J$ are defined on $J$.\\
+Because of the upwinding, the $S_n$ equation can be solved by sweeping over
+the mesh along each direction. During a sweep, the cells are ordered in a list
+such that the discretized transport equation can be solved by inversing a
+block lower triangular matrix. Sweeping is possible only if all the cells are
+convex. Thus, for a direction $d$ and a test function $b_i^K(\br)$ defined on
+$K$, we get the equation:
+\begin{equation}
+  \begin{split}
+    &\int_{\partial J \cap \partial K} b_i^{J}(\br) \bo_d \cdot \bs{n}_b^J  \times
+    \(\sum_j \psi_{d,j}^J b_j^J(\br)\)d\br+ \int_{\partial K\backslash\(
+    \partial J \cap \partial K\)} b_i^K(\br) \bo_d \cdot \bs{n}_b^K \times\\
+    &\(\sum_j\psi_{d,j}^K b_j^K(\br)\)d\br - \int_{K} \(\sum_j \psi_{d,j}^K 
+    b_j^K(\br)\) \bo_d \cdot \bn b_i^K(\br)\ d\br +\\
+    &\int_{K} b_i^K(\br) \Sigma_t^K(\br) \(\sum_j \psi_{d,j}^K b_j^K(\br)\)\ d\br =
+    \int_{K} b_i^K(\br) \sum_{l=0}^L \Sigma_{s,l}^K(\br) \times\\
+    &\sum_{m=-l}^l \(\sum_j \phi_{l,m,j}^K b_j^K(\br)\) Y_l^m(\bo_d)\ d\br + 
+    \int_{K} b_i^K(\br) Q_d^K(\br)\ d\br
+  \end{split}
+  \label{spatial_sn}
+\end{equation}
+Assuming that $Q$ and $\Sigma$ are constant by cell, the following
+integrals can be precomputed and used in \cref{spatial_sn}:
+\begin{align}
+  & \int_{\partial J \cap \partial K} b_i^{J}(\br) b_j^J(\br) d\br
+  \label{precomputed_1}\\
+  & \int_{\partial K\backslash\(\partial J \cap \partial K\)} b_i^K(\br)  
+  b_j^K(\br) d\br \label{precomputed_2}\\
+  & \int_K b_j^K(\br) \bn b_i^K(\br)\ d\br \label{precomputed_3}\\
+  & \int_K b_i^K(\br) b_j^K(\br) d\br \label{precomputed_4}\\
+  & \int_K b_i^K(\br)\ d\br \label{precomputed_5}
+\end{align}

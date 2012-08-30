@@ -65,14 +65,13 @@ In the next table, the different solvers are compared:
 \caption{Comparison of different preconditioners for quadrilateral cells.}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
- & No-DSA & CG & PCG-SGS & PCG-MLU & PCG-MLM & AGMG\\
+& No-DSA & CG & PCG-SGS &  PCG-MLU & PCG-MLM & AGMG\\
 \hline
-SI iter & 268 & 27 & 27 & 27 & 27 & 27 \\
-Prec (s) & NA & NA & 0.0142572 & 0.381872 & 1.21095 & 0.068\\
-MIP (s) & NA & 138.379 & 177.556 & 46.1957 & 44.7837 & 6.9311\\
-CG iter & NA & 35419 & 11414 & 729 & 702 & 674\\
-Total (s) & 309.395 & 172.181 & 211.933 & 80.1548 & 80.0387 &
-40.827\\
+SI iter   & 268     & 27      & 27        & 27       & 27      & 27 \\
+Prec (s)  & NA      & NA      & 0.0147641 & 0.320911 & 1.2398  & 0.082\\
+MIP (s)   & NA      & 136.531 & 178.6     & 45.116   & 43.4983 & 6.98518\\
+CG iter   & NA      & 35419   & 11414     & 729      & 702     & 674\\
+Total (s) & 290.911 & 168.548 & 213.06    & 78.2107  & 77.2278 & 39.4574\\
 \hline
 \end{tabular}
 \end{center}
@@ -85,12 +84,13 @@ of CG iterations used to solve MIP, and Total is the time in
 seconds needed to solve the problem.
 
 Using MIP decreases significantly the number of SI iterations and the
-calculation time as expected. Using PCG-SGS decreases by a factor three the 
-number of CG iterations compared to CG but the time needed to solve MIP is
-greater. With ML, the number of CG iterations is reduced by a factor 50 and 
-the MIP calculation time is divided by three compared to CG. AGMG is by far 
-the most efficient solver, the number of CG iteration is slightly lower 
-than PCG-ML but the MIP calculation is 20 times faster than CG.
+calculation time as expected. Using PCG-SGS decreases by a 
+factor three the number of CG iterations compared to CG but the time 
+needed to solve MIP is greater. With ML, the number of CG iterations is 
+reduced by a factor 50 and the MIP calculation time is divided by three 
+compared to CG. AGMG is by far the most efficient solver, the number of 
+CG iteration is slightly lower than PCG-ML but the MIP calculation is 20 
+times faster than CG.
 
 \subsubsection{Polygonal cells}
 In this problem, the mesh is composed of 13654 triangles, 250 quadrilaterals,
@@ -109,13 +109,13 @@ The different solvers are compared in the next Table:
 \caption{Comparison of different preconditioners for polygonal cells.}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
- & No-DSA & CG & PCG-SGS & PCG-MLU & PCG-MLM & AGMG\\
+& No-DSA & CG & PCG-SGS & PCG-MLU & PCG-MLM & AGMG\\
 \hline
-SI iter & 268 & 27 & 27 & 27 & 27 & 27\\
-Prec (s) & NA & NA & 0.0201421 & 0.482845 & 2.09054 & 0.097\\
-MIP (s) & NA & 210.128 & 303.423 & 78.0993 & 71.4493 & 11.0419\\
-CG iter & NA & 36352 & 13370 & 840 & 784 & 674\\
-Total (s) & 458.132 & 265.026 & 358.745 & 134.434 & 128.731 & 66.0207\\
+SI iter   & 268     & 27      & 27        & 27       & 27      & 27\\
+Prec (s)  & NA      & NA      & 0.0201421 & 0.482845 & 2.09054 & 0.097\\
+MIP (s)   & NA      & 210.128 & 303.423   & 78.0993  & 71.4493 & 11.0419\\
+CG iter   & NA      & 36352   & 13370     & 840      & 784     & 674\\
+Total (s) & 458.132 & 265.026 & 358.745   & 134.434  & 128.731 & 66.0207\\
 \hline
 \end{tabular}
 \end{center}
@@ -146,26 +146,89 @@ The properties of the different zones are:
 The scalar flux for this problem is:
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.6\textwidth]{./Dsa/heterog_hex_crop}
+\includegraphics[width=0.6\textwidth]{./Dsa/heterog_hex_crop_2}
 \caption{Scalar flux on a mesh composed of hexagonal cells.}
 \end{figure}
 The different solvers are compared in the next Table:
 \begin{table}[H]
-\begin{center}
-\caption{Comparison of different preconditioners for a heterogeneous medium.}
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
- & No-DSA & CG & PCG-SGS & PCG-MLU & PCG-MLM & AGMG\\
-\hline
-  SI iter & 111     & 19      & 19        & 19      & 19      & 19 \\
- Prec (s) & NA      & NA      & 0.0159521 & 0.49212 & 1.31818 & 0.108 \\
-  MIP (s) & NA      & 51.7628 & 82.5123   & 30.987  & 29.7762 & 2.64274 \\
-  CG iter & NA      & 10216   & 4481      & 423     & 402     & 260 \\
-Total (s) & 379.175 & 121.798 & 147.094   & 94.7139 & 94.8013 & 65.5546 \\
-\hline
-\end{tabular}
-\end{center}
+  \begin{center}
+    \caption{Comparison of different preconditioners for a heterogeneous medium.}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+      \hline
+      & No-DSA & CG & PCG-SGS & PCG-MLU & PCG-MLM & AGMG\\
+      \hline
+      SI iter   & 122      & 18      & 18       & 18       & 18      & 18 \\
+      Prec (s)  & NA       & NA      & 0.016149 & 0.336215 & 1.36803 & 0.065 \\
+      MIP (s)   & NA       & 60.2031 & 123.05   & 31.7048  & 30.8669 & 2.80108\\
+      CG iter   & NA       & 12016   & 6764     & 423      & 391     & 248 \\
+      Total (s) & 413.274  & 131.297 & 188.586  & 101.888  & 103.734 & 71.5392\\
+      \hline
+    \end{tabular}
+    \caption{Comparison of preconditioners with heterogeneous medium.}
+  \end{center}
 \end{table}
 We can see that the comments that were done for the homogeneous tests are
 still valid. MIP is effective even with heterogeneous medium and AGMG is
 still the fastest solver.
+
+\subsection{Rectangular cells}
+Like mentioned previously in this Chapter, AMG can have difficulties when the
+aspect ratio of the cells is high. Moreover, when the aspect ratio is high,
+MIP becomes ill conditioned. In this example, the aspect ratio $Y/x = 10$. We
+also compared the effect of the size of the coarsest grid on the convergence.
+In the next Table, we compare No-DSA, CD, AGMG defined previously with:
+\begin{enumerate}
+  \item[PCG-MLU-D:] preconditioned conjugate gradient preconditioned with ML
+    using uncoupled with a coarsest grid of size less or equal of 128 (default
+    value).
+  \item[PCG-MLU-M:] preconditioned conjugate gradient preconditioned with ML
+    using uncoupled with a coarsest grid of size less or equal of 400 (same 
+    value than AGMG).
+  \item[PCG-MLM-D:] preconditioned conjugate gradient preconditioned with ML
+    using MIS with a coarsest grid of size less or equal of 128 (default
+    value).
+  \item[PCG-MLM-M:] preconditioned conjugate gradient preconditioned with ML
+    using MIS with a coarsest grid of size less or equal of 400 (same 
+    value than AGMG).
+\end{enumerate}
+There are 9000 cells and thus, 36 000 degrees of freedom. The domain is 
+square $3cm \times 3cm$, 300 divisions along x-axis and 30 divisions along 
+y-axis. Relative tolerance $10^{-8}$, $S_{8}$ GLC quadrature, vacuum 
+boundaries, $PWLD$ finite elements, $\Sigma_t = 1 cm^{-1}$, 
+$\Sigma_s = 0.999 cm^{-1}$.
+\begin{landscape}
+  \begin{center}
+    \begin{table}[H]
+      \caption{Comparison of preconditioners on rectangular mesh.}
+      \begin{centering}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+          \hline
+          & No-DSA & CG & PCG-SGS & PCG-MLU-D & PCG-MLU-M & PCG-MLM-D &
+          PCG-MLM-M & AGMG \\
+          \hline
+          SI iter    & 62      & 26      & 26       & 26       & 26       & 
+            26       & 26       &  26 \\
+          Prec (s)   & NA      & NA      & 0.015177 & 0.300424 & 0.310577 &
+            0.900931 & 0.847251 & 0.044 \\
+          MIP (s)    & NA      & 115.936 & 249.85   & 157.941  & 153.097  & 
+            154.04   & 147.658  & 6.22109\\
+          CG iter    & NA      & 29623   & 16675    & 2674     & 2674     & 
+            2619     & 2619     & 810 \\
+          Total (s)  & 62.6123 & 146.177 & 249.15   & 188.184  & 182.458  & 
+            185.008  & 177.297  & 33.1472\\
+          \hline
+        \end{tabular}
+      \end{centering}
+    \end{table}
+  \end{center}
+\end{landscape}
+We can see that except AGMG, all the other preconditioned conjugate gradients
+performed significantly worse than for the others test cases. AGMG does not
+seem to be affected by the ill conditioning of MIP or the high aspect ratio.
+The change of coarsest grid size does not have a significant effect on the
+time needed to solve MIP.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=4cm]{./Dsa/rectangle}
+  \caption{Scalar flux on rectangular mesh.}
+\end{figure}

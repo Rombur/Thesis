@@ -1,120 +1,29 @@
-\section{MIP on arbitrary polygonal cells} \label{sec_mip}
-\subsection{PWLD finite elements}
-In this section, we introduce the PieceWise Linear Discontinuous finite
-elements developed in \cite{pwld_3d,pwld_2d}. To obtain the PWLD basis
-functions on two-dimensional polygons, we need to introduce the within-cell
-point $c$. The coordinates of $c$ are weighted averages of the vertex coordinates:
-\begin{align}
-& x_c = \sum_{j=1}^{V} \alpha_{j} x_j\\
-& y_c = \sum_{j=1}^{V} \alpha_{j} y_j
-\end{align}
-where $\sum_{j=1}^{V} \alpha_{j}=1$, $\alpha_j \geq 0\ \forall j$, and $V$ is 
-the number of vertices of the cell.\\
-The basis function at vertex $j$ is defined by \cite{pwld_2d}:
+\section{Modified Interior Penalty on arbitrary polygonal cells} \label{sec_mip}
+First, let us recall the derivation of MIP (see \cite{mip}). MIP is based on 
+the Interior Penalty (IP) form of the diffusion equation
+\cite{ip,mip} (weakly imposed boundary conditions are applied to each grid
+cell and the test functions are averaged over cells):
 \begin{equation}
-b_{j} (x,y) = t_{j}(x,y) + \alpha_j t_c(x,y)
+  b_{IP}(\varphi,\varphi^*) = l_{IP}(\varphi^*)
 \end{equation}
-where the $t_j$ functions are the linear functions on the triangle formed
-by the three vertices $j-1$, $j$ and $j+1$: $t_j (x,y)$ is unity at vertex $j$
-and zero at $j-1$ and $j+1$. The function $t_c(x,y)$ is unity at $c$ 
-and zero at each vertex. In this paper, the arbitrary positive weights
-$\alpha_j$ are chosen to be $\frac{1}{V}$. On a square cell with 
-$\alpha_{j}=0.25\ \forall j$, the basis functions are given in Figure (\ref{pwld}):
-\begin{figure}[H]
-\centering
-\subfloat[First basis function]{\includegraphics[width=0.3\textwidth]{./Dsa/pwld_1}}
-\subfloat[Second basis function]{\includegraphics[width=0.3\textwidth]{./Dsa/pwld_2}}\\
-\subfloat[Third basis function]{\includegraphics[width=0.3\textwidth]{./Dsa/pwld_3}}
-\subfloat[Fourth basis function]{\includegraphics[width=0.3\textwidth]{./Dsa/pwld_4}}
-\caption{PWLD basis function}
-\label{pwld}
-\end{figure}
-On triangular cells, the PWLD basis functions reduces to the standard Linear
-Discontinuous (LD) basis functions if $\alpha_j = \frac{1}{3}$. Given the 
-definition of the PWLD finite elements, it may seem complicated to build the 
-mass matrix or the gradient matrix on an arbitrary polygonal cells. The 
-construction of such matrices can be greatly simplified using ``side'' sub-cells. 
-A ``side'' sub-cell is a triangular cell made from two adjacent vertices and the 
-point $c$. On each ``side'' sub-cells, the mass matrix, for example, can be build
-using LD finite elements. The coefficients in the matrix correspondent to the 
-point $c$ are shared among the basis function in the cell. For instance, the
-mass matrix associated to a quadrilateral cell can be built as follows:\\
-First, let us define the mass matrix, $\bs{M}_{PWLD}$, and the mass matrix on a 
-``side'' sub-cell $\bs{M}_S$. We assume that the third basis function is associated 
-to the middle point of the cell. The first (respectively second) basis function on 
-the cell correspond to the first (respectively second) basis function of the 
-``side'' sub-cell.
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.3\textwidth]{./Dsa/mass_matrix}
-  \caption{Sub-cell in the cell}
-\end{figure}
-Now, $\bs{M}_{PWLD}$ can be filled in using $\bs{M}_S$:
-{\allowdisplaybreaks
-\begin{align}
-  & \bs{M}_{PWLD}(0,0) =  \bs{M}_S(0,0) + \alpha \bs{M}_S(0,2) + \alpha
-  \bs{M}_S(2,0) + \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(0,1) =  \bs{M}_S(0,1) + \alpha \bs{M}_S(0,2) + \alpha
-  \bs{M}_S(2,1) + \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(0,2) =  \alpha \bs{M}_S(0,2) + \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(0,3) =  \alpha \bs{M}_S(0,2) + \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(1,0) =  \bs{M}_S(1,0) + \alpha \bs{M}_S(1,2) + \alpha
-  \bs{M}_S(2,0) + \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(1,1) =  \bs{M}_S(1,1) + \alpha \bs{M}_S(1,2) + \alpha
-  \bs{M}_S(2,1) + \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(1,2) =  \alpha \bs{M}_S(1,2) + \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(1,3) =  \alpha \bs{M}_S(1,2) + \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(2,0) =  \alpha \bs{M}_S(2,0) + \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(2,1) =  \alpha \bs{M}_S(2,1) + \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(2,2) =  \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(2,3) =  \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(3,0) =  \alpha \bs{M}_S(2,0) + \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(3,1) =  \alpha \bs{M}_S(2,1) + \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(3,2) =  \alpha^2 \bs{M}_S(2,2)\\
-  & \bs{M}_{PWLD}(3,3) =  \alpha^2 \bs{M}_S(2,2)
-\end{align}}    
-By looping over all the ``side'' sub-cell of a cell, the mass matrix of the 
-cell can be easily built.
-\subsection{Modified Interior Penalty DSA}
-The transport equation can be written in a compact form using operators:
-\begin{align}
-  &\bs{L} \psi = \bs{M}\bs{\Sigma} \phi + Q \label{transport}\\
-  &\phi = \bs{D}\psi \label{phi_D_psi}
-\end{align}
-where $\psi$ are the angular fluxes, $\phi$ are the moments of the flux, $Q$
-is the volumetric source, $\bs{L}$ is the streaming operator, $\bs{M}$ is the
-moments-to-directions operator and $\bs{D}$ is the directions-to-moments
-operator. \Cref{transport,phi_D_psi} can be solved using the Source Iteration 
-method, which is a Richardson iteration, accelerated by DSA (see 
-\crefrange{dsa_sweep}{si_dsa_it}).
-
-Now that the PWLD finite elements have been defined and the SI+DSA method is
-known, we can define the Modified Interior Penalty DSA \cite{mip}. This DSA 
-scheme uses discontinuous Galerkin finite elements for the spatial discretization 
-and has been shown to be always stable for isotropic scattering on triangular cells. 
-The MIP weak form can be written as:
-\begin{equation}
-b(\phi,\phi^*) = l(\phi^*)
-\label{mip}
-\end{equation}
-with:
+where $\varphi$ is the scalar flux:
 \begin{equation}
   \begin{split}
-    b(\phi,\phi^*) =& \(\Sigma_a \phi,\phi^*\)_{\mc{D}}+
-    (\mathrm{D}\bn\phi,\bn\phi^*)_{\mc{D}} + \(\kappa_e \llb\phi\rrb,
-    \llb\phi^*\rrb\)_{E_h^i} + \\ 
-    &\(\llb\phi\rrb,\ldb\mathrm{D}\partial_n \phi^*\rdb\)_{E_h^i} + 
-    \(\ldb\mathrm{D}\partial_n \phi\rdb,\llb\phi^*\rrb\)_{E_h^i} + \(\kappa_e
-    \phi,\phi^*\)_{\partial \mc{D}^d}\\ 
-    &-\frac{1}{2} \(\phi,\mathrm{D} \partial_n
-    \phi^*\)_{\partial \mc{D}^d} - \frac{1}{2}\(\mathrm{D}\partial_n
-    \phi,\phi^*\)_{\partial \mc{D}^d}
-    \label{mip_b}
+    b_{IP}(\varphi,\varphi^*)=& \(\Sigma_a \varphi,\varphi^*\)_{\mc{D}} + 
+    (\mathrm{D} \bn \varphi, \bn \varphi^*)_{\mc{D}} + \(\kappa_e^{IP} \llb
+    \varphi\rrb, \llb \varphi^*\rrb\)_{E_h^i}\\
+    &+ \(\llb \varphi \rrb,\ldb \mathrm{D} \partial_n \varphi^*\rdb\)_{E_h^i} +
+    \(\ldb \mathrm{D} \partial_n \varphi\rdb,\llb \varphi^* \rrb\)_{E_h^i} + 
+    \(\kappa_e^{IP} \varphi, \phi^*\)_{\partial \mc{D}^d}\\
+    & -\frac{1}{2} \(\varphi,\mathrm{D}\partial_n,\varphi^*\)_{\partial \mc{D}^d}
+    -\frac{1}{2}\(\mathrm{D}\partial_n\varphi,\varphi\)_{\partial \mc{D}^d}
   \end{split}
+  \label{b_ip}
 \end{equation}
+and:
 \begin{equation}
-l(\phi^*) = (Q_0,\phi^*)_{\mc{D}}+ (J^{inc},\phi^*)_{\partial \mc{D}^r}
-\label{mip_l}
+  l_{IP}(\varphi^*) = \(Q_0,\varphi^*\)_{\mc{D}} +
+  \(J^{inc},\varphi^*\)_{\partial \mc{D}^r}
 \end{equation}
 where $(f,g)_{\mc{D}} = \sum_{K\in \mathbb{T}_h} \(f,g\)_K$, 
 $(f,g)_K = \int_K fg\ d\br$, $(f,g)_{E_h^i}=\sum_{e\in E_h^i}(f,g)_e$, 
@@ -128,37 +37,319 @@ the domain with reflective condition, $\Sigma_a$ is the absorption
 cross section, D is the diffusion coefficient, $\bs{n}_b$ is the outward
 normal unit vector, $\partial_n = \bs{n}_e\cdot \bn$ where $\bs{n}_e$ is the 
 normal unit vector associated with a given edge $e$ (on the boundary
-$\bs{n}_e = \bs{n}_b$), 
-$\llb\phi\rrb = \phi^+ - \phi^-$ is the jump of $\phi$ at the interface between 
-two elements, $\ldb\phi\rdb = \frac{\phi^+ + \phi^-}{2}$ is the mean of $\phi$ 
-at the interface between two elements, 
-$\phi^{\pm}=\lim_{s\rightarrow 0^{\pm}}\phi(\bs{r}+s\bs{n}_e)$, and
-$\kappa_e = \max\(\kappa_e^{IP},\frac{1}{4}\)$
+$\bs{n}_e = \bs{n}_b$), $\llb\varphi\rrb = \varphi^+ - \varphi^-$ is the 
+jump of $\varphi$ at the interface between two elements, $\ldb\phi\rdb = 
+\frac{\phi^+ + \phi^-}{2}$ is the mean of $\phi$ at the interface between 
+two elements, $\phi^{\pm}=\lim_{s\rightarrow 0^{\pm}}\phi(\bs{r}+s\bs{n}_e)$, 
+$Q_0$ represents the volumetric source term due to the successive 
+error in the scattering term, and $J^{inc}$ is the incoming partial current.
+The penalty parameter $\kappa_{e}^{IP}$ is given by:
+\begin{equation}
+  \kappa_e^{IP} = \left\{
+    \begin{aligned}
+      & \frac{c\(p^+\)}{2} \frac{\mathrm{D}^+}{h_{\bot}^+}+\frac{c\(p^-\)}{2}
+      \frac{\mathrm{D}^-}{h_{\bot}^-}& \textrm{ on interior edges, i.e., }
+      e\in E_h^i\\
+      & c(p)\frac{\mathrm{D}}{h_{\bot}}& \textrm{ on boundary edges, i.e., }
+      e\in \partial \mc{D}^d
+    \end{aligned}
+  \right.
+\end{equation}
+where $c(p)$ is given by $c(p)=2p(p+1)$, $p$ is the polynomial order ($p=1$ in
+this research) and $h_{\bot}$ is the length of the cell in the direction
+orthogonal to the edge $e$. On triangular cells, $h_{\bot}$ equals
+$\frac{2A}{L_e}$ where $A$ is the area of the triangle and $L_e$ is the length
+of the edge $e$.\\
+This discretization of DSA is SPD. Unfortunately, the authors in \cite{mip} 
+found that IP yields to 
+an unstable DSA scheme when the cells are large compared to the mean-free-path. 
+This phenomenon is due to the fact that in optically thick medium, the ratios 
+$\frac{D^{\pm}}{h^{\pm}}$ are very small. Therefore, the penalty coefficient 
+are small and the method is unstable.\\
+This led the authors of \cite{mip} to develop another discretization of DSA: 
+the Diffusion Conforming Form (DCF). This discretization starts from 
+the one-group $S_n$ transport equation with isotropic source and scattering:
+\begin{equation}
+  \bo_d\cdot\bn \psi_d(\br) + \Sigma_t(\br) \psi_d = \frac{1}{4\pi}
+  \Sigma_s(\br) \phi(\br) + \frac{1}{4\pi}Q(\br)
+  \label{1g_iso}
+\end{equation}
+The variational form of this equation is:
+\begin{equation}
+  b(\psi,\psi^*) = l(\psi^*)
+\end{equation}
 with:
 \begin{equation}
-\kappa_e^{IP} = \left\{
-\begin{aligned}
-&\frac{c(p^+)}{2} \frac{\mathrm{D^+}}{h_{\bot}^+} + \frac{c(p^-)}{2}
-\frac{\mathrm{D}^-}{h_{\bot}^-} & \textrm{on interior edges, i.e., }
-e\in E_h^i\\
-&c(p) \frac{\mathrm{D}}{h_{\bot}} & \textrm{on boundary edges, i.e., } e
-\in\partial \mc{D}^d 
-\end{aligned}
-\right. 
+  b(\psi,\psi^*) = a(\psi,\psi^*)  - \sum_{e\in \partial \mc{D}^r}
+  \sum_{\bo_d\cdot \bs{n}_b<0} 4\pi w_m \la \psi_{d'},\psi_d^*\ra_e -
+  \(\Sigma_s \phi,\phi^*\)_{\mc{D}}
 \end{equation}
-where $c(p)$ is given by $c(p) = 2p (p+1)$, $p$ is the polynomial order ($p=1$
-in this research) and $h_{\bot}$ is the length of the cell in the direction
-orthogonal to the edge $e$. On triangular cells, $h_{\bot}$ equals $\frac{2A}{L_e}$
-where $A$ is the area of the triangle and $L_e$ is the length of the edge $e$. MIP
-gives only a correction for the scalar flux but by assuming that the angular 
-dependence satisfies a diffusion expansion, the angular correction can be 
-computed using the scalar flux correction at step $k$, $\delta \phi^{(k)}$, we get:
 \begin{equation}
-  \delta \psi_m^{(k)} = \frac{1}{4\pi} \(\delta \phi^{(k)} - 3\mathrm{D} 
-  \bo_m\cdot \bn \delta \phi^{(k)}\)
+  \begin{split}
+    a(\psi,\psi^*) =& \sum_{d=1}^M 4 \pi w_d \(\(\bo_d\cdot \bn +\Sigma_t\)
+    \psi_d,\psi_d^*\)_{\mc{D}} + \sum_{d=1}^M 4\pi w_d \la \llb \psi_m\rrb,
+    \psi_m^{*,+}\ra_{E_h^i}\\
+    &+\sum_{e\in \partial \mc{D}^r} \sum_{\bo_d\cdot \bs{n}_b<0} 4 \pi\la 
+    \psi_d,\psi_d^*\ra_e 
+  \end{split}
 \end{equation}
-This correction can be used when some of the boundary conditions are periodic
-or reflective.
+\begin{equation}
+  l(\psi^*) = (Q,\phi^*)_\mc{D} + \sum_{e\in\partial \mc{D}^d} \sum_{\bo_d
+    \cdot \bs{n}_b<0} 4\pi w_m \la \psi_m^{inc},\psi_m^*\ra_e
+\end{equation}
+where $\la f,g, \ra_e = \int_e |\bo_d \cdot \bs{n}_e| fg\ ds$ and $\la f,g
+\ra_{E_h^i} = \sum_{e\in E_h^i} \la f,g \ra_e$.\\
+The operator $a$ is constituted of the streaming term, the interaction term 
+and the upwind terms. This operator is inverted during a sweep. The operator
+$b$ contains $a$, the scattering term and the reflective boundary
+conditions. This operator is inverted using SI or a Krylov solver.\\
+The discretized SI at iteration $l$ can be written as:
+\begin{equation}
+  \phi^{(l)} = \sum_{d=1}^M w_d \psi_d^{(l)}
+  \label{si_l_a}
+\end{equation}
+\begin{equation}
+  a(\psi^{(l+1/2)},\psi^*) = l(\psi^*) + (\Sigma_s
+  \phi^{(l)},\phi^*)_{\mc{D}} + \sum_{e\in \mc{D}^r} \sum_{\bo_d \cdot
+  \bs{n}_b < 0} 4\pi w_d \la \psi_{d'}^{(l)},\psi_d^*\ra_e
+  \label{si_l_b}
+\end{equation}
+If we note the converged solution $\psi^c$ and $\phi^c$, we get:
+\begin{equation}
+  \phi^{c} = \sum_{d=1}^M w_d \psi_d^{c}
+  \label{si_c_a}
+\end{equation}
+\begin{equation}
+  a(\psi^{c},\psi^*) = l(\psi^*) + (\Sigma_s
+  \phi^{c},\phi^*)_{\mc{D}} + \sum_{e\in \mc{D}^r} \sum_{\bo_d \cdot
+  \bs{n}_b < 0} 4\pi w_d \la \psi_{d'}^{c},\psi_d^*\ra_e
+  \label{si_c_b}
+\end{equation}
+Subtracting \cref{si_l_a}, respectively \cref{si_l_b}, to \cref{si_c_a},
+respectively \cref{si_c_b}, we get:
+\begin{equation}
+  \mc{E}^{(l)} = \sum_{d=1}^M w_d \epsilon_d^{(l)}
+\end{equation}
+and:
+\begin{equation}
+  a(\epsilon^{(l+1/2)},\psi^*) = \(\Sigma_s \mc{E}^{(l)},\phi^*\)_{\mc{D}} +
+  \sum_{e\in \partial \mc{D}^r} \sum_{\bo_d \cdot \bs{n}_b<0} 4\pi w_d \la
+  \epsilon_{d'}^{(l)},\psi_m^*\ra_e
+  \label{si_f}
+\end{equation}
+where the angular error and the scalar error are given by:
+\begin{align}
+  & \epsilon^{(l)} = \psi^c-\psi^{(l)}\\
+  & \mc{E}^{(l)} = \phi^c-\phi^{(l)}
+\end{align}           
+It is important to note that the linear form $l$ has disappeared from
+\cref{si_f} and thus, the external volumetric source and the incident
+Dirichlet boundary conditions have disappeared. We now introduce:
+\begin{align}
+  & \delta \psi^{(l)} = \psi^{(l+1/2)}-\psi^{(l)} = \epsilon^{(c)}-
+  \epsilon^{(l+1/2)}\\
+  & \delta \phi^{(l)} = \phi^{(l+1/2)} - \phi^{(l)} = \mc{E}^{(l)} -
+  \mc{E}^{(l+1/2)}
+\end{align}
+Finally, we get:
+\begin{equation}
+  b(\epsilon^{(l+1/2)},\psi^*) = \(\Sigma_s \delta
+  \phi^{(l)},\phi^*\)_{\mc{D}} + \sum_{e\in \partial \mc{D}^r} \sum_{\bo_d
+  \cdot \bs{n}_b<0} 4\pi w_d \la \delta \psi_{d'}^{(l)},\psi_d^*\ra_e
+  \label{tsa}
+\end{equation}
+Note that solving \cref{tsa} would give the exact correction needed to
+obtain the converged transport solution:
+\begin{align}
+  &\psi^c = \psi^{(l+1/2)} + \epsilon^{(l+1/2)}\\
+  &\phi^c = \phi^{(l+1/2)} + \mc{E}^{(l+1/2)}
+\end{align}
+Solving \cref{tsa} is as difficult as solving the transport equation.
+Therefore, we will replace the transport operator by a diffusion operator 
+instead. The solution of this operator will be denoted by a $\tilde{}$ symbol:
+\begin{align}
+  & \psi^{(l+1)} = \psi^{(l+1/2)} + \tilde{\epsilon}^{(l+1/2)}\\
+  & \phi^{(l+1)} = \phi^{(l+1/2)} + \tilde{\mc{E}}^{l+1/2}
+\end{align}
+If we assume that the primal and dual angular fluxes
+are linearly anisotropic and we use Fick's law:
+\begin{align}
+  & \bs{J} = -\mathrm{D}\bn \varphi\\
+  & \bs{J}^* = \mathrm{D}\bn \varphi^*
+\end{align}
+we get:
+\begin{align}
+  & \tilde{\epsilon}^{(l+1/2)} = \frac{1}{4\pi} (\varphi-3\mathrm{D} \bn
+  \varphi \cdot \bo_d) \label{eps_tilde}\\
+  & \tilde{\psi}_m^* = \frac{1}{4\pi} (\varphi^*+3\mathrm{D} \bo \varphi^*\cdot
+  \bo_d) \label{psi_tilde}
+\end{align}
+Substituting \cref{eps_tilde,psi_tilde} in \cref{tsa}, we obtain a
+synthetic discontinuous finite elements diffusion operator in which the
+scalar flux $\varphi$ is the only unknown. Using:
+\begin{align}
+  & \sum_{d=1}^M w_d = 4 \pi \label{omega_0}\\
+  & \sum_{d=1}^M w_d \bo_d = 0 \label{omega_1}\\
+  & \sum_{d=1}^M w_d \bo_d \cdot \bo_d = \frac{4\pi}{3}\bs{I}
+  \label{omega_2}
+\end{align}
+we obtain:
+\begin{equation}
+  \sum_{d=1}^M 4 \pi w_d \(\Sigma_t \tilde{\epsilon}_d^{(l+1/2)},
+  \tilde{\psi}_d^*\)_{\mc{D}} = \(\Sigma_t \varphi,\varphi^*\)_{\mc{D}} -
+  \(3\Sigma_t \mathrm{D} \bn \varphi,\mathrm{D} \bn \varphi^*\)_{\mc{D}}
+\end{equation}
+\begin{equation}
+  \(\Sigma_s \tilde{\mc{E}}^{(l+1/2)},\tilde{\phi}^*\)_{\mc{D}} =
+  \(\Sigma_s \varphi,\varphi^*\)_{\mc{D}}
+\end{equation}
+If we define:
+\begin{equation}
+  \mathrm{D} = \frac{1}{3\Sigma_t}
+\end{equation}
+we get:
+\begin{equation}
+  \sum_{d=1}^M 4 \pi w_d \(\Sigma_t \tilde{\epsilon}_d^{(l+1/2)},
+  \tilde{\psi}_d^*\)_{\mc{D}} + \(\Sigma_s \tilde{\mc{E}}^{(l+1/2)},
+  \tilde{\phi}^*\)_{\mc{D}} = \(\Sigma_a \varphi,\varphi^*\)_{\mc{D}} -
+  \(\bn \varphi, \mathrm{D} \bn \varphi^*\)_{\mc{D}}
+\end{equation}
+Now, we analyze the streaming term:
+\begin{equation}
+  \begin{split}
+    \sum_{d=1}^M 4 \pi w_d \(\bo_d \cdot \bn \tilde{\epsilon}_d^{(l+1/2)},
+    \tilde{\psi}_d^*\)_{\mc{D}}  =& \(\bn \varphi,\mathrm{D} \bn
+    \varphi^*\)_{\mc{D}} - \(\bn \cdot \mathrm{D} \bn
+    \varphi,\varphi^*\)_{\mc{D}}\\
+    =& \(\bn \varphi, \mathrm{D} \bn \varphi^*\)_{\mc{D}} - \(\bn \cdot \bn
+    \varphi,\varphi^*\)_{\mc{D}}\\
+    =& \(\bn \varphi,\mathrm{D} \bn \varphi^*\)_{\mc{D}} + \(\mathrm{D} \bn
+    \varphi,\bn \varphi^*\)_{\mc{D}}\\
+     & + \(\mathrm{D} \bn \varphi^+ \cdot \bs{n}_e, 
+    \varphi^{*,+}\)_{E_h^i}\\ 
+     & - \(\mathrm{D} \bo \varphi^{-} \cdot \bs{n}_e,
+    \varphi^{*,-}\)_{E_h^i}\\
+     & - \(\mathrm{D}\bn \varphi \cdot \bs{n_e},\varphi^*\)_{\partial \mc{D}}
+  \end{split}
+\end{equation}
+where integration by part was performed and we used:
+\begin{equation}
+  \sum_{d=1}^M w_d \bo_d \cdot \bo_d \cdot \bo_d = 0
+\end{equation}
+Manipulating the interior edge terms give successively :
+\begin{equation}
+  \begin{split}
+    \sum_{d=1}^M 4 \pi w_d \la \llb \tilde{\epsilon}_m^{(l+1/2)}\rrb,
+    \tilde{\psi}_m^{*,+}\ra_{E_h^i} =& \sum_{e \in E_h^i} \sum_{d=1}^M 4 \pi
+    w_d |\bo_m \cdot \bs{n}_e| \(\llb \tilde{\epsilon}_m^{(l+1/2)}\rrb,
+    \tilde{\psi}_d^{*,+}\)_e\\
+    =& \sum_{e \in E_h^i} \(\sum_{\bo_d \cdot \bs{n}_e>0} \frac{w_d}{4\pi}
+    |\bo_d \cdot \bs{n}_e| \(\llb\varphi\rrb - 3 \llb \mathrm{D} \bn 
+    \varphi\rrb \cdot \bo_m,\right. \right.\\
+    &\left. \left. 
+    \varphi^{*,+} + 3 \mathrm{D} \bn  \varphi^{*+} \cdot \bo_m\)_e 
+    - \sum_{\bo_d \cdot \bs{n}_e<0} \frac{w_d}{4\pi} |\bo_d \cdot
+    \bs{n}_e| \(\llb \varphi \rrb \right.\right.\\
+    &\left.\left.- 3 \llb \mathrm{D}\bn \varphi \rrb\cdot
+    \bo_d, \varphi^{*,-} + 3 \mathrm{D} \bn \varphi^{*,-} \cdot \bo_d
+    \)_e\)\\
+    = & \sum_{e\in E_h^i} \sum_{\bo_d \cdot \bs{n}_e>0} \frac{w_d}{4\pi}
+    |\bo_d \cdot \bs{n}_e| \(\(\llb \varphi \rrb - 3 \llb \mathrm{D} \bn 
+    \varphi \rrb \cdot\bo_d,\right.\right.\\
+    &\left. \left. \varphi^{*,+} + 3 \mathrm{D} \bn \varphi^{*,+}\cdot \bo_d\)_e -
+    \(\llb \varphi \rrb + 3 \llb \mathrm{D} \bn \varphi \rrb \cdot \bo_d,
+    \right.\right.\\
+    &\left.\left. \varphi^{*,-} - 3 \mathrm{D} \bn \varphi^{*,-} \cdot \bo_d\)_e\)\\
+    =&\frac{1}{4} \(\llb \varphi\rrb,\llb \varphi^* \rrb\)_{E_h^i} + \(\llb
+    \varphi \rrb,\ldb \mathrm{D} \bn \varphi^* \cdot \bs{n}\rdb \)_{E_h^i}\\
+    &-\(\llb \mathrm{D} \bn \varphi \cdot \bs{n}\rrb,\ldb \varphi^*
+    \rdb\)_{E_h^i} -\frac{9}{16} \(\llb \mathrm{D} \bn \varphi\rrb, 
+    \llb \mathrm{D} \bn \varphi^*\rrb\)_{E_h^i}\\ 
+    &- \frac{9}{16} \( \llb \mathrm{D} \bn \varphi \cdot \bs{n}\rrb, 
+    \llb \mathrm{D} \bn \varphi^* \cdot \bs{n}\rrb\)_{E_h^i}
+  \end{split}
+\end{equation}
+where we employed the following properties of the angular quadrature:
+\begin{align}
+  & \sum_{\bo_d \cdot \bs{n}>0} w_d |\bo_d \cdot \bs{n}| \approx \pi \\
+  & \sum_{\bo_d\cdot \bs{n}>0} w_d |\bo_d \cdot \bs{n}| \bo_d \approx
+  \frac{2\pi}{3} \bs{n}\\
+  & \sum_{\bo_d \cdot \bs{n}>0} w_d |\bo_d\cdot \bs{n}|\bo_m\cdot \bo_d
+  \approx \frac{\pi}{4}\(\bs{I}+\bs{n}\bs{n}\)
+\end{align}
+where $\bs{n}\bs{n}$ is a matrix. Even if these properties cannot be strictly
+satisfied, numerical results show that the error is negligible.
+Finally, we obtain:
+\begin{equation}
+  b_{DCF}(\varphi,\varphi^*) = l_{DCF}(\varphi^*)
+\end{equation}
+with:
+\begin{equation}
+  \begin{split}
+    b_{DCF}(\varphi,\varphi^*)=& \(\Sigma_a \varphi,\varphi^*\)_{\mc{D}} +
+    \(\mathrm{D}\bn \varphi,\bn \varphi\)_{\mc{D}} + \frac{1}{4} 
+    \(\llb\varphi\rrb,\llb\varphi^*\rrb\)_{E_h^i}\\
+    & + \(\llb \varphi\rrb, \ldb\mathrm{D}\partial_n 
+    \varphi^*\rdb\)_{E_h^i} + \(\ldb\mathrm{D} \partial_n \varphi\rdb, \llb
+    \varphi^*\rrb\)_{E_h^i}\\
+    & + \frac{1}{4} \(\varphi,\varphi^*\)_{\partial \mc{D}^d} -\frac{1}{2}
+    \(\varphi,\mathrm{D} \partial_n \varphi^*\)_{\partial \mc{D}^d}\\
+    & - \frac{1}{2} \(\mathrm{D} \partial_n \varphi,\varphi\)_{\partial
+    \mc{D}^d}-\frac{9}{16} \(\llb\mathrm{D}\bn\varphi\rrb,\llb\mathrm{D} \bn
+    \varphi^*\rrb\)_{E_h^i}\\ 
+    &- \frac{9}{16}\(\llb\mathrm{D}\partial_n \varphi\rrb,\llb 
+    \mathrm{D}\partial_n \varphi^*\rrb \)_{E_h^i}-\frac{9}{16} 
+    \(\mathrm{D}\bn \varphi,\mathrm{D}\bn \varphi^*\)_{\partial \mc{D}^d}\\
+    & - \frac{9}{16} \(\mathrm{D}\partial_n
+    \varphi,\mathrm{D} \partial_n \varphi^*\)_{\partial \mc{D}^d}
+    -\frac{9}{4}\(\mathrm{D}\partial_n \varphi,\mathrm{D}\partial_n
+    \varphi^*\)_{\partial \mc{D}^r}
+  \end{split}
+\end{equation}
+\begin{equation}
+  \begin{split}
+    l_{DCF}(\varphi^*) =& \(Q_0,\varphi^*\)_{\mc{D}}+\(
+     J^{inc},\varphi^*\)_{\partial \mc{D}^r} - \(\bs{\mc{Y}},\mathrm{D}\bn
+    \varphi^*\)_{\partial \mc{D}^r}\\ 
+    &+ 2 \(\bs{\mc{Y}}^{inc} \cdot \bs{n}, \mathrm{D} \partial_n 
+    \varphi^*\)_{\partial \mc{D}^r}
+  \end{split}
+\end{equation}
+where $\bs{\mc{Y}}^{inc} = - \sum_{\bo_d \cdot \bs{n}_b>0} 3 w_d \bo_d |\bo_d
+\cdot \bs{n}_b| \delta \psi_m^{(l)}$.\\
+DCF is symmetric but not positive definite positive. DCF is unstable for cell size
+in between one and four mean-free-paths but it is stable and very efficient 
+for optically thick medium. In this case, $\bn \varphi \approx 0$ and 
+$\partial_n \varphi \approx 0$ and the terms $\(\mathrm{D} \bo
+\varphi^{\pm},\mathrm{D}\bn\varphi^{*,\pm}\)$ and $\(\mathrm{D} \partial_n
+\varphi^{\pm},\mathrm{D}\partial_n \varphi^{\pm}\)$ are negligible.
+In this limit, $b_{DCF}$ becomes:
+\begin{equation}
+  \begin{split}
+    b_{DCF}(\varphi,\varphi^*)=& \(\Sigma_a \varphi,\varphi^*\)_{\mc{D}} +
+    \(\mathrm{D}\bn \varphi,\bn \varphi\)_{\mc{D}}\\
+    & +\frac{1}{4}\(\llb\varphi\rrb,\llb\varphi^*\rrb\)_{E_h^i} + \(\llb
+    \varphi\rrb, \ldb\mathrm{D}\partial_n \varphi^*\rdb\)_{E_h^i} +
+    \(\ldb\mathrm{D} \partial_n \varphi\rdb, \llb
+    \varphi^*\rrb\)_{E_h^i}\\
+    & + \frac{1}{4} \(\varphi,\varphi^*\)_{\partial \mc{D}^d} -\frac{1}{2}
+    \(\varphi,\mathrm{D} \partial_n \varphi^*\)_{\partial \mc{D}^d} -
+    \frac{1}{2} \(\mathrm{D} \partial_n \varphi,\varphi\)_{\partial
+    \mc{D}^d}
+  \end{split}
+\end{equation}
+which is exactly the same equation than \cref{b_ip} if 
+$\kappa_e^{IP}=\frac{1}{4}$.\\
+MIP is obtained by replacing the penalty coefficient, $\kappa_e^{IP}$, 
+by $\kappa_e^{MIP}=\max \(\kappa_e^{IP},\frac{1}{4}\)$ in \cref{b_ip}.
+This ensure that MIP will converge even in optically thick medium since the
+penalty coefficient will never be less than $\frac{1}{4}$.
+
+DSA gives only a correction for the scalar flux but by assuming that the angular 
+dependence satisfies a diffusion expansion, the angular correction can be 
+computed using \cref{eps_tilde}. 
+This correction can be used when some of the boundary 
+conditions are periodic or reflective.
 
 If PWLD finite elements are used instead of LD finite elements, the weak form 
 of MIP is not modified. However when the cells are not triangular, there is no 
