@@ -4,26 +4,26 @@ the Interior Penalty (IP) form of the diffusion equation
 \cite{ip,mip} (weakly imposed boundary conditions are applied to each grid
 cell and the test functions are averaged over cells):
 \begin{equation}
-  b_{IP}(\varphi,\varphi^*) = l_{IP}(\varphi^*)
+  b_{IP}(\phi_0,\phi_0^*) = l_{IP}(\phi_0^*)
 \end{equation}
-where $\varphi$ is the scalar flux:
+where $\phi_0$ is the scalar flux:
 \begin{equation}
   \begin{split}
-    b_{IP}(\varphi,\varphi^*)=& \(\Sigma_a \varphi,\varphi^*\)_{\mc{D}} + 
-    (\mathrm{D} \bn \varphi, \bn \varphi^*)_{\mc{D}} + \(\kappa_e^{IP} \llb
-    \varphi\rrb, \llb \varphi^*\rrb\)_{E_h^i}\\
-    &+ \(\llb \varphi \rrb,\ldb \mathrm{D} \partial_n \varphi^*\rdb\)_{E_h^i} +
-    \(\ldb \mathrm{D} \partial_n \varphi\rdb,\llb \varphi^* \rrb\)_{E_h^i} + 
-    \(\kappa_e^{IP} \varphi, \phi^*\)_{\partial \mc{D}^d}\\
-    & -\frac{1}{2} \(\varphi,\mathrm{D}\partial_n,\varphi^*\)_{\partial \mc{D}^d}
-    -\frac{1}{2}\(\mathrm{D}\partial_n\varphi,\varphi\)_{\partial \mc{D}^d}
+    b_{IP}(\phi_0,\phi_0^*)=& \(\Sigma_a \phi_0,\phi_0^*\)_{\mc{D}} + 
+    (\mathrm{D} \bn \phi_0, \bn \phi_0^*)_{\mc{D}} + \(\kappa_e^{IP} \llb
+    \phi_0\rrb, \llb \phi_0^*\rrb\)_{E_h^i}\\
+    &+ \(\llb \phi_0 \rrb,\ldb \mathrm{D} \partial_n \phi_0^*\rdb\)_{E_h^i} +
+    \(\ldb \mathrm{D} \partial_n \phi_0\rdb,\llb \phi_0^* \rrb\)_{E_h^i} + 
+    \(\kappa_e^{IP} \phi_0, \phi^*\)_{\partial \mc{D}^d}\\
+    & -\frac{1}{2} \(\phi_0,\mathrm{D}\partial_n,\phi_0^*\)_{\partial \mc{D}^d}
+    -\frac{1}{2}\(\mathrm{D}\partial_n\phi_0,\phi_0\)_{\partial \mc{D}^d}
   \end{split}
   \label{b_ip}
 \end{equation}
 and:
 \begin{equation}
-  l_{IP}(\varphi^*) = \(Q_0,\varphi^*\)_{\mc{D}} +
-  \(J^{inc},\varphi^*\)_{\partial \mc{D}^r}
+  l_{IP}(\phi_0^*) = \(Q_0,\phi_0^*\)_{\mc{D}} +
+  \(J^{inc},\phi_0^*\)_{\partial \mc{D}^r}
 \end{equation}
 where $(f,g)_{\mc{D}} = \sum_{K\in \mathbb{T}_h} \(f,g\)_K$, 
 $(f,g)_K = \int_K fg\ d\br$, $(f,g)_{E_h^i}=\sum_{e\in E_h^i}(f,g)_e$, 
@@ -37,8 +37,8 @@ the domain with reflective condition, $\Sigma_a$ is the absorption
 cross section, D is the diffusion coefficient, $\bs{n}_b$ is the outward
 normal unit vector, $\partial_n = \bs{n}_e\cdot \bn$ where $\bs{n}_e$ is the 
 normal unit vector associated with a given edge $e$ (on the boundary
-$\bs{n}_e = \bs{n}_b$), $\llb\varphi\rrb = \varphi^+ - \varphi^-$ is the 
-jump of $\varphi$ at the interface between two elements, $\ldb\phi\rdb = 
+$\bs{n}_e = \bs{n}_b$), $\llb\phi_0\rrb = \phi_0^+ - \phi_0^-$ is the 
+jump of $\phi_0$ at the interface between two elements, $\ldb\phi\rdb = 
 \frac{\phi^+ + \phi^-}{2}$ is the mean of $\phi$ at the interface between 
 two elements, $\phi^{\pm}=\lim_{s\rightarrow 0^{\pm}}\phi(\bs{r}+s\bs{n}_e)$, 
 $Q_0$ represents the volumetric source term due to the successive 
@@ -174,19 +174,19 @@ instead. The solution of this operator will be denoted by a $\tilde{}$ symbol:
 If we assume that the primal and dual angular fluxes
 are linearly anisotropic and we use Fick's law:
 \begin{align}
-  & \bs{J} = -\mathrm{D}\bn \varphi\\
-  & \bs{J}^* = \mathrm{D}\bn \varphi^*
+  & \bs{J} = -\mathrm{D}\bn \phi_0\\
+  & \bs{J}^* = \mathrm{D}\bn \phi_0^*
 \end{align}
 we get:
 \begin{align}
-  & \tilde{\epsilon}^{(l+1/2)} = \frac{1}{4\pi} (\varphi-3\mathrm{D} \bn
-  \varphi \cdot \bo_d) \label{eps_tilde}\\
-  & \tilde{\psi}_m^* = \frac{1}{4\pi} (\varphi^*+3\mathrm{D} \bo \varphi^*\cdot
+  & \tilde{\epsilon}^{(l+1/2)} = \frac{1}{4\pi} (\phi_0-3\mathrm{D} \bn
+  \phi_0 \cdot \bo_d) \label{eps_tilde}\\
+  & \tilde{\psi}_m^* = \frac{1}{4\pi} (\phi_0^*+3\mathrm{D} \bo \phi_0^*\cdot
   \bo_d) \label{psi_tilde}
 \end{align}
 Substituting \cref{eps_tilde,psi_tilde} in \cref{tsa}, we obtain a
 synthetic discontinuous finite elements diffusion operator in which the
-scalar flux $\varphi$ is the only unknown. Using:
+scalar flux $\phi_0$ is the only unknown. Using:
 \begin{align}
   & \sum_{d=1}^M w_d = 4 \pi \label{omega_0}\\
   & \sum_{d=1}^M w_d \bo_d = 0 \label{omega_1}\\
@@ -196,12 +196,12 @@ scalar flux $\varphi$ is the only unknown. Using:
 we obtain:
 \begin{equation}
   \sum_{d=1}^M 4 \pi w_d \(\Sigma_t \tilde{\epsilon}_d^{(l+1/2)},
-  \tilde{\psi}_d^*\)_{\mc{D}} = \(\Sigma_t \varphi,\varphi^*\)_{\mc{D}} -
-  \(3\Sigma_t \mathrm{D} \bn \varphi,\mathrm{D} \bn \varphi^*\)_{\mc{D}}
+  \tilde{\psi}_d^*\)_{\mc{D}} = \(\Sigma_t \phi_0,\phi_0^*\)_{\mc{D}} -
+  \(3\Sigma_t \mathrm{D} \bn \phi_0,\mathrm{D} \bn \phi_0^*\)_{\mc{D}}
 \end{equation}
 \begin{equation}
   \(\Sigma_s \tilde{\mc{E}}^{(l+1/2)},\tilde{\phi}^*\)_{\mc{D}} =
-  \(\Sigma_s \varphi,\varphi^*\)_{\mc{D}}
+  \(\Sigma_s \phi_0,\phi_0^*\)_{\mc{D}}
 \end{equation}
 If we define:
 \begin{equation}
@@ -211,25 +211,25 @@ we get:
 \begin{equation}
   \sum_{d=1}^M 4 \pi w_d \(\Sigma_t \tilde{\epsilon}_d^{(l+1/2)},
   \tilde{\psi}_d^*\)_{\mc{D}} + \(\Sigma_s \tilde{\mc{E}}^{(l+1/2)},
-  \tilde{\phi}^*\)_{\mc{D}} = \(\Sigma_a \varphi,\varphi^*\)_{\mc{D}} -
-  \(\bn \varphi, \mathrm{D} \bn \varphi^*\)_{\mc{D}}
+  \tilde{\phi}^*\)_{\mc{D}} = \(\Sigma_a \phi_0,\phi_0^*\)_{\mc{D}} -
+  \(\bn \phi_0, \mathrm{D} \bn \phi_0^*\)_{\mc{D}}
 \end{equation}
 Now, we analyze the streaming term:
 \begin{equation}
   \begin{split}
     \sum_{d=1}^M 4 \pi w_d \(\bo_d \cdot \bn \tilde{\epsilon}_d^{(l+1/2)},
-    \tilde{\psi}_d^*\)_{\mc{D}}  =& \(\bn \varphi,\mathrm{D} \bn
-    \varphi^*\)_{\mc{D}} - \(\bn \cdot \mathrm{D} \bn
-    \varphi,\varphi^*\)_{\mc{D}}\\
-    =& \(\bn \varphi, \mathrm{D} \bn \varphi^*\)_{\mc{D}} - \(\bn \cdot \bn
-    \varphi,\varphi^*\)_{\mc{D}}\\
-    =& \(\bn \varphi,\mathrm{D} \bn \varphi^*\)_{\mc{D}} + \(\mathrm{D} \bn
-    \varphi,\bn \varphi^*\)_{\mc{D}}\\
-     & + \(\mathrm{D} \bn \varphi^+ \cdot \bs{n}_e, 
-    \varphi^{*,+}\)_{E_h^i}\\ 
-     & - \(\mathrm{D} \bo \varphi^{-} \cdot \bs{n}_e,
-    \varphi^{*,-}\)_{E_h^i}\\
-     & - \(\mathrm{D}\bn \varphi \cdot \bs{n_e},\varphi^*\)_{\partial \mc{D}}
+    \tilde{\psi}_d^*\)_{\mc{D}}  =& \(\bn \phi_0,\mathrm{D} \bn
+    \phi_0^*\)_{\mc{D}} - \(\bn \cdot \mathrm{D} \bn
+    \phi_0,\phi_0^*\)_{\mc{D}}\\
+    =& \(\bn \phi_0, \mathrm{D} \bn \phi_0^*\)_{\mc{D}} - \(\bn \cdot \bn
+    \phi_0,\phi_0^*\)_{\mc{D}}\\
+    =& \(\bn \phi_0,\mathrm{D} \bn \phi_0^*\)_{\mc{D}} + \(\mathrm{D} \bn
+    \phi_0,\bn \phi_0^*\)_{\mc{D}}\\
+     & + \(\mathrm{D} \bn \phi_0^+ \cdot \bs{n}_e, 
+    \phi_0^{*,+}\)_{E_h^i}\\ 
+     & - \(\mathrm{D} \bo \phi_0^{-} \cdot \bs{n}_e,
+    \phi_0^{*,-}\)_{E_h^i}\\
+     & - \(\mathrm{D}\bn \phi_0 \cdot \bs{n_e},\phi_0^*\)_{\partial \mc{D}}
   \end{split}
 \end{equation}
 where integration by part was performed and we used:
@@ -244,29 +244,29 @@ Manipulating the interior edge terms give successively :
     w_d |\bo_m \cdot \bs{n}_e| \(\llb \tilde{\epsilon}_m^{(l+1/2)}\rrb,
     \tilde{\psi}_d^{*,+}\)_e\\
     =& \sum_{e \in E_h^i} \(\sum_{\bo_d \cdot \bs{n}_e>0} \frac{w_d}{4\pi}
-    |\bo_d \cdot \bs{n}_e| \(\llb\varphi\rrb - 3 \llb \mathrm{D} \bn 
-    \varphi\rrb \cdot \bo_m,\right. \right.\\
+    |\bo_d \cdot \bs{n}_e| \(\llb\phi_0\rrb - 3 \llb \mathrm{D} \bn 
+    \phi_0\rrb \cdot \bo_m,\right. \right.\\
     &\left. \left. 
-    \varphi^{*,+} + 3 \mathrm{D} \bn  \varphi^{*+} \cdot \bo_m\)_e 
+    \phi_0^{*,+} + 3 \mathrm{D} \bn  \phi_0^{*+} \cdot \bo_m\)_e 
     - \sum_{\bo_d \cdot \bs{n}_e<0} \frac{w_d}{4\pi} |\bo_d \cdot
-    \bs{n}_e| \(\llb \varphi \rrb \right.\right.\\
-    &\left.\left.- 3 \llb \mathrm{D}\bn \varphi \rrb\cdot
-    \bo_d, \varphi^{*,-} + 3 \mathrm{D} \bn \varphi^{*,-} \cdot \bo_d
+    \bs{n}_e| \(\llb \phi_0 \rrb \right.\right.\\
+    &\left.\left.- 3 \llb \mathrm{D}\bn \phi_0 \rrb\cdot
+    \bo_d, \phi_0^{*,-} + 3 \mathrm{D} \bn \phi_0^{*,-} \cdot \bo_d
     \)_e\)\\
     = & \sum_{e\in E_h^i} \sum_{\bo_d \cdot \bs{n}_e>0} \frac{w_d}{4\pi}
-    |\bo_d \cdot \bs{n}_e| \(\(\llb \varphi \rrb - 3 \llb \mathrm{D} \bn 
-    \varphi \rrb \cdot\bo_d,\right.\right.\\
-    &\left. \left. \varphi^{*,+} + 3 \mathrm{D} \bn \varphi^{*,+}\cdot \bo_d\)_e -
-    \(\llb \varphi \rrb + 3 \llb \mathrm{D} \bn \varphi \rrb \cdot \bo_d,
+    |\bo_d \cdot \bs{n}_e| \(\(\llb \phi_0 \rrb - 3 \llb \mathrm{D} \bn 
+    \phi_0 \rrb \cdot\bo_d,\right.\right.\\
+    &\left. \left. \phi_0^{*,+} + 3 \mathrm{D} \bn \phi_0^{*,+}\cdot \bo_d\)_e -
+    \(\llb \phi_0 \rrb + 3 \llb \mathrm{D} \bn \phi_0 \rrb \cdot \bo_d,
     \right.\right.\\
-    &\left.\left. \varphi^{*,-} - 3 \mathrm{D} \bn \varphi^{*,-} \cdot \bo_d\)_e\)\\
-    =&\frac{1}{4} \(\llb \varphi\rrb,\llb \varphi^* \rrb\)_{E_h^i} + \(\llb
-    \varphi \rrb,\ldb \mathrm{D} \bn \varphi^* \cdot \bs{n}\rdb \)_{E_h^i}\\
-    &-\(\llb \mathrm{D} \bn \varphi \cdot \bs{n}\rrb,\ldb \varphi^*
-    \rdb\)_{E_h^i} -\frac{9}{16} \(\llb \mathrm{D} \bn \varphi\rrb, 
-    \llb \mathrm{D} \bn \varphi^*\rrb\)_{E_h^i}\\ 
-    &- \frac{9}{16} \( \llb \mathrm{D} \bn \varphi \cdot \bs{n}\rrb, 
-    \llb \mathrm{D} \bn \varphi^* \cdot \bs{n}\rrb\)_{E_h^i}
+    &\left.\left. \phi_0^{*,-} - 3 \mathrm{D} \bn \phi_0^{*,-} \cdot \bo_d\)_e\)\\
+    =&\frac{1}{4} \(\llb \phi_0\rrb,\llb \phi_0^* \rrb\)_{E_h^i} + \(\llb
+    \phi_0 \rrb,\ldb \mathrm{D} \bn \phi_0^* \cdot \bs{n}\rdb \)_{E_h^i}\\
+    &-\(\llb \mathrm{D} \bn \phi_0 \cdot \bs{n}\rrb,\ldb \phi_0^*
+    \rdb\)_{E_h^i} -\frac{9}{16} \(\llb \mathrm{D} \bn \phi_0\rrb, 
+    \llb \mathrm{D} \bn \phi_0^*\rrb\)_{E_h^i}\\ 
+    &- \frac{9}{16} \( \llb \mathrm{D} \bn \phi_0 \cdot \bs{n}\rrb, 
+    \llb \mathrm{D} \bn \phi_0^* \cdot \bs{n}\rrb\)_{E_h^i}
   \end{split}
 \end{equation}
 where we employed the following properties of the angular quadrature:
@@ -281,60 +281,60 @@ where $\bs{n}\bs{n}$ is a matrix. Even if these properties cannot be strictly
 satisfied, numerical results show that the error is negligible.
 Finally, we obtain:
 \begin{equation}
-  b_{DCF}(\varphi,\varphi^*) = l_{DCF}(\varphi^*)
+  b_{DCF}(\phi_0,\phi_0^*) = l_{DCF}(\phi_0^*)
 \end{equation}
 with:
 \begin{equation}
   \begin{split}
-    b_{DCF}(\varphi,\varphi^*)=& \(\Sigma_a \varphi,\varphi^*\)_{\mc{D}} +
-    \(\mathrm{D}\bn \varphi,\bn \varphi\)_{\mc{D}} + \frac{1}{4} 
-    \(\llb\varphi\rrb,\llb\varphi^*\rrb\)_{E_h^i}\\
-    & + \(\llb \varphi\rrb, \ldb\mathrm{D}\partial_n 
-    \varphi^*\rdb\)_{E_h^i} + \(\ldb\mathrm{D} \partial_n \varphi\rdb, \llb
-    \varphi^*\rrb\)_{E_h^i}\\
-    & + \frac{1}{4} \(\varphi,\varphi^*\)_{\partial \mc{D}^d} -\frac{1}{2}
-    \(\varphi,\mathrm{D} \partial_n \varphi^*\)_{\partial \mc{D}^d}\\
-    & - \frac{1}{2} \(\mathrm{D} \partial_n \varphi,\varphi\)_{\partial
-    \mc{D}^d}-\frac{9}{16} \(\llb\mathrm{D}\bn\varphi\rrb,\llb\mathrm{D} \bn
-    \varphi^*\rrb\)_{E_h^i}\\ 
-    &- \frac{9}{16}\(\llb\mathrm{D}\partial_n \varphi\rrb,\llb 
-    \mathrm{D}\partial_n \varphi^*\rrb \)_{E_h^i}-\frac{9}{16} 
-    \(\mathrm{D}\bn \varphi,\mathrm{D}\bn \varphi^*\)_{\partial \mc{D}^d}\\
+    b_{DCF}(\phi_0,\phi_0^*)=& \(\Sigma_a \phi_0,\phi_0^*\)_{\mc{D}} +
+    \(\mathrm{D}\bn \phi_0,\bn \phi_0\)_{\mc{D}} + \frac{1}{4} 
+    \(\llb\phi_0\rrb,\llb\phi_0^*\rrb\)_{E_h^i}\\
+    & + \(\llb \phi_0\rrb, \ldb\mathrm{D}\partial_n 
+    \phi_0^*\rdb\)_{E_h^i} + \(\ldb\mathrm{D} \partial_n \phi_0\rdb, \llb
+    \phi_0^*\rrb\)_{E_h^i}\\
+    & + \frac{1}{4} \(\phi_0,\phi_0^*\)_{\partial \mc{D}^d} -\frac{1}{2}
+    \(\phi_0,\mathrm{D} \partial_n \phi_0^*\)_{\partial \mc{D}^d}\\
+    & - \frac{1}{2} \(\mathrm{D} \partial_n \phi_0,\phi_0\)_{\partial
+    \mc{D}^d}-\frac{9}{16} \(\llb\mathrm{D}\bn\phi_0\rrb,\llb\mathrm{D} \bn
+    \phi_0^*\rrb\)_{E_h^i}\\ 
+    &- \frac{9}{16}\(\llb\mathrm{D}\partial_n \phi_0\rrb,\llb 
+    \mathrm{D}\partial_n \phi_0^*\rrb \)_{E_h^i}-\frac{9}{16} 
+    \(\mathrm{D}\bn \phi_0,\mathrm{D}\bn \phi_0^*\)_{\partial \mc{D}^d}\\
     & - \frac{9}{16} \(\mathrm{D}\partial_n
-    \varphi,\mathrm{D} \partial_n \varphi^*\)_{\partial \mc{D}^d}
-    -\frac{9}{4}\(\mathrm{D}\partial_n \varphi,\mathrm{D}\partial_n
-    \varphi^*\)_{\partial \mc{D}^r}
+    \phi_0,\mathrm{D} \partial_n \phi_0^*\)_{\partial \mc{D}^d}
+    -\frac{9}{4}\(\mathrm{D}\partial_n \phi_0,\mathrm{D}\partial_n
+    \phi_0^*\)_{\partial \mc{D}^r}
   \end{split}
 \end{equation}
 \begin{equation}
   \begin{split}
-    l_{DCF}(\varphi^*) =& \(Q_0,\varphi^*\)_{\mc{D}}+\(
-     J^{inc},\varphi^*\)_{\partial \mc{D}^r} - \(\bs{\mc{Y}},\mathrm{D}\bn
-    \varphi^*\)_{\partial \mc{D}^r}\\ 
+    l_{DCF}(\phi_0^*) =& \(Q_0,\phi_0^*\)_{\mc{D}}+\(
+     J^{inc},\phi_0^*\)_{\partial \mc{D}^r} - \(\bs{\mc{Y}},\mathrm{D}\bn
+    \phi_0^*\)_{\partial \mc{D}^r}\\ 
     &+ 2 \(\bs{\mc{Y}}^{inc} \cdot \bs{n}, \mathrm{D} \partial_n 
-    \varphi^*\)_{\partial \mc{D}^r}
+    \phi_0^*\)_{\partial \mc{D}^r}
   \end{split}
 \end{equation}
 where $\bs{\mc{Y}}^{inc} = - \sum_{\bo_d \cdot \bs{n}_b>0} 3 w_d \bo_d |\bo_d
 \cdot \bs{n}_b| \delta \psi_m^{(l)}$.\\
 DCF is symmetric but not positive definite positive. DCF is unstable for cell size
 in between one and four mean-free-paths but it is stable and very efficient 
-for optically thick medium. In this case, $\bn \varphi \approx 0$ and 
-$\partial_n \varphi \approx 0$ and the terms $\(\mathrm{D} \bo
-\varphi^{\pm},\mathrm{D}\bn\varphi^{*,\pm}\)$ and $\(\mathrm{D} \partial_n
-\varphi^{\pm},\mathrm{D}\partial_n \varphi^{\pm}\)$ are negligible.
+for optically thick medium. In this case, $\bn \phi_0 \approx 0$ and 
+$\partial_n \phi_0 \approx 0$ and the terms $\(\mathrm{D} \bo
+\phi_0^{\pm},\mathrm{D}\bn\phi_0^{*,\pm}\)$ and $\(\mathrm{D} \partial_n
+\phi_0^{\pm},\mathrm{D}\partial_n \phi_0^{\pm}\)$ are negligible.
 In this limit, $b_{DCF}$ becomes:
 \begin{equation}
   \begin{split}
-    b_{DCF}(\varphi,\varphi^*)=& \(\Sigma_a \varphi,\varphi^*\)_{\mc{D}} +
-    \(\mathrm{D}\bn \varphi,\bn \varphi\)_{\mc{D}}\\
-    & +\frac{1}{4}\(\llb\varphi\rrb,\llb\varphi^*\rrb\)_{E_h^i} + \(\llb
-    \varphi\rrb, \ldb\mathrm{D}\partial_n \varphi^*\rdb\)_{E_h^i} +
-    \(\ldb\mathrm{D} \partial_n \varphi\rdb, \llb
-    \varphi^*\rrb\)_{E_h^i}\\
-    & + \frac{1}{4} \(\varphi,\varphi^*\)_{\partial \mc{D}^d} -\frac{1}{2}
-    \(\varphi,\mathrm{D} \partial_n \varphi^*\)_{\partial \mc{D}^d} -
-    \frac{1}{2} \(\mathrm{D} \partial_n \varphi,\varphi\)_{\partial
+    b_{DCF}(\phi_0,\phi_0^*)=& \(\Sigma_a \phi_0,\phi_0^*\)_{\mc{D}} +
+    \(\mathrm{D}\bn \phi_0,\bn \phi_0\)_{\mc{D}}\\
+    & +\frac{1}{4}\(\llb\phi_0\rrb,\llb\phi_0^*\rrb\)_{E_h^i} + \(\llb
+    \phi_0\rrb, \ldb\mathrm{D}\partial_n \phi_0^*\rdb\)_{E_h^i} +
+    \(\ldb\mathrm{D} \partial_n \phi_0\rdb, \llb
+    \phi_0^*\rrb\)_{E_h^i}\\
+    & + \frac{1}{4} \(\phi_0,\phi_0^*\)_{\partial \mc{D}^d} -\frac{1}{2}
+    \(\phi_0,\mathrm{D} \partial_n \phi_0^*\)_{\partial \mc{D}^d} -
+    \frac{1}{2} \(\mathrm{D} \partial_n \phi_0,\phi_0\)_{\partial
     \mc{D}^d}
   \end{split}
 \end{equation}

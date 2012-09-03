@@ -59,8 +59,12 @@
 \contentsline {subsection}{\numberline {5.4.3}Heterogeneous medium}{99}
 \contentsline {subsection}{\numberline {5.4.4}Rectangular cells}{102}
 \contentsline {section}{\numberline {5.5}Conclusions}{104}
-\contentsline {chapter}{\numberline {6}\uppercase {Conclusions and future work}}{105}
-\contentsline {section}{\numberline {6.1}Conclusions}{105}
-\contentsline {section}{\numberline {6.2}Future work}{107}
-\contentsline {part}{REFERENCES}{110}
-\contentsline {chapter}{\uppercase {Appendix} \numberline {A}\uppercase {ML options}}{122}
+\contentsline {chapter}{\numberline {6}\uppercase {Janus}}{105}
+\contentsline {section}{\numberline {6.1}Introduction}{105}
+\contentsline {section}{\numberline {6.2}Implementation}{105}
+\contentsline {section}{\numberline {6.3}Verifications}{110}
+\contentsline {chapter}{\numberline {7}\uppercase {Conclusions and future work}}{111}
+\contentsline {section}{\numberline {7.1}Conclusions}{111}
+\contentsline {section}{\numberline {7.2}Future work}{113}
+\contentsline {part}{REFERENCES}{116}
+\contentsline {chapter}{\uppercase {Appendix} \numberline {A}\uppercase {ML options}}{129}

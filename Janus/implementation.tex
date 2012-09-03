@@ -1,0 +1,117 @@
+\section{Implementation}
+Janus is composed of the following classes:
+\begin{description}
+  \item[PARAMETERS:] In this class, the different parameters such as, the 
+    type of solver for transport equation (SI or a Krylov method), the type 
+    of solver for MIP, the convergence tolerance, the boundary conditions, 
+    the intensity of the sources, the cross sections, etc, are read from an
+    input file and stored. If Fokker-Planck cross sections are used, they 
+    are computed here. The different cross sections for the angular
+    multigrid are computed by this class and the extended transport correction 
+    is applied.
+  \item[TRIANGULATION:] In this class, the geometry, the material ids, and the
+    source ids are read. Two different input files can be read. When the mesh
+    uses rectangular cells, the abscissae then the ordinates have to be given 
+    in increasing value. After that, the materials ids and the source ids are
+    read. For instance, if the domain, $1cm \times 1cm$, is decomposed 
+    in four identical cells, the input file looks like:
+    \begin{verbatim}
+    rectangle
+    2 2      // (number of x-divisions, number of y-divisions)
+    0. 0.5 1.0
+    0. 0.5 1.0
+    0 0 0 0  // (material ids)
+    0 0 0 0  // (source ids)
+    \end{verbatim}
+    The other acceptable type of input file is used for polygonal cells. In 
+    that case, the number of edges of a cell is given first, followed by the 
+    coordinates of each vertex, the material ids and finally the source ids.
+    The vertices must be ordered in an anti-clockwise order but there is no need
+    to order the cell or for two successive cells to be adjacent in the mesh. 
+    For instance, a possible input file would be:
+    \begin{verbatim}
+    polygon
+    4   // (number of cells)
+    3 1. 0. 1. 1. 0.5 0.5 0 0
+    5 0. 0. 0.5 0. 0.5 0.5 0.5 1. 0. 1. 0 0
+    3 0.5 0. 1. 0. 0.5 0.5 0 0
+    3 0.5 0.5 1. 1. 0.5 1. 0 0
+    \end{verbatim}
+    This class assumes that the domain is rectangular. After reading the
+    geometry, the EDGE objects are created. Before an edge is created, it must
+    be checked that the edge does not already exist. To do so, the coordinates
+    of the two vertices of the candidate edge are compared with the
+    coordinates of the vertices of a subset of the existing edge. This subset
+    corresponds to the smallest subset of edges having an abscissa,
+    respectively an ordinate, of one of their vertices equals to an abscissa,
+    respectively an ordinate, of one of the vertices of the candidate edge.
+  \item[EDGE:] This class contains the coordinates of the vertices associated
+    to the edge, the global and local ids of the edge, the ids of the cells 
+    associated to the edge, the type of cell (interior or on the boundary and 
+    the type of boundary: vacuum, isotropic or most normal direction of the
+    quadrature), the two normals associated to the two cells, the 
+    length of the edge, etc.
+  \item[FINITE\_ELEMENT:] This class is the base class for BLD and PWLD.
+    It contains all the matrices needed for the discretization of the transport
+    equation and of MIP.
+  \item[BLD:] This class derives from FINITE\_ELEMENT and builds the bilinear
+    finite elements.
+  \item[PWLD:] This class derives from FINITE\_ELEMENT and builds the
+    piecewise linear finite elements.
+  \item[QUADRATURE:] This class is the base class for GLC and LS. QUADRATURE
+    builds the discrete-to-moment and moment-to-discrete matrices and
+    stores the different directions used by the quadrature. The
+    directions on the first octant are computed in GLC and LS. Then, they are
+    deployed over the other octants. After that, the spherical harmonics
+    are computed and evaluated at the given directions. When a Galerkin
+    quadrature is used, selection rules are employed and the discrete-to-moment
+    matrix is computed by inverting the moment-to-discrete matrix. Otherwise,
+    the discrete-to-moment matrix is obtained by transposing the moment-to-discrete
+    matrix and by multiplying it by the weights of the quadrature.
+  \item[GLC:] This class derives from QUADRATURE and computes the weights and
+    the directions used by the Gauss-Legendre-Chebyshev quadrature.
+  \item[LS:] This class derives from QUADRATURE and computes the weights and
+    the directions used by the Level-Symmetric quadrature.
+  \item[CELL:] This class stores the id of cell, a vector of pointers to the
+    edges of cell, the intensity of the source in the cell, the material
+    properties ($\Sigma_s$, $\Sigma_t$, and the diffusion coefficient), 
+    the FINITE\_ELEMENT associated to the cell, etc. The orthogonal lengths are
+    calculated by this class.
+  \item[DOF\_HANDLER:] This class builds the \emph{mesh} by creating all the 
+    CELL objects and the  FINITE\_ELEMENT objects associated to them. It is 
+    the DOF\_HANDLER object that computes the sweep
+    ordering for all the directions. First, the edges on the boundary with a
+    known incoming flux are put in a list \emph{incoming\_edges}. The sweep
+    ordering will continue as long as this list is not empty. The first edge 
+    in the list is popped and the cell associated is found. When the edge is 
+    interior, the cell which has not been accepted in the sweep order is popped.
+    Then, we loop over the edges of the cell to determine which ones are
+    associated to an outgoing flux and which ones are associated to an
+    incoming flux. The cell is accepted if all the
+    edges which are not ``outgoing'' are in \emph{incoming\_edges}. If the cell is
+    rejected, the edge is pushed back at the end of the list. If the cell is
+    accepted, the edges of the cell which are incoming are removed from
+    \emph{incoming\_edges}. The others edges are pushed back are the end of the
+    list except if they are on the boundary of the domain. Because of the 
+    symmetry of the quadratures used, the sweep orders have to be computed 
+    for only half the directions. The sweep orders for the other directions 
+    are just the opposite of the ones calculated.
+  \item[TRANSPORT\_OPERATOR:] This class is the one where the calculation is
+    made. It derives from the Epetra\_Operator of Trilinos.
+    TRANSPORT\_OPERATOR handles the angular multigrid by calling itself
+    recursively and restricting and projecting the flux moments on the
+    different ``angular'' grids. It is also in this class that the scattering 
+    source is computed and the sweeps are  performed. 
+  \item[MIP:] This class builds and solves MIP. The first time that
+    \emph{Solve()} is called, the left hand-side is built and stored using a 
+    compressed row storage format (CRS). Then, the problem is
+    solved by CG, PCG-SSOR, PCG-MLU, PCG-MLM, or AGMG. If AGMG is employed, 
+    there is an extra step to convert the right hand-side to Fortran data type 
+    and the  result to an Epetra\_MultiVector.
+  \item[TRANSPORT\_SOLVER:] This class builds the PARAMETERS object, the
+    TRIANGULATION object, the QUADRATURE object(s), the DOF\_HANDLER object,
+    and the initial TRANSPORT\_OPERATOR object. SI and the Krylov solvers are
+    called in \emph{Solve()}. The final result and the mesh are written in a file
+    by this class.
+  \item[EXCEPTION:] This class handles the exceptions that can be thrown.
+\end{description}
