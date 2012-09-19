@@ -2,9 +2,9 @@
 \subsection{Introduction}
 As mentioned earlier, the most common way to solve a SPD system is to use
 conjugate gradient preconditioned with SSOR (PCG-SSOR). In this research, we
-will compare the calculation time using PCG-SGS, which is a particular version
-of PCG-SSOR, with the time needed by CG 
-preconditioned with an algebraic multigrid method. This is not a new idea: The 
+will compare the calculation time using PCG-SGS, which is PCG-SSOR with a
+damping factor equals to unity, with the time needed by CG 
+preconditioned with an algebraic multigrid method. This is not a new idea: the 
 first multigrid methods developed were geometric multigrid used as stand-alone 
 solvers. In many applications, they achieve the so-called ``textbook multigrid
 efficiency'', i.e. ``the solution to the governing system of equations [is
@@ -21,37 +21,38 @@ finite element-spherical harmonics (FE-$P_N$) method. The AMG preconditioner
 resulted in a 60\% reduction in the solution time compared to ILU(0) 
 preconditioning and even more reduction compared to SSOR preconditioning. 
 
-Rather than writing our own AMG code, we will be testing the ML package 
+We will employ and compare two multigrid approaches: one from the ML package
 \cite{ml_guide} from the Trilinos library and the AGMG code \cite{agmg_guide}. 
 ML is a multigrid preconditioning package that uses a smoothed aggregation 
 algebraic multigrid to build a preconditioner for a Krylov method. AGMG is an 
-aggregation-based algebraic multigrid code written in Fortran 90.
+aggregation-based algebraic multigrid code (written in Fortran 90).
 
-Before solving a system of equations with a general multigrid method, we
-explain how to solve it using a two-grid method. We want to
-solve the following system:
+We describe the multigrid principles, using first a two-grid setting. Consider
+the following system:
 \begin{equation}
   \bs{A}_f u_f = b_f
 \end{equation}
-defined on the grid $\Gamma_f$.  The two-grid algorithm is given by :
+defined on the fine grid $\mathbb{T}_f$.  The two-grid algorithm is given by :
 \begin{enumerate}
-  \item $\nu_1$ pre-smoothing iterations using a smoother (Jacobi,
-    Gauss-Seidel or ILU) and an initial guess $u_0$: $u = S^{\nu_1}(u_0,b_f)$
-  \item Compute the residual on the fine grid $\Gamma_f$ and restrict it to
-    the coarse grid $\Gamma_c$: $r_c = \bs{R}(b_f-\bs{A}_f u)$
-  \item Solve the system on the coarse grid: $v=\bs{A}_c^{-1} r_c$
+  \item Perform $\nu_1$ pre-smoothing iterations using a smoother (e.g., Jacobi,
+    Gauss-Seidel or ILU) using an initial guess $u_0$: $u = S^{\nu_1}(u_0,b_f)$
+  \item Compute the residual on the fine grid $\mathbb{T}_f$ and restrict it to
+    the coarse grid $\mathbb{T}_c$: $r_c = \bs{R}(b_f-\bs{A}_f u)$
+  \item Solve with a direct solver the system on the coarse grid: 
+    $v=\bs{A}_c^{-1} r_c$
   \item Interpolate the coarse grid correction to the fine grid and add the
-    correction to $u$: $u=u+\bs{P}v$
-  \item $\nu_2$ post-smoothing iterations: $u = S^{\nu_2}(u,b_f)$
+    correction to $u$: $u \leftarrow u+\bs{P}v$
+  \item Perform $\nu_2$ post-smoothing iterations: $u = S^{\nu_2}(u,b_f)$
 \end{enumerate}
 When using AMG, the matrix $\bs{A}_c$ on the coarse grid is given by the Galerkin
 approximation:
 \begin{equation}
-  \bs{A}_c = \bs{R}\bs{A}_f \bs{P}
+  \bs{A}_c = \bs{R}\bs{A}_f \bs{P},
 \end{equation}
 where $\bs{P}$ is a prolongation matrix and $\bs{R}$ is a restriction matrix.
 Solving the system $\bs{A}_c v = r_c$ on the coarse grid is generally very
-expansive, therefore this step is recursively replaced by $\gamma$ two-grid
+expansive, therefore this step is recursively replaced by $\gamma$
+applications of the  two-grid
 methods until the system can be efficiently inverted with a direct solver.
 This yields the multigrid method. When $\gamma = 1$, respectively $\gamma =
 2$, the multigrid method is said to use a $V-$cycle, respectively a $W-$cycle:
@@ -79,7 +80,7 @@ solution significantly anymore \cite{amg_course}:
 where $S$ is the smoother, $e$ is the error, and $\|u\|_{\mc{H}} =
 \sqrt{(u,u)_{\mc{H}}}$ is the norm associated to the scalar product:
 \begin{equation}
-  (u,v)_{\mc{H}} = \(\bs{A}u,v\)_2
+  (u,v)_{\mc{H}} = \(\bs{A}u,v\)_2.
 \end{equation}
 Among the algebraic multigrid methods, there are three main different 
 types: the classical Ruge-Stueben AMG (also known as interpolation method), 
@@ -90,7 +91,7 @@ most important step because if the coarsening is too fast, the convergence
 rates will decrease. However, if the coarsening is too slow, a lot of memory 
 may be required to solve the problem. For classical Ruge-Stueben methods, 
 each variable of the coarse grid is also a variable in the fine grid whereas 
-for the aggregation method, the variables of the fine grid are aggregates in
+for the aggregation methods, the variables of the fine grid are aggregates in
 variables of the coarse grid. There is no simple identification between the 
 variables of the fine grid and the coarse grid. However, all the algebraic
 multigrid methods uses the  very important concept of strongly dependent
@@ -105,7 +106,7 @@ off-diagonal in equation $i$ or $j$. A related definition is:
 {\definition{If the variable $u_i$ strongly depends on the variable $u_j$,
 then the variable $u_j$ strongly influences the variable $u_i$.}}\\
 The idea behind the strong dependence is that if the coefficient $a_{ij}$ is
-large, then a small change in the $j^{th}$ variable will have a important
+large, then a small change in the $j^{th}$ variable will have an important
 effect on the $i^{th}$ variable. Thus, it is probably a good idea to use the
 $j^{th}$ variable to interpolate the $i^{th}$ variable or to couple these two
 variables in an aggregate. This can be easily seen using the concept of
@@ -149,14 +150,14 @@ interpolation methods:
     $i^{th}$ as the set $N_i = \{ j \in C \cup F: j\neq i, a_{ij} \neq 0\}$.
     After the smoothing step, we can write locally:
     \begin{equation}
-      e_i \approx -\frac{\(\sum_{j\in N_i} a_{ij} e_j\)}{a_{ii}}
+      e_i \approx -\frac{\(\sum_{j\in N_i} a_{ij} e_j\)}{a_{ii}}.
       \label{e_locally}
     \end{equation}
     If $B_i$ contains the variables which are strongly dependent on the
     $i^{th}$ variables, we have:
     \begin{equation}
       \frac{1}{\sum_{k\in B_i} a_{ik}} \sum_{k \in B_i} a_{ik} e_k \approx 
-      \frac{1}{\sum_{j\in N_i} a_{ij}} \sum_{j \in N_i} a_{ij} e_j
+      \frac{1}{\sum_{j\in N_i} a_{ij}} \sum_{j \in N_i} a_{ij} e_j.
     \end{equation}
     Using this relation and \cref{e_locally}, we get the following formula for
     the weights of the interpolation:
@@ -164,11 +165,11 @@ interpolation methods:
       w_{ik} = -\alpha_i \frac{a_{ik}}{a_{ii}}
     \end{equation}
     where $\alpha_i = \frac{\sum_{j\in N_i} a_{ij}}{\sum_{l \in B_i} a_{il}}$.
-    Therefore, it is important that when the coarse variables are chosen, it 
-    is important that every variable in $F$ has enough strongly coupled
+    Therefore, it is important that when the coarse variables are chosen,  
+    that every variable in $F$ has enough strongly coupled
     variables in $C$ that are part of of $B_i$. If some of the off-diagonal
     entries are positive, the same development can be done as long as these
-    positive terms are small, i.e. variables are not strongly coupled because
+    positive terms are small, i.e., variables are not strongly coupled because
     of these terms. If the positive entries are large, the algebraically
     smooth error can oscillate. This can happen, for elliptic PDE, when 
     high-order finite elements are used or with bilinear elements on 
@@ -189,11 +190,11 @@ coarse variables are not strongly coupled to each others, and the variables
 in $F$ are surrounded by the variables in $C$. We call $B_i^S$ the set of all 
 strongly connected neighbors of $u_i$:
 \begin{equation}
-  B_i^s = \{ v_j \in B_i | -a_{ij} \geq \theta \max_{k\neq i}(-a_{i,k})\}
+  B_i^s = \{ v_j \in B_i | -a_{ij} \geq \theta \max_{k\neq i}(-a_{i,k})\}.
 \end{equation}
 The interpolatory nodes $C_i$ are:
 \begin{equation}
-  C_i = B_i^s \cap C
+  C_i = B_i^s \cap C.
 \end{equation}
 Adding variables in $C_i$ increases the quality of the interpolation but
 it diminishes the sparsity of the interpolation matrix and increases the
@@ -205,7 +206,7 @@ quality. We also want $C$ to be a maximal subset of the variables such that
 the variables in $C$ are not strongly connected to each others. This ensures 
 that the coarsening is fast enough.
 
-\subsection{ML}
+\subsection{Smoothed aggregation: the ML package}
 In a similar way than for the classical AMG, the smoothed aggregation
 method uses the concept of strong connections. The theory for plain
 aggregation method showed that the convergence bound depends of the number
@@ -222,7 +223,7 @@ $(i,j)$ or $(j,i)$ of the matrix is non-zero, an edge is built between the
 vertex $i$ and the vertex $j$ \cite{ml_guide}. Second, the vertices are
 aggregated. When using ML on a single processor, two aggregation schemes can
 be used: the uncoupled scheme or the maximally independent sets (MIS) scheme. 
-The uncoupled scheme tries to build aggregates of size $3^d$ where $d$ is the
+The uncoupled scheme attempts at building aggregates of size $3^d$ where $d$ is the
 dimension of the problem. The algorithm works as follows \cite{mis}:
 \begin{description}
   \item[Step 1:] As long as there are points not adjacent to an aggregate:
@@ -234,8 +235,8 @@ dimension of the problem. The algorithm works as follows \cite{mis}:
   \item[Step 2:] Add all the points left to the existing aggregates or form a
     new aggregates with them.
 \end{description}
-The MIS scheme used in ML applied the MIS algorithm \cite{graph_coloring} to
-the graph produced by the square of the matrix $\bs{A}$. These two coarsening 
+The MIS scheme used in ML applied the MIS algorithm of \cite{graph_coloring} to
+the graph produced by the matrix $\bs{A}^2$. These two coarsening 
 schemes use a fixed ratio of coarsening between levels. Once the aggregation is 
 done, a tentative prolongator matrix, $\bs{\tilde{P}}_k$ is constructed 
 \cite{mis}. A example of $\bs{\tilde{P}}_k$ is given by:
@@ -250,9 +251,9 @@ done, a tentative prolongator matrix, $\bs{\tilde{P}}_k$ is constructed
 \end{equation}
 This tentative prolongator could be used as prolongator but smoothing it
 allows to have a more robust scheme. Let $\bs{S}_k$ be a smoother, for example
-damped Jacobi, the prolongator matrix is given by:
+damped Jacobi, then the prolongator matrix is given by:
 \begin{equation}
-  \bs{P}_k = \bs{S}_k \bs{\tilde{P}}_k
+  \bs{P}_k = \bs{S}_k \bs{\tilde{P}}_k.
 \end{equation}
 
 Like for classical AMG, it can be interesting to ignore small values in
@@ -267,24 +268,24 @@ the spectral radius.
 By default, the coarsening is stopped when the number of variables is less 
 or equal than 128.
 
-\subsection{AGMG}
+\subsection{Plain aggregation: the AGMG code}
 Unlike ML, in AGMG the prolongator is not smoothed which results in a
-cheaper setup and a decrease of required memory \cite{agmg2}. However, as
-explained previously, the scheme is less robust. To counteract this weakness, 
+cheaper setup and a decrease of required memory \cite{agmg2}. However, 
+the scheme could be less robust. To counteract this weakness, 
 the aggregation scheme is more complicated. Coarsening algorithms which control
 the size of the aggregates tends to produce a few badly shaped aggregates.
 Since the convergence of AMG is bounded by the worst aggregate, even a small 
 number of badly shaped aggregates can have a huge impact on the convergence. 
 In AGMG, the aggregation algorithm has as input the upper bound of the 
-two-grid condition number $\bar{kappa}_{TG}$. When the aggregates are constructed,
+two-grid condition number $\bar{\kappa}_{TG}$. When the aggregates are constructed,
 their quality is checked. Obviously, this increases the cost of the coarsening
 and it is important that the coarsening is fast enough. Since the algorithm 
 does not control the size of the aggregates, it is difficult to control the 
 speed of the coarsening. However, controlling the condition number is much 
 more interesting than controlling the coarsening speed. If the algorithm 
 controls the condition number, it will not create bad aggregates but instead, it 
-may create a few aggregates with a size below the target size. This obviously 
-does not affect the efficiency of the method in an noticeable way \cite{agmg2}. 
+may create a few aggregates with a size below the target size but 
+does not affect the efficiency of the method in a noticeable way \cite{agmg2}. 
 
 In AGMG, the aggregation is done by a few passes of a pairwise aggregation 
 algorithm. This allows the computation of the aggregate quality to remain very 
@@ -364,10 +365,10 @@ $\tilde{\kappa}(\{i,j\})$ needs to be adapted to reflect the quality of the
 corresponding aggregate $\kappa(G_i\cup G_j)$ in the original matrix.
 Therefore, the definition of $s_j$ is slightly modified:
 \begin{equation}
-  \tilde{s}_i = - \sum_{k \in G_i} \sum_{j \in G_i} a_{kj}
+  \tilde{s}_i = - \sum_{k \in G_i} \sum_{j \in G_i} a_{kj}.
 \end{equation}
 This change is there to ensure that $\tilde{\kappa}(\{i,j\})$ is a lower
-bound of $\kappa(G_i \cup G_j)$. Thus, if $\tilde{\kappa}_(\{i,j\}) \geq
+bound of $\kappa(G_i \cup G_j)$. Thus, if $\tilde{\kappa}(\{i,j\}) \geq
 \bar{\kappa}_{TG}$, the pair has to be rejected because it is impossible for
 $\kappa(G_i \cup G_j)$ to satisfy the condition. An unique characteristic 
 of this coarsening method is that you can, in theory, have an 
@@ -388,7 +389,7 @@ priority rule consists of using computing a Cuthill-McKee permutation
 variable as a priority number (the lower number has the priority). The 
 Cuthill-McKee permutation works as follows: the number 1 is given to a node 
 with minimal degree; the next numbers are given to its neighbors ordered by
-increasing degree; then the neighbors of number are given a number by
+increasing degree; then their neighbors are given a number by
 increasing degree; the process is over when all nodes are numbered. There is
 still some uncertainties in the numbering if there are several variables
 with minimal degree or when several neighbors of a variables have the same

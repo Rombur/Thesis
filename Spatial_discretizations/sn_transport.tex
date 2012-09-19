@@ -1,0 +1,114 @@
+\section{The $S_n$ Transport Equations}
+Given an angular quadrature set $\{\bo_d,w_d\}_{1\leq d \leq M}$, the
+one-group $_n$ transport equation with isotropic source and scattering is:
+\begin{equation}
+  \(\bo_d \cdot \bn +\Sigma_t (\br)\)\psi_d(\br) = \frac{1}{4\pi}\Sigma_s
+  (\br)\phi(\br) + \frac{1}{4\pi} S(\br),\ \textrm{ for } \br \in \mc{D},\
+  1\leq d \leq M,
+  \label{one_speed}
+\end{equation}
+with $\psi_d(\br)=\psi(\br,\bo_d)$ the angular flux at position $\br$ in
+direction $\bo_d$, $\Sigma_t$, and $\Sigma_s$ the total and scattering cross
+section, respectively, and $\mc{D}$ the spatial domain. The scalar flux is
+defined and evaluated as follows:
+\begin{equation}
+  \psi(\br) \equiv \int_{4\pi} \psi(\br,\bo)\ d\bo \simeq \sum_{d=1}^M w_d
+  \psi_d\(\br\).
+  \label{flux_moments}
+\end{equation}
+The system of equations is closed assuming incoming boundary conditions on
+(with $\partial \mc{D} = \partial \mc{D}^{d} \cap \partial \mc{D}^r$):
+\begin{equation}
+  \psi_d (\br_b) = \left\{
+  \begin{aligned}
+    &\psi_d^{inc}(\br_b), &\br_b \in \partial \mc{D}^{d,-}=\{\partial \mc{D}^d
+    \textrm{ such that } \bo_d \cdot \bs{n}_b <0\} \\
+    &\psi_{d^{\prime}}(\br_b), & \br_b \in \partial \mc{D}^{r,-}_d = \{
+    \partial \mc{D}^r \textrm{ such that } \bo_d \cdot \bs{n} < 0\}
+  \end{aligned}
+  \right. ,
+\end{equation}
+where $\bs{n}_b = \bs{n}(\bs{r}_b)$ is the outward unit normal vector on the
+boundary. The reflecting direction of $\bo_d$ at a point $\br{r}_b$ on the
+boundary is given by:
+\begin{equation}
+  \bo_{d^{\prime}} = \bo_d - 2\(\bo_d \cdot \bs{n}_b\)\bs{n}_b.
+\end{equation}
+We assume the angular quadrature set satisfies the following two conditions
+for any outward unit normal vector on the reflecting boundary $\partial
+\mc{D}^r$:
+\begin{itemize}
+  \item $\forall d=1,\hdots,M$, the reflected direction $\bo_{d^{\prime}}$ is
+    also in the quadrature set (which is simple to obtain for rectangular
+    geometries);
+  \item the weights of the incident and reflected directions are equal, i.e.,
+    $w_d=w_{d^{\prime}}$
+\end{itemize}
+
+For the time being, we assume that no reflective boundaries exist $\(\partial
+\mc{D}^r = 0\)$. Then, \cref{one_speed} can be written in a compact form using
+operators:
+\begin{align}
+  &\bs{L}\Psi = \bs{M\Sigma} \Phi + S = q, \label{transport_op}\\
+  &\Phi = \bs{D} \Psi, \label{phi_D_psi}
+\end{align}
+where $\Psi$ is the vector of angular fluxes, $\Phi$ the vector flux moments
+(with isotropic scattering, the only moment required is the scalar flux), $q$
+is the total (scattering+external) source, $\bs{L}$ is the streaming operator,
+$\bs{M}$ is the moment-to-direction operator, and $\bs{D}$ is the
+direction-to-moment operator.
+$\bs{L}=diag(\bs{L}_1,\hdots,\bs{L}_d,\hdots,\bs{L}_M)$ is a diagonal
+operator; given the total source $q$, one can solve independently for the
+resulting angular fluxed in all directions. \Cref{transport_op,phi_D_psi} can
+be re-arranged in terms of the scalar flux only:
+\begin{equation}
+  \Phi = \bs{D L}^{-1} \(\bs{M \Sigma}\Phi+S\).
+\end{equation}
+The action of $\bs{L}^{-1}$ is often referred to as a \emph{transport sweep}
+when discontinuous spatial approximations (finite differences, finite
+elements) are employed because, for any directions $\bo_d$, the action of
+$\bs{L}_d^{-1}$ can be obtained by traversing the mesh (i.e., sweeping) in a
+specific ordering of the cells, thus one needs only to solve a small linear
+system of equations, cell by cell. The order in which the elements are solved
+constitutes the graph of the sweep; above, we have discussed situations where
+the graph does not present some dependencies (cycles). Note that cycles in the
+sweep graph can also appear due to reflective boundary conditions. These graph
+dependencies can either be lagged within the iterative procedure of the
+solution vector consisting of the scalar flux is augmented by the angular flux
+unknowns that cause the cycles. We will explain these details in the paragraph
+related to iterative techniques, but first we generalize our operator
+notations for situations where we need to keep in the solution vector both the
+flux moments and some angular fluxes dur to dependencies in the graph (non
+convex meshed and/or reflective boundaries).
+
+If the graph of the sweep presents dependencies, we practically break the
+transport sweep on these boundaries and introduce the notion of significant
+angular fluxes. In this situation, we define a matrix $\bs{N}$ that extracts
+from the entire angular flux vector all out-going angular fluxes on the
+boundaries causing a dependency in the graph of the sweep, i.e., the
+significant angular flux vector is given by:
+\begin{equation}
+  \Psi_{SAF} = \bs{N} \Psi,
+\end{equation}
+$\bs{N}$ is simply an operator that extracts the entire angular flux vector,
+the values required to break the graph dependencies. We then split the loss
+and streaming operator $\bs{L}$ into two parts:
+\begin{equation}
+  \bs{L} = \underline{\bs{L}} - \overline{\bs{L}},
+\end{equation}
+where $\underline{\bs{L}}$ is the lower block triangular matrix (which can be
+inverted during a transport sweeps) and $\overline{\bs{L}}$ is the strictly
+upper triangular block, causing the dependencies in the sweep
+($\overline{\bs{L}}$ only contains integrals along some incoming edges of a
+cell). Note that $\bs{N}^T\bs{N}$ is a diagonal operator that contains 1 only
+for angular flux values that are labeled as ``significant''. Then, we have:
+\begin{equation}
+  \overline{\bs{L}} \Psi = \overline{\bs{L}} \bs{N}^T\bs{N}\Psi =
+  \overline{\bs{L}}\bs{N}^T \Psi_{SAF},
+\end{equation}
+and can, therefore, re-cast the transport equation as:
+\begin{align}
+  &\underline{\bs{L}}\Psi =\overline{\bs{L}}\bs{N}^T \Psi_{SAF} + \bs{M\Sigma}
+  \Phi + S,\\
+  &\Phi = \bs{D}\Psi.
+\end{align}

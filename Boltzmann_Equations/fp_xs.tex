@@ -9,7 +9,7 @@ Y_l^m(\bo)\int_E^{E/\alpha}\Sigma_{s,l,reg}(E'\rightarrow
 E)\phi_{l,m}(E')dE'+\\
 &\frac{\partial(S\psi)}{\partial E}+\frac{\alpha}{2}\(\frac{\partial}{\partial
 \mu}(1-\mu^2) \frac{\partial}{\partial
-\mu}+\frac{1}{(1-\mu^2)}\frac{\partial^2}{\partial\varphi^2}\)\psi+Q
+\mu}+\frac{1}{(1-\mu^2)}\frac{\partial^2}{\partial\varphi^2}\)\psi+Q,
 \end{split}
 \end{equation}
 where we used $\alpha = 2T$.
@@ -18,69 +18,63 @@ Let us define:
 \mc{L}_{FP}^{\alpha} \psi &= \frac{\alpha}{2} \frac{\partial}{\partial \mu}
 (1-\mu^2) \frac{\partial}{\partial \mu}\psi \label{gamma_alpha}\\
 \mc{L}_{FP}^e\psi &=\frac{\partial}{\partial E}S\psi +
-\frac{1}{2}\frac{\partial^2}{\partial E^2} R \psi \label{gamma_e}
+\frac{1}{2}\frac{\partial^2}{\partial E^2} R \psi. \label{gamma_e}
 \end{align}
 We note that $\mc{L}_{FP}^{\alpha}$ causes particles to redistribute in
 direction without energy change, while $\mc{L}_ {FP}^e$ causes particles to
 redistribute particles in energy without directional change. Therefore,
 $\mc{L}_{FP}^{\alpha}$ can be approximated using the following cross section:
 \begin{equation}
-\Sigma_s(\mu_0,E'\rightarrow E) = \Sigma_s^{\alpha}(\mu_0,E) \delta(E'-E)
+\Sigma_s(\mu_0,E'\rightarrow E) = \Sigma_s^{\alpha}(\mu_0,E) \delta(E'-E),
 \end{equation}
-where $\Sigma_{s}^{\alpha} (\mu_0,E) = \frac{\alpha(E)}{1\mu_s} \frac{1}{2\pi}
-\delta(\mu_0-\mu_s)$ and $\mu_s$ is a parameter; while $\Gamma_{FP}^e$ 
+where $\Sigma_{s}^{\alpha} (\mu_0,E) = \frac{\alpha(E)}{1-\mu_s} \frac{1}{2\pi}
+\delta(\mu_0-\mu_s)$ and $\mu_s$ is a parameter; while $\mc{L}_{FP}^e$ 
 should be approximated by a cross section of the form:
 \begin{equation}
 \Sigma_s(\mu_0,E'\rightarrow E) = \Sigma_s^e(E'\rightarrow E) \frac{1}{2\pi}
-\delta(\mu_0-1)
-\end{equation}
-More justifications of this approximation can be found in the fact 
-that the Fokker-Planck scattering operator can also be derived assuming 
-\cite{morel_81}:
-\begin{equation}
-\Sigma_s(\mu_0,E'\rightarrow E) = \Sigma_s^{\alpha}(\mu_0,E) \delta(E'-E) 
-+\Sigma_s^e(E'\rightarrow E) \frac{1}{2\pi} \delta(\mu_0-1)
+\delta(\mu_0-1).
 \end{equation}
 
 \subsection{Legendre polynomial expansion of $\Sigma_s^{\alpha}$}
-Now we expressed the Legendre polynomial expansion of $\Sigma_s^{\alpha}$
+Next, we express the Legendre polynomial expansion of
+$\Sigma_s^{\alpha}(\mu_0)$ ($E$ was dropped for brevity) 
 as it has been done in \cite{morel_89,morel_81,morel_96}. We will focus on
 $\mc{L}_{FP}^{\alpha}$ since this research we solve the energy-integrated
-Boltzmann equation. Therefore, the $\mc{L}_{FP}^e$ operator does not appear in
-the equation that we want to solve. Because $\Sigma_s^{\alpha}$ does not change 
+Boltzmann equation and, therefore, the $\mc{L}_{FP}^e$ operator does not appear in
+the equation that we solve. Because $\Sigma_s^{\alpha}$ does not change 
 particle energy, it corresponds to a within-group cross section. We define:
 \begin{align}
   \mc{L}_B^{\alpha} &= \Sigma_s^{\alpha} \mc{L}_B\\
-  \mc{L}_{FP}^{\alpha} &= \frac{\alpha}{2}\mc{L}_{FP}
+  \mc{L}_{FP}^{\alpha} &= \frac{\alpha}{2}\mc{L}_{FP},
 \end{align}
 and thus:
 \begin{align}
 \mc{L}_B^{\alpha}Y_l^m(\bo) &= (\Sigma_{s,l}^{\alpha}-\Sigma_{s,0}^{\alpha})
 Y_l^m(\bo) \label{gamma_b_alpha_p}\\
-\mc{L}_{FP}^{\alpha} Y_l^m(\bo) &= -\frac{\alpha}{2} l(l+1) Y_l^m(\bo) 
+\mc{L}_{FP}^{\alpha} Y_l^m(\bo) &= -\frac{\alpha}{2} l(l+1) Y_l^m(\bo).
 \label{gamma_fp_alpha_p}
 \end{align}
 Using \cref{ang_flux,gamma_b_alpha_p,gamma_fp_alpha_p}, we can define 
 $\Sigma_s^{\alpha}$ such that:
 \begin{equation}
-\mc{L}_B^{\alpha}\psi=\mc{L}_{FP}^{\alpha}\psi
+\mc{L}_B^{\alpha}\psi=\mc{L}_{FP}^{\alpha}\psi,
 \end{equation}
 by setting:
 \begin{equation}
-\Sigma_{s,l}^{\alpha}-\Sigma_{s,0}^{\alpha} = -\frac{\alpha}{2}l(l+1)
+\Sigma_{s,l}^{\alpha}-\Sigma_{s,0}^{\alpha} = -\frac{\alpha}{2}l(l+1),
 \label{sigma_m_sigma}
 \end{equation}
 with $l=1,\hdots,L$. Choosing $\Sigma_{s,L}^{\alpha}=0$ to minimize 
 $\Sigma_{s,0}^{\alpha}$ and \cref{sigma_m_sigma} becomes:
 \begin{equation}
-\Sigma_{s,l}^{\alpha} = \frac{\alpha}{2}\(L(L+1)-l(l+1)\),\ \  l=0,\hdots,L
+\Sigma_{s,l}^{\alpha} = \frac{\alpha}{2}\(L(L+1)-l(l+1)\),\ \  l=0,\hdots,L.
+\label{eq_297}
 \end{equation}
 Using appropriate quadrature sets and expansion orders, the $S_n$
 representation of $\mc{L}_{FP}^{\alpha}$ is equivalent to the one obtained by
-interpolating the discrete angular flux values with a polynomial and operating 
-on that polynomial.
+interpolating the discrete angular flux values with a polynomial.
 
-Now we look at the behavior of $\Sigma_s^{\alpha}$ when the degree of the expansion 
+Next, we look at the behavior of $\Sigma_s^{\alpha}$ when the degree of the expansion 
 is increased. First, we should note that the momentum transfer of
 $\Sigma_s^{\alpha}$ is exact for any expansion order:
 \begin{equation}
@@ -88,23 +82,23 @@ $\Sigma_s^{\alpha}$ is exact for any expansion order:
 2\pi \int_{-1}^1 \Sigma_s^{\alpha}(\mu_0) (1-\mu_0) d\mu_0 &=
 \Sigma_{s,0}-\Sigma_{s,1}\\
 &=\frac{\alpha}{2} L(L+1) - \frac{\alpha}{2} (L(L+1)-2)\\
-&=\alpha
+&=\alpha.
 \end{split}
 \end{equation}
-With the previous relationships, the average cosine of the scattering angle
+With \cref{eq_297}, the average cosine of the scattering angle
 becomes:
 \begin{equation}
 \begin{split}
 \bar{\mu}_0 &= \frac{\Sigma_{s,1}^{\alpha}}{\Sigma_{s,0}^{\alpha}}\\
-&=\frac{L(L+1)-2}{L(L+1)}
+&=\frac{L(L+1)-2}{L(L+1)}.
 \end{split}
 \end{equation}
 It is easily seen that when $L$ increases, $\bar{\mu}_0$ goes to one and
 $\Sigma_s^{\alpha}$ becomes increasingly forward-peaked. The
-total magnitude of $\Sigma_s^{\alpha}$ becomes unlimited when $L$ goes to
+total magnitude of $\Sigma_s^{\alpha}(\mu_0)$ becomes unlimited when $L$ goes to
 $\infty$:
 \begin{equation}
-\Sigma_{s,0}^{\alpha} = \frac{\alpha}{2} L (L+1)
+\Sigma_{s,0}^{\alpha} = \frac{\alpha}{2} L (L+1).
 \end{equation}
 This shows that $\mc{L}_{FP}^{\alpha}$ corresponds to a continuous-deflection 
 interaction. The particles are continuously 

@@ -1,41 +1,50 @@
 \addvspace {10\p@ }
 \vskip -10pt
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Hexagonal cell versus triangle cells\relax }}{4}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces AMR mesh\relax }}{4}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces AMR mesh\relax }}{5}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \vskip -10pt
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Eigenspectrum of the sweep preconditioned system\relax }}{55}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Eigenspectrum of the DSA preconditioned system\relax }}{55}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Eigenspectrum of the ANMG (DSA variant) preconditioned system\relax }}{56}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Scalar flux for the $S_{32}$ calculation.\relax }}{58}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Scalar flux for the $S_{32}$ calculation.\relax }}{60}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Cell\relax }}{53}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces BLD basis function\relax }}{54}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {First basis function}}}{54}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Second basis function}}}{54}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Third basis function}}}{54}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Fourth basis function}}}{54}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces PWLD basis function\relax }}{56}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {First basis function}}}{56}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Second basis function}}}{56}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Third basis function}}}{56}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Fourth basis function}}}{56}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Sub-cell (in blue) in the cell\relax }}{57}
 \addvspace {10\p@ }
 \vskip -10pt
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Cell\relax }}{65}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces BLD basis function\relax }}{66}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {First basis function}}}{66}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Second basis function}}}{66}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Third basis function}}}{66}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Fourth basis function}}}{66}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces PWLD basis function\relax }}{68}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {First basis function}}}{68}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Second basis function}}}{68}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Third basis function}}}{68}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Fourth basis function}}}{68}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Sub-cell in the cell\relax }}{69}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Eigenspectrum of the sweep preconditioned system\relax }}{72}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Eigenspectrum of the DSA preconditioned system\relax }}{72}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Eigenspectrum of the ANMG (DSA variant) preconditioned system\relax }}{73}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Scalar flux for the $S_{32}$ calculation.\relax }}{75}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Scalar flux for the $S_{32}$ calculation.\relax }}{78}
 \addvspace {10\p@ }
 \vskip -10pt
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Hexagonal cell versus triangle cells.\relax }}{71}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces AMR mesh.\relax }}{72}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces $V-$ and $W-$cycles.\relax }}{84}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Fourier analysis as a function of the mesh optical thickness, homogeneous infinite medium case.\relax }}{95}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Fourier analysis as a function of the mesh optical thickness, homogeneous infinite medium case for different aspect ratios.\relax }}{96}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Scalar flux on a mesh composed of quadrilateral cells.\relax }}{97}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Scalar flux on a mesh composed of polygonal cells.\relax }}{98}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Zones of the domain.\relax }}{100}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Scalar flux on a mesh composed of hexagonal cells.\relax }}{101}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Scalar flux on rectangular mesh.\relax }}{104}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Hexagonal cell versus triangle cells.\relax }}{82}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces AMR mesh.\relax }}{83}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces $V-$ and $W-$cycles.\relax }}{97}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Fourier analysis as a function of the mesh optical thickness, homogeneous infinite medium case.\relax }}{108}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Fourier analysis as a function of the mesh optical thickness, homogeneous infinite medium case for different aspect ratios.\relax }}{109}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Meshes and scalar fluxes\relax }}{110}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Quadrilateral cells}}}{110}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Polygonal cells}}}{110}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Zones of the domain.\relax }}{112}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Polygons distribution\relax }}{114}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Polygons distribution\relax }}{115}
 \addvspace {10\p@ }
+\vskip -10pt
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Scalar flux\relax }}{126}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Rectangular cells}}}{126}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Quadrilateral cells}}}{126}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Zones of the domain.\relax }}{126}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Convergence of PWLD\relax }}{127}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {LS quadrature}}}{127}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {GLC quadrature}}}{127}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -25,12 +25,13 @@ effective \cite{dsa_ref}. This is because, in such case, the quickly varying
 error modes are strongly attenuated by the transport sweep whereas the
 diffusion operator attenuates the slowly varying error modes. However, DSA is
 completely ineffective in the Fokker-Planck limit \cite{multigrid_1d} because
-the diffusion operator does not attenuate all the slowly varying anymore.
+the diffusion operator does not attenuate all the slowly varying error modes.
 
-To address this deficiency, a 1-D angular multigrid method for the $S_n$
+To address this deficiency, an  angular multigrid method for the
+one-dimensional $S_n$
 equations was developed by Morel and Manteuffel (MM) \cite{multigrid_1d}. This
 method was extremely efficient yielding a maximum spectral radius for 
-a model infinite-medium problem of approximately 0.6 at a cost of
+a model infinite-medium problem of 0.6 at a cost of
 approximatively twice that of DSA. This maximum spectral radius is approached
 in the Fokker-Planck limit. In this same limit, the spectral radius of DSA
 approaches 1. 
@@ -66,7 +67,8 @@ one at the time \cite{campbell,warsa}. We also compare the convergence rates and
 efficiency of these preconditioners for various test problems with forward-peaked 
 scattering. We find that PAMNF preconditioning is significantly more efficient 
 than DSA preconditioning, and become increasingly so as the Fokker-Planck limit 
-is approached. However, the number of iterations required for convergence 
+is approached. However, unlike the MM method for one-dimensional geometries, 
+the number of iterations required for convergence 
 nonetheless increases as this limit is approached. In spite of this fact, 
 the PAMNF-preconditioned Krylov method achieves good efficiency without the 
 costly filtering associated with the original PAM fixed-point iteration scheme, 

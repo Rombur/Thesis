@@ -53,7 +53,7 @@ Consequently, only the ANMG-DSA method will be employed in the later tests.
 In this test, we compare ANMG-DSA to Sweep and DSA preconditioning. An uniform
 isotropic source of intensity 10 $n/(cm^3 s)$. $S_4$, $S_8$, $S_{16}$, and
 $S_{32}$ calculations were performed. Fokker-Planck cross sections with
-$\alpha=1$ are used and $\Sigma_t = \Sigma_{s,0}$. The domain is homogeneous
+$\alpha=1$ are used and $\Sigma_t = \Sigma_{s,0}$ $(c=1)$. The domain is homogeneous
 and its size is $50cm \times 50cm$ discretized by $50\times 50$ cells. The 
 thickness of the domain varies from 50 to 2690 mean-free-path (the total cross 
 section varies with $L$ for Fokker-Planck cross sections: $\Sigma_{t,S_4}=10cm^{-1},
@@ -62,25 +62,26 @@ section varies with $L$ for Fokker-Planck cross sections: $\Sigma_{t,S_4}=10cm^{
 mean-free-path. The relative tolerance on GMRES, which is restarted every 30
 iterations, is $10^{-6}$ whereas the
 relative convergence on DSA, solved by AGMG (see next Chapter), is $10^{-8}$.
-The solution for $S_{32}$ calculation is given by:
+The solution for $S_{32}$ calculation is given on Figure \ref{fig_s_32}
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{Anmg/homog_anmg_crop}
   \caption{Scalar flux for the $S_{32}$ calculation.}
+  \label{fig_s_32}
 \end{figure}
 \begin{table}[H]
   \begin{center}
     \caption{Comparison of the number of GMRES iterations needed to solve the 
-      volumetric source test problem using sweep preconditioning (S), DSA 
+      volumetric source test problem when $c=1$ using sweep preconditioning (S), DSA 
     preconditioning, and ANMG-DSA preconditioning.}
-    \begin{tabular}{|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|c|}
       \hline
-      & S & DSA & ANMG-DSA \\
+      & S & DSA & ANMG-DSA & $\frac{\textrm{DSA}}{\textrm{ANMG-DSA}}$ \\
       \hline
-      $S_4$ & 85   & 42  & 27  \\
-      $S_8$ & 409  & 102 & 50  \\
-   $S_{16}$ & 1530 & 266 & 105 \\
-   $S_{32}$ & 4535 & 616 & 225 \\
+      $S_4$ & 85   & 42  & 27  & 0.64 \\
+      $S_8$ & 409  & 102 & 50  & 0.49 \\
+   $S_{16}$ & 1530 & 266 & 105 & 0.39 \\
+   $S_{32}$ & 4535 & 616 & 225 & 0.36 \\
       \hline
     \end{tabular}
     \label{table_gmres_homog}
@@ -88,17 +89,17 @@ The solution for $S_{32}$ calculation is given by:
 \end{table}
 \begin{table}[H]
   \begin{center}
-    \caption{Elapsed time (s) to solve the volumetric source test problem
-      using sweep preconditioning (S), DSA preconditioning, and ANMG-DSA
+    \caption{Elapsed time (s) to solve the volumetric source test problem when
+      $c=1$ using sweep preconditioning (S), DSA preconditioning, and ANMG-DSA
     preconditioning}
-    \begin{tabular}{|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|c|}
       \hline
-      & S & DSA & ANMG-DSA \\
+      & S & DSA & ANMG-DSA & $\frac{\textrm{DSA}}{\textrm{ANMG-DSA}}$ \\
       \hline
-      $S_4$ & 9.09322 & 6.51608 & 5.22796 \\
-      $S_8$ & 184.949 & 52.65   & 32.7609 \\
-   $S_{16}$ & 4610.94 & 740.193 & 355.939 \\
-   $S_{32}$ & 138181  & 17907.9 & 7357.63 \\
+      $S_4$ & 9.09322 & 6.51608 & 5.22796 & 0.80 \\
+      $S_8$ & 184.949 & 52.65   & 32.7609 & 0.62 \\
+   $S_{16}$ & 4610.94 & 740.193 & 355.939 & 0.48 \\
+   $S_{32}$ & 138181  & 17907.9 & 7357.63 & 0.41 \\
       \hline
     \end{tabular}
     \label{table_time_homog}
@@ -167,6 +168,6 @@ time are given in Table \ref{table_gmres_heter} and Table \ref{table_time_heter}
   \end{center}
 \end{table}
 We can see that even on a heterogeneous medium the angular multigrid is the
-most effective. The sweep preconditioning method requires a much more
+most effective. The sweep preconditioning method requires significantly more
 iterations than DSA and ANMG-DSA preconditioning because of the Material 2
 which is very thick and a scattering ratio close to one.

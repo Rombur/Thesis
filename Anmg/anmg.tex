@@ -4,7 +4,7 @@
 method, which is a Richardson iteration, or a Krylov method. The Source
 Iteration method at the $k^{th}$ iteration is given by:
 \begin{equation}
-\phi^{(k+1)} = \bs{DL}^{-1} \bs{M\Sigma}\phi^{(k)}+\bs{DL}^{-1}Q
+\Phi^{(k+1)} = \bs{DL}^{-1} \bs{M\Sigma}\Phi^{(k)}+\bs{DL}^{-1}Q
 \end{equation}
 When the scattering ratio $c=\max_{l}\(\frac{\Sigma_{s,l}}{\Sigma_t}\)$ is close
 to one, the spectral radius of SI can become arbitrary close to one and the
@@ -13,36 +13,36 @@ most physical forward-peaked scattering produces $\Sigma_{s,0} >
 \Sigma_{s,1}>\hdots$, the flat modes are the ones which should be accelerated
 that is why the DSA scheme is used. The SI+DSA scheme is given by a transport sweep:
 \begin{equation}
-\phi^{(k+1/2)} = \bs{DL}^{-1}\bs{M\Sigma}\phi^{(k)} +\bs{DL}^{-1}Q,
+\Phi^{(k+1/2)} = \bs{DL}^{-1}\bs{M\Sigma}\Phi^{(k)} +\bs{DL}^{-1}Q,
 \label{dsa_sweep}
 \end{equation}
 followed by a diffusion synthetic acceleration for the correction:
 \begin{equation}
-\delta \phi^{(k)} = \bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow0}
-\(\phi^{(k+1/2)}-\phi^{(k)}\),
+\delta \Phi^{(k)} = \bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow0}
+\(\Phi^{(k+1/2)}-\Phi^{(k)}\),
 \label{correction}
 \end{equation}
 yielding the next iterate for the flux moments:
 \begin{equation}
-\phi^{(k+1)} = \phi^{(k+1/2)} + \bs{P}_{0/1\rightarrow n} \delta \phi^{(k)}
+\Phi^{(k+1)} = \phi^{(k+1/2)} + \bs{P}_{0/1\rightarrow n} \delta \Phi^{(k)}
 \label{si_dsa_it}
 \end{equation}
 Finally, using \crefrange{dsa_sweep}{si_dsa_it}, we obtain:
 \begin{equation}
 \begin{split}
-\phi^{(k+1)} =& \((\bs{I}+\bs{P}_{0/1\rightarrow n}\bs{\mc{T}}_0^{-1} \bs{R}_{n
+\Phi^{(k+1)} =& \((\bs{I}+\bs{P}_{0/1\rightarrow n}\bs{\mc{T}}_0^{-1} \bs{R}_{n
 \rightarrow 0}\bs{DL}^{-1} \bs{M\Sigma} - \bs{P}_{0/1\rightarrow n}
-\bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow 0}\) \phi^{(k)}\\
+\bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow 0}\) \Phi^{(k)}\\
 &+ (\bs{I} + \bs{P}_{0/1\rightarrow n}\bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow
-0}) \bs{DL}^{-1} Q
+0}) \bs{DL}^{-1} Q.
 \end{split}
 \label{dsa_it}
 \end{equation}
 where $\bs{\mc{T}}_0$ is the matrix associated to the DSA operator,
-$\bs{R}_{n\rightarrow 0}$ is the restriction matrix of $\phi_n$ (all moments)
-to $\phi_0$ (only $0^{th}$ moment) and $\bs{P}_{0/1\rightarrow n}$ the
-projection matrix of $\phi_0$ or $\phi_1$, depending whether only the zeroth
-or the zeroth and the first moment are accelerated, onto $\phi_n$. When only
+$\bs{R}_{n\rightarrow 0}$ is the restriction matrix of $\Phi_n$ (all moments)
+to $\Phi_0$ (only $0^{th}$ moment) and $\bs{P}_{0/1\rightarrow n}$ the
+projection matrix of $\Phi_0$ or $\Phi_1$, depending whether only the zeroth
+or the zeroth and the first moment are accelerated, onto $\Phi_n$. When only
 the zeroth moment is accelerated, the scheme is always stable and the spectral
 radius is max $\(\rho_{iso},\frac{\Sigma_{s,1}}{\Sigma_t}\)$ where
 $\rho_{iso}$ is the spectral radius when the scattering is isotropic. In
@@ -100,15 +100,15 @@ Every time a transport sweep is performed, the optimal transport correction
 needs to be used \cite{multigrid_1d}. For a $P_{n-1}$ expansion of the cross
 sections, the corrected cross sections are given by:
 \begin{equation}
-\Sigma_{s,j}^* = \Sigma_{s,j} = \frac{\Sigma_{s,n/2}+\Sigma_{s,n-1}}{2}
-\textrm{with }j-\{t\}\textrm{ or }\{s,l\}
+\Sigma_{s,j}^* = \Sigma_{s,j} - \frac{\Sigma_{s,n/2}+\Sigma_{s,n-1}}{2}
+\textrm{with }j-\{t\}\textrm{ or }\{s,l\}.
 \end{equation}
 This correction is said to be optimal because for an infinite homogeneous
 medium, it minimizes the ``high-frequency'' angular errors, the smoothing
 factor being given by:
 \begin{equation}
 \rho_s =\max\(|\Sigma_{s,n/2}|/\Sigma_{s,0},|\Sigma_{s,n/2+1}|/\Sigma_{s,0},
-\hdots,|\Sigma_{s,n-1}/\Sigma_{s,0}\)
+\hdots,|\Sigma_{s,n-1}|/\Sigma_{s,0}\).
 \label{rho_s}
 \end{equation}
 To compare the effectiveness of the angular multigrid method with DSA,
@@ -166,14 +166,14 @@ corrections which are well attenuated by SI alone but it keeps the low
 frequency corrections. The filter is given by:
 \begin{equation}
 \(-\bn\cdot \frac{\beta_f}{3\Sigma_f}\bn + \Sigma_f\) f_{corr} = \Sigma_f
-\(\phi_{n_2}+P_{n_4\rightarrow n_2}\phi_{n_4}+\hdots+P_{2\rightarrow
-n_2}\phi_2\)
+\(\Phi_{n_2}+P_{n_4\rightarrow n_2}\Phi_{n_4}+\hdots+P_{2\rightarrow
+n_2}\Phi_2\)
 \end{equation}
 where $\Sigma_f$ is the filter cross section and $\beta_f$ is the filter
 tuning parameter. A Fourier analysis shows that given an input amplitude $A$,
 the ``diffusively filtered'' amplitude is:
 \begin{equation}
-F=\frac{A}{1+\frac{\beta_f \lambda^2}{3\Sigma_f}}
+F=\frac{A}{1+\frac{\beta_f \lambda^2}{3\Sigma_f}}.
 \end{equation}
 It is clear that the modes with large $|\lambda|$ (high frequencies) are
 strongly attenuated while low-frequency are not. However, the filtering
@@ -186,7 +186,7 @@ equations with highly-forward peaked scattering and to use a Krylov solver
 instead. When using a Krylov solver, \cref{transport_operator} is rewritten as
 follows:
 \begin{equation}
-(\bs{I}-\bs{DL}^{-1}\bs{M\Sigma})\phi = \bs{DL}^{-1}Q
+(\bs{I}-\bs{DL}^{-1}\bs{M\Sigma})\Phi = \bs{DL}^{-1}Q.
 \label{krylov_transport_operator}
 \end{equation}
 \Cref{krylov_transport_operator} is \cref{transport_operator} preconditioned
@@ -197,8 +197,8 @@ system of equations solved with a Krylov method is:
 \begin{split}
 &\((\bs{I} + \bs{P}_{0/1\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow
 0})(\bs{I}-\bs{DL}^{-1}\bs{M\Sigma})\) \phi=\\
-&(\bs{I}+\bs{P}_{0/1\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow 0})
-\bs{DL}^{-1} Q
+&(\bs{I}+\bs{P}_{0/1\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow
+0})\bs{DL}^{-1} Q.
 \end{split}
 \end{equation}
 The angular multigrid scheme can also be recast to be used by a Krylov
@@ -222,39 +222,39 @@ for a Krylov solver. First, we write the SI sweep equation, the successive
 corrections and the new iterate built from the sweep values plus all the
 successive corrections:
 \begin{align}
-& \phi_n^{(k+1/2)} = \bs{D}_n\bs{L}_n^{-1}\bs{M}_n\bs{\Sigma}_n\phi_n^{(k)} +
+& \Phi_n^{(k+1/2)} = \bs{D}_n\bs{L}_n^{-1}\bs{M}_n\bs{\Sigma}_n\Phi_n^{(k)} +
 \bs{D}_n \bs{L}_n^{-1} Q\\
-& \delta \phi_{n_2}^{(k)} = \bs{D}_n\bs{L}_{n_2}^{-1} \bs{M}_{n_2}
+& \delta \Phi_{n_2}^{(k)} = \bs{D}_n\bs{L}_{n_2}^{-1} \bs{M}_{n_2}
 \bs{\Sigma}_{n_2} \bs{R}_{n\rightarrow n_2}
-\(\phi_n^{(k+1/2)}-\phi_n^{(k)}\)\\
+\(\Phi_n^{(k+1/2)}-\Phi_n^{(k)}\)\\
 & \hdots\\
-& \delta \phi_2^{(k)} = \bs{D}_2 \bs{L}_2^{-1} \bs{M}_2 \bs{\Sigma}_2
-\bs{R}_{4\rightarrow 2}\delta \phi_4\\
-& \delta \phi_0^{(k)} = \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}\delta
-\phi_2^{(k)}\\
-& \phi_n^{(k+1)} = \phi_n^{(k+1/2)} + \bs{P}_{n_2\rightarrow n} \delta
-\phi_{n_2}^{(k)} + \hdots + \bs{P}_{2\rightarrow n} \delta \phi_2^{(k)} +
-\bs{P}_{0\rightarrow n} \delta \phi_0^{(k)} \label{mom_update}
+& \delta \Phi_2^{(k)} = \bs{D}_2 \bs{L}_2^{-1} \bs{M}_2 \bs{\Sigma}_2
+\bs{R}_{4\rightarrow 2}\delta \Phi_4\\
+& \delta \Phi_0^{(k)} = \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}\delta
+\Phi_2^{(k)}\\
+& \Phi_n^{(k+1)} = \Phi_n^{(k+1/2)} + \bs{P}_{n_2\rightarrow n} \delta
+\Phi_{n_2}^{(k)} + \hdots + \bs{P}_{2\rightarrow n} \delta \Phi_2^{(k)} +
+\bs{P}_{0\rightarrow n} \delta \Phi_0^{(k)}. \label{mom_update}
 \end{align}
-Now, all the corrections $\delta \phi_0^{(k)}$ through $\delta \phi_{n_2}^{k}$
+Now, all the corrections $\delta \Phi_0^{(k)}$ through $\delta \Phi_{n_2}^{k}$
 are substituted into the moment update equation, \cref{mom_update}, yielding:
 \begin{equation}
   \begin{split}
-    \phi_n^{(k+1)} =& \bs{T}_n \phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q +
+    \Phi_n^{(k+1)} =& \bs{T}_n \Phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q +
      \bs{P}_{n_2\rightarrow n}\(\bs{T}_{n_2}\bs{R}_{n\rightarrow n_2}
-     \(\phi_n^{(k+1/2)}-\phi_n^{(k)}\)\)+\hdots\\
-     &+\bs{P}_{2\rightarrow n} \bs{T}_2\bs{R}_{4\rightarrow 2} \delta \phi_4^{(k)}
+     \(\Phi_n^{(k+1/2)}-\Phi_n^{(k)}\)\)+\hdots\\
+     &+\bs{P}_{2\rightarrow n} \bs{T}_2\bs{R}_{4\rightarrow 2} \delta \Phi_4^{(k)}
      + \bs{P}_{0\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0} \delta
-     \phi_2^{(k)}\\
-    =& \bs{T}_n\phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q + \bs{P}_{n_2\rightarrow n}
-     \(\bs{T}_{n_2} \bs{R}_{n\rightarrow n_2} \(\bs{T}_n \phi_n^{(k)} +\bs{D}_n
-     \bs{L}_n^{-1} Q -\phi_n^{(k)}\)\)\\
+     \Phi_2^{(k)}\\
+    =& \bs{T}_n\Phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q + \bs{P}_{n_2\rightarrow n}
+     \(\bs{T}_{n_2} \bs{R}_{n\rightarrow n_2} \(\bs{T}_n \Phi_n^{(k)} +\bs{D}_n
+     \bs{L}_n^{-1} Q -\Phi_n^{(k)}\)\)\\
      &+\hdots+\bs{P}_{2\rightarrow n} \bs{T}_2 \bs{R}_{4\rightarrow 2}\( \bs{T}_4
      \bs{R}_{8\rightarrow 4} \(\hdots\(\bs{T}_n \phi_n^{(k)} + \bs{D}_n
-     \bs{L}_n^{-1} Q -\phi_n^{(k)}\)\)\)\\
+     \bs{L}_n^{-1} Q -\Phi_n^{(k)}\)\)\)\\
      &+ \bs{P}_{0\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
-     \(\bs{T}_2 \bs{R}_{4\rightarrow 2}\(\hdots\( \bs{T}_N\phi_n^{(k)} + \bs{D}_n
-     \bs{L}_n^{-1}Q -\phi_n^{(k)}\)\)\)\\
+     \(\bs{T}_2 \bs{R}_{4\rightarrow 2}\(\hdots\( \bs{T}_N\Phi_n^{(k)} + \bs{D}_n
+     \bs{L}_n^{-1}Q -\Phi_n^{(k)}\)\)\)\\
     =& \(\bs{T}_n + \bs{P}_{n_2\rightarrow n} \bs{T}_{n_2} \bs{R}_{n\rightarrow
      n_2} (\bs{T}_n -\bs{I}) + \hdots + \bs{P}_{2\rightarrow n} \bs{T}_2
      \bs{R}_{4\rightarrow 2}\right.\\ 
@@ -262,7 +262,7 @@ are substituted into the moment update equation, \cref{mom_update}, yielding:
      \bs{P}_{0\rightarrow n}\bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
      \bs{R}_{2\rightarrow 0}\right.\\ 
      &\left. \(\bs{T}_2 \bs{R}_{4\rightarrow 2}\(\hdots\(\bs{T}_n-\bs{I}\)\)\)\) 
-     \phi_n^{(k)} + \(\bs{I}+\bs{P}_{n_2\rightarrow n}\bs{T}_{n_2} 
+     \Phi_n^{(k)} + \(\bs{I}+\bs{P}_{n_2\rightarrow n}\bs{T}_{n_2} 
      \bs{R}_{n\rightarrow n_2}+ \hdots +\right.\\
      &\bs{P}_{2\rightarrow n} \bs{T}_2 \bs{R}_{4\rightarrow 2} \(\bs{T}_4
      \bs{R}_{8\rightarrow 4}\(\hdots \(\bs{T}_{n_2} \bs{R}_{n\rightarrow
@@ -278,7 +278,7 @@ solved is given by:
 \begin{align}
   &\(\bs{I}-\bs{T}_n\) \bs{P}^{MG/DSA} \xi_n = \bs{D}_n \bs{L}_n^{-1} Q
   \label{p_mg_dsa_1}\\
-  &\bs{P}^{MG/DSA} \phi_n = \xi_n \label{p_mg_dsa_2}
+  &\bs{P}^{MG/DSA} \Phi_n = \xi_n \label{p_mg_dsa_2}
 \end{align}
 where the multigrid preconditioner $\bs{P}^{MG/DSA}$ is given by:
 \begin{equation}
@@ -288,7 +288,7 @@ where the multigrid preconditioner $\bs{P}^{MG/DSA}$ is given by:
 \(\bs{I}+\bs{P}_{n_4\rightarrow n_2}
 \bs{T}_{n_4}\(\hdots\(\bs{I}+\bs{P}_{0\rightarrow 2}
 \bs{\mc{T}}_0^{-1}\bs{R}_{2\rightarrow 0}\)\hdots\)\bs{R}_{n_2\rightarrow
-n_4}\) \bs{R}_{n\rightarrow n_2}\)
+n_4}\) \bs{R}_{n\rightarrow n_2}\).
 \end{split}
 \end{equation}
 At this point, it is necessary to choose a DSA for implementation. Various DSA
@@ -331,7 +331,7 @@ $P1SA$ discretization used here is the $P1C$ method,
 defined in \cite{P1C_MC2009,yaqiPhD}. This $P1SA$ preconditioner is positive
 definite (PD), but not symmetric. In principle, the analytic $P1$ equations
 can be put in a second-order diffusion form and discretized using the MIP
-approach. However, the first moments of the angular flux will be treated wit
+approach. However, the first moments of the angular flux will be treated with
 less accuracy than the zeroth moment, which is undesirable.
 
 \section{Eigenspectrum comparisons}

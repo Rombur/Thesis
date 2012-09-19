@@ -28,14 +28,14 @@ There are several ways to continue this work:
       \item model the same physical interactions as Version 2.1 of the
         Integrated-TIGER-Series (ITS) code package.
     \end{itemize}
-  \item[AMG for DSA on massively parallel computers:] Like a lot of other
-    solvers, AMG algorithms have been developed for massively parallel
+  \item[AMG for DSA on massively parallel computers:] AMG algorithms have been 
+    developed for massively parallel
     computers \cite{amg_multicore,amg_parallel} and for GPU \cite{nvidia}.
-    While developing an AMG method for massively parallel computer, two steps
+    While developing an AMG method for massively parallel computers, two steps
     of the algorithm must be designed carefully: the coarsening step and the
     smoothing step. In \cite{mis}, the authors explore different coarsening
     methods including an uncoupled algorithm. This uncoupled coarsening method
-    coarses the grid without communication between the processor. The problem
+    coarsens the grid without communication between processors. The problem
     is that the coarsening depends on the domain partitioning. For the
     partitioning to be independent of the domain partitioning, communications
     between the processors are required. Another delicate part of AMG is the
@@ -60,6 +60,6 @@ There are several ways to continue this work:
     would require to tune each method. The choice of the DSA is very important 
     because the choice of the discretization has a huge impact on the properties 
     of the discretized system. Most of the theory for AMG algorithms has been 
-    developed for M-matrix and thus, it might be interesting to use a DSA
-    which produces such matrices.
+    developed for M-matrix and thus, it might be interesting to derive a DSA
+    technique that produces such matrices.
 \end{long_description}

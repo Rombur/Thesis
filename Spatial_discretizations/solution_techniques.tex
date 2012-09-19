@@ -1,0 +1,170 @@
+\section{Solution Techniques}
+\subsection{Unaccelerated Procedures}
+\Cref{transport_op,phi_D_psi} can be solved using the Source Iteration (SI)
+method (a stationary iterative technique also known as Richardson iteration).
+The SI technique at the $l^{th}$ iteration is given by:
+\begin{equation}
+  \Phi^{(l+1)} = \bs{DL}^{-1} \(\bs{M \Sigma}\Phi^{(l)} + S\).
+\end{equation}
+Alternatively, a subspace Krylov method (usually GMRES) can be employed to
+solve the following transport system of equations:
+\begin{equation}
+  \(\bs{I}-\bs{DL}^{-1} \bs{M\Sigma}\)\Phi = \bs{DL}^{-1}S.
+\end{equation}
+Both the SI and the GMRES approaches require transport sweeps (the action of
+$\bs{L}^{-1}$ is required in both procedures).
+
+When the scattering ratio $c=\frac{\Sigma_s}{\Sigma_t}$ tends to one in
+optically thick domains, the number of SI and GMRES can become large. Fourier
+analyses (for continuous, i.e., undiscretized transport) confirmed that SI
+attenuates rapidly error modes associated with high frequencies (transport
+dominated modes) while leaving almost unaffected low-frequency error modes
+(diffusion dominated modes) \cite{dsa_ref}. To accelerate the convergence, a DSA
+preconditioner is thus needed; in addition, some level of consistency is
+necessary between the spatial discretization of the transport operator and
+than of the diffusion operator. In Chapter \ref{mip_chapter}, we will adapt
+the MIP discontinuous finite element discretization of the diffusion equation
+for arbitrary polygonal grids is and employ MIP as a DSA preconditioner.
+
+For completeness, we provide the SI and GMRES solution techniques in the case
+graph dependencies are present. During one SI iteration, the scalar flux and
+the angular significant flux are updated as follows:
+\begin{equation}
+  \begin{bmatrix}
+    \Phi\\
+    \Psi_{SAF}
+  \end{bmatrix}^{(l+1)}
+  = 
+  \begin{bmatrix}
+    \bs{D}\underline{\bs{L}}^{-1} \bs{M\Sigma} & \bs{D}\underline{\bs{L}}^{-1}
+    \overline{\bs{L}}^{-1}\bs{N}^T\\
+    \bs{N}\underline{\bs{L}}^{-1} \bs{M\Sigma} & \bs{N}\underline{\bs{L}}^{-1}
+    \overline{\bs{L}}^{-1}\bs{N}^T
+  \end{bmatrix}
+  \begin{bmatrix}
+    \Phi\\
+    \Psi_{SAF}
+  \end{bmatrix}^{(l)}
+  +
+  \begin{bmatrix}
+    \bs{D}\\
+    \bs{N}
+  \end{bmatrix}
+  \underline{\bs{L}}^{-1} S.
+  \label{si_matrix_notation}
+\end{equation}
+\Cref{si_matrix_notation} is simply coded by appending the $\Psi_{SAF}$ to the
+scalar flux unknowns (after a transport sweep, the operator $\bs{D}$ is
+applied to yield the newest scalar flux whereas the operator $\bs{N}$ is
+applied to update the significant angular flux). Note that when
+$\overline{\bs{L}}=0$ (i.e., no dependencies in the sweep), we obtain the
+standard SI formula:
+\begin{equation}
+  \Phi^{(l+1)} = \bs{DL}^{-1} \(\bs{M\Sigma}\Phi^{(l)} + S\).
+  \label{matrix_form_si}
+\end{equation}
+From the SI formula of \cref{si_matrix_notation}, it follows that the linear
+system for a GMRES-based transport solves is simply:
+\begin{equation}
+  \(\bs{I}-\bs{T}\)x=b,
+\end{equation}
+with:
+\begin{align}
+  &\bs{T} = 
+  \begin{bmatrix}
+    \bs{D}\underline{\bs{L}}^{-1}\bs{M\Sigma} &
+    \bs{D}\underline{\bs{L}}^{-1}\overline{\bs{L}}\bs{N}^T\\
+    \bs{N}\underline{\bs{L}}^{-1}\bs{M\Sigma} & \bs{N}
+    \underline{\bs{L}}^{-1} \overline{\bs{L}}\bs{N}^T
+  \end{bmatrix}                                      
+  ,\\
+  &x =
+  \begin{bmatrix}
+    \Phi\\
+    \Psi_{SAF}
+  \end{bmatrix}
+  ,\\
+  &b=
+  \begin{bmatrix}
+    \bs{D}\\
+    \bs{N}
+  \end{bmatrix}
+  \underline{\bs{L}}^{-1}S.
+\end{align}
+
+\subsection{Synthetic Acceleration and Preconditioning}
+Ignoring graph dependencies for simplicity of the presentation, the transport
+equation is:
+\begin{equation}
+  \(\bs{L}-\bs{M\Sigma D}\)\Psi = S.
+  \label{te_1}
+\end{equation}
+It is often computationally effective write the above linear system as (sweep
+preconditioning):
+\begin{equation}
+  \(\bs{I}-\bs{L}^{-1}\bs{M\Sigma D}\) \Psi = \bs{L}^{-1}S
+\end{equation}
+because $\bs{L}$ is easier to invert than $(\bs{L}-\bs{M\Sigma D})$. Therefore,
+an iterated scheme (the SI technique) yields formally:
+\begin{equation}
+  \Psi^{(\ell+1)}=\bs{L}^{-1}\(\bs{M\Sigma D}\Psi^{(\ell)}+S\).
+\end{equation}
+The error equation is:
+\begin{equation}
+  \begin{split}
+    \Psi-\Psi^{(\ell+1)} &= \bs{L}^{-1} \bs{M\Sigma D}\(\Psi - \Psi^{(\ell)}\)\\
+                      &= \bs{L}^{-1}\bs{M\Sigma D}\(\Psi-\Psi^{(\ell+1)} +
+    \Psi^{(\ell+1)}-\Psi^{(\ell)}\),
+  \end{split}
+\end{equation}
+that is, the transport equation satisfied by the angular error
+$\epsilon^{(\ell+1)}=\Psi-\Psi^{(\ell+1)}$ is:
+\begin{equation}
+  \(\bs{L}-\bs{M\Sigma D}\)\epsilon^{(\ell+1)} = \bs{M\Sigma
+  D}\(\Psi^{(\ell+1)}-\Psi^{(\ell)}\).
+  \label{ang_err_eq}
+\end{equation}
+This equation is of the same form as \cref{te_1} (where the source term is now
+the scattering due to the difference in successive flux iterates) and,
+therefore, is just as difficult to solve. However, solving it would provide
+the exact additive term required to obtain the exact solution:
+\begin{equation}
+  \Psi = \Psi^{(\ell+1)} + \epsilon^{(\ell+1)}
+\end{equation}
+Since the diffusion error modes are not efficiently attenuated by the above SI
+process, it is natural to seek a low-order error equation. Taking the $0^{th}$
+and $1^{st}$ angular moment moment of \cref{ang_err_eq}, one obtains a
+diffusion equation for the scalar $\varepsilon$:
+\begin{equation}
+  \bs{A}\epsilon^{(\ell+1)} = \Sigma \(\Phi^{(\ell+1)}-\Phi^{(\ell)}\)
+\end{equation}
+where $\bs{A}$ is the diffusion operator. However, the scalar correction
+$\epsilon^{(\ell+1)}$, when added to the previous iterate of the scalar flux
+$\Phi^{(\ell+1)}$, will not yield the exact scalar flux solution because the
+low-order error equation is not strictly identical to the transport error
+equation. However, it is expected that significant speedup can be achieved in
+the iterative solution technique that can now be described as follows:
+\begin{enumerate}
+  \item Perform a transport sweep and obtain the scalar flux after that sweep:
+    \begin{equation}
+      \Phi^{(\ell+1/2)} = \bs{DL}^{-1}\(\bs{M\Sigma}\Phi^{(\ell)}+S\)
+    \end{equation}
+  \item Solve for the diffusion error equation corrective addition:
+    \begin{equation}
+      \bs{A}\epsilon^{(\ell+1/2)}=\bs{\Sigma}\(\Phi^{(\ell+1/2)}-\Phi^{(\ell)}\)
+    \end{equation}
+  \item Obtain a new estimate of the scalar flux for the next transport sweep:
+    \begin{equation}
+      \Phi^{(\ell+1)} = \Phi^{(\ell+1/2)}+\epsilon^{(\ell+1/2)}
+    \end{equation}
+\end{enumerate}
+When the process is recast in a Krylov (GMRES) solver, one obtains the
+following preconditioned GMRES solve:
+\begin{equation}
+  \(\bs{I}+\bs{A}^{-1}\bs{\Sigma}\)\(\bs{I}-\bs{DL}^{-1}\bs{M}\bs{\Sigma}\)
+  \Phi = \(\bs{I}+\bs{A}^{-1}\bs{\Sigma}\)\bs{DL}^{-1}S.
+\end{equation}
+As seen in \cite{consistent_p1}, DSA requires some spatial consistency to
+converge. Moreover, we also ignored the effect of anisotropic scattering. The
+discussion of these aspects is left for Chapter \ref{anmg_chapter} where DSA's
+ineffectiveness in such situations is discussed.
