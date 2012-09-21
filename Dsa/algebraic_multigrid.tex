@@ -59,7 +59,7 @@ This yields the multigrid method. When $\gamma = 1$, respectively $\gamma =
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.5\textwidth]{./Dsa/v_w_cycles}
-  \caption{$V-$ and $W-$cycles.}
+  \caption{$V-$ and $W-$cycles}
 \end{figure}
 A dot represents a smoothing operation and a square a direct inversion. The grid 
 transfer operators are symbolized by lines.
@@ -111,7 +111,7 @@ effect on the $i^{th}$ variable. Thus, it is probably a good idea to use the
 $j^{th}$ variable to interpolate the $i^{th}$ variable or to couple these two
 variables in an aggregate. This can be easily seen using the concept of
 smoothed error. For the error to be considered to be smoothed, assuming that
-$\bs{A}$ is a $M$-matrix, i.e. off-diagonal entries of the matrix are less 
+$\bs{A}$ is a $M$-matrix, i.e., off-diagonal entries of the matrix are less 
 than or equal to zero and the real parts of the eigenvalues of the matrix 
 are positive, the following relationship needs to be satisfied for most $i$ 
 \cite{amg}:
@@ -121,9 +121,9 @@ are positive, the following relationship needs to be satisfied for most $i$
 \end{equation}
 where $e_i$ is the error associated to the variable $i$. Since the left side 
 of \cref{ineq} is positive, all the products must be small which means that 
-at least one of the two terms of each product has to be small. Since if the
+at least one of the two terms of each product has to be small. When the
 $i^{th}$ variable strongly depends on the $j^{th}$ variable 
-$\frac{|a_{ij}|}{a_{ii}} \approx 1$, we see that $e_i-e_j$ must be small
+$\frac{|a_{ij}|}{a_{ii}} \approx 1$, $e_i-e_j$ must be small
 or equivalently $e_i \approx e_j$. This means that the error varies slowly
 in the direction of strong connection. That is the reason why the coarsening
 is done along these directions.
@@ -260,10 +260,9 @@ Like for classical AMG, it can be interesting to ignore small values in
 the graph since the smoother will be ineffective for the weakly coupled
 variables. In ML, there is a drop tolerance, $tol$, that is used to ignore
 entries in the graph if $|a_{ij}| \leq tol\ \sqrt{|a_{ij} a_{jj}|}$. The
-tolerance, whose default value is zero, can be set by the variable 
-ML\_AGGREGATE\_SET\_THRESHOLD.  In ML, when the matrix is SPD, CG is used 
-to determine the Jacobi damping parameter, which is an approximation of 
-the spectral radius.
+tolerance, whose default value is zero, can be changed.  In ML, when the 
+matrix is SPD, CG is used to determine the Jacobi damping parameter, which 
+is an approximation of the spectral radius.
 
 By default, the coarsening is stopped when the number of variables is less 
 or equal than 128.
@@ -272,7 +271,7 @@ or equal than 128.
 Unlike ML, in AGMG the prolongator is not smoothed which results in a
 cheaper setup and a decrease of required memory \cite{agmg2}. However, 
 the scheme could be less robust. To counteract this weakness, 
-the aggregation scheme is more complicated. Coarsening algorithms which control
+the aggregation scheme is more complicated. Coarsening algorithms that control
 the size of the aggregates tends to produce a few badly shaped aggregates.
 Since the convergence of AMG is bounded by the worst aggregate, even a small 
 number of badly shaped aggregates can have a huge impact on the convergence. 
@@ -284,7 +283,7 @@ does not control the size of the aggregates, it is difficult to control the
 speed of the coarsening. However, controlling the condition number is much 
 more interesting than controlling the coarsening speed. If the algorithm 
 controls the condition number, it will not create bad aggregates but instead, it 
-may create a few aggregates with a size below the target size but 
+may create a few aggregates with a size below the target size but this 
 does not affect the efficiency of the method in a noticeable way \cite{agmg2}. 
 
 In AGMG, the aggregation is done by a few passes of a pairwise aggregation 
@@ -304,11 +303,11 @@ computational cost of $K-$cycle is about the same than the cost of the
 $W-$cycle. If the number of unknowns does not decrease sufficiently from one 
 level to the next, the $K-$cycle at one level is replaced by a $V-$cycle at 
 this same level. The idea of $K-$cycle is not new since it was already used 
-in Algebraic MultiLevel Iteration (AMLI) methods \cite{amli}. AMLI is an 
+in Algebraic MultiLevel Iteration (AMLI) methods \cite{amli}. AMLI are 
 hierarchical basis methods stabilized by the recursive calls of preconditioner 
 created thanks to a coarse level. 
 
-Now, we explain the coarsening step in AGMG for $M-$matrix (SPD). 
+Next, we explain the coarsening step in AGMG for $M-$matrix (SPD). 
 We want to create nonempty disjoint sets $G_k$, $k=1,\hdots,n_c$ called 
 aggregates with each one of them associated to a variable in a coarser grid. 
 Some of the unknowns are not associated to any variables in the coarse grid 
@@ -345,12 +344,12 @@ check that:
   \bs{M}_G\bs{1}_G\)^{-1}\bs{1}_G^T\bs{M}_G\)
 \end{equation}
 is nonnegative definite. This can be done in $\mc{O}(|G|^3)$ operation
-by verifying that the Cholesky factorization exists, i.e. there is no negative
+by verifying that the Cholesky factorization exists, i.e., there is no negative
 pivot. Therefore, $\kappa(|G|)$ does not need to be computed explicitly to
 make sure that $\kappa(|G|) \leq \bar{\kappa}_{TG}$. The first pairwise
 coarsening step is given by:
 \begin{enumerate}
-  \item Create the set $G_0$, i.e. create the set of variables which will
+  \item Create the set $G_0$, i.e., create the set of variables which will
     not be aggregated.
   \item Choose an unknown and find among its unassigned neighbors the one
     that gives the smallest $\kappa(\{i,j\})$.
@@ -384,7 +383,7 @@ rule chosen tries to increase the regularity of the aggregates because in
 practise, this increases the coarsening speed of the coarser levels. Even 
 if the coarsening step tries to create regular aggregates on regular grids, 
 the results are still quite good for unstructured grids \cite{agmg2}. The 
-priority rule consists of using computing a Cuthill-McKee permutation 
+priority rule consists of using a Cuthill-McKee permutation 
 \cite{cmk} to renumber the variables and to use the number associated to the 
 variable as a priority number (the lower number has the priority). The 
 Cuthill-McKee permutation works as follows: the number 1 is given to a node 

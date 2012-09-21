@@ -92,10 +92,7 @@ Janus is composed of the following classes:
     rejected, the edge is pushed back at the end of the list. If the cell is
     accepted, the edges of the cell which are incoming are removed from
     \emph{incoming\_edges}. The others edges are pushed back at the end of the
-    list except if they are on the boundary of the domain. Because of the 
-    symmetry of the quadratures used, the sweep orders are computed 
-    for only half the directions. The sweep orders for the other directions 
-    are just the opposite of the ones calculated.
+    list except if they are on the boundary of the domain.
   \item[TRANSPORT\_OPERATOR:] The calculation is performed in this class. 
     It derives from the Epetra\_Operator of Trilinos.
     TRANSPORT\_OPERATOR handles the angular multigrid by calling itself

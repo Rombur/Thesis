@@ -1,77 +1,77 @@
 \renewcommand {\cftchapleader } {\cftdotfill {4.5}}
 \contentsline {part}{DEDICATION}{iv}
 \contentsline {part}{NOMENCLATURE}{vi}
-\contentsline {part}{TABLE OF CONTENTS}{ix}
-\contentsline {part}{LIST OF FIGURES}{xii}
-\contentsline {part}{LIST OF TABLES}{xiv}
-\contentsline {chapter}{\numberline {1}\uppercase {Introduction}}{1}
-\contentsline {section}{\numberline {1.1}Purpose}{1}
-\contentsline {section}{\numberline {1.2}Linear Boltzmann equation}{5}
-\contentsline {section}{\numberline {1.3}Organization of the Dissertation}{9}
-\contentsline {chapter}{\numberline {2}\uppercase {Charged particle transport}}{12}
-\contentsline {section}{\numberline {2.1}Introduction}{12}
-\contentsline {section}{\numberline {2.2}Boltzmann-Fokker-Planck equation}{12}
-\contentsline {subsection}{\numberline {2.2.1}Derivation of the Boltzmann-Fokker-Planck equation}{13}
-\contentsline {subsection}{\numberline {2.2.2}The Fokker-Planck equation as a limit of Boltzmann equation}{16}
-\contentsline {subsection}{\numberline {2.2.3}Limits of the Boltzmann-Fokker-Planck approximation}{22}
-\contentsline {subsubsection}{\numberline {2.2.3.1}Introduction}{22}
-\contentsline {subsubsection}{\numberline {2.2.3.2}Henyey-Greenstein scattering kernel}{23}
-\contentsline {subsubsection}{\numberline {2.2.3.3}Screened Rutherford scattering kernel}{25}
-\contentsline {section}{\numberline {2.3}Fokker-Planck cross section}{29}
-\contentsline {subsection}{\numberline {2.3.1}Legendre polynomial expansion of $\Sigma _s^{\alpha }$}{30}
-\contentsline {section}{\numberline {2.4}Galerkin quadratures}{32}
-\contentsline {chapter}{\numberline {3}\uppercase {A Brief Review of $S_n$ Transport: Iterative Techniques and Discretization on Arbitrary Polygons}}{43}
-\contentsline {section}{\numberline {3.1}Introduction}{43}
-\contentsline {section}{\numberline {3.2}The $S_n$ Transport Equations}{43}
-\contentsline {section}{\numberline {3.3}Solution Techniques}{47}
-\contentsline {subsection}{\numberline {3.3.1}Unaccelerated Procedures}{47}
-\contentsline {subsection}{\numberline {3.3.2}Synthetic Acceleration and Preconditioning}{49}
-\contentsline {section}{\numberline {3.4}Discontinuous Finite Element Discretization}{51}
-\contentsline {subsection}{\numberline {3.4.1}DFEM and sweeps}{51}
-\contentsline {subsection}{\numberline {3.4.2}BiLinear Discontinous finite elements}{53}
-\contentsline {subsection}{\numberline {3.4.3}PieceWise Linear Discontinuous finite elements}{54}
-\contentsline {section}{\numberline {3.5}Conclusions}{58}
-\contentsline {chapter}{\numberline {4}\uppercase {Angular Multigrid Preconditioner for $S_n$ equations with Highly Forward-Peaked Scattering Kernel}}{59}
-\contentsline {section}{\numberline {4.1}Introduction}{59}
-\contentsline {section}{\numberline {4.2}Iterative schemes for highly forward-peaked scattering}{61}
-\contentsline {subsection}{\numberline {4.2.1}Source Iteration and DSA}{61}
-\contentsline {section}{\numberline {4.3}Review of previous angular multigrid work}{63}
-\contentsline {subsection}{\numberline {4.3.1}One dimensional geometry: the Morel and Manteuffel (MM) method}{63}
-\contentsline {subsection}{\numberline {4.3.2}Multidimensional geometry: the Pautz-Adams-Morel (PAM) methods}{65}
-\contentsline {section}{\numberline {4.4}Angular multigrid as preconditioner for Krylov Solvers}{67}
-\contentsline {subsection}{\numberline {4.4.1}ANMG-DSA}{68}
-\contentsline {subsection}{\numberline {4.4.2}ANMG-P1SA}{70}
-\contentsline {section}{\numberline {4.5}Eigenspectrum comparisons}{71}
-\contentsline {section}{\numberline {4.6}Results}{73}
-\contentsline {subsection}{\numberline {4.6.1}Comparison between ANMG-DSA and ANMG-$P1$SA}{74}
-\contentsline {subsection}{\numberline {4.6.2}Test Case with a Volumetric Source}{75}
-\contentsline {subsection}{\numberline {4.6.3}Test Case with a Heterogeneous Medium (Beam problem)}{77}
-\contentsline {section}{\numberline {4.7}Conclusions}{79}
-\contentsline {chapter}{\numberline {5}\uppercase {Modified Interior Penalty on Arbitrary Polygonal Cells}}{80}
-\contentsline {section}{\numberline {5.1}Introduction}{80}
-\contentsline {section}{\numberline {5.2}Modified Interior Penalty on arbitrary polygonal cells}{84}
-\contentsline {section}{\numberline {5.3}Algebraic Multigrid}{95}
-\contentsline {subsection}{\numberline {5.3.1}Introduction}{95}
-\contentsline {subsection}{\numberline {5.3.2}Classical AMG (interpolation method)}{99}
-\contentsline {subsection}{\numberline {5.3.3}Smoothed aggregation: the ML package}{101}
-\contentsline {subsection}{\numberline {5.3.4}Plain aggregation: the AGMG code}{103}
-\contentsline {section}{\numberline {5.4}Results}{107}
-\contentsline {subsection}{\numberline {5.4.1}Fourier Analyses}{107}
-\contentsline {subsubsection}{\numberline {5.4.1.1}$S_n$ order varied}{108}
-\contentsline {subsubsection}{\numberline {5.4.1.2}Aspect ratio varied}{108}
-\contentsline {subsection}{\numberline {5.4.2}Homogeneous medium}{109}
-\contentsline {subsection}{\numberline {5.4.3}Heterogeneous medium}{111}
-\contentsline {subsection}{\numberline {5.4.4}AMR mesh}{114}
-\contentsline {subsection}{\numberline {5.4.5}Rectangular cells}{116}
-\contentsline {section}{\numberline {5.5}Conclusions}{119}
-\contentsline {chapter}{\numberline {6}\uppercase {Janus}}{120}
-\contentsline {section}{\numberline {6.1}Introduction}{120}
-\contentsline {section}{\numberline {6.2}Implementation}{120}
-\contentsline {section}{\numberline {6.3}Verifications}{125}
-\contentsline {subsection}{\numberline {6.3.1}Infinite medium}{125}
-\contentsline {subsection}{\numberline {6.3.2}Convergence order}{126}
-\contentsline {chapter}{\numberline {7}\uppercase {Conclusions and future work}}{128}
-\contentsline {section}{\numberline {7.1}Conclusions}{128}
-\contentsline {section}{\numberline {7.2}Future work}{130}
-\contentsline {part}{REFERENCES}{133}
-\contentsline {chapter}{\uppercase {Appendix} \numberline {A}\uppercase {ML options}}{148}
+\contentsline {chapter}{TABLE OF CONTENTS}{ix}
+\contentsline {chapter}{LIST OF FIGURES}{xii}
+\contentsline {chapter}{LIST OF TABLES}{xiv}
+\contentsline {chapter}{\numberline {I}\uppercase {Introduction}}{1}
+\contentsline {section}{\numberline {A}Purpose}{1}
+\contentsline {section}{\numberline {B}Linear Boltzmann equation}{5}
+\contentsline {section}{\numberline {C}Organization of the Dissertation}{9}
+\contentsline {chapter}{\numberline {II}\uppercase {Charged particle transport}}{12}
+\contentsline {section}{\numberline {A}Introduction}{12}
+\contentsline {section}{\numberline {B}Boltzmann-Fokker-Planck equation}{12}
+\contentsline {subsection}{\numberline {1}Derivation of the Boltzmann-Fokker-Planck equation}{13}
+\contentsline {subsection}{\numberline {2}The Fokker-Planck equation as a limit of Boltzmann equation}{16}
+\contentsline {subsection}{\numberline {3}Limits of the Boltzmann-Fokker-Planck approximation}{22}
+\contentsline {subsubsection}{\numberline {a}Introduction}{22}
+\contentsline {subsubsection}{\numberline {b}Henyey-Greenstein scattering kernel}{23}
+\contentsline {subsubsection}{\numberline {c}Screened Rutherford scattering kernel}{25}
+\contentsline {section}{\numberline {C}Fokker-Planck cross section}{29}
+\contentsline {subsection}{\numberline {1}Legendre polynomial expansion of $\Sigma _s^{\alpha }$}{30}
+\contentsline {section}{\numberline {D}Galerkin quadratures}{32}
+\contentsline {chapter}{\numberline {III}\uppercase {A Brief Review of $S_n$ Transport: Iterative Techniques and Discretization on Arbitrary Polygons}}{43}
+\contentsline {section}{\numberline {A}Introduction}{43}
+\contentsline {section}{\numberline {B}The $S_n$ Transport Equations}{44}
+\contentsline {section}{\numberline {C}Solution Techniques}{47}
+\contentsline {subsection}{\numberline {1}Unaccelerated Procedures}{47}
+\contentsline {subsection}{\numberline {2}Synthetic Acceleration and Preconditioning}{49}
+\contentsline {section}{\numberline {D}Discontinuous Finite Element Discretization}{51}
+\contentsline {subsection}{\numberline {1}DFEM and sweeps}{51}
+\contentsline {subsection}{\numberline {2}BiLinear Discontinous finite elements}{53}
+\contentsline {subsection}{\numberline {3}PieceWise Linear Discontinuous finite elements}{54}
+\contentsline {section}{\numberline {E}Conclusions}{58}
+\contentsline {chapter}{\numberline {IV}\uppercase {Angular Multigrid Preconditioner for $S_n$ equations with Highly Forward-Peaked Scattering Kernel}}{59}
+\contentsline {section}{\numberline {A}Introduction}{59}
+\contentsline {section}{\numberline {B}Iterative schemes for highly forward-peaked scattering}{62}
+\contentsline {subsection}{\numberline {1}Source Iteration and DSA}{62}
+\contentsline {section}{\numberline {C}Review of previous angular multigrid work}{63}
+\contentsline {subsection}{\numberline {1}One dimensional geometry: the Morel and Manteuffel (MM) method}{63}
+\contentsline {subsection}{\numberline {2}Multidimensional geometry: the Pautz-Adams-Morel (PAM) methods}{66}
+\contentsline {section}{\numberline {D}Angular multigrid as preconditioner for Krylov Solvers}{67}
+\contentsline {subsection}{\numberline {1}ANMG-DSA}{68}
+\contentsline {subsection}{\numberline {2}ANMG-P1SA}{70}
+\contentsline {section}{\numberline {E}Eigenspectrum comparisons}{71}
+\contentsline {section}{\numberline {F}Results}{73}
+\contentsline {subsection}{\numberline {1}Comparison between ANMG-DSA and ANMG-$P1$SA}{73}
+\contentsline {subsection}{\numberline {2}Test Case with a Volumetric Source}{74}
+\contentsline {subsection}{\numberline {3}Test Case with a Heterogeneous Medium (Beam problem)}{76}
+\contentsline {section}{\numberline {G}Conclusions}{78}
+\contentsline {chapter}{\numberline {V}\uppercase {Modified Interior Penalty on Arbitrary Polygonal Cells}}{79}
+\contentsline {section}{\numberline {A}Introduction}{79}
+\contentsline {section}{\numberline {B}Modified Interior Penalty on arbitrary polygonal cells}{83}
+\contentsline {section}{\numberline {C}Algebraic Multigrid}{94}
+\contentsline {subsection}{\numberline {1}Introduction}{94}
+\contentsline {subsection}{\numberline {2}Classical AMG (interpolation method)}{98}
+\contentsline {subsection}{\numberline {3}Smoothed aggregation: the ML package}{100}
+\contentsline {subsection}{\numberline {4}Plain aggregation: the AGMG code}{102}
+\contentsline {section}{\numberline {D}Results}{106}
+\contentsline {subsection}{\numberline {1}Fourier Analyses}{106}
+\contentsline {subsubsection}{\numberline {a}$S_n$ order varied}{107}
+\contentsline {subsubsection}{\numberline {b}Aspect ratio varied}{107}
+\contentsline {subsection}{\numberline {2}Homogeneous medium}{108}
+\contentsline {subsection}{\numberline {3}Heterogeneous medium}{111}
+\contentsline {subsection}{\numberline {4}AMR mesh}{113}
+\contentsline {subsection}{\numberline {5}Rectangular cells}{116}
+\contentsline {section}{\numberline {E}Conclusions}{119}
+\contentsline {chapter}{\numberline {VI}\uppercase {Janus}}{120}
+\contentsline {section}{\numberline {A}Introduction}{120}
+\contentsline {section}{\numberline {B}Implementation}{120}
+\contentsline {section}{\numberline {C}Verifications}{125}
+\contentsline {subsection}{\numberline {1}Infinite medium}{125}
+\contentsline {subsection}{\numberline {2}Convergence order}{126}
+\contentsline {chapter}{\numberline {VII}\uppercase {Conclusions and future work}}{129}
+\contentsline {section}{\numberline {A}Conclusions}{129}
+\contentsline {section}{\numberline {B}Future work}{131}
+\contentsline {part}{REFERENCES}{134}
+\contentsline {chapter}{\uppercase {Appendix} \numberline {A}\uppercase {ML options}}{149}

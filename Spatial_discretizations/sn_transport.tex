@@ -29,7 +29,7 @@ The system of equations is closed assuming incoming boundary conditions on
   \right. ,
 \end{equation}
 where $\bs{n}_b = \bs{n}(\bs{r}_b)$ is the outward unit normal vector on the
-boundary. The reflecting direction of $\bo_d$ at a point $\br{r}_b$ on the
+boundary. The reflecting direction of $\bo_d$ at a point $\br_b$ on the
 boundary is given by:
 \begin{equation}
   \bo_{d^{\prime}} = \bo_d - 2\(\bo_d \cdot \bs{n}_b\)\bs{n}_b.
@@ -64,7 +64,7 @@ be re-arranged in terms of the scalar flux only:
 \begin{equation}
   \Phi = \bs{D L}^{-1} \(\bs{M \Sigma}\Phi+S\).
 \end{equation}
-The action of $\bs{L}^{-1}$ is often referred to as a \emph{transport sweep}
+The action of $\bs{D}\bs{L}^{-1}$ is often referred to as a \emph{transport sweep}
 when discontinuous spatial approximations (finite differences, finite
 elements) are employed because, for any directions $\bo_d$, the action of
 $\bs{L}_d^{-1}$ can be obtained by traversing the mesh (i.e., sweeping) in a
@@ -90,7 +90,7 @@ significant angular flux vector is given by:
 \begin{equation}
   \Psi_{SAF} = \bs{N} \Psi,
 \end{equation}
-$\bs{N}$ is simply an operator that extracts the entire angular flux vector,
+$\bs{N}$ is simply an operator that extracts from the entire angular flux vector,
 the values required to break the graph dependencies. We then split the loss
 and streaming operator $\bs{L}$ into two parts:
 \begin{equation}

@@ -2,22 +2,18 @@
 and Discretization on Arbitrary Polygons}} \label{spatial_chapter}
 \section{Introduction}                      
 In this Chapter, we briefly recall the $S_n$ transport equations before presenting 
-our research in the next Chapters. Here, we review the standard iterative 
-techniques employed to solve the $S_n$ transport equations and discuss their 
-spatial discretization on arbitrary polygonal grids using a discontinuous 
-finite element method (DFEM).
-  
+our research in the next Chapters. We review the standard iterative 
+techniques employed to solve the $S_n$ transport equations and we introduce the 
+two spatial discretizations used in this research: the BiLinear Discontinuous 
+finite elements (BLD) \cite{thick_dgfem,lumping_bld} and the PieceWise Linear 
+Discontinuous finite elements (PWLD) \cite{pwld_3d,pwld_2d}. The BLD 
+discretization is being used on rectangular cells whereas PWLD is being used 
+on arbitrary convex polygonal cells. Both of these discretizations give the 
+correct result in the diffusion limit. 
+
 In the following presentation, we restrict ourselves to one-group equations
 with isotropic scattering and source. With these simplifying assumptions,
 the fundamentals of $S_n$ transport iterative solution techniques and
 spatial discretization can be presented effectively, while leaving new
 research material for subsequent Chapters. These next Chapters will build
 upon the concepts laid out here.
-
-Here, we introduce the two spatial discretizations used
-in this research: the BiLinear Discontinuous finite elements (BLD) 
-\cite{thick_dgfem,lumping_bld} and the PieceWise Linear Discontinuous finite 
-elements (PWLD) \cite{pwld_3d,pwld_2d}. The BLD discretization is being used on
-rectangular cells whereas PWLD is being used on arbitrary convex polygonal
-cells. Both of these discretizations give the correct result in the diffusion 
-limit. 

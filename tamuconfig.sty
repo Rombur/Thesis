@@ -5,8 +5,8 @@
 %  TAMU LaTeX User's Group, see http://www.howdy.me/.
 %
 %  Author: Wendy Lynn Turner 
-%	 Version .9.2
-%  Last updated 6/21/2012
+%	 Version .9.3
+%  Last updated 7/15/2012
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -35,9 +35,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	
-\titleformat{\chapter}{\centering\normalsize}{\thechapter.}{1em}{}
-\titleformat{\section}{\centering\normalsize}{\thesection}{1em}{}
-\titleformat{\subsection}{\centering\normalsize\it}{\thesubsection}{1em}{}
+%\titleformat{\chapter}{\centering\normalsize}{\thechapter.}{1em}{}
+\titleformat{\section}{\normalsize\bf}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\it}{\thesubsubsection}{1em}{}
+\renewcommand{\thepart}{\Roman{part}.}
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\Alph{section}}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\alph{subsubsection}}
+\def\theequation{\arabic{chapter}.\arabic{equation}}
 
 \setcounter{secnumdepth}{3}
 
@@ -90,6 +97,10 @@
 \renewcommand\cftpartafterpnum{\vskip\baselineskip}
 
 
+% Uncomment this line if you need more space between your table/figure numbers and your title in your 
+% lof or lot. This will only need to be done if you have > 99 tables or figures in your manuscript.
+%\setlength{\cfttabnumwidth}{3em}  % Modify number width in LoT and LOF
+
 %%%%%%%%%%%  Makes the appear TOC doublespaced and almost singlespaced for sections.
 \setlength\cftparskip{-2pt}
 \setlength\cftbeforechapskip{0pt}
@@ -101,10 +112,10 @@
 
 
 %%%%%  These change spacing in the toc.. Leave for now for tweaking.
-%\cftsetindents{chapter}{0in}{.3in}
-%\cftsetindents{section}{0.5in}{0in}  %%  adjusts Indents and Numwidths for tocloft. http://tex.stackexchange.com/questions/50471/question-about-indent-lengths-in-toc
-%\cftsetindents{subsection}{1in}{0in}
-%\cftsetindents{subsubsection}{1.5in}{0in}
+\cftsetindents{chapter}{0in}{.3in}
+\cftsetindents{section}{0.3in}{0.3in}  %%  adjusts Indents and Numwidths for tocloft. http://tex.stackexchange.com/questions/50471/question-about-indent-lengths-in-toc
+\cftsetindents{subsection}{0.6in}{0.3in}
+\cftsetindents{subsubsection}{0.9in}{1.2in}
 %\cftsetindents{paragraph}{0.5in}{0.5in}
 
 

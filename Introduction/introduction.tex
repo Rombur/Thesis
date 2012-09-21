@@ -29,7 +29,7 @@ However, devising efficient solution algorithms for $S_n$ multidimensional
 photon-electron transport is an ongoing active field of research.
 
 One difficulty of using the discrete ordinates method arises from the transport 
-of electrons. Charged particles interact through Coulomb interactions with the 
+of electrons. Charged particles interact undergo interactions with the 
 background medium. Such interactions result in extremely small changes in particle 
 direction and energy. These interactions are well characterized by the 
 Fokker-Planck limit of the Boltzmann equation \cite{fp_limit,morel_96}. In this 
@@ -46,13 +46,13 @@ acceleration schemes such as Diffusion Synthetic Acceleration (DSA) and P1
 Synthetic Acceleration (P1SA) are generally used for neutron transport 
 \cite{dsa_ref}. These methods use a diffusion equation or the P1 equations,
 and therefore, only the zeroth or the zeroth plus the first flux moment can be
-accelerated. When the zeroth flux moment alone is a accelerated, these
+accelerated. When the zeroth flux moment alone is accelerated, these
 schemes are stable \cite{multisweep} (in this discussion, we ignore the possible 
 issues due to the spatial discretization) but they are very
 inefficient for highly anisotropic scattering. If both the zeroth and
 the first flux moments are accelerated, the spectral radius of the continuous
 scheme (i.e., without spatial discretization) with anisotropic scattering is
-given by \cite{multisweep}:
+given in multidimensional calculations by \cite{multisweep}:
 \begin{equation}
   \rho_{ani} = \max\(\rho_{iso},\frac{\bar{\mu}_0 c}{1-\bar{\mu}_0 c}\)
 \end{equation}
@@ -61,27 +61,29 @@ isotropic, $\bar{\mu}_0$ $(\in [0,1])$ is the average scattering cosine,
 and $c$ $(\in [0,1])$ is the scattering ratio. We see that when $\mu_0 c > 0.5$, 
 this SI+DSA scheme is
 unstable. Several modifications have been proposed \cite{multisweep,russe} to
-stabilize this acceleration scheme: using DSA at every $k$ SI iterations or
+stabilize this acceleration scheme: using DSA after several SI iterations or
 accelerating the zeroth moment at every even SI+DSA iteration and the zeroth and
-the first moments at every odd SI+DSA iteration. However, for electron transport
+the first moments at every odd SI+DSA iteration. In one-dimensional geometry,
+using DSA to accelerate both the zeroth and the first flux moment leads to a
+scheme which is always stable. However, for electron transport
 and more generally for highly anisotropic kernels, more computationally
 efficient techniques are required.
 
 The angular multigrid method developed in \cite{multigrid_1d} has proven to 
 be very effective to solve the $S_n$ equations with highly forward-peaked 
 scattering for one-dimensional slab geometry. Unfortunately, the extension 
-of this method to multidimensional geometries is unstable \cite{multigrid_2d}. 
-Pautz et al. added a diffusive filter to the angular multigrid corrections to
-stabilize the method which, then, converges faster than DSA alone. However, 
-the spectral radius can become arbitrary close to one for highly anisotropic 
+of this method to multidimensional geometries, like P1SA, is unstable 
+\cite{multigrid_2d}. Pautz et al. added a diffusive filter to the angular 
+multigrid corrections to stabilize the method which, then, converges faster 
+than DSA alone. However, 
+the spectral radius can become arbitrary close to one for a highly anisotropic 
 and high scattering ratio medium. Even though SI has, for a long time, been
 the traditional solution technique for $S_n$, and in
 \cite{multigrid_1d,multigrid_2d}, it is the technique employed, SI is not the
-only iterative approach to solve the linear system of equations resulting from
-the discretization of the $S_n$ transport equation. It can also be tackled
+only iterative approach to solve the $S_n$ equations. It can also be tackled
 using non stationary Krylov solvers such as Generalized Minimal Residual 
-method (GMRES). A code solving the $S_n$ equations using SI (with
-preconditioned DSA) can easily be modified to use a preconditioned Krylov 
+method (GMRES). A code solving the $S_n$ equations using SI (preconditioned 
+with DSA) can easily be modified to use a preconditioned Krylov 
 solver. In \cite{ttg}, the authors summarize the advantageous features of 
 GMRES as follows: ``using DSA as preconditioner for GMRES(m) removes the 
 consistency requirement that plagues DSA-accelerated source iteration in 
@@ -94,7 +96,7 @@ those of the one-dimensional scheme. At the coarsest level of the angular
 multigrid technique, a DSA 
 scheme or a P1SA scheme has to be used. We will use an adaptation of the Modified 
 Interior Penalty DSA (MIP) \cite{mip}. This DSA was developed for discontinuous 
-finite elements on triangular cells and it is symmetric and definite-positive 
+finite elements on triangular cells and it is symmetric and positive-definite
 (SPD). We will adapt MIP to Bilinear Discontinuous Finite elements (BLD) on 
 rectangular cells and to PieceWise Linear Discontinuous Finite elements (PWLD) 
 \cite{pwld_3d,pwld_2d} on arbitrary polygonal cells. Using MIP requires us to 
@@ -102,10 +104,10 @@ solve a SPD system of linear equations. This has
 usually been done using conjugate gradient preconditioned by Symmetric
 Successive OverRelaxation (SSOR), but in this research we will test the 
 effectiveness of algebraic multigrid methods (AMG) to precondition the Krylov solver 
-\cite{amg,amg_course}. Algebraic multigrid methods allow to use multigrid
-techniques when there is no grid or that the mesh is unstructured. Instead of
+\cite{amg,amg_course}. Algebraic multigrid methods allow the use of multigrid
+techniques when there is no grid or when the mesh is unstructured. Instead of
 using a succession of grids based on the geometry of the problems, the grids
-are based on properties of the matrix. This allows to use AMG as black-box
+are based on properties of the matrix. This allows the use of AMG as a black-box
 solver or preconditioner. MIP will be adapted to polygonal cells due to the
 advantages of polygonal cells. Polygonal cells can 
 potentially reduce the number of unknowns, while maintaining symmetry 
@@ -113,7 +115,7 @@ within the mesh. We show this potential reduction for a hexagonal cell versus
 the same space divided using triangles:
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{./Introduction/hex_tri_cells}
+\includegraphics[width=0.6\textwidth]{./Introduction/hex_tri_cells}
 \caption{Hexagonal cell versus triangle cells}
 \label{fig_hex_tri}
 \end{figure}
@@ -123,11 +125,11 @@ unknowns compared to the 12 unknowns of triangle cells. Polygonal cells can
 also be used for adaptive mesh refinement (AMR) without having to
 deal with hanging nodes 
 \cite{locally_hanging_nodes,arbitrary_hanging_nodes,dealII_hanging_nodes}. The 
-left cell on the Figure \ref{fig_amr_mesh} is a pentagon whereas the two cells 
-on the right are quadrilaterals:
+left cell on the Figure \ref{fig_amr_mesh} is a degenerate pentagon whereas 
+the two cells on the right are quadrilaterals:
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.3\textwidth]{./Introduction/amr}
+\includegraphics[width=0.4\textwidth]{./Introduction/amr}
 \caption{AMR mesh}
 \label{fig_amr_mesh}
 \end{figure}
@@ -197,7 +199,7 @@ Using:
   &\Sigma_{s,l}(\br) = 2\pi \int_{-1}^1 d\mu_0\ P_l(\mu_0)
   \Sigma_s(\br,\mu_0),
 \end{align}
-the scattering term can be represented by Legendre polynomials $P_l$ expansion:
+the scattering term can be represented by a Legendre polynomials $P_l$ expansion:
 \begin{equation}
   \int_{4\pi} \Sigma_s(\br,\bo'\cdot\bo) \psi(\br,\bo') d\bo' =
   \int_{4\pi} \sum_{l=0}^{\infty} \frac{2l+1}{4\pi} \Sigma_{s,l} P_l(\bo'\cdot\bo)
@@ -278,26 +280,25 @@ where:
 
 
 \section{Organization of the Dissertation}
-\noindent In Chapter 2, we introduce the Boltzmann-Fokker-Planck (BFP)
-equation used to describe the transport of charged particles. To obtain the
-BFP equation, the Fokker-Planck operator is added in the Boltzmann equation in 
-order to simplify
-the treatment of the highly forward-peaked scattering kernel. We show that the
-Fokker-Planck equation is an asymptotic limit of the Boltzmann equation when the
-mean free path goes to zero and $\bar{\mu}_0$ goes to one. The Fokker-Planck
-equation is not valid for any forward-peaked scattering kernel and
-therefore, the BFP approximation has some limitations. In particular, the 
-Henyey-Greenstein kernel and the Rutherford cross section do not satisfy the 
-Fokker-Planck limit.
-Being aware of these limitations, we introduce the Fokker-Planck cross
+\noindent In Chapter \ref{cp_transport_chapter}, we introduce the 
+Boltzmann-Fokker-Planck (BFP) equation used to describe the transport of
+charged particles. To obtain the BFP equation, the Fokker-Planck operator is
+added in the Boltzmann equation in order to simplify the treatment of the
+highly forward-peaked scattering kernel. We show that the Fokker-Planck
+equation is an asymptotic limit of the Boltzmann equation when the mean free
+path goes to zero and $\bar{\mu}_0$ goes to one. The Fokker-Planck equation is
+not valid for any forward-peaked scattering kernel and therefore, the BFP
+approximation has some limitations. In particular, the Henyey-Greenstein
+kernel and the Rutherford cross section do not satisfy the Fokker-Planck
+limit. Being aware of these limitations, we introduce the Fokker-Planck cross
 section that allows to reduce the Fokker-Planck equation and the BFP equation
 to a Boltzmann equation. Fokker-Planck cross sections cannot be used with any
-angular $S_n$
-quadrature but specific quadratures, known as Galerkin quadratures, must be adopted.
-The importance and the properties of these quadratures are explained in
-details at the end of Chapter 2.\\
+angular $S_n$ quadrature but specific quadratures, known as Galerkin
+quadratures, must be adopted. The importance and the properties of these
+quadratures are explained in details at the end of Chapter
+\ref{cp_transport_chapter}.
 
-\noindent In Chapter \ref{spatial_chapter}, we review in details the iterative
+In Chapter \ref{spatial_chapter}, we review in details the iterative
 solvers and the spatial discretizations used to solve the $S_n$ transport 
 equations. We explain how Source Iteration, Krylov solvers, and Diffusion 
 Synthetic Acceleration can be used to solve the transport equation.
@@ -306,9 +307,9 @@ Discontinuous finite elements (BLD) and PieceWise
 Linear Discontinuous finite elements (PWLD). The BLD finite elements are used 
 on rectangular cells while the PWLD finite elements can be used on any polygonal 
 cells. The purpose of this Chapter is to facilitate expansion in the next
-Chapter.\\
+Chapter.
 
-\noindent In Chapter \ref{anmg_chapter}, we introduce the angular multigrid 
+In Chapter \ref{anmg_chapter}, we introduce the angular multigrid 
 methods for transport with highly forward-peaked scattering. We recall  
 prior work on this topic and discuss the issues previously encountered for 
 multidimensional geometries. The original angular multigrid method for 
@@ -316,25 +317,25 @@ one-dimensional geometry showed rapid convergence of source iterations for
 problems with highly forward-peaked scattering, whereas the standard SI+DSA
 approach is ineffective. Unfortunately, the 
 generalization to multidimensional geometries required a filter to stabilized 
-the method which resulted in a significantly less efficient as scheme than in 
-one dimensional geometry. When 
+the method which resulted in a significantly less efficient scheme than in 
+one-dimensional geometry. When 
 the scattering becomes very anisotropic, this generalized method becomes
 ineffective. In this Chapter, we show that if the angular multigrid method is 
-recast as a preconditioner for a Krylov solver, the method does not need to
-diffusion filtering for stability and is always effective and efficient.\\
+recast as a preconditioner for a Krylov solver, the method does not need 
+diffusion filtering for stability and is always effective and efficient.
 
-\noindent In Chapter \ref{mip_chapter}, we adapt the Modified Interior 
+In Chapter \ref{mip_chapter}, we adapt the Modified Interior 
 Penalty (MIP) DSA developed for triangular cells to quadrilateral and polygonal 
 cells. This DSA discretization is used as the coarsest level of the angular 
 multigrid method developed in Chapter \ref{anmg_chapter}. Since MIP is
-symmetric and definite-positive, the most common method to solve it, is to use
+symmetric and positive-definite, the most common method to solve it, is to use
 conjugate gradient (CG) preconditioned by SSOR. In Chapter \ref{mip_chapter}, we 
 investigate algebraic multigrid methods as CG preconditioners to solve MIP. 
 We show that algebraic multigrid preconditioners are vastly superior to more
-common CG preconditioners if the matrix associated to MIP is stored.\\
+common CG preconditioners if the matrix associated to MIP is stored.
 
-\noindent In Chapter \ref{janus_chapter}, the implementation of the code
-developed for this research is detailed.\\
+In Chapter \ref{janus_chapter}, the implementation of the code
+developed for this research is detailed.
 
-\noindent In Chapter \ref{conclusion_chapter}, we finish with some concluding 
+In Chapter \ref{conclusion_chapter}, we finish with some concluding 
 remarks and suggestions for future developments.

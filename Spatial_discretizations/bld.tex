@@ -54,12 +54,13 @@ transport sweep through the mesh.
 \subsection{BiLinear Discontinous finite elements}
 In this research, the BLD basis functions are used only on the rectangular
 cells. If the cells are arbitrary convex quadrilateral, the discretization may
-not exist (the system of equations obtained may be ill-conditioned). The BLD basis 
-functions defined on the following rectangular cell:
+not exist. The BLD basis functions defined on the following rectangular cell
+(see Figure \ref{fig_cell}):
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.2\textwidth]{./Spatial_discretizations/cell}
-  \caption{Cell}
+  \includegraphics[width=0.3\textwidth]{./Spatial_discretizations/cell}
+  \caption{Rectangular cell}
+  \label{fig_cell}
 \end{figure}
 are:
 \begin{align}

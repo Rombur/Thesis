@@ -1,13 +1,14 @@
 \section{Fokker-Planck cross section}
 In this section, we derive the Fokker-Planck scattering cross section such
 that the Fokker-Planck operator can be approximated by the Boltzmann operator.  
-First we recall the BFP equation \cref{bfp}:
+First, we recall the BFP equation \cref{bfp}:
 \begin{equation}
 \begin{split}
-&\bo\cdot\psi+(\Sigma_{s,reg}+\Sigma_a)\psi=\sum_{l=0}^{\infty}\sum_{m=-l}^l
-Y_l^m(\bo)\int_E^{E/\alpha}\Sigma_{s,l,reg}(E'\rightarrow
-E)\phi_{l,m}(E')dE'+\\
-&\frac{\partial(S\psi)}{\partial E}+\frac{\alpha}{2}\(\frac{\partial}{\partial
+&\bo\cdot\bn \psi+(\Sigma_{s,reg}+\Sigma_a)\psi=\sum_{l=0}^{\infty}\sum_{m=-l}^l
+Y_l^m(\bo)\int_E^{E/\alpha}\Bigg( \Sigma_{s,l,reg}(E'\rightarrow
+E)\\
+&\phi_{l,m}(E')\Bigg) dE'+
+\frac{\partial(S\psi)}{\partial E}+\frac{\alpha}{2}\(\frac{\partial}{\partial
 \mu}(1-\mu^2) \frac{\partial}{\partial
 \mu}+\frac{1}{(1-\mu^2)}\frac{\partial^2}{\partial\varphi^2}\)\psi+Q,
 \end{split}

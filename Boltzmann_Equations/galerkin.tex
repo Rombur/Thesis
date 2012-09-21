@@ -66,8 +66,8 @@ $K=\frac{N(N+2)}{2}$ in 2D and $K=N(N+2)$ in 3D. \Cref{discr_eps} yields:
 \frac{\hat{\Sigma}_{s,0}(\br)}{\epsilon} \(\psi_k(\br)-\sum_{l=0}^{N-1}
 \sum_{m=-l}^m  Y_l^m(\bo_k) \phi_{l,m}\)\\
 &=-\frac{\(\Sigma_{tr}(\br)-\hat{\Sigma}_a(\br)\)}{2} \sum_{l=0}^{N-1}
-\sum_{m=-l}^{l} l(l+1) Y_l^m(\bo_k) \phi_l^m(\br)+
- Q(\br,\bo_k) + O\(\frac{\gamma}{\epsilon}\).
+\sum_{m=-l}^{l} l(l+1) Y_l^m(\bo_k) \phi_l^m(\br)\\
+&+ Q(\br,\bo_k) + O\(\frac{\gamma}{\epsilon}\).
 \end{split}
 \label{discr_eps_manip}
 \end{equation}
@@ -235,7 +235,7 @@ correct limit using the $S_N$:
 General necessary conditions and explanations of the heuristic rules above
 have been analyzed in \cite{galerkin_sanchez}.
 
-Using a standard $S_n$ quadrature may led to an unphysical solution for
+Using a standard $S_n$ quadrature may lead to an unphysical solution for
 charged particle transport. To further demonstrate the importance of Galerkin
 quadrature, we define the scattering ratio matrix $\bs{C}$ by:
 \begin{equation}
@@ -271,7 +271,7 @@ more important for us since we work with energy-integrated equation, is that for
 electron scattering, the extended transport correction \cite{lathrop} can be 
 used to reduce the within-group scattering cross sections by two orders of 
 magnitude or more \cite{morel_79}. Without the extended transport correction, 
-the high order of the flux moments are very important and DSA does not 
+the high orders of the flux moments are very important and DSA does not 
 accelerate the convergence of the solver. Because the Galerkin method treats 
 delta function  scattering exactly, the extended transport correction does not
 modify the solution of the problem \cite{morel_79}. This is very interesting 
@@ -333,7 +333,7 @@ The main idea of the Galerkin quadrature can be seen on \cref{xi_vs_xi}: ``the
 discrete scattering source values are chosen such that the interpolatory
 representation for that scattering source has the same Legendre moments
 through degree $N-1$ as the exact scattering source calculated with the
-interpolatory representation for the angular flux \cite{galerkin_morel}''. 
+interpolatory representation for the angular flux'' \cite{galerkin_morel}. 
 Because all the elements of the weighting space can be expressed as a linear
 combination of Legendre polynomials $P_l$ with $l<N$ and $\int_{-1}^{1}
 P_l(x)P_m(x)\ dx=0$ for $l\neq m$, only the first $N-1$ cross-section moments
@@ -344,7 +344,7 @@ the $S_n$ method. Both the Galerkin method and the standard $S_n$ method use
 the Legendre expansion of the cross section. However, whereas the $S_n$ method
 actually uses the Legendre expansion, the Galerkin scattering source is
 fully consistent with the exact cross section. It is not
-important whether or not the Legendre cross-section expansion represent
+important whether or not the Legendre cross-section expansion represents
 accurately the scattering cross section. What is important is that
 $\tilde{S}(\mu)$ is an accurate approximation of $S(\mu)$. This is a crucial 
 property for charged particle transport. For example, the delta

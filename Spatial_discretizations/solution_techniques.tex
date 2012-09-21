@@ -2,9 +2,9 @@
 \subsection{Unaccelerated Procedures}
 \Cref{transport_op,phi_D_psi} can be solved using the Source Iteration (SI)
 method (a stationary iterative technique also known as Richardson iteration).
-The SI technique at the $l^{th}$ iteration is given by:
+The SI technique at the $\ell^{th}$ iteration is given by:
 \begin{equation}
-  \Phi^{(l+1)} = \bs{DL}^{-1} \(\bs{M \Sigma}\Phi^{(l)} + S\).
+  \Phi^{(\ell+1)} = \bs{DL}^{-1} \(\bs{M \Sigma}\Phi^{(\ell)} + S\).
 \end{equation}
 Alternatively, a subspace Krylov method (usually GMRES) can be employed to
 solve the following transport system of equations:
@@ -24,7 +24,7 @@ preconditioner is thus needed; in addition, some level of consistency is
 necessary between the spatial discretization of the transport operator and
 than of the diffusion operator. In Chapter \ref{mip_chapter}, we will adapt
 the MIP discontinuous finite element discretization of the diffusion equation
-for arbitrary polygonal grids is and employ MIP as a DSA preconditioner.
+for arbitrary polygonal grids and employ MIP as a DSA preconditioner.
 
 For completeness, we provide the SI and GMRES solution techniques in the case
 graph dependencies are present. During one SI iteration, the scalar flux and
@@ -33,7 +33,7 @@ the angular significant flux are updated as follows:
   \begin{bmatrix}
     \Phi\\
     \Psi_{SAF}
-  \end{bmatrix}^{(l+1)}
+  \end{bmatrix}^{(\ell+1)}
   = 
   \begin{bmatrix}
     \bs{D}\underline{\bs{L}}^{-1} \bs{M\Sigma} & \bs{D}\underline{\bs{L}}^{-1}
@@ -44,7 +44,7 @@ the angular significant flux are updated as follows:
   \begin{bmatrix}
     \Phi\\
     \Psi_{SAF}
-  \end{bmatrix}^{(l)}
+  \end{bmatrix}^{(\ell)}
   +
   \begin{bmatrix}
     \bs{D}\\
@@ -99,12 +99,13 @@ equation is:
   \(\bs{L}-\bs{M\Sigma D}\)\Psi = S.
   \label{te_1}
 \end{equation}
-It is often computationally effective write the above linear system as (sweep
-preconditioning):
+It is often computationally effective to write the above linear system as:
 \begin{equation}
   \(\bs{I}-\bs{L}^{-1}\bs{M\Sigma D}\) \Psi = \bs{L}^{-1}S
+  \label{sweep_prec}
 \end{equation}
-because $\bs{L}$ is easier to invert than $(\bs{L}-\bs{M\Sigma D})$. Therefore,
+because $\bs{L}$ is easier to invert than $(\bs{L}-\bs{M\Sigma D})$.
+\Cref{sweep_prec} is \cref{te_1} with sweep preconditioning. Therefore,
 an iterated scheme (the SI technique) yields formally:
 \begin{equation}
   \Psi^{(\ell+1)}=\bs{L}^{-1}\(\bs{M\Sigma D}\Psi^{(\ell)}+S\).

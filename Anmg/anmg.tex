@@ -101,7 +101,7 @@ needs to be used \cite{multigrid_1d}. For a $P_{n-1}$ expansion of the cross
 sections, the corrected cross sections are given by:
 \begin{equation}
 \Sigma_{s,j}^* = \Sigma_{s,j} - \frac{\Sigma_{s,n/2}+\Sigma_{s,n-1}}{2}
-\textrm{with }j-\{t\}\textrm{ or }\{s,l\}.
+\textrm{with }j=\{t\}\textrm{ or }\{s,l\}.
 \end{equation}
 This correction is said to be optimal because for an infinite homogeneous
 medium, it minimizes the ``high-frequency'' angular errors, the smoothing
@@ -183,16 +183,7 @@ process does not prevent the spectral radius from becoming arbitrary close to
 \section{Angular multigrid as preconditioner for Krylov Solvers}
 In this research, we propose to abandon SI as the solver for the $S_n$
 equations with highly-forward peaked scattering and to use a Krylov solver
-instead. When using a Krylov solver, \cref{transport_operator} is rewritten as
-follows:
-\begin{equation}
-(\bs{I}-\bs{DL}^{-1}\bs{M\Sigma})\Phi = \bs{DL}^{-1}Q.
-\label{krylov_transport_operator}
-\end{equation}
-\Cref{krylov_transport_operator} is \cref{transport_operator} preconditioned
-by $\bs{DL}^{-1}$ (transport sweep preconditioning). DSA can also help to
-speed up the convergence of the Krylov solver and the DSA-preconditioned
-system of equations solved with a Krylov method is:
+instead. The DSA-preconditioned system of equations solved with a Krylov method is:
 \begin{equation}
 \begin{split}
 &\((\bs{I} + \bs{P}_{0/1\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow
@@ -248,13 +239,15 @@ are substituted into the moment update equation, \cref{mom_update}, yielding:
      \Phi_2^{(k)}\\
     =& \bs{T}_n\Phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q + \bs{P}_{n_2\rightarrow n}
      \(\bs{T}_{n_2} \bs{R}_{n\rightarrow n_2} \(\bs{T}_n \Phi_n^{(k)} +\bs{D}_n
-     \bs{L}_n^{-1} Q -\Phi_n^{(k)}\)\)\\
-     &+\hdots+\bs{P}_{2\rightarrow n} \bs{T}_2 \bs{R}_{4\rightarrow 2}\( \bs{T}_4
-     \bs{R}_{8\rightarrow 4} \(\hdots\(\bs{T}_n \phi_n^{(k)} + \bs{D}_n
-     \bs{L}_n^{-1} Q -\Phi_n^{(k)}\)\)\)\\
-     &+ \bs{P}_{0\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
+     \bs{L}_n^{-1} Q\right.\right.\\
+     &\left.\left.-\Phi_n^{(k)}\)\)+\hdots+\bs{P}_{2\rightarrow n} \bs{T}_2 
+     \bs{R}_{4\rightarrow 2}\( \bs{T}_4 \bs{R}_{8\rightarrow 4} \(\hdots\(\bs{T}_n 
+     \phi_n^{(k)} + \bs{D}_n  \bs{L}_n^{-1} Q\right.\right.\right.\\
+     &\left.\left.\left.-\Phi_n^{(k)}\)\)\)+ \bs{P}_{0\rightarrow n} 
+     \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
      \(\bs{T}_2 \bs{R}_{4\rightarrow 2}\(\hdots\( \bs{T}_N\Phi_n^{(k)} + \bs{D}_n
-     \bs{L}_n^{-1}Q -\Phi_n^{(k)}\)\)\)\\
+     \bs{L}_n^{-1}Q\right.\right.\right.\\
+     &\left.\left.\left.-\Phi_n^{(k)}\)\)\)\\
     =& \(\bs{T}_n + \bs{P}_{n_2\rightarrow n} \bs{T}_{n_2} \bs{R}_{n\rightarrow
      n_2} (\bs{T}_n -\bs{I}) + \hdots + \bs{P}_{2\rightarrow n} \bs{T}_2
      \bs{R}_{4\rightarrow 2}\right.\\ 
@@ -283,11 +276,11 @@ solved is given by:
 where the multigrid preconditioner $\bs{P}^{MG/DSA}$ is given by:
 \begin{equation}
 \begin{split}
-  &\bs{P}^{MG/DSA} =\\
-&\(\bs{I}+\bs{P}_{n_2\rightarrow n} \bs{T}_{n_2}
+  &\bs{P}^{MG/DSA} = \(\bs{I}+\bs{P}_{n_2\rightarrow n} \bs{T}_{n_2}
 \(\bs{I}+\bs{P}_{n_4\rightarrow n_2}
 \bs{T}_{n_4}\(\hdots\(\bs{I}+\bs{P}_{0\rightarrow 2}
-\bs{\mc{T}}_0^{-1}\bs{R}_{2\rightarrow 0}\)\hdots\)\bs{R}_{n_2\rightarrow
+\bs{\mc{T}}_0^{-1}\bs{R}_{2\rightarrow 0}\)\right.\right.\right.\\
+&\left.\left.\left. \hdots\)\bs{R}_{n_2\rightarrow
 n_4}\) \bs{R}_{n\rightarrow n_2}\).
 \end{split}
 \end{equation}
@@ -318,11 +311,11 @@ following linear system:
 where the multigrid preconditioner $P^{MG/P1SA}$ is now given by:
 \begin{equation}
 \begin{split}
-&P^{MG/P1SA} =\\
-&\(\bs{I}+\bs{P}_{n_2\rightarrow n} \bs{T}_{n_2}
+&P^{MG/P1SA} = \(\bs{I}+\bs{P}_{n_2\rightarrow n} \bs{T}_{n_2}
 \(\bs{I}+\bs{P}_{n_4\rightarrow n_2}
 \bs{T}_{n_4}\(\hdots\(\bs{I}+\bs{P}_{1\rightarrow 4}\bs{\mc{T}}_1^{-1}
-\bs{R}_{4\rightarrow 1}\)\hdots\)\bs{R}_{n_2\rightarrow n_4}\)
+\bs{R}_{4\rightarrow 1}\)\right.\right.\right.\\
+&\left.\left.\left. \hdots\)\bs{R}_{n_2\rightarrow n_4}\)
 \bs{R}_{n\rightarrow n_2}\) 
 \end{split}
 \end{equation}

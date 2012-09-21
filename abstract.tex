@@ -7,7 +7,7 @@
 peaked scattering deterministic calculations are devised, implemented, and
 assessed. Since electrons interact with the surrounding environment through
 Coulomb interactions, the scattering kernel is highly forward-peaked. 
-This bears the consequence that, without a new preconditioner, the standard Legendre
+This bears the consequence that, with standard preconditioning, the standard Legendre
 expansion of the scattering kernel requires too many terms for the discretized
 equation to be solved efficiently using a deterministic method. The Diffusion
 Synthetic Acceleration (DSA), usually used to speed up the calculation when
@@ -25,9 +25,9 @@ inside a Krylov solver. At the coarsest level of ANMG, a DSA step is needed. In
 this research, we use the Modified Interior Penalty (MIP) DSA. This DSA was
 shown to be always stable on triangular cells with isotropic scattering. 
 Because this DSA discretization leads to symmetric definite-positive matrices, 
-it is usually solved using conjugate gradient preconditioned (CG) by SSOR. We
-compare different preconditioners for CG. We show that algebraic multigrid
-methods are vastly superior than more common CG preconditioners.
+it is usually solved using conjugate gradient preconditioned (CG) by SSOR. 
+We show that algebraic multigrid methods are vastly superior than more common
+CG preconditioners such as SSOR.
 
 Another important part of this dissertation is dedicated to transport 
 equation and diffusion solves on arbitrary polygonal meshes. The advantages of

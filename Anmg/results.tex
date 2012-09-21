@@ -66,14 +66,14 @@ The solution for $S_{32}$ calculation is given on Figure \ref{fig_s_32}
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{Anmg/homog_anmg_crop}
-  \caption{Scalar flux for the $S_{32}$ calculation.}
+  \caption{Scalar flux for the $S_{32}$ calculation on a homogeneous medium}
   \label{fig_s_32}
 \end{figure}
 \begin{table}[H]
   \begin{center}
     \caption{Comparison of the number of GMRES iterations needed to solve the 
       volumetric source test problem when $c=1$ using sweep preconditioning (S), DSA 
-    preconditioning, and ANMG-DSA preconditioning.}
+    preconditioning, and ANMG-DSA preconditioning on a homogeneous medium}
     \begin{tabular}{|c|c|c|c|c|}
       \hline
       & S & DSA & ANMG-DSA & $\frac{\textrm{DSA}}{\textrm{ANMG-DSA}}$ \\
@@ -91,7 +91,7 @@ The solution for $S_{32}$ calculation is given on Figure \ref{fig_s_32}
   \begin{center}
     \caption{Elapsed time (s) to solve the volumetric source test problem when
       $c=1$ using sweep preconditioning (S), DSA preconditioning, and ANMG-DSA
-    preconditioning}
+    preconditioning on a homogeneous medium}
     \begin{tabular}{|c|c|c|c|c|}
       \hline
       & S & DSA & ANMG-DSA & $\frac{\textrm{DSA}}{\textrm{ANMG-DSA}}$ \\
@@ -135,14 +135,15 @@ iterations, is $10^{-6}$ and the relative tolerance on DSA is $10^{-8}$.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{Anmg/heterog_anmg_crop}
-  \caption{Scalar flux for the $S_{32}$ calculation.}
+  \caption{Scalar flux for the $S_{32}$ calculation on a heterogeneous medium}
 \end{figure}
 The number of GMRES iterations and the elapsed 
 time are given in Table \ref{table_gmres_heter} and Table \ref{table_time_heter}.
 \begin{table}[H]
   \begin{center}
     \caption{GMRES iterations to solve the heterogeneous problem using sweep
-    preconditioning (S), DSA preconditioning, and ANMG-DSA preconditioning.}
+    preconditioning (S), DSA preconditioning, and ANMG-DSA preconditioning on
+    a heterogeneous medium}
     \begin{tabular}{|c|c|c|}
       \hline
       S & DSA & ANMG-DSA \\
@@ -156,7 +157,8 @@ time are given in Table \ref{table_gmres_heter} and Table \ref{table_time_heter}
 \begin{table}[H]
   \begin{center}
     \caption{Elapsed time (s) to solve the heterogeneous problem using sweep
-    preconditioning (S), DSA preconditioning, and ANMG-DSA preconditioning.}
+    preconditioning (S), DSA preconditioning, and ANMG-DSA preconditioning on
+    a heterogeneous medium}
     \begin{tabular}{|c|c|c|}
       \hline
       S & DSA & ANMG-DSA \\

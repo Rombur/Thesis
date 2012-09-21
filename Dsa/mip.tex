@@ -24,7 +24,7 @@ coefficient. Applying the IP technique, we obtain:
     \phi_0\rrb, \llb \phi_0^*\rrb\)_{E_h^i}\\
     &+ \(\llb \phi_0 \rrb,\ldb \mathrm{D} \partial_n \phi_0^*\rdb\)_{E_h^i} +
     \(\ldb \mathrm{D} \partial_n \phi_0\rdb,\llb \phi_0^* \rrb\)_{E_h^i} + 
-    \(\kappa_e^{IP} \phi_0, \phi^*\)_{\partial \mc{D}^d}\\
+    \(\kappa_e^{IP} \phi_0, \phi_0^*\)_{\partial \mc{D}^d}\\
     & -\frac{1}{2} \(\phi_0,\mathrm{D}\partial_n,\phi_0^*\)_{\partial \mc{D}^d}
     -\frac{1}{2}\(\mathrm{D}\partial_n\phi_0,\phi_0\)_{\partial \mc{D}^d}
   \end{split}
@@ -36,8 +36,8 @@ and:
   \(J^{inc},\phi_0^*\)_{\partial \mc{D}^r}
 \end{equation}
 where $\phi_0$ and $\phi_0^*$ $\in W_{\mc{D}}^h$ where the finite
-dimensional polynomial space is $W_{\mc{D}}^h = \{\psi \in L^2(\mc{D});
-\psi|_K \in V_p(K), \forall K \in \mathbb{T}_h\}$ with $V_p(K)$ is the space
+dimensional polynomial space is $W_{\mc{D}}^h = \{\phi_0 \in L^2(\mc{D});
+\phi_0|_K \in V_p(K), \forall K \in \mathbb{T}_h\}$ with $V_p(K)$ is the space
 of polynomials of degree up to $p$ on element $K$, $(f,g)_{\mc{D}} = 
 \sum_{K\in \mathbb{T}_h} \(f,g\)_K$, 
 $(f,g)_K = \int_K fg\ d\br$, $(f,g)_{E_h^i}=\sum_{e\in E_h^i}(f,g)_e$, 
@@ -75,11 +75,11 @@ orthogonal to the edge $e$. On triangular cells, $h_{\bot}$ equals
 $\frac{2A}{L_e}$ where $A$ is the area of the triangle and $L_e$ is the length
 of the edge $e$.\\
 This discretization of DSA is SPD. Unfortunately, the authors in \cite{mip} 
-found that IP yields to 
+found that IP yields 
 an unstable DSA scheme when the cells are large compared to the mean-free-path. 
 This phenomenon is due to the fact that in optically thick medium, the ratios 
 $\frac{D^{\pm}}{h^{\pm}}$ are very small. Therefore, the penalty coefficient 
-are small and the method is unstable.\\
+is small and the method is unstable.\\
 This led the authors of \cite{mip} to develop another discretization of DSA: 
 the Diffusion Conforming Form (DCF). This discretization starts from 
 the one-group $S_n$ transport equation with isotropic source and scattering:
@@ -123,7 +123,7 @@ and the upwind terms. This is the operator that is inverted during a transport
 sweep. The operator
 $b$ contains $a$, the scattering term and the reflective boundary
 conditions. This operator is inverted upon convergence of SI or the Krylov solver.\\
-The discretized SI at iteration $l$ can be written as:
+The discretized SI at iteration $\ell$ can be written as:
 \begin{equation}
   a(\psi^{(\ell+1/2)},\psi^*) = l(\psi^*) + (\Sigma_s
   \phi_0^{(\ell)},\phi_0^*)_{\mc{D}} + \sum_{e\in \mc{D}^r} \sum_{\bo_d \cdot
@@ -148,7 +148,7 @@ If we note the converged angular and scalar fluxes $\psi^c$ and $\phi_0^c$, we g
 Subtracting \cref{si_l_a}, respectively \cref{si_l_b}, to \cref{si_c_a},
 respectively \cref{si_c_b}, we obtain an angular error equation:
 \begin{equation}
-  a(\epsilon^{(l+1/2)},\psi^*) = \(\Sigma_s \mc{E}^{(\ell)},\phi_0^*\)_{\mc{D}} +
+  a(\epsilon^{(\ell+1/2)},\psi^*) = \(\Sigma_s \mc{E}^{(\ell)},\phi_0^*\)_{\mc{D}} +
   \sum_{e\in \partial \mc{D}^r} \sum_{\bo_d \cdot \bs{n}_b<0} 4\pi w_d \la
   \epsilon_{d'}^{(\ell)},\psi_m^*\ra_e
   \label{si_f}
@@ -190,7 +190,7 @@ operator instead. The solution of this diffusion operator will be denoted by
 a $\tilde{}$ symbol:
 \begin{align}
   & \psi^{(\ell+1)} = \psi^{(\ell+1/2)} + \tilde{\epsilon}^{(\ell+1/2)}\\
-  & \phi^{(\ell+1)} = \phi^{(\ell+1/2)} + \tilde{\mc{E}}^{\ell+1/2}
+  & \phi^{(\ell+1)} = \phi^{(\ell+1/2)} + \tilde{\mc{E}}^{(\ell+1/2)}
 \end{align}
 If we assume that the primal and dual angular fluxes
 are linearly anisotropic (diffusion approximation) and we assume Fick's law to
@@ -203,7 +203,7 @@ we then obtain:
 \begin{align}
   \tilde{\epsilon}^{(\ell+1/2)} &= \frac{1}{4\pi} (\phi_0-3\mathrm{D} \bn
   \phi_0 \cdot \bo_d) \label{eps_tilde}\\
-  \tilde{\psi}_m^* &= \frac{1}{4\pi} (\phi_0^*+3\mathrm{D} \bo \phi_0^*\cdot
+  \tilde{\psi}_d^* &= \frac{1}{4\pi} (\phi_0^*+3\mathrm{D} \bo \phi_0^*\cdot
   \bo_d) \label{psi_tilde}
 \end{align}
 Substituting \cref{eps_tilde,psi_tilde} in \cref{tsa}, we obtain a
@@ -231,10 +231,12 @@ If we define:
 \end{equation}
 we get:
 \begin{equation}
-  \sum_{d=1}^M 4 \pi w_d \(\Sigma_t \tilde{\epsilon}_d^{(\ell+1/2)},
-  \tilde{\psi}_d^*\)_{\mc{D}} + \(\Sigma_s \tilde{\mc{E}}^{(\ell+1/2)},
-  \tilde{\phi}^*\)_{\mc{D}} = \(\Sigma_a \phi_0,\phi_0^*\)_{\mc{D}} -
-  \(\bn \phi_0, \mathrm{D} \bn \phi_0^*\)_{\mc{D}}.
+  \begin{split}
+    & \sum_{d=1}^M 4 \pi w_d \(\Sigma_t \tilde{\epsilon}_d^{(\ell+1/2)},
+    \tilde{\psi}_d^*\)_{\mc{D}} + \(\Sigma_s \tilde{\mc{E}}^{(\ell+1/2)},
+    \tilde{\phi}^*\)_{\mc{D}} = \(\Sigma_a \phi_0,\phi_0^*\)_{\mc{D}} -\\
+    &\(\bn \phi_0, \mathrm{D} \bn \phi_0^*\)_{\mc{D}}.
+  \end{split}
 \end{equation}
 Now, we analyze the streaming term:
 \begin{equation}
@@ -261,34 +263,32 @@ where integration by part was performed and we used:
 Manipulating the interior edge terms give successively :
 \begin{equation}
   \begin{split}
-    \sum_{d=1}^M 4 \pi w_d \la \llb \tilde{\epsilon}_m^{(\ell+1/2)}\rrb,
-    \tilde{\psi}_m^{*,+}\ra_{E_h^i} =& \sum_{e \in E_h^i} \sum_{d=1}^M 4 \pi
-    w_d |\bo_m \cdot \bs{n}_e| \(\llb \tilde{\epsilon}_m^{(\ell+1/2)}\rrb,
+    \sum_{d=1}^M 4 \pi w_d \la \llb \tilde{\epsilon}_d^{(\ell+1/2)}\rrb,
+    \tilde{\psi}_d^{*,+}\ra_{E_h^i} =& \sum_{e \in E_h^i} \sum_{d=1}^M 4 \pi
+    w_d |\bo_d \cdot \bs{n}_e| \(\llb \tilde{\epsilon}_m^{(\ell+1/2)}\rrb,
     \tilde{\psi}_d^{*,+}\)_e\\
-    =& \sum_{e \in E_h^i} \(\sum_{\bo_d \cdot \bs{n}_e>0} \frac{w_d}{4\pi}
-    |\bo_d \cdot \bs{n}_e| \(\llb\phi_0\rrb - 3 \llb \mathrm{D} \bn 
-    \phi_0\rrb \cdot \bo_m,\right. \right.\\
-    &\left. \left. 
-    \phi_0^{*,+} + 3 \mathrm{D} \bn  \phi_0^{*+} \cdot \bo_m\)_e 
-    - \sum_{\bo_d \cdot \bs{n}_e<0} \frac{w_d}{4\pi} |\bo_d \cdot
-    \bs{n}_e| \(\llb \phi_0 \rrb \right.\right.\\
-    &\left.\left.- 3 \llb \mathrm{D}\bn \phi_0 \rrb\cdot
-    \bo_d, \phi_0^{*,-} + 3 \mathrm{D} \bn \phi_0^{*,-} \cdot \bo_d
-    \)_e\)\\
+    =& \sum_{e \in E_h^i} \Bigg(\sum_{\bo_d \cdot \bs{n}_e>0} \frac{w_d}{4\pi}
+    |\bo_d \cdot \bs{n}_e| \big(\llb\phi_0\rrb - 3\\ 
+    &\llb \mathrm{D} \bn \phi_0\rrb \cdot \bo_d, 
+    \phi_0^{*,+} + 3 \mathrm{D} \bn  \phi_0^{*+} \cdot \bo_d\big)_e -\\
+    &\sum_{\bo_d \cdot \bs{n}_e<0} \frac{w_d}{4\pi} |\bo_d \cdot
+    \bs{n}_e| \bigg(\llb \phi_0 \rrb - 3 \llb \mathrm{D}\bn \phi_0 \rrb\cdot
+    \bo_d,\\
+    &\phi_0^{*,-} +3 \mathrm{D} \bn \phi_0^{*,-} \cdot \bo_d \bigg)_e\Bigg)\\
     = & \sum_{e\in E_h^i} \sum_{\bo_d \cdot \bs{n}_e>0} \frac{w_d}{4\pi}
     |\bo_d \cdot \bs{n}_e| \(\(\llb \phi_0 \rrb - 3 \llb \mathrm{D} \bn 
-    \phi_0 \rrb \cdot\bo_d,\right.\right.\\
-    &\left. \left. \phi_0^{*,+} + 3 \mathrm{D} \bn \phi_0^{*,+}\cdot \bo_d\)_e -
-    \(\llb \phi_0 \rrb + 3 \llb \mathrm{D} \bn \phi_0 \rrb \cdot \bo_d,
-    \right.\right.\\
-    &\left.\left. \phi_0^{*,-} - 3 \mathrm{D} \bn \phi_0^{*,-} \cdot \bo_d\)_e\)\\
+    \phi_0 \rrb \cdot\right.\right.\\
+    &\left. \left. \bo_d,\phi_0^{*,+} + 3 \mathrm{D} \bn \phi_0^{*,+}\cdot \bo_d\)_e -
+    \(\llb \phi_0 \rrb + 3\right.\right.\\ 
+    &\left.\left. \llb \mathrm{D} \bn \phi_0 \rrb \cdot \bo_d,
+    \phi_0^{*,-} - 3 \mathrm{D} \bn \phi_0^{*,-} \cdot \bo_d\)_e\)\\
     =&\frac{1}{4} \(\llb \phi_0\rrb,\llb \phi_0^* \rrb\)_{E_h^i} + \(\llb
     \phi_0 \rrb,\ldb \mathrm{D} \bn \phi_0^* \cdot \bs{n}\rdb \)_{E_h^i}\\
     &-\(\llb \mathrm{D} \bn \phi_0 \cdot \bs{n}\rrb,\ldb \phi_0^*
-    \rdb\)_{E_h^i} -\frac{9}{16} \(\llb \mathrm{D} \bn \phi_0\rrb, 
-    \llb \mathrm{D} \bn \phi_0^*\rrb\)_{E_h^i}\\ 
-    &- \frac{9}{16} \( \llb \mathrm{D} \bn \phi_0 \cdot \bs{n}\rrb, 
-    \llb \mathrm{D} \bn \phi_0^* \cdot \bs{n}\rrb\)_{E_h^i}
+    \rdb\)_{E_h^i} -\frac{9}{16} \(\llb \mathrm{D} \bn \phi_0\rrb,\right.\\
+    &\left.  \llb \mathrm{D} \bn \phi_0^*\rrb\)_{E_h^i}
+    - \frac{9}{16} \( \llb \mathrm{D} \bn \phi_0 \cdot \bs{n}\rrb,\right.\\
+    &\left.\llb \mathrm{D} \bn \phi_0^* \cdot \bs{n}\rrb\)_{E_h^i}
   \end{split}
 \end{equation}
 where we employed the following properties of the angular quadrature:
@@ -338,7 +338,7 @@ with:
   \end{split}
 \end{equation}
 where $\bs{\mc{Y}}^{inc} = - \sum_{\bo_d \cdot \bs{n}_b>0} 3 w_d \bo_d |\bo_d
-\cdot \bs{n}_b| \delta \psi_m^{(\ell)}$.\\
+\cdot \bs{n}_b| \delta \psi_d^{(\ell)}$.\\
 DCF is symmetric but not positive definite positive. DCF is unstable for cell size
 in between one and four mean-free-paths but it is stable and very efficient 
 for optically thick medium. In this case, $\bn \phi_0 \approx 0$ and 
@@ -349,13 +349,12 @@ In this limit, $b_{DCF}$ becomes:
 \begin{equation}
   \begin{split}
     b_{DCF}(\phi_0,\phi_0^*)=& \(\Sigma_a \phi_0,\phi_0^*\)_{\mc{D}} +
-    \(\mathrm{D}\bn \phi_0,\mathrm{D}\bn \phi_0\)_{\mc{D}}\\
-    & +\frac{1}{4}\(\llb\phi_0\rrb,\llb\phi_0^*\rrb\)_{E_h^i} + \(\llb
-    \phi_0\rrb, \ldb\mathrm{D}\partial_n \phi_0^*\rdb\)_{E_h^i} +
-    \(\ldb\mathrm{D} \partial_n \phi_0\rdb, \llb
-    \phi_0^*\rrb\)_{E_h^i}\\
-    & + \frac{1}{4} \(\phi_0,\phi_0^*\)_{\partial \mc{D}^d} -\frac{1}{2}
-    \(\phi_0,\mathrm{D} \partial_n \phi_0^*\)_{\partial \mc{D}^d} -
+    \(\mathrm{D}\bn \phi_0,\mathrm{D}\bn \phi_0\)_{\mc{D}}
+    +\frac{1}{4}\(\llb\phi_0\rrb,\llb\phi_0^*\rrb\)_{E_h^i}\\
+    &+ \(\llb \phi_0\rrb, \ldb\mathrm{D}\partial_n \phi_0^*\rdb\)_{E_h^i} +
+    \(\ldb\mathrm{D} \partial_n \phi_0\rdb, \llb \phi_0^*\rrb\)_{E_h^i}
+    + \frac{1}{4} \(\phi_0,\phi_0^*\)_{\partial \mc{D}^d}\\ 
+    &-\frac{1}{2} \(\phi_0,\mathrm{D} \partial_n \phi_0^*\)_{\partial \mc{D}^d} -
     \frac{1}{2} \(\mathrm{D} \partial_n \phi_0,\phi_0\)_{\partial
     \mc{D}^d}
   \end{split}
@@ -387,6 +386,7 @@ the polygon $\(\textrm{circumradius}=\sqrt{\frac{2\times \textrm{area}}{V
 \sin\(\frac{2\pi}{V}\)}}\)$. Therefore, $h_{\bot}$ is given by:
 \begin{table}[H]
 \begin{center}
+\caption{Orthogonal length of the cell for different cells}
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 Number of edges & 3 & 4 & $> 4$ and even & $> 4$ and odd \\
@@ -398,6 +398,5 @@ $\frac{\textrm{area}}{L_e}$ & $4\times
 \textrm{area}}{V\sin\(\frac{2\pi}{V}\)}}$\\
 \hline
 \end{tabular}
-\caption{Orthogonal length of the cell for different cells.}
 \end{center}
 \end{table}

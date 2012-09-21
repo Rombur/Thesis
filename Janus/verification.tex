@@ -10,11 +10,11 @@ transport equation reduces to:
   \label{ez_pz}
 \end{equation}
 To approximate the infinite medium, we choose a very large total cross section
-such that the mean free path of the particles is very small compare to the
+such that the mean free path of the particles is very small compared to the
 size of the domain. In the following test, the domain is $1000cm \times
 1000cm$, $Q = 2 n/(cm^3s)$, $\Sigma_t = 10 cm^{-1}$ and $\Sigma_s = 9
 cm^{-1}$. We use vacuum boundary conditions and a $S_{8}$ GLC quadrature.
-We show two tests: one which uses uniform mesh of 100 by 100 cells and BLD
+We show two tests: one which uses an uniform mesh of 100 by 100 cells and BLD
 finite elements and the other which uses an unstructured mesh of 9972
 quadrilaterals and PWLD finite elements. Given \cref{ez_pz}, the scalar flux
 should be equals to two. In Figures \ref{quad_diff} and \ref{poly_diff}, the 
@@ -29,17 +29,18 @@ equal to 2.001 is in red:
   \caption{Scalar flux}
 \end{figure}
 \subsection{Convergence order}
-In this test, we check the convergence order of PWLD on a benchmark.
+In this test, we check the convergence order of PWLD and BLD on a benchmark.
 We plot the error on average scalar fluxes as a function of the number of 
-degrees of freedom. Since for two dimensional geometries the number of degrees of is
+degrees of freedom. Since for two-dimensional geometries, the number of
+degrees of freedom is
 proportional to the square of the typical element size, the slopes of the 
-graphs should equal one (PWLD is a second order methods). The test
+graphs should equal one (PWLD and BLD are both second order methods). The test
 that we chose is the IAEA EIR-2 benchmark problem \cite{Khalil1985}. This 
 benchmark consists of five regions:
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.4\textwidth]{./Janus/benchmark}
-  \caption{Zones of the domain.}
+  \caption{Zones of the IAEA EIR-2 benchmark problem}
 \end{figure}
 The properties of the different zones are:
 \begin{table}[H]
@@ -58,15 +59,17 @@ The properties of the different zones are:
     \end{tabular}
   \end{center}
 \end{table}
-The colored zones are in the middle of the white zone. We use a $S_8$ Level
-Symmetric quadrature. In Figures \ref{ls_pwld} and \ref{glc_pwld}, we show the
-convergence of the average scalar flux in the different zones for the $S_8$
-Level Symmetric quadrature and the $S_8$ Gauss-Legendre-Chebyshev quadrature.
+The colored zones are in the middle of the white zone. In Figures \ref{glc_bld} 
+and \ref{glc_pwld}, we show the convergence of the average scalar flux in the
+different zones for $S_8$ Gauss-Legendre-Chebyshev quadrature when BLD and PWLD 
+finite elements are used.
 \begin{figure}[H]
   \centering
-  \subfloat[LS quadrature]{\includegraphics[width=0.5\textwidth]
-  {./Janus/ls_conv_pwld}\label{ls_pwld}}
-  \subfloat[GLC quadrature]{\includegraphics[width=0.5\textwidth]
+  \subfloat[BLD finite elements]{\includegraphics[width=0.5\textwidth]
+  {./Janus/glc_conv_bld}\label{glc_bld}}
+  \subfloat[PWLD finite elements]{\includegraphics[width=0.5\textwidth]
   {./Janus/glc_conv_pwld}\label{glc_pwld}}
-  \caption{Convergence of PWLD}
+  \caption{Convergence of BLD and PWLD}
 \end{figure}
+We can see that the curves in all the zones have the right slope, i.e.,
+the right order of convergence.

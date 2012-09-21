@@ -1,4 +1,4 @@
-\chapter{\uppercase{Charged particle transport}} \label{cp_transport}
+\chapter{\uppercase{Charged particle transport}} \label{cp_transport_chapter}
 \section{Introduction}
 For charged particle transport, the scattering kernel is very pronounced 
 for both an almost zero energy transfer and an almost zero direction 
@@ -20,12 +20,12 @@ Boltzmann equation yields the Boltzmann-Fokker-Planck equation \cite{ligou}.
 
 \section{Boltzmann-Fokker-Planck equation}
 In this section, we start by deriving the Boltzmann-Fokker-Planck equation.
-Then, we show that the Fokker-Planck equation is an asymptotic limit of the Boltzmann
-equation when both the energy transfer and the direction change during a collision go 
-to zero. We conclude this section with an analysis of the validity of the 
-Fokker-Planck and Boltzmann-Fokker-Planck equations.
+Then, we show that the Fokker-Planck equation is an asymptotic limit of the 
+Boltzmann equation when both the energy transfer and the direction changes 
+during a collision go to zero. We conclude this section with an analysis of 
+the validity of the Fokker-Planck and Boltzmann-Fokker-Planck equations.
 \subsection{Derivation of the Boltzmann-Fokker-Planck equation}
-Following \cite{ligou}, the BFP equation is be derived starting from the Boltzmann 
+Following \cite{ligou}, the BFP equation is derived starting from the Boltzmann 
 equation:
 \begin{equation}
 \begin{split}
@@ -52,9 +52,11 @@ atom density.
 
 First, the differential scattering cross section is split into two parts:
 \begin{equation}
-  \Sigma_s\(\mu_c\(\frac{E'-E}{E}\),E'\) =
-  \Sigma_{s,reg}\(\mu_c\(\frac{E'-E}{E}\),E'\) +
-  \Sigma_{s,sing}\(\mu_c\(\frac{E'-E}{E}\),E'\),
+  \begin{split}
+    \Sigma_s\(\mu_c\(\frac{E'-E}{E}\),E'\) =& 
+    \Sigma_{s,reg}\(\mu_c\(\frac{E'-E}{E}\),E'\)\\
+    &+\Sigma_{s,sing}\(\mu_c\(\frac{E'-E}{E}\),E'\),
+  \end{split}
 \end{equation}
 where:
 \begin{itemize}
@@ -161,7 +163,7 @@ q_{sing} = \Sigma_{s,sing}\psi+\frac{\partial}{\partial E}S\psi + T
 Finally, we get the BFP equation:
 \begin{equation}
 \begin{split}
-&\bo\cdot\psi+(\Sigma_{s,reg}+\Sigma_a)\psi=\sum_{l=0}^{\infty}\sum_{m=-l}^l
+&\bo\cdot\bn\psi+(\Sigma_{s,reg}+\Sigma_a)\psi=\sum_{l=0}^{\infty}\sum_{m=-l}^l
 Y_l^m(\bo)\int_E^{E/\alpha}\Sigma_{s,l,reg}(E'\rightarrow E) \times \\
 &\phi_{l,m}(E')dE'+ \frac{\partial}{\partial E}S\psi+T\[\frac{\partial}{\partial
 \mu}(1-\mu^2) \frac{\partial}{\partial
@@ -176,7 +178,7 @@ restricted stopping power, $S$, and the restricted momentum transfer, $T$.
 \subsection{The Fokker-Planck equation as a limit of Boltzmann equation}
 In \cite{pomraning}, Pomraning showed that the Fokker-Planck equation is an
 asymptotic limit of the Boltzmann equation when the mean free path goes to
-zero and $\mu_0$ goes to one. Since his development will help us to understand
+zero and $\bar{\mu}_0$ goes to one. Since his development will help us to understand
 the limitations of the Boltzmann-Fokker-Planck, we will briefly recall it here.
 
 First, we assume that the unit of distance is chosen such that the characteristic
@@ -285,22 +287,24 @@ y&= \frac{E-E'}{\epsilon}\label{y2}.
 \Cref{x,x2} are identical, but \cref{y,y2} are different ($E$ and $E'$
 are interchanged). Therefore, we get:
 \begin{equation}
-\begin{split}
-K=& \frac{2\pi}{\Delta} \int_{-\infty}^{\infty} dE'
-\int_{-1}^{1}d\mu_0\(1+O(\delta^2+\epsilon\delta+\epsilon^3)\)\hat{\Sigma}_s 
-\(\frac{1-\mu_0}{\delta},E,\frac{E-E'}{\epsilon}\) \phi_{l,m}(E)\\
-&- \frac{l(l+1)\pi}{\Delta} \int_{-\infty}^{\infty}dE'\int_{-1}^1d\mu_0\  
-(1-\mu_0)
-\hat{\Sigma}_s \(\frac{1-\mu_0}{\delta},E,\frac{E-E'}{\epsilon}\)\phi_{l,m}(E)\\
-&+\frac{2\pi}{\Delta}\frac{\partial}{\partial E} \int_{-\infty}^{\infty} dE'
-\int_{-1}^{1} d\mu_0 \(E-E'\)\hat{\Sigma}_s
-\(\frac{1-\mu_0}{\delta},E,\frac{E-E'}{\epsilon}\) \phi_{l,m}(E)\\
-&+ \frac{\pi}{\Delta}\frac{\partial^2}{\partial E^2} \int_{-\infty}^{\infty}
-dE' \int_{-1}^1 d\mu_0\ (E-E')^2
-\hat{\Sigma}_s\(\frac{1-\mu_0}{\delta},E,\frac{E-E'}{\epsilon}\)
-\phi_{l,m}(E).
-\end{split}
-\label{K}
+  \begin{split}
+    K=& \frac{2\pi}{\Delta} \int_{-\infty}^{\infty} dE'
+    \int_{-1}^{1}d\mu_0\Bigg(\(1+O(\delta^2+\epsilon\delta+\epsilon^3)\)
+    \hat{\Sigma}_s \(\frac{1-\mu_0}{\delta},E,\frac{E-E'}{\epsilon}\) \\
+    & \phi_{l,m}(E)\Bigg) - \frac{l(l+1)\pi}{\Delta}
+    \int_{-\infty}^{\infty}dE' \int_{-1}^1d\mu_0 \Bigg( (1-\mu_0)
+    \hat{\Sigma}_s \(\frac{1-\mu_0}{\delta},E,\right.\\
+    &\left.\frac{E-E'}{\epsilon}\)\phi_{l,m}(E)\Bigg) 
+    +\frac{2\pi}{\Delta}\frac{\partial}{\partial E}
+    \int_{-\infty}^{\infty} dE' \int_{-1}^{1} d\mu_0 \Bigg( \(E-E'\)
+    \hat{\Sigma}_s \(\frac{1-\mu_0}{\delta},\right.\\
+    &\left.E,\frac{E-E'}{\epsilon}\)
+    \phi_{l,m}(E)\Bigg) + \frac{\pi}{\Delta}\frac{\partial^2}{\partial E^2}
+    \int_{-\infty}^{\infty}  dE' \int_{-1}^1 d\mu_0\ \Bigg((E-E')^2\\
+    & \hat{\Sigma}_s\(\frac{1-\mu_0}{\delta},E,\frac{E-E'}{\epsilon}\)
+    \phi_{l,m}(E)\Bigg).
+  \end{split}
+  \label{K}
 \end{equation}
 Finally, using:
 \begin{equation}
@@ -344,7 +348,7 @@ $\hat{\Sigma}_s(E)$, we get:
   \label{final_m1}
 \end{equation}
 Using \cref{eigenvalue}, the $l(l+1)$ factor can be eliminated, then we can 
-sum over the spherical harmonics according to \cref{moments} to obtain our final 
+sum over the spherical harmonics according to \cref{ang_flux} to obtain our final 
 result:
 \begin{equation}
   \begin{split}
@@ -353,8 +357,9 @@ result:
     \frac{\partial}{\partial\mu}+\right.\\
     &\left. \(\frac{1}{1-\mu^2}\)\frac{\partial^2}{\partial \varphi^2}\)
     \psi(\br,\bo,E) +\frac{\partial}{\partial E} \tilde{S}(\br,E)\psi(\br,\bo,E) 
-    + \frac{\partial^2}{\partial E^2} \tilde{R}(\br,E) \psi(\br,\bo,E)+\\
-    &Q(\br,\bo,E)+O\(\frac{\delta^2+\epsilon\delta+\epsilon^3}{\Delta}\).
+    +\\
+    &\frac{\partial^2}{\partial E^2} \tilde{R}(\br,E) \psi(\br,\bo,E)+
+    Q(\br,\bo,E)+O\(\frac{\delta^2+\epsilon\delta+\epsilon^3}{\Delta}\).
 \end{split}
 \label{final}
 \end{equation}
@@ -388,7 +393,7 @@ effect and thus, it is important to keep the $\tilde{R}$ term \cite{pomraning}.
 The reason that no convective term in angle appears in
 \cref{final} (the $\tilde{T}$ term is diffusive) is that we have assumed 
 an isotropic medium. There is the same probability for a particle to be scattered 
-to the left or the right, and thus the mean scattering angle is zero.
+to the left or the right, and thus, the mean scattering angle is zero.
 
 \subsection{Limits of the Boltzmann-Fokker-Planck approximation}
 \subsubsection{Introduction}
@@ -444,7 +449,7 @@ Therefore, the spherical harmonics are eigenfunctions of
 The Henyey-Greenstein \cite{H-G} differential scattering kernel is defined by
 \cite{larsen_fp}:
 \begin{equation}
-f(\mu) = \frac{1-\bar{\mu}_0^2}{4\pi(1-2\bar{\mu}_0\mu
+f(\mu_0) = \frac{1-\bar{\mu}_0^2}{4\pi(1-2\bar{\mu}_0\mu
 +\bar{\mu}_0^2)^{3/2}}.
 \label{H-G}
 \end{equation}
@@ -452,7 +457,7 @@ This kernel was proposed in \cite{H-G}, and is widely used mainly because of
 its great simplicity. The exact Henyey-Greenstein kernel does not arise from 
 a deeper theory of any known physical process \cite{larsen_fp}. The Legendre 
 polynomial expansion of the kernel, 
-$f(\mu)=\sum_{l=0}^{\infty}\frac{2l+1}{2}f_l P_l(\mu_0)$, is very simple
+$f(\mu_0)=\sum_{l=0}^{\infty}\frac{2l+1}{2}f_l P_l(\mu_0)$, is very simple
 since the expansion coefficients, $f_l$, are given by:
 \begin{equation}
 f_l = \bar{\mu}_0^l,\ l\geq 0.
@@ -613,7 +618,7 @@ Next, we define $\Sigma_s$ as:
 \end{equation}
 Then for $\eta \ll 1$, the eigenvalues of $\Sigma_s \mc{L}_B$ are:
 \begin{equation}
-  -\Sigma_s (1-f_n) = \frac{\hat{\Sigma}_s}{2}\(-l(l+1)\)+
+  -\Sigma_s (1-f_l) = \frac{\hat{\Sigma}_s}{2}\(-l(l+1)\)+
   \frac{2\eta\hat{\Sigma}_s}{1-\bar{\mu}_0} (-l(l+1))\(1-\sum_{k=1}^l 
   \frac{1}{k}\)+O(\eta).
 \end{equation}

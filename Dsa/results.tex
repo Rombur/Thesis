@@ -25,7 +25,7 @@ $S_2$, $S_4$, $S_8$, and $S_{16}$.
   \centering
   \includegraphics[width=0.5\textwidth]{./Dsa/sn_order_9999}
   \caption{Fourier analysis as a function of the mesh optical thickness,
-  homogeneous infinite medium case.}
+  homogeneous infinite medium case}
   \label{fig_fa_op}
 \end{figure}
 MIP is stable for every cell size. The spectral radius is always less than
@@ -41,15 +41,15 @@ $\frac{Y}{X}=1$, $\frac{Y}{X}=4$, $\frac{Y}{X}=16$, and $\frac{Y}{X}=100$.
   \centering
   \includegraphics[width=0.5\textwidth]{./Dsa/aspect_ratio_9999_2}
   \caption{Fourier analysis as a function of the mesh optical thickness,
-  homogeneous infinite medium case for different aspect ratios.}
+  homogeneous infinite medium case for different aspect ratios}
   \label{fig_fa_ar}
 \end{figure}
 MIP is stable for every aspect ratio and the maximum of the spectral radius
 peaks at about 0.5
 
 \subsection{Homogeneous medium}
-Next, we compare different solvers for MIP on a homogeneous medium, 10cm $\times$
-10cm, $\Sigma_t=1$cm$^{-1}$ and $\Sigma_s=0.999$cm$^{-1}$, with vacuum boundary 
+Next, we compare different solvers for MIP on a homogeneous medium, 100cm $\times$
+100cm, $\Sigma_t=1$cm$^{-1}$ and $\Sigma_s=0.999$cm$^{-1}$, with vacuum boundary 
 conditions and a source of intensity 1cm$^{-3}$s$^{-1}$. We use a $S_8$
 Gauss-Legendre-Chebyshev quadrature, a Source Iteration solver with relative
 tolerance of $10^{-8}$ and a relative tolerance for MIP of $10^{-10}$.
@@ -78,7 +78,7 @@ In the next table, the different solvers, used on the quadrilateral cells,
 are compared:
 \begin{table}[H]
 \begin{center}
-\caption{Comparison of different preconditioners for quadrilateral cells.}
+\caption{Comparison of different preconditioners for quadrilateral cells}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
 & No-DSA & CG & PCG-SGS &  PCG-MLU & PCG-MLM & AGMG\\
@@ -92,7 +92,7 @@ Total (s) & 39176.7 & 1264.98 & 1477.95  & 363.202 & 367.841 & 194.568 \\
 \end{tabular}
 \end{center}
 \end{table}
-In this Table, SI iter is the number iteration of Source Iteration
+In this Table, SI iter is the number of Source Iteration iterations 
 needed to solve the problem, Prec is the time in seconds needed to
 initialize the preconditioner used by CG, MIP is the total time in
 seconds spent solving DSA during the calculation, CG iter is the total number 
@@ -105,13 +105,13 @@ factor three the number of CG iterations compared to CG but the time
 needed to solve MIP is greater. With ML, the number of CG iterations is 
 reduced by a factor 50 and the MIP calculation time is divided by three 
 compared to CG. AGMG is by far the most efficient solver, the number of 
-CG iteration is slightly lower than PCG-ML but the MIP calculation is 20 
+CG iterations is slightly lower than PCG-ML but the MIP calculation is 20 
 times faster than CG.
 
 The different solvers, used on the polygonal cells, are compared in the next Table:
 \begin{table}[H]
 \begin{center}
-\caption{Comparison of different preconditioners for polygonal cells.}
+\caption{Comparison of different preconditioners for polygonal cells using SI}
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
 & No-DSA & CG & PCG-SGS & PCG-MLU & PCG-MLM & AGMG\\
@@ -128,6 +128,28 @@ Total (s) & 42666.7 & 1060.53 & 1447.53 & 382.275 & 384.422 & 216.946 \\
 We see that using different types of cells in the same mesh does not affect
 the performance of MIP or of the preconditioners. 
 
+In the next test, the problem is exactly the same than the previous one using
+polygonal cells but the SI solver is replaced by GMRES.
+\begin{table}[H]
+\begin{center}
+\caption{Comparison of different preconditioners for polygonal cells using
+GMRES}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+& No-DSA & CG & PCG-SGS & PCG-MLU & PCG-MLM & AGMG\\
+\hline
+GMRES iter & 266     & 12      & 12        & 12      & 12      & 12 \\
+Prec (s)   & NA      & NA      & 0.0675611 & 1.56115 & 7.89327 & 0.0331 \\
+MIP (s)    & NA      & 546.56  & 770.244   & 126.723 & 120.68  & 22.3754 \\
+CG iter    & NA      & 28653   & 10274     & 407     & 390     & 351 \\
+Total (s)  & 1549.17 & 675.319 & 898.149   & 261.121 & 261.937 & 162.47 \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+The conclusions are the same than for the SI case. The performance of the
+preconditioners is not affected by the change of solver.
+
 \subsection{Heterogeneous medium}
 In this example, we use a heterogeneous medium composed of 184 triangles, 3720
 quadrilaterals and 2791 regular hexagons of side 0.05$cm$ for a total of 6695 
@@ -135,11 +157,12 @@ cells and 32178 degrees of freedom. The domain is 5.28275$cm$ by 4.6$cm$.
 Reflective boundary conditions are used. The quadrature is a $S_{16}$ 
 Gauss-Legendre-Chebyshev quadrature. The SI solver has a relative tolerance of 
 $10^{-8}$ and the relative tolerance for MIP is $10^{-10}$. The domain is 
-composed of three zones (see Figure \ref{fig_zone_hex}:
+composed of three zones (see Figure \ref{fig_zone_hex}):
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.4\textwidth]{./Dsa/source_crop}
-  \caption{Zones of the domain.}
+  \includegraphics[width=0.5\textwidth]{./Dsa/source_crop}
+  \caption{Zones of the domain discretized by triangles, rectangles, and
+  hexagons}
   \label{fig_zone_hex}
 \end{figure}
 The properties of the different zones are:
@@ -152,7 +175,7 @@ The properties of the different zones are:
 The different solvers are compared in the next Table:
 \begin{table}[H]
   \begin{center}
-    \caption{Comparison of different preconditioners for a heterogeneous medium.}
+    \caption{Comparison of different preconditioners for a heterogeneous medium}
     \begin{tabular}{|c|c|c|c|c|c|c|}
       \hline
       & No-DSA & CG & PCG-SGS & PCG-MLU & PCG-MLM & AGMG\\
@@ -164,7 +187,6 @@ The different solvers are compared in the next Table:
       Total (s) & 413.274  & 131.297 & 188.586  & 101.888  & 103.734 & 71.5392\\
       \hline
     \end{tabular}
-    \caption{Comparison of preconditioners with heterogeneous medium.}
   \end{center}
 \end{table}
 We can see that the comments that were done for the homogeneous tests are
@@ -182,7 +204,8 @@ next test, they are modified to make the problem more challenging:
 The different solvers are compared in the next Table:
 \begin{table}[H]
   \begin{center}
-    \caption{Comparison of different preconditioners for a heterogeneous medium.}
+    \caption{Comparison of different preconditioners for a highly diffusive 
+    heterogeneous medium}
     \begin{tabular}{|c|c|c|c|c|c|c|}
       \hline
       & No-DSA & CG & PCG-SGS & PCG-MLU & PCG-MLM & AGMG\\
@@ -194,21 +217,22 @@ The different solvers are compared in the next Table:
       Total (s) & 910.566 & 120.889 & 190.413   & 99.7524  & 97.4666 & 70.6424 \\
       \hline
     \end{tabular}
-    \caption{Comparison of preconditioners with heterogeneous medium.}
   \end{center}
 \end{table}
+Making the problem more diffusive increases the interest of using DSA but it
+does not change the behavior of the preconditioners.
 
 \subsection{AMR mesh}
 In this example from \cite{mip}, the domain is $10cm\times 10cm$. The left and bottom
 boundaries are reflective whereas the right and the top boundaries are vacuum. 
 There are 10720 cells: 10482 quadrilaterals, 236 pentagons,
 and 2 hexagons for a total of 43120 degrees of freedom. 
-As in the previous example, the domain is composed if three zones (see Figure
-\ref{fig_zone_amr}:
+As in the previous example, the domain is composed of three zones (see Figure
+\ref{fig_zone_amr}):
 \begin{figure}[H]
   \centering
   \includegraphics[width=6cm]{./Dsa/zone_amr}
-  \caption{Polygons distribution}
+  \caption{Zones of the AMR mesh}
   \label{fig_zone_amr}
 \end{figure}
 where:
@@ -233,13 +257,13 @@ where:
 \end{description}
 This mesh is typical of a mesh obtained after one level of adaptive mesh
 refinement (the cells at the interface of different zones have been refined
-once). We see that instead of introducing hanging nodes, we have introduce
+once). We see that instead of introducing hanging nodes, we have introduced
 pentagons and hexagons in the mesh.
 A $S_{16}$ GLC quadrature is employed. The tolerance on SI is $10^{-8}$ and
 the tolerance on the CG solvers is $10^{-10}$.
 The different solvers are compared in the next Table:
 \begin{table}[H]
-  \caption{Comparison of preconditioners on AMR mesh.}
+  \caption{Comparison of preconditioners on AMR mesh}
   \begin{center}
     \begin{tabular}{|c|c|c|c|c|c|c|}
       \hline
@@ -259,16 +283,16 @@ The different solvers are compared in the next Table:
 As expected, the results are similar to our previous tests.
 
 \subsection{Rectangular cells}
-\emph{\red{I have to redo this example to have at least one example of MIP
-with BLD.}}\\
 Like mentioned previously in this Chapter, AMG can have difficulties when the
-aspect ratio of rectangular cells is high. Moreover, when the aspect ratio is high,
+aspect ratio of rectangular cells is high. Moreover, when the aspect ratio is
+high and the scattering ratio is close to one,
 MIP becomes ill conditioned. In the next example, the domain is 
 square $3cm \times 3cm$ with vacuum boundaries, 300 divisions along x-axis, 
-and 30 divisions along y-axis. There 9000 cells and since PWLD finite elements, 
+and 30 divisions along y-axis. There 9000 cells and we use BLD finite elements, 
 there are 36000 degrees of freedom. The relative tolerance on SI is $10^{-8}$ 
 and the relative tolerance on CG is $10^{-10}$. We use a $S_{8}$ GLC quadrature, 
-$\Sigma_t = 1 cm^{-1}$, and $\Sigma_s = 0.999 cm^{-1}$.
+$\Sigma_t = 1 cm^{-1}$, and $\Sigma_s = 0.999 cm^{-1}$. The source is
+$1n/(cm^3s)$.
 
 In this example, the aspect ratio $Y/X = 10$. We
 also compared the effect of the size of the coarsest grid on the convergence.
@@ -290,23 +314,23 @@ In the next Table, we compare No-DSA, CG, and AGMG defined previously with:
 \begin{landscape}
   \begin{center}
     \begin{table}[H]
-      \caption{Comparison of preconditioners on rectangular mesh.}
+      \caption{Comparison of preconditioners on rectangular mesh}
       \begin{centering}
         \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
           \hline
           & No-DSA & CG & PCG-SGS & PCG-MLU-D & PCG-MLU-M & PCG-MLM-D &
           PCG-MLM-M & AGMG \\
           \hline
-          SI iter    & 62      & 26      & 26       & 26       & 26       & 
-            26       & 26       &  26 \\
-          Prec (s)   & NA      & NA      & 0.015177 & 0.300424 & 0.310577 &
-            0.900931 & 0.847251 & 0.044 \\
-          MIP (s)    & NA      & 115.936 & 249.85   & 157.941  & 153.097  & 
-            154.04   & 147.658  & 6.22109\\
-          CG iter    & NA      & 29623   & 16675    & 2674     & 2674     & 
-            2619     & 2619     & 810 \\
-          Total (s)  & 62.6123 & 146.177 & 249.15   & 188.184  & 182.458  & 
-            185.008  & 177.297  & 33.1472\\
+          SI iter    & 62     & 26      & 26        & 26       & 26       & 26      
+                     & 26     & 26 \\
+          Prec (s)   & NA     & NA      & 0.0146649 & 0.441126 & 0.287056 & 0.92389 
+                     & 0.84336 & 0.061 \\
+          MIP (s)    & NA     & 115.241 & 238.86    & 144.929  & 149.736  & 143.306 
+                     & 147.951 & 6.14671 \\
+          CG iter    & NA     & 29623   & 16675     & 2674     & 2674     & 2619    
+                     & 2619   & 810 \\
+          Total (s)  & 62.248 & 147.789 & 270.209   & 176.879  & 180.484  & 174.534 
+                     & 179.615 & 36.8945 \\
           \hline
         \end{tabular}
       \end{centering}
