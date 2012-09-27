@@ -7,12 +7,12 @@ GMRES iterations and the elapsed time are compared for three methods:
   \item DSA preconditioning (DSA).
   \item Angular multigrid (DSA variant) preconditioning (ANMG-DSA).
 \end{itemize}
-For all the tests the first in this section, BLD finite elements are used and GMRES is
-restarted every 30 iterations. For the comparison between ANMG-DSA and
-ANMG-$P1$SA GMRES is restarted every 20 iterations.
+For every test in this section except the first one, BLD finite elements are used
+and GMRES is restarted every 30 iterations. For the comparison between
+ANMG-DSA and ANMG-$P1$SA GMRES is restarted every 20 iterations.
 \subsection{Comparison between ANMG-DSA and ANMG-$P1$SA}
 The test uses a 5$cm$ square domain, uniformly discretized using $50 \times
-50$ cells. The homogeneous medium is homogeneous with an uniform isotropic source of
+50$ cells. The homogeneous medium is homogeneous with a uniform isotropic source of
 intensity $10 n/(cm^3 s)$ and Fokker-Planck cross sections with $\alpha=1$. 
 $\Sigma_t$ is chosen to be equal to $\Sigma_{s,0}$. The quadrature is the 
 Gauss-Legendre-Chebyshev triangular Galerkin quadrature. The GMRES solver is 
@@ -23,7 +23,7 @@ multigrid technique \cite{pyamg,amg} with a relative tolerance of $10^{-6}$. The
 number of GMRES iterations needed to solve ANMG-DSA (multigrid preconditioner 
 with $S_2$ as coarsest transport level and diffusion solve) and ANMG-$P1$SA 
 (multigrid preconditioner with $S_4$ as coarsest transport level and $P1$SA solve) 
-are compared, see Table \ref{table_anmg_d_p1}. The comparison is performed for 
+are compared (see Table \ref{table_anmg_d_p1}). The comparison is performed for 
 $S_4$, $S_8$ and $S_{16}$ (for which the values of the anisotropy order $L$ are 4, 
 8, 16, respectively).
 \begin{table}[H]
@@ -50,16 +50,16 @@ system) than the DSA equations (which are SPD). For these reasons, we
 recommend using the ANMG-DSA variant of the angular multigrid technique.
 Consequently, only the ANMG-DSA method will be employed in the later tests.
 \subsection{Test Case with a Volumetric Source}
-In this test, we compare ANMG-DSA to Sweep and DSA preconditioning. An uniform
-isotropic source of intensity 10 $n/(cm^3 s)$. $S_4$, $S_8$, $S_{16}$, and
+In this test, we compare ANMG-DSA to Sweep and DSA preconditioning. A uniform
+isotropic source of intensity 10 $n/(cm^3 s)$ was used. $S_4$, $S_8$, $S_{16}$, and
 $S_{32}$ calculations were performed. Fokker-Planck cross sections with
 $\alpha=1$ are used and $\Sigma_t = \Sigma_{s,0}$ $(c=1)$. The domain is homogeneous
 and its size is $50cm \times 50cm$ discretized by $50\times 50$ cells. The 
-thickness of the domain varies from 50 to 2690 mean-free-path (the total cross 
+thickness of the domain varies from 50 to 2690 mean free path (the total cross 
 section varies with $L$ for Fokker-Planck cross sections: $\Sigma_{t,S_4}=10cm^{-1},
 \Sigma_{t,S_8}=36cm^{-1}, \Sigma_{t,S_{16}}=136cm^{-1}, 
 \Sigma_{t,S_{32}}=528cm^{-1}$) but stays constant at five transport
-mean-free-path. The relative tolerance on GMRES, which is restarted every 30
+mean free path. The relative tolerance on GMRES, which is restarted every 30
 iterations, is $10^{-6}$ whereas the
 relative convergence on DSA, solved by AGMG (see next Chapter), is $10^{-8}$.
 The solution for $S_{32}$ calculation is given on Figure \ref{fig_s_32}

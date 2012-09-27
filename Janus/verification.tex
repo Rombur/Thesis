@@ -17,14 +17,14 @@ cm^{-1}$. We use vacuum boundary conditions and a $S_{8}$ GLC quadrature.
 We show two tests: one which uses an uniform mesh of 100 by 100 cells and BLD
 finite elements and the other which uses an unstructured mesh of 9972
 quadrilaterals and PWLD finite elements. Given \cref{ez_pz}, the scalar flux
-should be equals to two. In Figures \ref{quad_diff} and \ref{poly_diff}, the 
-scalar flux less or equal to 1.999 is in blue and the scalar flux greater or 
-equal to 2.001 is in red:
+should be equal to two. In Figures \ref{quad_diff} and \ref{poly_diff}, the 
+scalar flux less than or equal to 1.999 is in blue and the scalar flux greater
+than or equal to 2.001 is in red:
 \begin{figure}[H]
   \centering
-  \subfloat[Rectangular cells]{\includegraphics[width=0.5\textwidth]
-  {./Janus/quad_diff}\label{quad_diff}}
-  \subfloat[Quadrilateral cells]{\includegraphics[width=0.5\textwidth]
+  \subfloat[Rectangular cells]{\includegraphics[width=0.63\textwidth]
+  {./Janus/quad_diff}\label{quad_diff}}\\
+  \subfloat[Quadrilateral cells]{\includegraphics[width=0.63\textwidth]
   {./Janus/poly_diff}\label{poly_diff}}
   \caption{Scalar flux}
 \end{figure}
@@ -42,7 +42,7 @@ benchmark consists of five regions:
   \includegraphics[width=0.4\textwidth]{./Janus/benchmark}
   \caption{Zones of the IAEA EIR-2 benchmark problem}
 \end{figure}
-The properties of the different zones are:
+The properties of the different zones are given in Table \ref{tabl_1}:
 \begin{table}[H]
   \begin{center}
     \caption{Properties of the different zones of the benchmark}
@@ -57,6 +57,7 @@ The properties of the different zones are:
              height ($cm$) & 86   & 25   & 25   & 25   & 25 \\
       \hline
     \end{tabular}
+    \label{tabl_1}
   \end{center}
 \end{table}
 The colored zones are in the middle of the white zone. In Figures \ref{glc_bld} 

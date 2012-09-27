@@ -10,13 +10,14 @@ are :
   \frac{1}{4}\phi_0 - \frac{1}{2} \mathrm{D} &=0 & \textrm{ for }\br \in
   \partial \mc{D}^d\\
   -\mathrm{D}\partial_n \phi_0 &= J^{inc} & \textrm{ for }\br \in \partial
-  \mc{D}^r
+  \mc{D}^r,
 \end{align}
 where $\phi_0$ is the scalar flux and $\mathrm{D}$ is the diffusion
 coefficient. Applying the IP technique, we obtain:
 \begin{equation}
   b_{IP}(\phi_0,\phi_0^*) = l_{IP}(\phi_0^*)
-\end{equation}
+  \label{b_l_ip}
+\end{equation}   
 \begin{equation}
   \begin{split}
     b_{IP}(\phi_0,\phi_0^*)=& \(\Sigma_a \phi_0,\phi_0^*\)_{\mc{D}} + 
@@ -34,14 +35,15 @@ and:
 \begin{equation}
   l_{IP}(\phi_0^*) = \(Q_0,\phi_0^*\)_{\mc{D}} +
   \(J^{inc},\phi_0^*\)_{\partial \mc{D}^r}
+  \label{l_ip}
 \end{equation}
 where $\phi_0$ and $\phi_0^*$ $\in W_{\mc{D}}^h$ where the finite
 dimensional polynomial space is $W_{\mc{D}}^h = \{\phi_0 \in L^2(\mc{D});
-\phi_0|_K \in V_p(K), \forall K \in \mathbb{T}_h\}$ with $V_p(K)$ is the space
+\phi_0|_K \in V_p(K), \forall K \in \mathbb{T}_h\}$ where $V_p(K)$ is the space
 of polynomials of degree up to $p$ on element $K$, $(f,g)_{\mc{D}} = 
 \sum_{K\in \mathbb{T}_h} \(f,g\)_K$, 
 $(f,g)_K = \int_K fg\ d\br$, $(f,g)_{E_h^i}=\sum_{e\in E_h^i}(f,g)_e$, 
-$(f,g)_e = \int_e fg\ ds$, $Q_0 = \Sigma_{s,0} \delta \phi$, 
+$(f,g)_e = \int_e fg\ ds$, $Q_0 = \Sigma_{s,0} \delta \phi_0$, 
 $J^{inc} = \sum_{\bo_m\cdot\bs{n}_b >0} w_m |\bo_m \cdot \bs{n}_b| \delta
 \psi_m$, $\mathbb{T}_h$ is the mesh used to discretize the spatial domain
 $\mc{D}$ into nonoverlapping elements $K$, $E_h^i$ is the set of interior
@@ -75,8 +77,8 @@ orthogonal to the edge $e$. On triangular cells, $h_{\bot}$ equals
 $\frac{2A}{L_e}$ where $A$ is the area of the triangle and $L_e$ is the length
 of the edge $e$.\\
 This discretization of DSA is SPD. Unfortunately, the authors in \cite{mip} 
-found that IP yields 
-an unstable DSA scheme when the cells are large compared to the mean-free-path. 
+found that IP yields unstable DSA scheme when the cells are large compared to
+the mean free path.
 This phenomenon is due to the fact that in optically thick medium, the ratios 
 $\frac{D^{\pm}}{h^{\pm}}$ are very small. Therefore, the penalty coefficient 
 is small and the method is unstable.\\
@@ -85,7 +87,7 @@ the Diffusion Conforming Form (DCF). This discretization starts from
 the one-group $S_n$ transport equation with isotropic source and scattering:
 \begin{equation}
   \bo_d\cdot\bn \psi_d(\br) + \Sigma_t(\br) \psi_d = \frac{1}{4\pi}
-  \Sigma_s(\br) \phi_0(\br) + \frac{1}{4\pi}Q(\br)
+  \Sigma_s(\br) \phi_0(\br) + \frac{1}{4\pi}Q(\br).
   \label{1g_iso}
 \end{equation}
 The variational form of this equation is:
@@ -96,20 +98,20 @@ with:
 \begin{equation}
   b(\psi,\psi^*) = a(\psi,\psi^*)  - \sum_{e\in \partial \mc{D}^r}
   \sum_{\bo_d\cdot \bs{n}_b<0} 4\pi w_m \la \psi_{d'},\psi_d^*\ra_e -
-  \(\Sigma_s \phi_0,\phi_0^*\)_{\mc{D}}
-\end{equation}
+  \(\Sigma_s \phi_0,\phi_0^*\)_{\mc{D}},
+\end{equation}                
 \begin{equation}
   \begin{split}
     a(\psi,\psi^*) =& \sum_{d=1}^M 4 \pi w_d \(\(\bo_d\cdot \bn +\Sigma_t\)
     \psi_d,\psi_d^*\)_{\mc{D}} + \sum_{d=1}^M 4\pi w_d \la \llb \psi_m\rrb,
     \psi_m^{*,+}\ra_{E_h^i}\\
     &+\sum_{e\in \partial \mc{D}^r} \sum_{\bo_d\cdot \bs{n}_b<0} 4 \pi\la 
-    \psi_d,\psi_d^*\ra_e 
+    \psi_d,\psi_d^*\ra_e,
   \end{split}
 \end{equation}
 \begin{equation}
   l(\psi^*) = (Q,\phi^*)_\mc{D} + \sum_{e\in\partial \mc{D}^d} \sum_{\bo_d
-    \cdot \bs{n}_b<0} 4\pi w_m \la \psi_m^{inc},\psi_m^*\ra_e
+    \cdot \bs{n}_b<0} 4\pi w_m \la \psi_m^{inc},\psi_m^*\ra_e,
 \end{equation}
 where $\la f,g, \ra_e = \int_e |\bo_d \cdot \bs{n}_e| fg\ ds$, $\la f,g
 \ra_{E_h^i} = \sum_{e\in E_h^i} \la f,g \ra_e$, and $\psi$ and $\psi^*$ 
@@ -118,7 +120,7 @@ $W_{\mc{D}}^h = \{\psi \in L^2(\mc{D});
 \psi|_K \in V_p(K), \forall K \in \mathbb{T}_h\}$ with $V_p(K)$ is the space
 of polynomials of degree up to $p$ on element $K$, $(f,g)_{\mc{D}} = 
 \sum_{K\in \mathbb{T}_h} \(f,g\)_K$.\\
-The operator $a$ is constituted of the streaming term, the interaction term 
+The operator $a$ consists of the streaming term, the interaction term 
 and the upwind terms. This is the operator that is inverted during a transport 
 sweep. The operator
 $b$ contains $a$, the scattering term and the reflective boundary
@@ -127,7 +129,7 @@ The discretized SI at iteration $\ell$ can be written as:
 \begin{equation}
   a(\psi^{(\ell+1/2)},\psi^*) = l(\psi^*) + (\Sigma_s
   \phi_0^{(\ell)},\phi_0^*)_{\mc{D}} + \sum_{e\in \mc{D}^r} \sum_{\bo_d \cdot
-  \bs{n}_b < 0} 4\pi w_d \la \psi_{d'}^{(\ell)},\psi_d^*\ra_e
+  \bs{n}_b < 0} 4\pi w_d \la \psi_{d'}^{(\ell)},\psi_d^*\ra_e,
   \label{si_l_b}
 \end{equation}
 \begin{equation}
@@ -138,15 +140,15 @@ If we note the converged angular and scalar fluxes $\psi^c$ and $\phi_0^c$, we g
 \begin{equation}
   a(\psi^{c},\psi^*) = l(\psi^*) + (\Sigma_s
   \phi_0^{c},\phi_0^*)_{\mc{D}} + \sum_{e\in \mc{D}^r} \sum_{\bo_d \cdot
-  \bs{n}_b < 0} 4\pi w_d \la \psi_{d'}^{c},\psi_d^*\ra_e
+  \bs{n}_b < 0} 4\pi w_d \la \psi_{d'}^{c},\psi_d^*\ra_e,
   \label{si_c_b}
 \end{equation}
 \begin{equation}
   \phi_0^{c} = \sum_{d=1}^M w_d \psi_d^{c}.
   \label{si_c_a}
 \end{equation}
-Subtracting \cref{si_l_a}, respectively \cref{si_l_b}, to \cref{si_c_a},
-respectively \cref{si_c_b}, we obtain an angular error equation:
+Subtracting \cref{si_l_b,si_l_a} from \cref{si_c_b,si_c_a} respectively,
+we obtain an angular error equation:
 \begin{equation}
   a(\epsilon^{(\ell+1/2)},\psi^*) = \(\Sigma_s \mc{E}^{(\ell)},\phi_0^*\)_{\mc{D}} +
   \sum_{e\in \partial \mc{D}^r} \sum_{\bo_d \cdot \bs{n}_b<0} 4\pi w_d \la
@@ -166,7 +168,7 @@ It is important to note that the linear form $l$ has disappeared from
 \cref{si_f} and thus, the external volumetric source and the incident
 Dirichlet boundary conditions have disappeared. We now introduce:
 \begin{align}
-  & \delta \psi^{(\ell)} = \psi^{(\ell+1/2)}-\psi^{(\ell)} = \epsilon^{(c)}-
+  & \delta \psi^{(\ell)} = \psi^{(\ell+1/2)}-\psi^{(\ell)} = \epsilon^{(\ell)}-
   \epsilon^{(l+1/2)}\\
   & \delta \phi_0^{(\ell)} = \phi_0^{(\ell+1/2)} - \phi_0^{(\ell)} = \mc{E}^{(\ell)} -
   \mc{E}^{(\ell+1/2)}.
@@ -182,19 +184,21 @@ Note that solving \cref{tsa} would give the exact correction needed to
 obtain the converged transport solution:
 \begin{align}
   &\psi^c = \psi^{(\ell+1/2)} + \epsilon^{(\ell+1/2)}\\
-  &\phi_0^c = \phi_0^{(\ell+1/2)} + \mc{E}^{(\ell+1/2)}
+  &\phi_0^c = \phi_0^{(\ell+1/2)} + \mc{E}^{(\ell+1/2)},
 \end{align}
-but solving \cref{tsa} is as difficult as solving the transport equation.
+but solving \cref{tsa} is as difficult as solving our original transport equation.
 Therefore, we will replace the transport operator in \cref{tsa} by a diffusion 
 operator instead. The solution of this diffusion operator will be denoted by 
 a $\tilde{}$ symbol:
 \begin{align}
   & \psi^{(\ell+1)} = \psi^{(\ell+1/2)} + \tilde{\epsilon}^{(\ell+1/2)}\\
-  & \phi^{(\ell+1)} = \phi^{(\ell+1/2)} + \tilde{\mc{E}}^{(\ell+1/2)}
+  & \phi_0^{(\ell+1)} = \phi_0^{(\ell+1/2)} + \tilde{\mc{E}}^{(\ell+1/2)}.
 \end{align}
-If we assume that the primal and dual angular fluxes
-are linearly anisotropic (diffusion approximation) and we assume Fick's law to
-be valid:
+In the remainder of this section, to simplify the notation and the comparison
+between the final result of the development and \cref{b_l_ip,b_ip,l_ip}, we
+use $\phi_0$ instead of $\tilde{\mc{E}}^{(\ell+1/2)}$. If we assume that the 
+primal and dual angular fluxes are linearly anisotropic (diffusion
+approximation) and we assume Fick's law to be valid:
 \begin{align}
   & \bs{J} = -\mathrm{D}\bn \phi_0\\
   & \bs{J}^* = \mathrm{D}\bn \phi_0^*,
@@ -204,10 +208,10 @@ we then obtain:
   \tilde{\epsilon}^{(\ell+1/2)} &= \frac{1}{4\pi} (\phi_0-3\mathrm{D} \bn
   \phi_0 \cdot \bo_d) \label{eps_tilde}\\
   \tilde{\psi}_d^* &= \frac{1}{4\pi} (\phi_0^*+3\mathrm{D} \bo \phi_0^*\cdot
-  \bo_d) \label{psi_tilde}
+  \bo_d). \label{psi_tilde}
 \end{align}
 Substituting \cref{eps_tilde,psi_tilde} in \cref{tsa}, we obtain a
-synthetic discontinuous finite elements diffusion operator in which the
+discontinuous finite elements DSA operator in which the
 scalar flux $\phi_0$ is the only unknown. Using:
 \begin{align}
   & \sum_{d=1}^M w_d = 4 \pi \label{omega_0}\\
@@ -251,7 +255,7 @@ Now, we analyze the streaming term:
     \phi_0,\bn \phi_0^*\)_{\mc{D}}\\
      & + \(\mathrm{D} \bn \phi_0^+ \cdot \bs{n}_e, 
     \phi_0^{*,+}\)_{E_h^i}\\ 
-     & - \(\mathrm{D} \bo \phi_0^{-} \cdot \bs{n}_e,
+     & - \(\mathrm{D} \bn \phi_0^{-} \cdot \bs{n}_e,
     \phi_0^{*,-}\)_{E_h^i}\\
      & - \(\mathrm{D}\bn \phi_0 \cdot \bs{n_e},\phi_0^*\)_{\partial \mc{D}}
   \end{split}
@@ -303,7 +307,7 @@ where $\bs{n}\bs{n}$ is a matrix. Even if these properties cannot be strictly
 satisfied, numerical results show that the error is negligible.
 Finally, we obtain:
 \begin{equation}
-  b_{DCF}(\phi_0,\phi_0^*) = l_{DCF}(\phi_0^*)
+  b_{DCF}(\phi_0,\phi_0^*) = l_{DCF}(\phi_0^*),
 \end{equation}
 with:
 \begin{equation}
@@ -325,7 +329,7 @@ with:
     & - \frac{9}{16} \(\mathrm{D}\partial_n
     \phi_0,\mathrm{D} \partial_n \phi_0^*\)_{\partial \mc{D}^d}
     -\frac{9}{4}\(\mathrm{D}\partial_n \phi_0,\mathrm{D}\partial_n
-    \phi_0^*\)_{\partial \mc{D}^r}
+    \phi_0^*\)_{\partial \mc{D}^r},
   \end{split}
 \end{equation}
 \begin{equation}
@@ -334,7 +338,7 @@ with:
      J^{inc},\phi_0^*\)_{\partial \mc{D}^r} - \(\bs{\mc{Y}},\mathrm{D}\bn
     \phi_0^*\)_{\partial \mc{D}^r}\\ 
     &+ 2 \(\bs{\mc{Y}}^{inc} \cdot \bs{n}, \mathrm{D} \partial_n 
-    \phi_0^*\)_{\partial \mc{D}^r}
+    \phi_0^*\)_{\partial \mc{D}^r},
   \end{split}
 \end{equation}
 where $\bs{\mc{Y}}^{inc} = - \sum_{\bo_d \cdot \bs{n}_b>0} 3 w_d \bo_d |\bo_d
@@ -356,11 +360,11 @@ In this limit, $b_{DCF}$ becomes:
     + \frac{1}{4} \(\phi_0,\phi_0^*\)_{\partial \mc{D}^d}\\ 
     &-\frac{1}{2} \(\phi_0,\mathrm{D} \partial_n \phi_0^*\)_{\partial \mc{D}^d} -
     \frac{1}{2} \(\mathrm{D} \partial_n \phi_0,\phi_0\)_{\partial
-    \mc{D}^d}
+    \mc{D}^d},
   \end{split}
 \end{equation}
-which is exactly the same equation than \cref{b_ip} if 
-$\kappa_e^{IP}=\frac{1}{4}$.\\
+which is exactly the same as \cref{b_ip} if $\kappa_e^{IP}=\frac{1}{4}$.
+
 MIP is obtained by replacing the penalty coefficient, $\kappa_e^{IP}$, 
 by $\kappa_e^{MIP}=\max \(\kappa_e^{IP},\frac{1}{4}\)$ in \cref{b_ip}.
 This ensures that MIP will converge in optically thick medium since the
@@ -383,7 +387,8 @@ $\(\textrm{apothem}=2\times \frac{\textrm{area}}{\textrm{perimeter}}\)$. If
 the cell has an odd number of edges, the orthogonal length is given by the 
 apothem plus the circumradius, i.e. the radius of the circle circumscribed to 
 the polygon $\(\textrm{circumradius}=\sqrt{\frac{2\times \textrm{area}}{V
-\sin\(\frac{2\pi}{V}\)}}\)$. Therefore, $h_{\bot}$ is given by:
+\sin\(\frac{2\pi}{V}\)}}\)$. Therefore, $h_{\bot}$ is given in Table
+\ref{table_1} by:
 \begin{table}[H]
 \begin{center}
 \caption{Orthogonal length of the cell for different cells}
@@ -398,5 +403,6 @@ $\frac{\textrm{area}}{L_e}$ & $4\times
 \textrm{area}}{V\sin\(\frac{2\pi}{V}\)}}$\\
 \hline
 \end{tabular}
+\label{table_1}
 \end{center}
 \end{table}

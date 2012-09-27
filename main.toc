@@ -37,7 +37,7 @@
 \contentsline {subsection}{\numberline {1}Source Iteration and DSA}{62}
 \contentsline {section}{\numberline {C}Review of previous angular multigrid work}{63}
 \contentsline {subsection}{\numberline {1}One dimensional geometry: the Morel and Manteuffel (MM) method}{63}
-\contentsline {subsection}{\numberline {2}Multidimensional geometry: the Pautz-Adams-Morel (PAM) methods}{66}
+\contentsline {subsection}{\numberline {2}Multidimensional geometry: the Pautz-Adams-Morel (PAM) methods}{65}
 \contentsline {section}{\numberline {D}Angular multigrid as preconditioner for Krylov Solvers}{67}
 \contentsline {subsection}{\numberline {1}ANMG-DSA}{68}
 \contentsline {subsection}{\numberline {2}ANMG-P1SA}{70}
@@ -45,11 +45,11 @@
 \contentsline {section}{\numberline {F}Results}{73}
 \contentsline {subsection}{\numberline {1}Comparison between ANMG-DSA and ANMG-$P1$SA}{73}
 \contentsline {subsection}{\numberline {2}Test Case with a Volumetric Source}{74}
-\contentsline {subsection}{\numberline {3}Test Case with a Heterogeneous Medium (Beam problem)}{76}
-\contentsline {section}{\numberline {G}Conclusions}{78}
-\contentsline {chapter}{\numberline {V}\uppercase {Modified Interior Penalty on Arbitrary Polygonal Cells}}{79}
-\contentsline {section}{\numberline {A}Introduction}{79}
-\contentsline {section}{\numberline {B}Modified Interior Penalty on arbitrary polygonal cells}{83}
+\contentsline {subsection}{\numberline {3}Test Case with a Heterogeneous Medium (Beam problem)}{77}
+\contentsline {section}{\numberline {G}Conclusions}{79}
+\contentsline {chapter}{\numberline {V}\uppercase {Modified Interior Penalty on Arbitrary Polygonal Cells}}{80}
+\contentsline {section}{\numberline {A}Introduction}{80}
+\contentsline {section}{\numberline {B}Modified Interior Penalty on arbitrary polygonal cells}{84}
 \contentsline {section}{\numberline {C}Algebraic Multigrid}{94}
 \contentsline {subsection}{\numberline {1}Introduction}{94}
 \contentsline {subsection}{\numberline {2}Classical AMG (interpolation method)}{98}
@@ -69,7 +69,7 @@
 \contentsline {section}{\numberline {B}Implementation}{120}
 \contentsline {section}{\numberline {C}Verifications}{125}
 \contentsline {subsection}{\numberline {1}Infinite medium}{125}
-\contentsline {subsection}{\numberline {2}Convergence order}{126}
+\contentsline {subsection}{\numberline {2}Convergence order}{127}
 \contentsline {chapter}{\numberline {VII}\uppercase {Conclusions and future work}}{129}
 \contentsline {section}{\numberline {A}Conclusions}{129}
 \contentsline {section}{\numberline {B}Future work}{131}

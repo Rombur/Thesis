@@ -4,13 +4,12 @@
 \chapter{\uppercase{Introduction}}
 \section{Purpose}
 The transport of photons and electrons has many applications: satellite
-electronics shielding, flash x-ray machine design, and a wide variety of other
-applications. One of them is 
-radiotherapy. Radiotherapy uses photons and charged particles to 
+electronics shielding, flash x-ray machine design, radiotherapy, and a wide
+variety of other applications. Radiotherapy uses photons and charged particles to 
 damage the DNA of cancerous cells. When using photons, free electrons are 
 generated and ionize the environment to create free radicals that damage the cells. 
 The absorbed dose, defined as the energy deposited per unit of mass, is used to 
-gauge whether a cell will die due to the amount of radiation received or not. 
+gauge whether a cell will die from the amount of radiation received or not. 
 Several methods can be
 applied to compute the dose distribution in the body: semi-analytic,
 deterministic, and Monte-Carlo methods. Monte-Carlo methods yield very
@@ -20,7 +19,7 @@ pencil-beam convolution \cite{pencil_beam_2,pencil_beam_1} and
 convolution-superposition \cite{superposition}, employ pre-calculated
 Monte-Carlo dose kernels, which are then locally scaled to approximate photon
 and electron transport in the presence of heterogeneities. These methods
-have some issues in the presence of large density gradients such as those
+have issues in the presence of large density gradients such as those
 found at interfaces between different materials: air, bone, lung and soft
 tissue \cite{krieger,seco,acuros}. Deterministic methods like the discrete 
 ordinates ($S_n$) method has been shown to be quite accurate for electron and 
@@ -28,15 +27,15 @@ coupled electron-photon transport \cite{accuracy_2,morel_81,accuracy_1}.
 However, devising efficient solution algorithms for $S_n$ multidimensional
 photon-electron transport is an ongoing active field of research.
 
-One difficulty of using the discrete ordinates method arises from the transport 
-of electrons. Charged particles interact undergo interactions with the 
-background medium. Such interactions result in extremely small changes in particle 
-direction and energy. These interactions are well characterized by the 
-Fokker-Planck limit of the Boltzmann equation \cite{fp_limit,morel_96}. In this 
-limit, the directional and energy changes are decoupled, the former is modeled 
-by the continuous scattering operator and the latter is modeled by the 
+A particular difficulty of using the discrete ordinates method arises from the
+transport of electrons. Charged particles undergo interactions with the 
+background medium and these interactions result in extremely small changes in
+particle direction and energy. These interactions are well characterized by
+the Fokker-Planck limit of the Boltzmann equation \cite{fp_limit,morel_96}. In 
+this limit, the directional and energy changes are decoupled; the former is 
+modeled by the continuous scattering operator and the latter is modeled by the 
 continuous-slowing-down operator. The mean free path and the directional 
-change per scattering interaction go to zero while the momentum transfer (also 
+change per scattering interaction approach zero while the momentum transfer (also 
 called the transport-corrected scattering cross section) remains fixed.
 
 When the scattering is highly forward-peaked, solving the $S_n$ transport equation 
@@ -93,8 +92,8 @@ solving highly forward-peaked scattering problems. Our hope is
 that GMRES will be able to stabilize the proposed scheme without the use of a
 filter and that the new scheme will have convergence properties similar to
 those of the one-dimensional scheme. At the coarsest level of the angular
-multigrid technique, a DSA 
-scheme or a P1SA scheme has to be used. We will use an adaptation of the Modified 
+multigrid technique, a DSA scheme or a P1SA scheme has to be used. Here, we 
+will use an adaptation of the Modified 
 Interior Penalty DSA (MIP) \cite{mip}. This DSA was developed for discontinuous 
 finite elements on triangular cells and it is symmetric and positive-definite
 (SPD). We will adapt MIP to Bilinear Discontinuous Finite elements (BLD) on 
@@ -107,7 +106,7 @@ effectiveness of algebraic multigrid methods (AMG) to precondition the Krylov so
 \cite{amg,amg_course}. Algebraic multigrid methods allow the use of multigrid
 techniques when there is no grid or when the mesh is unstructured. Instead of
 using a succession of grids based on the geometry of the problems, the grids
-are based on properties of the matrix. This allows the use of AMG as a black-box
+are based on properties of the matrix which allows the use of AMG as a black-box
 solver or preconditioner. MIP will be adapted to polygonal cells due to the
 advantages of polygonal cells. Polygonal cells can 
 potentially reduce the number of unknowns, while maintaining symmetry 
@@ -163,7 +162,7 @@ where:
 scattering macroscopic cross scattering
 \item $Q(\br,\bo,E)$ is the volumetric source
 \end{itemize}
-In the rest of this work, macroscopic cross sections will simply be called cross
+In the remainder of this work, macroscopic cross sections will simply be called cross
 sections when no confusion is possible. Standard boundary conditions can be
 applied to \cref{transport_p}. The most common is the incoming flux boundary
 condition:
@@ -179,12 +178,12 @@ where $\partial \mc{D}$ is the boundary of the domain $\mc{D}$. If $g=0$,
 energy $(E)$. In practice, the energy variable is treated through a
 multigroup formalism, with outer iterations between all energy groups to
 include down/up scattering events (including transfers between particle
-types). The multigroup equations are solved one at a time, yielding a
-within-group transport problem. This within-group problem retains the 
-challenging features of the electron-photon problem we want to address. 
-As such, the methods developed here will be presented for the within-group 
-transport equation. However, the techniques described here apply 
-straightforwardly to the multigroup equations. The energy-integrated 
+types). The multigroup equations are solved one group at a time.
+This within-group problem, which is equivalent to a monoenergetic problem, 
+retains the challenging features of the electron-photon problem we want to 
+address. As such, the methods developed here will be presented for the 
+monoenergetic transport equation. However, the techniques described here 
+apply straightforwardly to the multigroup equations. The monoenergetic 
 \cref{transport_p} is given by:
 \begin{equation}
 \bo\cdot \bn \psi(\br,\bo) + \Sigma_t(\br)\psi(\br,\bo) =
@@ -218,11 +217,11 @@ polynomials:
 \cref{scatt_d_1} becomes:
 \begin{equation}
   \begin{split}
-    \int_{4\pi} \Sigma_s(\br,\bo'\cdot\bo) \psi(\br,\bo') d\bo' &=
-    \int_{4\pi} \sum_{l=0}^{\infty} \frac{2l+1}{4\pi}\frac{4\pi}{2l+1}
-    \Sigma_{s,l}(\br) \\
-    &\quad \sum_{m=-l}^{l} Y_l^m(\bo)Y_l^{m,*}(\bo') \psi(\br,\bo')d\bo'\\
-    &= \sum_{l=0}^{\infty} \Sigma_{s,l}(\br) \sum_{m=l}^l \phi_{l,m}(\br)
+    \int_{4\pi} \Sigma_s(\br,\bo'\cdot\bo) \psi(\br,\bo') d\bo' =&
+    \int_{4\pi} \(\sum_{l=0}^{\infty} \frac{2l+1}{4\pi}\frac{4\pi}{2l+1}
+    \Sigma_{s,l}(\br)\right. \\
+    &\left. \sum_{m=-l}^{l} Y_l^m(\bo)Y_l^{m,*}(\bo') \psi(\br,\bo')\)d\bo'\\
+    =& \sum_{l=0}^{\infty} \Sigma_{s,l}(\br) \sum_{m=l}^l \phi_{l,m}(\br)
     Y_l^m(\bo),
   \end{split}
 \end{equation}
@@ -265,7 +264,7 @@ discretization of \cref{transport_p2} is given by:
 \end{equation}
 \Cref{transport_sn} can be written in a more compact way using operators:
 \begin{equation}
-  \bs{L}\Psi = \bs{M}\bs{\Sigma}\bs{D}\Psi + Q
+  \bs{L}\Psi = \bs{M}\bs{\Sigma}\bs{D}\Psi + Q,
 \label{transport_operator}
 \end{equation}
 where:
@@ -290,8 +289,8 @@ path goes to zero and $\bar{\mu}_0$ goes to one. The Fokker-Planck equation is
 not valid for any forward-peaked scattering kernel and therefore, the BFP
 approximation has some limitations. In particular, the Henyey-Greenstein
 kernel and the Rutherford cross section do not satisfy the Fokker-Planck
-limit. Being aware of these limitations, we introduce the Fokker-Planck cross
-section that allows to reduce the Fokker-Planck equation and the BFP equation
+limit. With these limitations in mind, we introduce the Fokker-Planck cross
+sections that reduce the Fokker-Planck equation and the BFP equation
 to a Boltzmann equation. Fokker-Planck cross sections cannot be used with any
 angular $S_n$ quadrature but specific quadratures, known as Galerkin
 quadratures, must be adopted. The importance and the properties of these
@@ -324,15 +323,15 @@ ineffective. In this Chapter, we show that if the angular multigrid method is
 recast as a preconditioner for a Krylov solver, the method does not need 
 diffusion filtering for stability and is always effective and efficient.
 
-In Chapter \ref{mip_chapter}, we adapt the Modified Interior 
-Penalty (MIP) DSA developed for triangular cells to quadrilateral and polygonal 
+In Chapter \ref{mip_chapter}, we adapt the Modified Interior Penalty (MIP) 
+DSA method developed for triangular cells to quadrilateral and polygonal 
 cells. This DSA discretization is used as the coarsest level of the angular 
 multigrid method developed in Chapter \ref{anmg_chapter}. Since MIP is
-symmetric and positive-definite, the most common method to solve it, is to use
+symmetric and positive-definite, the most common method to solve it, is 
 conjugate gradient (CG) preconditioned by SSOR. In Chapter \ref{mip_chapter}, we 
 investigate algebraic multigrid methods as CG preconditioners to solve MIP. 
 We show that algebraic multigrid preconditioners are vastly superior to more
-common CG preconditioners if the matrix associated to MIP is stored.
+common CG preconditioners if the matrix associated with MIP is stored.
 
 In Chapter \ref{janus_chapter}, the implementation of the code
 developed for this research is detailed.

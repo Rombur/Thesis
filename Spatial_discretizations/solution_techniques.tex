@@ -15,12 +15,12 @@ Both the SI and the GMRES approaches require transport sweeps (the action of
 $\bs{L}^{-1}$ is required in both procedures).
 
 When the scattering ratio $c=\frac{\Sigma_s}{\Sigma_t}$ tends to one in
-optically thick domains, the number of SI and GMRES can become large. Fourier
-analyses (for continuous, i.e., undiscretized transport) confirmed that SI
-attenuates rapidly error modes associated with high frequencies (transport
+optically thick domains, the number of SI and GMRES iterations can become large. 
+Fourier analyses (for continuous, i.e., undiscretized transport) confirmed that SI
+rapidly attenuates error modes associated with high frequencies (transport
 dominated modes) while leaving almost unaffected low-frequency error modes
 (diffusion dominated modes) \cite{dsa_ref}. To accelerate the convergence, a DSA
-preconditioner is thus needed; in addition, some level of consistency is
+preconditioner is needed. In addition, some level of consistency is
 necessary between the spatial discretization of the transport operator and
 than of the diffusion operator. In Chapter \ref{mip_chapter}, we will adapt
 the MIP discontinuous finite element discretization of the diffusion equation
@@ -130,11 +130,11 @@ the scattering due to the difference in successive flux iterates) and,
 therefore, is just as difficult to solve. However, solving it would provide
 the exact additive term required to obtain the exact solution:
 \begin{equation}
-  \Psi = \Psi^{(\ell+1)} + \epsilon^{(\ell+1)}
+  \Psi = \Psi^{(\ell+1)} + \epsilon^{(\ell+1)}.
 \end{equation}
 Since the diffusion error modes are not efficiently attenuated by the above SI
-process, it is natural to seek a low-order error equation. Taking the $0^{th}$
-and $1^{st}$ angular moment moment of \cref{ang_err_eq}, one obtains a
+process, it is natural to seek a low-order error equation. Taking the zeroth
+and first angular moment moment of \cref{ang_err_eq}, one obtains a
 diffusion equation for the scalar $\varepsilon$:
 \begin{equation}
   \bs{A}\epsilon^{(\ell+1)} = \Sigma \(\Phi^{(\ell+1)}-\Phi^{(\ell)}\)

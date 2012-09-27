@@ -23,10 +23,10 @@
 \contentsline {figure}{\numberline {IV.2}{\ignorespaces Eigenspectrum of the DSA preconditioned system\relax }}{72}
 \contentsline {figure}{\numberline {IV.3}{\ignorespaces Eigenspectrum of the ANMG (DSA variant) preconditioned system\relax }}{72}
 \contentsline {figure}{\numberline {IV.4}{\ignorespaces Scalar flux for the $S_{32}$ calculation on a homogeneous medium\relax }}{75}
-\contentsline {figure}{\numberline {IV.5}{\ignorespaces Scalar flux for the $S_{32}$ calculation on a heterogeneous medium\relax }}{77}
+\contentsline {figure}{\numberline {IV.5}{\ignorespaces Scalar flux for the $S_{32}$ calculation on a heterogeneous medium\relax }}{78}
 \addvspace {10\p@ }
 \vskip -10pt
-\contentsline {figure}{\numberline {V.1}{\ignorespaces Discretization using hexagonal cell versus triangle cells\relax }}{81}
+\contentsline {figure}{\numberline {V.1}{\ignorespaces Discretization using hexagonal cell versus triangle cells\relax }}{82}
 \contentsline {figure}{\numberline {V.2}{\ignorespaces Example of AMR mesh\relax }}{82}
 \contentsline {figure}{\numberline {V.3}{\ignorespaces $V-$ and $W-$cycles\relax }}{96}
 \contentsline {figure}{\numberline {V.4}{\ignorespaces Fourier analysis as a function of the mesh optical thickness, homogeneous infinite medium case\relax }}{107}

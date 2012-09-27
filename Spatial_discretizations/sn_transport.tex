@@ -65,12 +65,12 @@ be re-arranged in terms of the scalar flux only:
   \Phi = \bs{D L}^{-1} \(\bs{M \Sigma}\Phi+S\).
 \end{equation}
 The action of $\bs{D}\bs{L}^{-1}$ is often referred to as a \emph{transport sweep}
-when discontinuous spatial approximations (finite differences, finite
-elements) are employed because, for any directions $\bo_d$, the action of
-$\bs{L}_d^{-1}$ can be obtained by traversing the mesh (i.e., sweeping) in a
-specific ordering of the cells, thus one needs only to solve a small linear
-system of equations, cell by cell. The order in which the elements are solved
-constitutes the graph of the sweep; above, we have discussed situations where
+because for any direction $\bo_d$, the action of $\bs{L}_d^{-1}$ can be
+obtained by traversing the mesh (i.e.,sweeping) in the direction of flow,
+successively inverting $\bs{L}_D$ in each set of downstream cells. Thus, one need 
+only to solve a small linear system of equations, cell by cell. The order in which 
+the elements are solved constitutes the graph of the sweep. We have thus far 
+considered only situations where
 the graph does not present some dependencies (cycles). Note that cycles in the
 sweep graph can also appear due to reflective boundary conditions. These graph
 dependencies can either be lagged within the iterative procedure of the
@@ -78,7 +78,7 @@ solution vector consisting of the scalar flux is augmented by the angular flux
 unknowns that cause the cycles. We will explain these details in the paragraph
 related to iterative techniques, but first we generalize our operator
 notations for situations where we need to keep in the solution vector both the
-flux moments and some angular fluxes dur to dependencies in the graph (non
+flux moments and some angular fluxes due to dependencies in the graph (non
 convex meshed and/or reflective boundaries).
 
 If the graph of the sweep presents dependencies, we practically break the
@@ -100,13 +100,13 @@ where $\underline{\bs{L}}$ is the lower block triangular matrix (which can be
 inverted during a transport sweeps) and $\overline{\bs{L}}$ is the strictly
 upper triangular block, causing the dependencies in the sweep
 ($\overline{\bs{L}}$ only contains integrals along some incoming edges of a
-cell). Note that $\bs{N}^T\bs{N}$ is a diagonal operator that contains 1 only
+cell). Note that $\bs{N}^T\bs{N}$ is a diagonal operator that contains one only
 for angular flux values that are labeled as ``significant''. Then, we have:
 \begin{equation}
   \overline{\bs{L}} \Psi = \overline{\bs{L}} \bs{N}^T\bs{N}\Psi =
   \overline{\bs{L}}\bs{N}^T \Psi_{SAF},
 \end{equation}
-and can, therefore, re-cast the transport equation as:
+and can, therefore, recast the transport equation as:
 \begin{align}
   &\underline{\bs{L}}\Psi =\overline{\bs{L}}\bs{N}^T \Psi_{SAF} + \bs{M\Sigma}
   \Phi + S,\\

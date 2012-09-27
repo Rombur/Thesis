@@ -7,14 +7,14 @@ of triangles or quadrilaterals. To obtain the PWLD basis
 functions on two-dimensional polygons, we need to introduce the within-cell
 point $c$. The coordinates of $c$ are weighted averages of the vertex coordinates:
 \begin{align}
-& x_c = \sum_{j=1}^{N_V} \alpha_{j} x_j\\
-& y_c = \sum_{j=1}^{N_V} \alpha_{j} y_j
+& x_c = \sum_{j=1}^{N_V} \alpha_{j} x_j,\\
+& y_c = \sum_{j=1}^{N_V} \alpha_{j} y_j,
 \end{align}
 where $\sum_{j=1}^{N_V} \alpha_{j}=1$, $\alpha_j \geq 0\ \forall j$, and $N_V$ is 
 the number of vertices of the cell.\\
 The basis function at vertex $j$ is defined by \cite{pwld_2d}:
 \begin{equation}
-\chi_{j} (x,y) = t_{j}(x,y) + \alpha_j t_c(x,y)
+\chi_{j} (x,y) = t_{j}(x,y) + \alpha_j t_c(x,y),
 \end{equation}
 where the $t_j$ function is the linear functions such that $t_j (x,y)$ is
 unity at vertex $j$ and zero at the  $j-1$, $j+1$, and $c$. The function 
@@ -55,8 +55,8 @@ given ``side'' sub-cell $S_k$, we have:
   \int_{S_k} \chi_i \chi_j\ d\br = \int_{S_k} \(t_i t_j + \alpha
   t_i t_c + \alpha t_c t_i + \alpha^2 t_c^2\) d\br
 \end{equation}
-On $S_k$, the basis function $t_i$, $t_j$, and $t_c$, are identical to the LD
-basis function. Therefore, if we note $\bs{M}_{S_k}$, the mass matrix on the 
+On $S_k$, the basis functions $t_i$, $t_j$, and $t_c$, are identical to the LD
+basis functions. Therefore, if we note $\bs{M}_{S_k}$, the mass matrix on the 
 ``side'' sub-cell formed by the vertices 0, 1, and $c$:
 \begin{figure}[H]
   \centering
@@ -88,12 +88,12 @@ $\bs{M}$ can be built using $\bs{M}_{S_k}$:
   & \bs{M}(3,2) =  \alpha^2 \bs{M}_{S_k}(2,2)\\
   & \bs{M}(3,3) =  \alpha^2 \bs{M}_{S_k}(2,2). 
 \end{align}}    
-To finish to build $\bs{M}$, we need to loop over all of the ``side''
+To finish building $\bs{M}$, we need to loop over all of the ``side''
 sub-cells, $S_k$ ($k=1,\hdots,N_v$), of the cell. The gradient matrix is built 
 similarly.
 
 \section{Conclusions}
 In this section, we explained how Source Iteration, Krylov solvers, and
 Diffusion Synthetic Acceleration can be used to solve the transport equation. 
-The two spatial discretization, BLD and PWLD finite elements, that we will 
+The two spatial discretizations, BLD and PWLD finite elements, that we will 
 employ in the next Chapters have been presented.

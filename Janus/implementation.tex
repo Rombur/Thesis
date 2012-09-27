@@ -12,8 +12,8 @@ Janus is composed of the following classes:
   \item[TRIANGULATION:] In this class, the geometry, the material IDs, and the
     source IDs are read. Two different input files can be read. When the mesh
     uses rectangular cells, the abscissae then the ordinates have to be given 
-    in increasing value. After that, the materials IDs and the source IDs are
-    read. For instance, if the domain, $1cm \times 1cm$, is decomposed 
+    in order of increasing value. After that, the materials IDs and the source IDs 
+    are read. For instance, if the domain, $1cm \times 1cm$, is decomposed 
     in four identical cells, the input file looks like:
     \begin{verbatim}
     rectangle
@@ -46,10 +46,10 @@ Janus is composed of the following classes:
     respectively an ordinate, of one of their vertices equals to an abscissa,
     respectively an ordinate, of one of the vertices of the candidate edge.
   \item[EDGE:] This class contains the coordinates of the vertices associated
-    to the edge, the global and local IDs of the edge, the IDs of the cells 
-    associated to the edge, the type of cell (interior or on the boundary and 
+    with the edge, the global and local IDs of the edge, the IDs of the cells 
+    associated with the edge, the type of cell (interior or boundary and 
     the type of boundary: vacuum, isotropic or most normal direction of the
-    quadrature), the two normal vectors associated to the two cells, the 
+    quadrature), the two normal vectors associated with the two cells, the 
     length of the edge, etc.
   \item[FINITE\_ELEMENT:] This class is the base class for BLD and PWLD.
     It contains all the matrices needed for the DFE discretization of the transport
@@ -72,21 +72,21 @@ Janus is composed of the following classes:
     the directions used by the Gauss-Legendre-Chebyshev triangular quadrature.
   \item[LS:] This class derives from QUADRATURE and computes the weights and
     the directions used by the Level-Symmetric quadrature up to $S_{24}$.
-  \item[CELL:] This class stores the ID of cell, a vector of pointers to the
-    edges of cell, the intensity of the source in the cell, the material
+  \item[CELL:] This class stores the ID of a cell, a vector of pointers to the
+    edges of a cell, the intensity of the source in the cell, the material
     properties ($\Sigma_s$, $\Sigma_t$, and the diffusion coefficient), 
     the FINITE\_ELEMENT associated with the cell, etc. The orthogonal lengths are
     calculated by this class.
   \item[DOF\_HANDLER:] This class builds the \emph{mesh} by creating all the 
     CELL objects and the  FINITE\_ELEMENT objects associated with them. It is 
     the DOF\_HANDLER object that computes the sweep
-    ordering for all the directions. First, the edges on the boundary with a
-    known incoming flux are put in a list \emph{incoming\_edges}. The sweep
+    ordering for all directions. First, the edges on the boundary with a
+    known incoming flux are put in a list, \emph{incoming\_edges}. The sweep
     ordering will continue as long as this list is not empty. The first edge 
     in the list is popped and the associated cell, which has not been
     accepted in the sweep order, is found. Then, we loop over the edges of 
     the cell to determine which ones are
-    associated to an outgoing flux and which ones are associated to an
+    associated with an outgoing flux and which ones are associated with an
     incoming flux. The cell is accepted if all the
     edges which are not ``outgoing'' are in \emph{incoming\_edges}. If the cell is
     rejected, the edge is pushed back at the end of the list. If the cell is
@@ -103,7 +103,7 @@ Janus is composed of the following classes:
     \emph{Solve()} is called, the left hand-side is built and stored using a 
     compressed row storage format (CRS). Then, the problem is
     solved by CG, PCG-SSOR, PCG-MLU, PCG-MLM, or AGMG. If AGMG is employed, 
-    there is an extra step to convert the right hand-side to Fortran data type 
+    there is an extra step to convert the right hand-side to a Fortran data type 
     and the result back to an Epetra\_MultiVector.
   \item[TRANSPORT\_SOLVER:] This class builds the PARAMETERS object, the
     TRIANGULATION object, the QUADRATURE object(s), the DOF\_HANDLER object,

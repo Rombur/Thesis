@@ -3,7 +3,7 @@
 As mentioned earlier, the most common way to solve a SPD system is to use
 conjugate gradient preconditioned with SSOR (PCG-SSOR). In this research, we
 will compare the calculation time using PCG-SGS, which is PCG-SSOR with a
-damping factor equals to unity, with the time needed by CG 
+damping factor equal to unity, with the time needed by CG 
 preconditioned with an algebraic multigrid method. This is not a new idea: the 
 first multigrid methods developed were geometric multigrid used as stand-alone 
 solvers. In many applications, they achieve the so-called ``textbook multigrid
@@ -13,16 +13,17 @@ counts associated with discretizing the system'' \cite{textbook_eff}. However,
 in many other applications, multigrid methods, and particularly algebraic 
 multigrid methods, cannot achieve such efficiency \cite{k_cycle}. In
 such cases, they are often used as preconditioner for Krylov subspace methods. 
-AMG make  very good preconditioners because they reduce all the error modes. Of
-course, some modes may not be accelerated which can significantly degrades the 
-efficiency of AMG as preconditioner. In \cite{amg_pn}, the authors used an 
+AMG methods make very good preconditioners because they can reduce all the error
+modes. Of course, in some cases, some modes may not be accelerated which can 
+significantly degrades the efficiency of AMG as preconditioner. In \cite{amg_pn}, 
+the authors used an 
 algebraic multigrid method to precondition the Krylov solver for the even-parity 
 finite element-spherical harmonics (FE-$P_N$) method. The AMG preconditioner 
 resulted in a 60\% reduction in the solution time compared to ILU(0) 
 preconditioning and even more reduction compared to SSOR preconditioning. 
 
 We will employ and compare two multigrid approaches: one from the ML package
-\cite{ml_guide} from the Trilinos library and the AGMG code \cite{agmg_guide}. 
+\cite{ml_guide} of the Trilinos library, and the AGMG code \cite{agmg_guide}. 
 ML is a multigrid preconditioning package that uses a smoothed aggregation 
 algebraic multigrid to build a preconditioner for a Krylov method. AGMG is an 
 aggregation-based algebraic multigrid code (written in Fortran 90).
@@ -51,26 +52,28 @@ approximation:
 \end{equation}
 where $\bs{P}$ is a prolongation matrix and $\bs{R}$ is a restriction matrix.
 Solving the system $\bs{A}_c v = r_c$ on the coarse grid is generally very
-expansive, therefore this step is recursively replaced by $\gamma$
-applications of the  two-grid
-methods until the system can be efficiently inverted with a direct solver.
-This yields the multigrid method. When $\gamma = 1$, respectively $\gamma =
-2$, the multigrid method is said to use a $V-$cycle, respectively a $W-$cycle:
+expensive. Therefore this step is recursively replaced by $\gamma$ applications 
+of the two-grid methods until the system can be efficiently inverted with a 
+direct solver. This yields the multigrid method. 
+When $\gamma=1$, the multigrid method is said to use a $V-$cycle. When
+$\gamma=2$, the cycle used is called the $W-$cycle. On Figure \ref{v_w_cycles},
+these two cycles are represented:
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.5\textwidth]{./Dsa/v_w_cycles}
   \caption{$V-$ and $W-$cycles}
+  \label{v_w_cycles}
 \end{figure}
 A dot represents a smoothing operation and a square a direct inversion. The grid 
 transfer operators are symbolized by lines.
 
 For the coarsening step, both geometric and algebraic multigrid methods are 
 based on the concept of smooth error. The difference between the two methods 
-is that for geometric multigrid method, after the smoothing step, the error 
+is that for geometric multigrid methods, after the smoothing step, the error 
 is \emph{geometrically} smooth relative to the coarse grid \cite{review_amg}. 
 For algebraic multigrid methods, there might not be any grid and thus, only 
 the properties of the matrix can be used. Therefore, the geometrical smoothness 
-of the error cannot be used anymore. In fact, after the smoothing step, the 
+of the error cannot be assumed anymore. In fact, after the smoothing step, the 
 error may be not smooth at all from the geometrical point of view. The reason 
 is that the error is considered smooth when the smoother does not change the 
 solution significantly anymore \cite{amg_course}:
@@ -82,7 +85,7 @@ where $S$ is the smoother, $e$ is the error, and $\|u\|_{\mc{H}} =
 \begin{equation}
   (u,v)_{\mc{H}} = \(\bs{A}u,v\)_2.
 \end{equation}
-Among the algebraic multigrid methods, there are three main different 
+Among the algebraic multigrid methods, there are three main 
 types: the classical Ruge-Stueben AMG (also known as interpolation method), 
 the plain aggregation AMG, and the smoothed aggregation AMG. ML uses 
 smoothed aggregation AMG and AGMG uses plain aggregation AMG. The difference 
@@ -94,8 +97,8 @@ each variable of the coarse grid is also a variable in the fine grid whereas
 for the aggregation methods, the variables of the fine grid are aggregates in
 variables of the coarse grid. There is no simple identification between the 
 variables of the fine grid and the coarse grid. However, all the algebraic
-multigrid methods uses the  very important concept of strongly dependent
-variables \cite{amg}:
+multigrid methods use the  very important concept of strongly dependent
+variables \cite{amg}.
 {\definition{Given a threshold value of $0 \leq \theta \leq 1$, the variable
   $u_i$ strongly depends on the variable $u_j$ if:
   \begin{equation}
@@ -119,7 +122,7 @@ are positive, the following relationship needs to be satisfied for most $i$
   \sum_{j\neq i} \(\frac{|a_{ij}|}{a_{ii}}\) \(\frac{e_i-e_j}{e_i}\)^2 \ll 1
   \label{ineq}
 \end{equation}
-where $e_i$ is the error associated to the variable $i$. Since the left side 
+where $e_i$ is the error associated with the variable $i$. Since the left side 
 of \cref{ineq} is positive, all the products must be small which means that 
 at least one of the two terms of each product has to be small. When the
 $i^{th}$ variable strongly depends on the $j^{th}$ variable 
@@ -167,8 +170,8 @@ interpolation methods:
     where $\alpha_i = \frac{\sum_{j\in N_i} a_{ij}}{\sum_{l \in B_i} a_{il}}$.
     Therefore, it is important that when the coarse variables are chosen,  
     that every variable in $F$ has enough strongly coupled
-    variables in $C$ that are part of of $B_i$. If some of the off-diagonal
-    entries are positive, the same development can be done as long as these
+    variables in $C$ that are part of $B_i$. If some of the off-diagonal
+    entries are positive, the same development can be performed as long as these
     positive terms are small, i.e., variables are not strongly coupled because
     of these terms. If the positive entries are large, the algebraically
     smooth error can oscillate. This can happen, for elliptic PDE, when 
@@ -178,14 +181,15 @@ interpolation methods:
   \item[More complex interpolations:] More complex interpolation schemes can
     be created but they reduce the sparsity of $\bs{P}$ and $\bs{R}$, increasing the
     size of $\bs{A}_c$. Moreover, the weakly-dependent variables will be 
-    associated to smaller weights which makes them having a small effect. It
+    associated with smaller weights which means that they will have a small
+    effect. It
     can therefore be interesting to ignore the smallest values in the
     interpolation matrix and to rescale the others weights so that the sum of
     the weights does not change. This can slow down the convergence of the
     method but it will not make it diverge \cite{review_amg}.
 \end{description}
 A good rule, when coarsening the grid, is to try to have the set of coarse 
-variables to form a maximally independent set, i.e. a maximal set where the 
+variables form a maximally independent set, i.e. a maximal set where the 
 coarse variables are not strongly coupled to each others, and the variables 
 in $F$ are surrounded by the variables in $C$. We call $B_i^S$ the set of all 
 strongly connected neighbors of $u_i$:
@@ -199,7 +203,7 @@ The interpolatory nodes $C_i$ are:
 Adding variables in $C_i$ increases the quality of the interpolation but
 it diminishes the sparsity of the interpolation matrix and increases the
 size of $\bs{A}_c$ which increases the computational cost of the method.
-Thus, we want that for every variable $u_i$ in $F$, every $u_j \in B_i^s$
+Thus,  every variable $u_i$ in $F$ and every $u_j \in B_i^s$
 should be in $C_i$ or strongly connected to at least one variable in
 $C_i$. This rule will make sure that the interpolation is of a good enough
 quality. We also want $C$ to be a maximal subset of the variables such that 
@@ -207,9 +211,9 @@ the variables in $C$ are not strongly connected to each others. This ensures
 that the coarsening is fast enough.
 
 \subsection{Smoothed aggregation: the ML package}
-In a similar way than for the classical AMG, the smoothed aggregation
-method uses the concept of strong connections. The theory for plain
-aggregation method showed that the convergence bound depends of the number
+The smoothed aggregation method uses the concept of strong connections in a
+manner similar to that of classical AMG. Theory for the plain
+aggregation method shows that the convergence bound depends of the number
 of levels \cite{amg_unstruc}. This is a major flaw of the plain aggregation
 method which was also observed in practice. To counter this, the smoothed
 aggregation was created. This method converges fast for a lot of different 
@@ -223,7 +227,7 @@ $(i,j)$ or $(j,i)$ of the matrix is non-zero, an edge is built between the
 vertex $i$ and the vertex $j$ \cite{ml_guide}. Second, the vertices are
 aggregated. When using ML on a single processor, two aggregation schemes can
 be used: the uncoupled scheme or the maximally independent sets (MIS) scheme. 
-The uncoupled scheme attempts at building aggregates of size $3^d$ where $d$ is the
+The uncoupled scheme attempts to build aggregates of size $3^d$ where $d$ is the
 dimension of the problem. The algorithm works as follows \cite{mis}:
 \begin{description}
   \item[Step 1:] As long as there are points not adjacent to an aggregate:
@@ -232,7 +236,7 @@ dimension of the problem. The algorithm works as follows \cite{mis}:
         is a new root point.
       \item Define a new aggregate as the root point and its neighbors.
     \end{enumerate}
-  \item[Step 2:] Add all the points left to the existing aggregates or form a
+  \item[Step 2:] Add all the points left of the existing aggregates or form 
     new aggregates with them.
 \end{description}
 The MIS scheme used in ML applied the MIS algorithm of \cite{graph_coloring} to
@@ -250,13 +254,13 @@ done, a tentative prolongator matrix, $\bs{\tilde{P}}_k$ is constructed
   \right.
 \end{equation}
 This tentative prolongator could be used as prolongator but smoothing it
-allows to have a more robust scheme. Let $\bs{S}_k$ be a smoother, for example
+yields a more robust scheme. Let $\bs{S}_k$ be a smoother, for example
 damped Jacobi, then the prolongator matrix is given by:
 \begin{equation}
   \bs{P}_k = \bs{S}_k \bs{\tilde{P}}_k.
 \end{equation}
 
-Like for classical AMG, it can be interesting to ignore small values in
+As in classical AMG, it can be interesting to ignore small values in
 the graph since the smoother will be ineffective for the weakly coupled
 variables. In ML, there is a drop tolerance, $tol$, that is used to ignore
 entries in the graph if $|a_{ij}| \leq tol\ \sqrt{|a_{ij} a_{jj}|}$. The
@@ -269,7 +273,7 @@ or equal than 128.
 
 \subsection{Plain aggregation: the AGMG code}
 Unlike ML, in AGMG the prolongator is not smoothed which results in a
-cheaper setup and a decrease of required memory \cite{agmg2}. However, 
+cheaper set-up and a decrease of required memory \cite{agmg2}. However, 
 the scheme could be less robust. To counteract this weakness, 
 the aggregation scheme is more complicated. Coarsening algorithms that control
 the size of the aggregates tends to produce a few badly shaped aggregates.
@@ -278,7 +282,7 @@ number of badly shaped aggregates can have a huge impact on the convergence.
 In AGMG, the aggregation algorithm has as input the upper bound of the 
 two-grid condition number $\bar{\kappa}_{TG}$. When the aggregates are constructed,
 their quality is checked. Obviously, this increases the cost of the coarsening
-and it is important that the coarsening is fast enough. Since the algorithm 
+and it is important that the coarsening be fast enough. Since the algorithm 
 does not control the size of the aggregates, it is difficult to control the 
 speed of the coarsening. However, controlling the condition number is much 
 more interesting than controlling the coarsening speed. If the algorithm 
@@ -294,23 +298,21 @@ used instead of the more common $V-$ or $W-$cycles. The difference between the
 $K-$cycle and the $V-$ or $W-$cycle is that the $K-$cycle uses recursively a 
 few iterations of a Krylov solver preconditioned by a coarser grid to solve 
 the coarse grid problem in the two-grid algorithm \cite{k_cycle}. This scheme 
-is nonlinear and requires, when the system is SPD, to use flexible CG 
-\cite{fcg_2,fcg_3,fcg_4,fcg} as Krylov solver. The advantage of the $K-$cycle is 
-an increased robustness compared to $V-$ and $W-$cycle. Even when the condition 
+is nonlinear and when the system is SPD, it requires the use of flexible CG 
+\cite{fcg_2,fcg_3,fcg_4,fcg} as the Krylov solver. The advantage of the $K-$cycle 
+is increased robustness compared to $V-$ and $W-$cycles. Even when the condition 
 number of the two-grid method is large, the convergence properties of the 
 $K-$cycle can be independent of the number of levels \cite{k_cycle}. The 
-computational cost of $K-$cycle is about the same than the cost of the 
+computational cost of a $K-$cycle is about the same as the cost of the 
 $W-$cycle. If the number of unknowns does not decrease sufficiently from one 
 level to the next, the $K-$cycle at one level is replaced by a $V-$cycle at 
 this same level. The idea of $K-$cycle is not new since it was already used 
-in Algebraic MultiLevel Iteration (AMLI) methods \cite{amli}. AMLI are 
-hierarchical basis methods stabilized by the recursive calls of preconditioner 
-created thanks to a coarse level. 
+in Algebraic MultiLevel Iteration (AMLI) methods \cite{amli,notay2005}.
 
-Next, we explain the coarsening step in AGMG for $M-$matrix (SPD). 
+Next, we explain the coarsening step in AGMG for an $M-$matrix (SPD). 
 We want to create nonempty disjoint sets $G_k$, $k=1,\hdots,n_c$ called 
-aggregates with each one of them associated to a variable in a coarser grid. 
-Some of the unknowns are not associated to any variables in the coarse grid 
+aggregates with each one of them associated with a variable on a coarser grid. 
+Some of the unknowns are not associated with any variables in the coarse grid 
 and they are in the set $G_0$. The prolongation matrix is given by:
 \begin{equation}
   \bs{P}_{ij} = \left\{
@@ -320,11 +322,11 @@ and they are in the set $G_0$. The prolongation matrix is given by:
     \end{aligned}
     \right.
 \end{equation}
-Thus, $\bs{P}$ has at most one non-zeros entry by row. A row is only
+Thus, $\bs{P}$ has at most one non-zero entry per row. A row is only
 composed of zeros if the variable associated to this row is in $G_0$. A
 simple method to form the high quality aggregates of a given size would be
 to test all the possibility. For an obvious reason, this cannot be done in
-practise. Instead, in AGMG several passes of pairwise aggregation are done. 
+practice. Instead, in AGMG several passes of pairwise aggregation are done. 
 The reason is that when two variables are aggregated, the quality factor of 
 the aggregate $\kappa(G)$ is given by: 
 \begin{equation}
@@ -343,10 +345,10 @@ check that:
   \bar{\kappa}_{TG} \bs{A}_G - \bs{M}_G\(\bs{I}-\bs{1}_G \(\bs{1}_G^T
   \bs{M}_G\bs{1}_G\)^{-1}\bs{1}_G^T\bs{M}_G\)
 \end{equation}
-is nonnegative definite. This can be done in $\mc{O}(|G|^3)$ operation
+is nonnegative definite. This can be done in $O(|G|^3)$ operation
 by verifying that the Cholesky factorization exists, i.e., there is no negative
 pivot. Therefore, $\kappa(|G|)$ does not need to be computed explicitly to
-make sure that $\kappa(|G|) \leq \bar{\kappa}_{TG}$. The first pairwise
+be certain that $\kappa(|G|) \leq \bar{\kappa}_{TG}$. The first pairwise
 coarsening step is given by:
 \begin{enumerate}
   \item Create the set $G_0$, i.e., create the set of variables which will
@@ -354,11 +356,11 @@ coarsening step is given by:
   \item Choose an unknown and find among its unassigned neighbors the one
     that gives the smallest $\kappa(\{i,j\})$.
   \item Check that $\kappa(\{i,j\}) \leq \bar{\kappa}_{TG}$. If the
-    condition is not verified, the variable is left unassociated in the coarse
+    condition is not verified, the variable is left unassociated on the coarse
     grid.
 \end{enumerate}
 To increase the size of the aggregates, the temporary coarse grid matrix
-$\bs{\tilde{A}}_c$ is computed and the same process that the one we just
+$\bs{\tilde{A}}_c$ is computed and the same process we just
 described is applied. The set $G_0$ cannot be changed and the quality factor
 $\tilde{\kappa}(\{i,j\})$ needs to be adapted to reflect the quality of the
 corresponding aggregate $\kappa(G_i\cup G_j)$ in the original matrix.
@@ -366,13 +368,13 @@ Therefore, the definition of $s_j$ is slightly modified:
 \begin{equation}
   \tilde{s}_i = - \sum_{k \in G_i} \sum_{j \in G_i} a_{kj}.
 \end{equation}
-This change is there to ensure that $\tilde{\kappa}(\{i,j\})$ is a lower
+This change exists to ensure that $\tilde{\kappa}(\{i,j\})$ is a lower
 bound of $\kappa(G_i \cup G_j)$. Thus, if $\tilde{\kappa}(\{i,j\}) \geq
 \bar{\kappa}_{TG}$, the pair has to be rejected because it is impossible for
-$\kappa(G_i \cup G_j)$ to satisfy the condition. An unique characteristic 
+$\kappa(G_i \cup G_j)$ to satisfy the condition. A unique characteristic 
 of this coarsening method is that you can, in theory, have an 
 arbitrary number of pairwise coarsening passes without degrading the upper
-bound of the condition number. In practise, however, the coarsening is
+bound of the condition number. In practice, however, the coarsening is
 stopped if either a given number of passes has been done or the coarsening
 factor has reached a target value. To conclude the explanation of the
 coarsening step, we explain how unknowns are picked and how to pick between 
@@ -380,20 +382,19 @@ a pair $\{i,j\}$ and another $\{i,k\}$ if they have the same quality factor.
 If there is no priority rules, the coarsening would depend of the ordering 
 of the variables or the way off-diagonal entries are stored. In AGMG, the 
 rule chosen tries to increase the regularity of the aggregates because in 
-practise, this increases the coarsening speed of the coarser levels. Even 
+practice, this increases the coarsening speed of the coarser levels. Even 
 if the coarsening step tries to create regular aggregates on regular grids, 
 the results are still quite good for unstructured grids \cite{agmg2}. The 
-priority rule consists of using a Cuthill-McKee permutation 
-\cite{cmk} to renumber the variables and to use the number associated to the 
+priority rule consists of using a Cuthill-McKee permutation \cite{cmk} to 
+renumber the variables and using the number associated with the 
 variable as a priority number (the lower number has the priority). The 
-Cuthill-McKee permutation works as follows: the number 1 is given to a node 
+Cuthill-McKee permutation works as follows: the number one is given to a node 
 with minimal degree; the next numbers are given to its neighbors ordered by
 increasing degree; then their neighbors are given a number by
-increasing degree; the process is over when all nodes are numbered. There is
+increasing degree. The process is over when all nodes are numbered. There are
 still some uncertainties in the numbering if there are several variables
 with minimal degree or when several neighbors of a variables have the same
-degree. However, these choices do not affect the
-performance \cite{agmg2}. 
+degree. However, these choices do not affect performance \cite{agmg2}. 
 
 AGMG stops the coarsening when the number of variables is less or equal to
 400.

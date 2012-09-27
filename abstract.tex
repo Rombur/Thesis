@@ -13,20 +13,20 @@ equation to be solved efficiently using a deterministic method. The Diffusion
 Synthetic Acceleration (DSA), usually used to speed up the calculation when
 the scattering is weakly anisotropic, is inefficient for electron transport.
 This led Morel and Manteuffel to develop an one-dimensional angular multigrid
-(ANMG) which proved to be very effective when the scattering is highly
+(ANMG) which has proved to be very effective when the scattering is highly
 anisotropic. Later, Pautz et al. generalized this scheme to multidimensional
-geometries but this method had to be stabilized by a diffusive filter that
+geometries, but this method had to be stabilized by a diffusive filter that
 degrades the overall convergence of the iterative scheme. In this dissertation, we
 recast the multidimensional angular multigrid method without the filter as a
 preconditioner for a Krylov solver. This new method is stable independently of
-the anisotropy of the scattering. It is increasingly more effective and
+the anisotropy of the scattering and is increasingly more effective and
 efficient as the anisotropy increases compared to DSA preconditioning wrapped
 inside a Krylov solver. At the coarsest level of ANMG, a DSA step is needed. In
 this research, we use the Modified Interior Penalty (MIP) DSA. This DSA was
 shown to be always stable on triangular cells with isotropic scattering. 
 Because this DSA discretization leads to symmetric definite-positive matrices, 
-it is usually solved using conjugate gradient preconditioned (CG) by SSOR. 
-We show that algebraic multigrid methods are vastly superior than more common
+it is usually solved using a conjugate gradient preconditioned (CG) by SSOR but
+here, we show that algebraic multigrid methods are vastly superior than more common
 CG preconditioners such as SSOR.
 
 Another important part of this dissertation is dedicated to transport 

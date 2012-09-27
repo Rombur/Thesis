@@ -1,17 +1,14 @@
 \section{Iterative schemes for highly forward-peaked scattering}
 \subsection{Source Iteration and DSA}
 \Cref{transport_operator} can be solved using the Source Iteration 
-method, which is a Richardson iteration, or a Krylov method. The Source
-Iteration method at the $k^{th}$ iteration is given by:
+method, which can be interpreted a Richardson iteration, or a Krylov method. 
+The Source Iteration method at the $k^{th}$ iteration is given by:
 \begin{equation}
 \Phi^{(k+1)} = \bs{DL}^{-1} \bs{M\Sigma}\Phi^{(k)}+\bs{DL}^{-1}Q
 \end{equation}
 When the scattering ratio $c=\max_{l}\(\frac{\Sigma_{s,l}}{\Sigma_t}\)$ is close
 to one, the spectral radius of SI can become arbitrary close to one and the
-convergence becomes arbitrary slow. Since
-most physical forward-peaked scattering produces $\Sigma_{s,0} >
-\Sigma_{s,1}>\hdots$, the flat modes are the ones which should be accelerated
-that is why the DSA scheme is used. The SI+DSA scheme is given by a transport sweep:
+convergence becomes arbitrary slow. The SI+DSA scheme is given by a transport sweep:
 \begin{equation}
 \Phi^{(k+1/2)} = \bs{DL}^{-1}\bs{M\Sigma}\Phi^{(k)} +\bs{DL}^{-1}Q,
 \label{dsa_sweep}
@@ -38,10 +35,10 @@ Finally, using \crefrange{dsa_sweep}{si_dsa_it}, we obtain:
 \end{split}
 \label{dsa_it}
 \end{equation}
-where $\bs{\mc{T}}_0$ is the matrix associated to the DSA operator,
+where $\bs{\mc{T}}_0$ is the matrix associated with the DSA operator,
 $\bs{R}_{n\rightarrow 0}$ is the restriction matrix of $\Phi_n$ (all moments)
-to $\Phi_0$ (only $0^{th}$ moment) and $\bs{P}_{0/1\rightarrow n}$ the
-projection matrix of $\Phi_0$ or $\Phi_1$, depending whether only the zeroth
+to $\Phi_0$ (only zeroth moment) and $\bs{P}_{0/1\rightarrow n}$ the
+projection matrix of $\Phi_0$ or $\Phi_1$, depending on whether only the zeroth
 or the zeroth and the first moment are accelerated, onto $\Phi_n$. When only
 the zeroth moment is accelerated, the scheme is always stable and the spectral
 radius is max $\(\rho_{iso},\frac{\Sigma_{s,1}}{\Sigma_t}\)$ where
@@ -60,15 +57,15 @@ As mentioned previously, only the zeroth and the first flux moments can be
 accelerated with DSA. To accelerate higher moments, other methods have to be
 used. Morel and Manteuffel proposed an angular multigrid method to accelerate
 the SI calculation of the one-dimension $S_n$ equations with highly
-anisotropic scattering \cite{multigrid_1d}. They use a variation of the
+anisotropic scattering \cite{multigrid_1d}. They used a variation of the
 extended transport correction \cite{lathrop} to attenuate the ``upper half''
-of the flux moments (higher frequencies) thanks to transport sweeps. The
-``lower half'' of the flux moments (lower frequencies) is accelerated using
-the $S_{n/2}$ equations. These $S_{n/2}$ equations are themselves accelerated
-using $S_{n/4}$ equations. The order of the transport operator is divided
-by two until the $S_4$ level. At this point, the $P_1$ equations are used to
-accelerate the $S_4$ equations. For the general case where $n/2^i$ is odd, we need
-to define:
+of the flux moments (higher angular frequencies) via transport sweeps. The
+``lower half'' of the flux moments (lower angular frequencies) is accelerated
+using a sweep of the $S_{n/2}$ equations. These $S_{n/2}$ equations are 
+themselves accelerated using $S_{n/4}$ equations. The order of the transport 
+operator is sequentially divided by two until the $S_4$ level is reached. At 
+this point, the $P_1$ equations are used to accelerate the $S_4$ equations. For 
+the general case where $n/2^i$ is odd, we need to define:
 \begin{equation}
 Half(n) = \left\{
 \begin{aligned}
@@ -104,8 +101,8 @@ sections, the corrected cross sections are given by:
 \textrm{with }j=\{t\}\textrm{ or }\{s,l\}.
 \end{equation}
 This correction is said to be optimal because for an infinite homogeneous
-medium, it minimizes the ``high-frequency'' angular errors, the smoothing
-factor being given by:
+medium, it minimizes the ``high-frequency'' angular errors. The smoothing
+factor is given by:
 \begin{equation}
 \rho_s =\max\(|\Sigma_{s,n/2}|/\Sigma_{s,0},|\Sigma_{s,n/2+1}|/\Sigma_{s,0},
 \hdots,|\Sigma_{s,n-1}|/\Sigma_{s,0}\).
@@ -113,7 +110,7 @@ factor being given by:
 \end{equation}
 To compare the effectiveness of the angular multigrid method with DSA,
 Fokker-Planck scattering cross sections (\cref{sigma_m_sigma}) can be used. In
-one dimension geometry, DSA becomes less efficient as $\Sigma_{s,l}$ $(0<l\leq
+one dimensional geometry, DSA becomes less efficient as $\Sigma_{s,l}$ $(0<l\leq
 L)$ becomes closer to $\Sigma_{s,0}$. Therefore, in the limit as $L\rightarrow
 \infty$, DSA no longer accelerates the convergence of SI for Fokker-Planck
 scattering (the spectral radius tends to 1.0). However, the spectral radius of
@@ -160,7 +157,7 @@ this, the method is unstable).
 $S_n$ iterate to obtain the accelerated $S_n$ moments.
 \end{enumerate}
 The filter stabilizes the method which otherwise would diverge. Without the
-filtering process, the low frequency are well attenuated but instabilities are
+filtering process, the low frequency modes are well attenuated but instabilities are
 introduced in higher frequency modes. Filtering eliminates the high frequency
 corrections which are well attenuated by SI alone but it keeps the low
 frequency corrections. The filter is given by:
@@ -176,9 +173,9 @@ the ``diffusively filtered'' amplitude is:
 F=\frac{A}{1+\frac{\beta_f \lambda^2}{3\Sigma_f}}.
 \end{equation}
 It is clear that the modes with large $|\lambda|$ (high frequencies) are
-strongly attenuated while low-frequency are not. However, the filtering
+strongly attenuated while low-frequency modes are not. However, the filtering
 process does not prevent the spectral radius from becoming arbitrary close to
-1 when $L$ becomes large \cite{multigrid_2d}.
+one when $L$ becomes large \cite{multigrid_2d}.
 
 \section{Angular multigrid as preconditioner for Krylov Solvers}
 In this research, we propose to abandon SI as the solver for the $S_n$
@@ -193,9 +190,9 @@ instead. The DSA-preconditioned system of equations solved with a Krylov method 
 \end{split}
 \end{equation}
 The angular multigrid scheme can also be recast to be used by a Krylov
-solver. Here, we have chosen the recast the PAM method without filtering
+solver. Here, we have chosen to recast the PAM method without filtering
 (PAMNF) as a preconditioner for a Krylov solver. The successive corrections of
-the angular multigrid acceleration form now different stages of a
+the angular multigrid acceleration form different stages of a
 preconditioner used in the Krylov solver. Two variations of the PAMNF
 preconditioner will be tested:
 \begin{itemize}
@@ -324,7 +321,7 @@ $P1SA$ discretization used here is the $P1C$ method,
 defined in \cite{P1C_MC2009,yaqiPhD}. This $P1SA$ preconditioner is positive
 definite (PD), but not symmetric. In principle, the analytic $P1$ equations
 can be put in a second-order diffusion form and discretized using the MIP
-approach. However, the first moments of the angular flux will be treated with
+approach. However, the first moment of the angular flux will be treated with
 less accuracy than the zeroth moment, which is undesirable.
 
 \section{Eigenspectrum comparisons}

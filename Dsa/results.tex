@@ -5,7 +5,8 @@ methods to solve MIP: congugate gradient (CG), conjugate gradient
 preconditioned with symmetric Gauss-Seidel (PCG-SGS), conjugate gradient
 preconditioned with ML using uncoupled aggregation (PCG-MLU),
 conjugate gradient preconditioned with ML using MIS aggregation (PCG-MLM),
-and AGMG. The options used for ML can be found in the Appendix.
+and AGMG. The options used for ML can be found in the Appendix. Unless
+otherwise specified, PWLD finite elements are used in this section.
 \subsection{Fourier Analyses}
 Analysing Source Iteration accelerated with DSA is often performed using
 Fourier analysis \cite{larsen_dsa,consistent_p1}. When a Fourier analysis is
@@ -74,7 +75,7 @@ The meshes and the solutions of these two problems are given on Figure
 \label{fig_meshes_phi}
 \end{figure}
 
-In the next table, the different solvers, used on the quadrilateral cells, 
+In Table \ref{tab_1}, the different solvers, used on the quadrilateral cells, 
 are compared:
 \begin{table}[H]
 \begin{center}
@@ -90,6 +91,7 @@ CG iter   & NA      & 56649   & 17332    & 630     & 604     & 578     \\
 Total (s) & 39176.7 & 1264.98 & 1477.95  & 363.202 & 367.841 & 194.568 \\
 \hline
 \end{tabular}
+\label{tab_1}
 \end{center}
 \end{table}
 In this Table, SI iter is the number of Source Iteration iterations 
@@ -100,15 +102,15 @@ of CG iterations used to solve MIP, and Total is the time in
 seconds needed to solve the problem.
 
 Using MIP decreases significantly the number of SI iterations and the
-calculation time as expected. Using PCG-SGS decreases by a 
-factor three the number of CG iterations compared to CG but the time 
-needed to solve MIP is greater. With ML, the number of CG iterations is 
-reduced by a factor 50 and the MIP calculation time is divided by three 
-compared to CG. AGMG is by far the most efficient solver, the number of 
-CG iterations is slightly lower than PCG-ML but the MIP calculation is 20 
-times faster than CG.
+calculation time as expected. Using PCG-SGS decreases by a factor of three 
+of the number of CG iterations compared to CG but the time needed to solve 
+MIP is greater. With ML, the number of CG iterations is reduced by a factor 
+of 50 and the MIP calculation time is reduced by a factor three compared to 
+CG. AGMG is by far the most efficient solver, the number of CG iterations is 
+slightly lower than PCG-ML but the MIP calculation is 20 times faster than CG.
 
-The different solvers, used on the polygonal cells, are compared in the next Table:
+The different solvers, used on the polygonal cells, are compared in Table
+\ref{tab_2}:
 \begin{table}[H]
 \begin{center}
 \caption{Comparison of different preconditioners for polygonal cells using SI}
@@ -123,13 +125,15 @@ CG iter   & NA      & 46262   & 16712   & 652     & 603     & 555     \\
 Total (s) & 42666.7 & 1060.53 & 1447.53 & 382.275 & 384.422 & 216.946 \\
 \hline
 \end{tabular}
+\label{tab_2}
 \end{center}
 \end{table}
 We see that using different types of cells in the same mesh does not affect
 the performance of MIP or of the preconditioners. 
 
-In the next test, the problem is exactly the same than the previous one using
-polygonal cells but the SI solver is replaced by GMRES.
+In the next test, the problem is exactly the same as the previous one using
+polygonal cells but the SI solver is replaced by GMRES. The comparison is done
+in Table \ref{tab_3}:
 \begin{table}[H]
 \begin{center}
 \caption{Comparison of different preconditioners for polygonal cells using
@@ -145,9 +149,10 @@ CG iter    & NA      & 28653   & 10274     & 407     & 390     & 351 \\
 Total (s)  & 1549.17 & 675.319 & 898.149   & 261.121 & 261.937 & 162.47 \\
 \hline
 \end{tabular}
+\label{tab_3}
 \end{center}
 \end{table}
-The conclusions are the same than for the SI case. The performance of the
+The conclusions are the same as in the SI case. The performance of the
 preconditioners is not affected by the change of solver.
 
 \subsection{Heterogeneous medium}
@@ -172,7 +177,7 @@ The properties of the different zones are:
   \item[Red zone:] $\Sigma_t = 1$cm$^{-1}$, $\Sigma_s = 0.9$cm$^{-1}$, no source
   \item[Blue zone:] $\Sigma_t = 1$cm$^{-1}$, $\Sigma_s = 0.3$cm$^{-1}$, no source
 \end{description}
-The different solvers are compared in the next Table:
+The different solvers are compared in Table \ref{tab_4}:
 \begin{table}[H]
   \begin{center}
     \caption{Comparison of different preconditioners for a heterogeneous medium}
@@ -187,9 +192,10 @@ The different solvers are compared in the next Table:
       Total (s) & 413.274  & 131.297 & 188.586  & 101.888  & 103.734 & 71.5392\\
       \hline
     \end{tabular}
+    \label{tab_4}
   \end{center}
 \end{table}
-We can see that the comments that were done for the homogeneous tests are
+We can see that the comments made for the homogeneous tests are
 still valid. MIP is effective even with heterogeneous medium and AGMG is
 still the fastest solver.
 
@@ -201,7 +207,7 @@ next test, they are modified to make the problem more challenging:
   \item[Red zone:] $\Sigma_t = 1$cm$^{-1}$, $\Sigma_s = 0.999$cm$^{-1}$, no source
   \item[Blue zone:] $\Sigma_t = 1$cm$^{-1}$, $\Sigma_s = 0.3$cm$^{-1}$, no source
 \end{description}
-The different solvers are compared in the next Table:
+The different solvers are compared in Table \ref{tab_5}:
 \begin{table}[H]
   \begin{center}
     \caption{Comparison of different preconditioners for a highly diffusive 
@@ -217,6 +223,7 @@ The different solvers are compared in the next Table:
       Total (s) & 910.566 & 120.889 & 190.413   & 99.7524  & 97.4666 & 70.6424 \\
       \hline
     \end{tabular}
+    \label{tab_5}
   \end{center}
 \end{table}
 Making the problem more diffusive increases the interest of using DSA but it
@@ -231,7 +238,7 @@ As in the previous example, the domain is composed of three zones (see Figure
 \ref{fig_zone_amr}):
 \begin{figure}[H]
   \centering
-  \includegraphics[width=6cm]{./Dsa/zone_amr}
+  \includegraphics[width=0.6\textwidth]{./Dsa/zone_amr}
   \caption{Zones of the AMR mesh}
   \label{fig_zone_amr}
 \end{figure}
@@ -245,7 +252,7 @@ where:
 The distribution of cells is given on Figure \ref{fig_distr}:
 \begin{figure}[H]
   \centering
-  \includegraphics[width=6cm]{./Dsa/polygon_amr}
+  \includegraphics[width=0.6\textwidth]{./Dsa/polygon_amr}
   \caption{Polygons distribution}
   \label{fig_distr}
 \end{figure}
@@ -261,7 +268,7 @@ once). We see that instead of introducing hanging nodes, we have introduced
 pentagons and hexagons in the mesh.
 A $S_{16}$ GLC quadrature is employed. The tolerance on SI is $10^{-8}$ and
 the tolerance on the CG solvers is $10^{-10}$.
-The different solvers are compared in the next Table:
+The different solvers are compared in Table \ref{tab_6}:
 \begin{table}[H]
   \caption{Comparison of preconditioners on AMR mesh}
   \begin{center}
@@ -278,25 +285,28 @@ The different solvers are compared in the next Table:
       94.1963\\
       \hline
     \end{tabular}
+    \label{tab_6}
   \end{center}
 \end{table}
 As expected, the results are similar to our previous tests.
 
 \subsection{Rectangular cells}
-Like mentioned previously in this Chapter, AMG can have difficulties when the
+As mentioned previously in this Chapter, AMG can have difficulties when the
 aspect ratio of rectangular cells is high. Moreover, when the aspect ratio is
-high and the scattering ratio is close to one,
-MIP becomes ill conditioned. In the next example, the domain is 
-square $3cm \times 3cm$ with vacuum boundaries, 300 divisions along x-axis, 
-and 30 divisions along y-axis. There 9000 cells and we use BLD finite elements, 
-there are 36000 degrees of freedom. The relative tolerance on SI is $10^{-8}$ 
+high and the scattering ratio is close to one, MIP becomes ill conditioned. 
+In the next examples, the domain is square $100cm \times 100cm$ with vacuum 
+boundaries. There 10000 cells and we use BLD finite elements, 
+there are 40000 degrees of freedom. The relative tolerance on SI is $10^{-8}$ 
 and the relative tolerance on CG is $10^{-10}$. We use a $S_{8}$ GLC quadrature, 
 $\Sigma_t = 1 cm^{-1}$, and $\Sigma_s = 0.999 cm^{-1}$. The source is
-$1n/(cm^3s)$.
+$1n/(cm^3s)$. In the first test, the domain is discretized by 100 cells along
+$x$ and 100 cells along $y$. In the second test, the domain is discretized by
+250 cells along $x$ and 40 cells along $y$. Therefore, the aspect ratio is 6.25
+for the second test.
 
-In this example, the aspect ratio $Y/X = 10$. We
-also compared the effect of the size of the coarsest grid on the convergence.
-In the next Table, we compare No-DSA, CG, and AGMG defined previously with:
+We also compared the effect of the size of the coarsest grid on the convergence.
+In the following Tables (Table \ref{bld_ar_1} and Table \ref{bld_ar_6}), we 
+compare No-DSA, CG, and AGMG defined previously with:
 \begin{description}
   \item[PCG-MLU-D:] conjugate gradient preconditioned with ML
     using uncoupled coarsening with a coarsest grid of size less 
@@ -314,31 +324,49 @@ In the next Table, we compare No-DSA, CG, and AGMG defined previously with:
 \begin{landscape}
   \begin{center}
     \begin{table}[H]
-      \caption{Comparison of preconditioners on rectangular mesh}
+      \caption{Comparison of preconditioners on rectangular mesh with an aspect ratio of 1.0}
       \begin{centering}
         \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
           \hline
           & No-DSA & CG & PCG-SGS & PCG-MLU-D & PCG-MLU-M & PCG-MLM-D &
           PCG-MLM-M & AGMG \\
           \hline
-          SI iter    & 62     & 26      & 26        & 26       & 26       & 26      
-                     & 26     & 26 \\
-          Prec (s)   & NA     & NA      & 0.0146649 & 0.441126 & 0.287056 & 0.92389 
-                     & 0.84336 & 0.061 \\
-          MIP (s)    & NA     & 115.241 & 238.86    & 144.929  & 149.736  & 143.306 
-                     & 147.951 & 6.14671 \\
-          CG iter    & NA     & 29623   & 16675     & 2674     & 2674     & 2619    
-                     & 2619   & 810 \\
-          Total (s)  & 62.248 & 147.789 & 270.209   & 176.879  & 180.484  & 174.534 
-                     & 179.615 & 36.8945 \\
+          SI iter    & 7311    & 21      & 21        & 21       & 21       & 21      & 21      & 21      \\
+          Prec (s)   & NA      & NA      & 0.0167298 & 0.345833 & 0.392942 & 1.06411 & 1.2699  & 0.057   \\
+          MIP (s)    & NA      & 39.4564 & 90.393    & 23.9443  & 28.3395  & 23.5808 & 28.5564 & 2.76611 \\
+          CG iter    & NA      & 8584    & 4911      & 377      & 377      & 376     & 376     & 265     \\
+          Total (s)  & 8254.46 & 66.8963 & 119.492   & 48.8737  & 56.932   & 48.5779 & 59.0295 & 31.6606 \\
           \hline
         \end{tabular}
+        \label{bld_ar_1}
+      \end{centering}
+    \end{table}
+        \begin{table}[H]
+      \caption{Comparison of preconditioners on rectangular mesh with an aspect ratio of 6.25}
+      \begin{centering}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+          \hline
+          & No-DSA & CG & PCG-SGS & PCG-MLU-D & PCG-MLU-M & PCG-MLM-D &
+          PCG-MLM-M & AGMG \\
+          \hline
+          SI iter    & 7311    & 23      & 23        & 23      & 23       & 23      & 23       & 23      \\
+          Prec (s)   & NA      & NA      & 0.0205462 & 0.32853 & 0.381816 & 1.02377 & 1.111999 & 0.671   \\
+          MIP (s)    & NA      & 87.8195 & 178.535   & 74.1533 & 89.1188  & 73.0178 & 80.5592  & 4.20011 \\
+          CG iter    & NA      & 18985   & 9820      & 1219    & 1219     & 1206    & 1206     & 171     \\
+          Total (s)  & 7311.49 & 117.768 & 210.944   & 100.424 & 120.757  & 101.374 & 110.913  & 32.857  \\
+          \hline
+        \end{tabular}
+        \label{bld_ar_6}
       \end{centering}
     \end{table}
   \end{center}
 \end{landscape}
-We can see that at the exception of AGMG, all the other preconditioned 
-conjugate gradients performed significantly worse than for the others test 
-cases. AGMG does not seem to be affected by the ill conditioning of MIP or the 
-high aspect ratio. The change of coarsest grid size does not have a significant 
-effect on the time needed to solve MIP.
+As predicted, inverting MIP requires a lot more CG iterations when the aspect
+ratio increases. The only exception is AGMG which requires less iterations
+when the aspect ratio is 6.25 than when it is 1.0. As expected, PCG-MLU and
+PCG-MLM are much more affected by the aspect ratio than CG and PCG-SGS.
+The number of CG iterations for CG and PCG-SGS is multiplied by two
+when the aspect ratio is increased, whereas it is multiplied by a little more
+than three for PCG-MLU and PCG-MLM. It is interesting to note
+that changing the size of the coarsest grid for PCG-MLU and PCG-MLM does not
+affect the number of CG iterations.

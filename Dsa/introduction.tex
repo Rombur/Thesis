@@ -35,26 +35,27 @@ instance, the modified-four-step (M4S) scheme \cite{m4s}, the
 Wareing-Larsen-Adams (WLA) scheme \cite{wla,wla_pwl}, and the Modified Interior
 Penalty (MIP) scheme \cite{mip}.
 
-We will come back to DSA later but first, we want to point the usefulness of
-using polygonal or polyhedral cells. Such cell types may present some advantages over
-traditional cells types (simplices, hexahedra) and have found some
-applications in radiation transport \cite{pwld_3d,pwld_2d,cfm_dfm}. 
-Some general motivations for
-polyhedral cells are as follows. Simplicial cell types (triangles, tetrahedra)
-can produce good  quality mesh for highly complex geometries, but are not
-well suited to capture boundary layers and are prone to numerical diffusion.
-Quadrilaterals and hexahedra have been shown to be less numerically diffusive
-than simplicial meshes \cite{??}, but may be harder to employ for complicated
-geometries. Polyhedral cells retain the attractive features of hexahedral
-cells  (the number of polyhedra is often much smaller than that of tetrahedral
-cells for an equivalent accuracy), while allowing for meshing
-flexibility (boundary layer meshes can easily be set up, polyhedral meshes can
-be generated from tetrahedral meshes, polyhedra can be included locally in
-existing meshes to improve mesh quality). Meshing tools such as MSTK
+We will come back to DSA later but first, we want to point the usefulness 
+of using polygonal or polyhedral cells. Such cell types may present some 
+advantages over traditional cells types (simplices, hexahedra) and have found 
+some applications in radiation transport \cite{pwld_3d,pwld_2d,cfm_dfm}. 
+%Some general motivations for
+%polyhedral cells are as follows. Simplicial cell types (triangles, tetrahedra)
+%can produce good  quality mesh for highly complex geometries, but are not
+%well suited to capture boundary layers and are prone to numerical diffusion.
+%Quadrilaterals and hexahedra have been shown to be less numerically diffusive
+%than simplicial meshes \cite{??}, but may be harder to employ for complicated
+%geometries. Polyhedral cells retain the attractive features of hexahedral
+%cells  (the number of polyhedra is often much smaller than that of tetrahedral
+%cells for an equivalent accuracy), while allowing for meshing
+%flexibility (boundary layer meshes can easily be set up, polyhedral meshes can
+%be generated from tetrahedral meshes, polyhedra can be included locally in
+%existing meshes to improve mesh quality). 
+Meshing tools such as MSTK
 \cite{mstk} and the Computational Geometry Algorithms Library \cite{cgal} may
-be employed to process polyhedral meshes. For example, the radiation transport
-code PDT and the CFD codes Fluent and OpenFOAM offer polyhedral mesh and
-solver capabilities.
+be employed to process polyhedral meshes. The radiation transport
+code PDT and the CFD codes Fluent \cite{fluent_2,fluent_1} and OpenFOAM
+\cite{openfoam} offer polyhedral mesh and solver capabilities.
 
 The following features of polygonal and polyhedral cells are noteworthy:
 \begin{itemize}
@@ -81,12 +82,11 @@ The following features of polygonal and polyhedral cells are noteworthy:
    \cite{amr_block,amr_rad,amr_unstruc}, without having to deal with the
    implementation of data structures to handle hanging nodes
    \cite{locally_hanging_nodes,arbitrary_hanging_nodes,dealII_hanging_nodes}.
-   On Figure \ref{fig_amr}, the left cell is a pentagon whereas the two cells 
-   on the right
-   are quadrilaterals (a similar illustration can be made for 3D hexahedral
-   AMR meshes: suppose a cell is connect to four cells through one of its faces
-   - a standard situation with AMR on hexahedral grids - ; such a cell can be
-   thought of as a 9-face polyhedron). Thus, a method based on a piecewise linear
+   On Figure \ref{fig_amr}, the left cell is a degenerate pentagon whereas the 
+   two cells on the right are quadrilaterals. A similar illustration can be
+   made for 3D hexahedral AMR meshes: suppose a cell is connect to four cells
+   through one of its faces, such a cell can be
+   thought of as a 9-face polyhedron. Thus, a method based on a piecewise linear
    discretization can handle locally adapted meshes without any special
    treatment or further approximation of the coupling between cells.
    \begin{figure}[H]
@@ -108,11 +108,11 @@ polygonal/polyhedral cells focuses on adapting the WLA scheme on polygonal meshe
 \cite{wla_pwl,cfm_dfm}. The WLA scheme is a two-stage process, where first a
 diffusion solution is obtained using a {\em continuous} finite element
 discretization and then a {\em discontinuous } update is performed cell-by-cell 
-in order to provide an appropriate discontinuous scalar flux to the DFE transport 
-solver. In \cite{consistent_p1}, the WLA scheme was
+in order to provide an appropriate discontinuous scalar flux correction to 
+the DFE transport solver. In \cite{consistent_p1}, the WLA scheme was
 found to be a stable and effective DSA technique, though its efficiency
 degraded as the problem became more optically thick and highly diffusive.
-To the authors' best knowledge, no work is currently done to adapt the M4S 
+To the author's best knowledge, no work is currently done to adapt the M4S 
 technique to polygonal/polyhedral meshes. This is probably due to the fact
 that, even though the scheme is effective in one-dimensional slab and
 two-dimensional rectangular geometries, it was found to be divergent as an
@@ -124,13 +124,12 @@ PWLD discretization techniques for for arbitrary polygonal/polyhedral meshes.
 The MIP scheme is based on the standard Interior Penalty (IP) for the
 discontinuous discretization of diffusion equations. MIP was first derived in
 \cite{mip}, where it was applied to triangular unstructured meshes (with
-locally adapted cells). MIP did not suffer the degradation of efficiency 
-than WLA when the
-problem becomes optically thick and highly diffusive and it is therefore an
-interesting alternative to WLA. To our knowledge, this work presented the
-first DSA scheme based on the same discontinuous trial spaces as the transport
-finite element discretization for such meshes. Because MIP produces SPD
-equations, it has been solved using conjugate gradient (CG) preconditioned by
+locally adapted cells). MIP did not suffer the same degradation of efficiency 
+than WLA when the problem becomes optically thick and highly diffusive and it 
+is therefore an interesting alternative to WLA. MIP uses the same
+discontinuous trial spaces as the transport finite element discretization.
+Because MIP produces SPD equations, it has been solved using conjugate gradient 
+(CG) preconditioned by
 a symmetric successive over-relaxation method (SSOR) in \cite{mip}. Here, the
 effectiveness of algebraic multigrid methods (AMG) to precondition diffusion
 solver \cite{amg,amg_course} will be tested and compared with CG+SSOR.

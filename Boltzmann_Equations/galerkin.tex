@@ -102,8 +102,8 @@ $O(1)$ components in $\gamma$. \Cref{D2M_disc,M2D_disc} may be combined to give:
   &(\bs{I}-\bs{M}_N\bs{D}_N)\Psi^{(0)} = 0 \label{identity_a}\\
   &(\bs{I}-\bs{D}_N\bs{M}_N)\Phi^{(0)} = 0 \label{identity_b}.
 \end{align}
-This means that $\Psi^{(0)}$, respectively $\Phi^{(0)}$, must be in the kernel
-of $\bs{I}-\bs{M}_N \bs{D}_N$, respectively $\bs{I}-\bs{D}_N \bs{M}_N$. Using 
+Therefore, $\Psi^{(0)}$ must be in the kernel of $\bs{I}-\bs{M}_N\bs{D}_N$ and
+$\Phi^{(0)}$ must be in the kernel of $\bs{I}-\bs{D}_N\bs{M}_N$. Using 
 \cref{phi_p}, \cref{identity_b} becomes successively:
 \begin{equation}
   \(\bs{I}-\bs{D}_N \bs{M}_N\) \bs{D}_N \Psi^{(0)} = 0
@@ -120,7 +120,7 @@ automatically satisfied.
 
 A sufficient condition to satisfy \cref{identity_a} is that $\bs{M}_N \bs{D}_N
 =\bs{I}$. This is of course true if $\bs{D}_N=\bs{M}_N^{-1}$ like in analytic 
-transport. Obviously for $\bs{M}_N$ and $\bs{D}_N$ to be inverse of each other, 
+transport. Obviously for $\bs{M}_N$ and $\bs{D}_N$ to be the inverse of each other, 
 the matrices have to be square. Thus, the number of moments in the scattering 
 expansion must be equal to number of discrete angles. In one-dimension,
 $\bs{D}_N = \bs{M}_N^{-1}$ is satisfied if the 
@@ -138,7 +138,7 @@ If we assume that $\bs{M}_N \bs{D}_N=\bs{I}$, then the $O(\epsilon)$ terms in
 \begin{equation}
   \begin{split}
     \phi_{l,m}^{(1)}(\br) &= \sum_{k=1}^K w_k Y_{l}^{m,*} (\bo_k) \psi_k^{(1)}(\br)\\
-                          &=(\bs{D}_N\Psi^{(1)})_{l,m}
+                          &=(\bs{D}_N\Psi^{(1)})_{l,m}.
   \end{split}
 \end{equation}
 In \cref{discr_eps_manip}, the $O(1)$ terms give:
@@ -157,7 +157,7 @@ Now, we want the scattering term on the left side of \cref{O_1_terms} to
 disappear in order to keep only $\psi_k^{(0)}$ and $\phi_{l,m}^{(0)}$. This 
 is possible only if:
 \begin{equation}
-\psi_d^{(1),*}(\br) = \psi_d^{(1)}(\br)
+\psi_d^{(1),*}(\br) = \psi_d^{(1)}(\br),
 \label{psi_1_star_old}
 \end{equation}
 where:
@@ -166,7 +166,7 @@ where:
     \psi_d^{(1),*} &= \sum_{l=0}^{N-1}\sum_{m=-l}^l Y_l^m(\bo_k) 
     \phi_{l,m}^{(1)}(\br)\\
                    &= (\bs{M}_N\Phi^{(1)})_d\\
-                   &=(\bs{M}_N \bs{D}_N \Psi^{(1)})_d
+                   &=(\bs{M}_N \bs{D}_N \Psi^{(1)})_d,
   \end{split}
   \label{psi_1_star}
 \end{equation}   
@@ -180,7 +180,7 @@ which is satisfied because of our previous assumption that $\bs{M}_N \bs{D}_N
   \mu}+\right. \right.\\
   &\left.\left. \(\frac{1}{1-\mu^2}\)\frac{\partial^2}{\partial \varphi^2}\)
   \tilde{\psi}^{(0)} (\br,\bo)\)_{\bo=\bo_k}+ Q(\br,\bo_k) + 
-  O\(\frac{\gamma}{\epsilon}\)
+  O\(\frac{\gamma}{\epsilon}\),
 \end{split}
 \label{last_pautz}
 \end{equation}
@@ -201,7 +201,7 @@ correct limit using the $S_N$:
 \item [Multidimensional geometry:] The standard quadrature sets have fewer 
   moments than discrete angles. Therefore to satisfy $\bs{D}=\bs{M}^{-1}$, spherical
   harmonics of higher order need to be added to increase the number of moments
-  up to the number of angular flux. Morel in \cite{galerkin_morel} and Reed in 
+  to equal the number of angular flux. Morel in \cite{galerkin_morel} and Reed in 
   \cite{reed} proposed an heuristic algorithm to choose the spherical 
   harmonics for multidimensional geometries. If we use the real spherical
   harmonics defined by:
@@ -216,8 +216,8 @@ correct limit using the $S_N$:
   \begin{equation}
     Y_{l,m}^s = \frac{1}{i\sqrt{2}}(Y_l^{-m}-(-1)^{m}Y_l^m) \textrm{ if } m<0
   \end{equation}
-  and a two-dimensional triangular quadrature set, the selection rules to build 
-  $\bs{M}$ are the following:
+  and a two-dimensional Cartesian geometry triangular quadrature set, the 
+  selection rules to build $\bs{M}$ are the following:
   \begin{itemize}
     \item Take $Y_{l,m}^c$ if $l\in[0,N-1]$, $m\in[0,l]$, and $l+m$ is even.
     \item Take $Y_{l,m}^s$ if ($l \in [1,N-1]$, $m\in[1,l]$, and $l+m$ is
@@ -249,7 +249,7 @@ assures a one-to-one relation between the angular flux and the flux moments;
 furthermore, the orthogonality of all spherical harmonic functions used in the
 angular flux representation is preserved. However, if a standard quadrature is
 employed, then $\bs{D} = \bs{M}^T \bs{W}$, where $\bs{W}$ is the diagonal
-matrix of weights, and inexact integration occurs for the set of spherical
+matrix of weights, and an inexact integration occurs for the set of spherical
 harmonics than span $\bs{M}$. Thus, $\bs{C}$ will differ from
 $\frac{\bs{\Sigma}}{\Sigma_t}$ and its eigenvalue could exceed unity. This is
 equivalent to numerically adding multiplication into the medium and, depending
@@ -257,28 +257,27 @@ on the amount of leakage present in the geometrical configuration, the
 steady-state transport equation may not reach a steady state solution
 \cite{pautz_fp}.
 
-A very important property of the Galerkin quadratures is that they treat the
+A very important property of the Galerkin quadratures is that they treat 
 delta function scattering exactly. This is very important for two reasons. 
-The first reason is that in charged-particle transport, some cross sections 
+Firstly, in charged-particle transport, some cross sections 
 have the following form:
 \begin{equation}
 \Sigma^{k\rightarrow g}(\mu_0) = \Sigma^{k\rightarrow g} \delta(\mu_0-1),
 \end{equation}
 where $\Sigma^{k\rightarrow g}(\mu_0)$ is the differential cross section
 associated with a transfer from group $k$ to group $g$. Thus, it is essential
-that delta function scattering be treated exactly. The second reason, which is
-more important for us since we work with energy-integrated equation, is that for 
+that delta function scattering be treated exactly. Secondly and more
+importantly since we work with energy-integrated equation, for 
 electron scattering, the extended transport correction \cite{lathrop} can be 
 used to reduce the within-group scattering cross sections by two orders of 
 magnitude or more \cite{morel_79}. Without the extended transport correction, 
-the high orders of the flux moments are very important and DSA does not 
+the scattering cross-section moments are very large and DSA does not 
 accelerate the convergence of the solver. Because the Galerkin method treats 
 delta function  scattering exactly, the extended transport correction does not
 modify the solution of the problem \cite{morel_79}. This is very interesting 
-since it allows to reduce significantly the higher moments of the scattering
-cross-section expansion without losing of accuracy. Showing this property is
-quite simple given what we have presented thus far. We know that in the analytic case
-we have:
+since it allows significant reduction of the cross-section moments without
+loss of accuracy. Showing this property is quite simple given what we have
+presented thus far. We know that in the analytic case we have:
 \begin{equation}
 \int_{4\pi} \delta(\mu_0-1) \psi(\bo')\ d\bo' = \psi(\bo).
 \end{equation}
@@ -299,7 +298,7 @@ Methods for generating the interpolatory basis function can be found in
 \cite{galerkin_morel}. Next, we expand the scattering source on the Legendre
 polynomials:
 \begin{equation}
-\mc{S}(\mu) = \sum_{l=0}^{\infty} \frac{2l+1}{2} \xi_l P_l(\mu)
+\mc{S}(\mu) = \sum_{l=0}^{\infty} \frac{2l+1}{2} \xi_l P_l(\mu),
 \label{S_mu_2}
 \end{equation}
 where:
@@ -308,7 +307,7 @@ where:
 \end{equation}
 Now, we use the interpolatory trial space to approximate $S(\mu)$:
 \begin{equation}
-\tilde{\mc{S}}(\mu) = \sum_{d=1}^N \tilde{\mc{S}}_d B_d(\mu)
+\tilde{\mc{S}}(\mu) = \sum_{d=1}^N \tilde{\mc{S}}_d B_d(\mu).
 \label{tilde_s_mu}
 \end{equation}
 Since a Galerkin method is used, the residual associated with the trial space 
@@ -318,7 +317,7 @@ space. The residual associated with \cref{tilde_s_mu} is given by:
 Res(\mu) = \tilde{\mc{S}}(\mu) - \mc{S}(\mu).
 \label{R_mu}
 \end{equation}
-Since the Legendre polynomials form a basis the weighting space, we
+Since the Legendre polynomials form a basis for the weighting space, we
 orthogonalize against the Legendre polynomials:
 \begin{equation}
 \int_{-1}^1 Res(\mu) P_l(\mu) d\mu = 0.0,\ \ l=0,\hdots,N-1.
@@ -341,28 +340,30 @@ are needed.
 
 Now, we compare the cross-section expansion for the Galerkin method and
 the $S_n$ method. Both the Galerkin method and the standard $S_n$ method use
-the Legendre expansion of the cross section. However, whereas the $S_n$ method
-actually uses the Legendre expansion, the Galerkin scattering source is
-fully consistent with the exact cross section. It is not
-important whether or not the Legendre cross-section expansion represents
-accurately the scattering cross section. What is important is that
+a Legendre expansion of the cross section. However, whereas the $S_n$ method
+relies on the accuracy of the truncated Legendre expansion, the Galerkin 
+scattering source is fully consistent with the exact cross section. It is not
+important whether or not the truncated Legendre cross-section expansion 
+accurately represents the scattering cross section. What is important is that
 $\tilde{S}(\mu)$ is an accurate approximation of $S(\mu)$. This is a crucial 
 property for charged particle transport. For example, the delta
 function expansion of finite degree is never converged, and this is an issue if a 
 $S_n$ method with a standard quadrature is used. However, as proved earlier, 
 the scattering source computed by the Galerkin method is treated exactly.
 
-If the scattering is isotropic, the $S_n$ method appears superior to the
+If the scattering is isotropic, the $S_n$ method might appear superior to the
 Galerkin, since the Galerkin requires the number of flux moments to be equal
 to the number of angular flux. Fortunately, if the higher order cross-sections
 moments are zero, only the first rows of $\bs{D}$ and the first columns of
 $\bs{M}$ need to be kept.
 
 A Galerkin quadrature set and its companion quadrature sets (standard
-quadrature sets associated to the Galerkin quadrature set) are different only
+quadrature sets associated with the Galerkin quadrature set having weights
+defined by the first row of the discrete-to-moment matrix) yield different
+scattering only
 if the expansion order of the scattering cross section is high enough. When the 
-scattering is isotropic, the Galerkin quadrature set is the same than its
+scattering is isotropic, the Galerkin quadrature set is the same as its
 companion set. Even when the scattering is highly anisotropic, the results
 given by the Galerkin set and its companion set can be very close. This is due
 to the fact the high order moments of the scattering cross section are often,
-but not always, very small.
+but not always, very small. However, the results can also be quite different.

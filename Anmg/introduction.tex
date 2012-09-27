@@ -17,14 +17,14 @@ solution methods for problems with highly forward-peaked scattering characterist
 of the Fokker-Planck limit. 
 
 When the scattering is highly forward-peaked, solving the $S_n$ transport
-equation can be challenging due to the slow convergence of standard iterative
-algorithm, such as Source Iteration (SI). To speed up iterative convergence,
+equation can be challenging due to the slow convergence of the standard iterative
+algorithm, Source Iteration (SI). To speed up iterative convergence,
 acceleration schemes such as Diffusion Synthetic Acceleration (DSA) are used.
 With isotropic or weakly anisotropic scattering, DSA is generally highly
-effective \cite{dsa_ref}. This is because, in such case, the quickly varying
-error modes are strongly attenuated by the transport sweep whereas the
-diffusion operator attenuates the slowly varying error modes. However, DSA is
-completely ineffective in the Fokker-Planck limit \cite{multigrid_1d} because
+effective \cite{dsa_ref}. This occurs because the quickly varying
+error modes are strongly attenuated by the transport sweep, whereas the
+diffusion operator attenuates the slowly varying error modes. However, DSA can
+be completely ineffective in the Fokker-Planck limit \cite{multigrid_1d} because
 the diffusion operator does not attenuate all the slowly varying error modes.
 
 To address this deficiency, an  angular multigrid method for the
@@ -33,8 +33,8 @@ equations was developed by Morel and Manteuffel (MM) \cite{multigrid_1d}. This
 method was extremely efficient yielding a maximum spectral radius for 
 a model infinite-medium problem of 0.6 at a cost of
 approximatively twice that of DSA. This maximum spectral radius is approached
-in the Fokker-Planck limit. In this same limit, the spectral radius of DSA
-approaches 1. 
+in the Fokker-Planck limit whereas in the same limit, the spectral radius of DSA
+approaches one. 
 
 Pautz, Adams, and Morel (PAM) \cite{multigrid_2d} generalized the MM method to
 2-D, but it was found to be stable only for weakly forward-peaked scattering.
@@ -43,7 +43,7 @@ occurred in the transfer of error estimates between angular grids (a sequence
 of different $S_n$ orders). Stabilization was achieved by filtering the error
 estimates via diffusion operators. However, this filtering was expensive and
 significantly degraded the effectiveness of the method such that the spectral
-radius approaches $1$ in the Fokker-Planck limit.  Nonetheless, the method was 
+radius approaches one in the Fokker-Planck limit.  Nonetheless, the method was 
 always more efficient than the DSA method for the test problems considered.
 
 In this Chapter, the PAM method with no filtering (PAMNF) is recast as a 
@@ -66,7 +66,7 @@ convergence of GMRES because they can be viewed as single values that are proces
 one at the time \cite{campbell,warsa}. We also compare the convergence rates and 
 efficiency of these preconditioners for various test problems with forward-peaked 
 scattering. We find that PAMNF preconditioning is significantly more efficient 
-than DSA preconditioning, and become increasingly so as the Fokker-Planck limit 
+than DSA preconditioning, and becomes increasingly so as the Fokker-Planck limit 
 is approached. However, unlike the MM method for one-dimensional geometries, 
 the number of iterations required for convergence 
 nonetheless increases as this limit is approached. In spite of this fact, 
@@ -75,9 +75,8 @@ costly filtering associated with the original PAM fixed-point iteration scheme,
 and appears to be more effective than other existing algorithms for solving 
 the $S_n$ equations with highly forward-peaked scattering.
 
-One key features of the angular multigrid method is that transport sweeps can
+One key feature of the angular multigrid method is that transport sweeps can
 strongly damp the high frequency error modes (upper half of the flux moments)
 with the use of an ``optimal'' transport correction \cite{multigrid_1d}. This
 ``optimal'' transport correction is a variant of the well-known extended
 transport correction \cite{lathrop,morel_79}.
-

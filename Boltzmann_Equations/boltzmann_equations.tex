@@ -9,13 +9,13 @@ significant changes of energy and direction are common in most applications.
 
 In theory, the linear Boltzmann equation could be used for charged particle
 transport but the scattering cross sections are so forward peaked that a Legendre 
-expansion of the cross section would require too many terms in its expansion. 
+expansion of the cross section would require too many terms. 
 Moreover, using a deterministic method to solve the Boltzmann equation often 
 requires cells of the same scale as the very small mean free path \cite{pomraning}. 
 To avoid these difficulties, a Fokker-Planck operator can
 be used to represent the highly forward peaked scattering. Since this operator 
-cannot represent the large angle scattering collisions, a Legendre expansion 
-is used for them. The addition of the Fokker-Planck operator to the 
+cannot represent the large angle scattering collisions, we employ a Legendre
+expansion for this purpose. The addition of the Fokker-Planck operator to the 
 Boltzmann equation yields the Boltzmann-Fokker-Planck equation \cite{ligou}.
 
 \section{Boltzmann-Fokker-Planck equation}
@@ -117,9 +117,9 @@ Assuming that $\phi_{l,m}(E')$ is a smooth function
 we can perform the following Taylor expansions:
 \begin{equation}
   \begin{split}
-    &E'\sigma_{s,sing}(\mu_c,E')\phi_{l,m} (E') = E\sigma_{s,sing}(\mu_c,E)
-    \phi_{l,m}(E) +\\ 
-    &(E'-E)\frac{\partial}{\partial E}\(E\sigma_{s,sing}(\mu_c,E)
+    E'\sigma_{s,sing}(\mu_c,E')\phi_{l,m} (E') =& E\sigma_{s,sing}(\mu_c,E)
+    \phi_{l,m}(E) \\ 
+    &+(E'-E)\frac{\partial}{\partial E}\(E\sigma_{s,sing}(\mu_c,E)
     \phi_{l,m}(E)\)+\hdots
   \end{split}
 \end{equation}
@@ -142,7 +142,7 @@ and assuming $\mu_c\approx 1$ or $A\ll 1$, we get:
 & \frac{E'-E}{E'} = \frac{2A}{(A+1)^2} (1-\mu_c)\\
 & 1-\mu_L \approx \(\frac{A}{A+1}\)^2 (1-\mu_c).
 \end{align}
-To a first order in $(1-\mu_c)$, we get:
+To first order in $(1-\mu_c)$, we get:
 \begin{equation}
 q_{l,m,sing}(E) = \Sigma_{s,sing}(E) \phi_{l,m}(E) +\frac{\partial}{\partial E} S(E)
 \phi_{l,m}(E) - l(l+1)T(E) \phi_{l,m}(E)
@@ -186,7 +186,7 @@ size of the domain is $O(1)$ and that the
 scattering mean free path is small (i.e., $\Sigma_s \gg 1$). Next, we scale
 $\Sigma_s$ as:
 \begin{equation}
-\Sigma_s(E) = \frac{\hat{\Sigma}_s(E)}{\Delta}
+\Sigma_s(E) = \frac{\hat{\Sigma}_s(E)}{\Delta},
 \label{sigma_s}
 \end{equation}
 where $\hat{\Sigma}_s=O(1)$ and $\Delta \ll 1$, $\Delta$ represents the
@@ -252,10 +252,11 @@ E}+\frac{\epsilon^2y^2}{2}\frac{\partial^2}{\partial E^2}+O(\epsilon^3)\]
 \label{error}
 \end{equation}
 Now, $-E/\epsilon$ is replaced by $-\infty$ as the lower limit of the integral 
-on $y$. We assume that the error made is at most $O(\epsilon^3)$. This is correct 
+on $y$. We assume that the error is at most $O(\epsilon^3)$. This is correct 
 if the scattering kernel falls off exponentially in energy from its maximum at 
 $y=0$ but if the kernel falls off too slowly, this substitution may increase the 
-error above $O(\epsilon^3)$ and the current development becomes wrong. When the 
+error above $O(\epsilon^3)$ and the current development becomes
+unsatisfactory. When the 
 kernel falls off exponentially in energy, the replacement of the integration limit 
 introduce an exponentially small error. We also neglect the cross terms 
 in angle and energy in \cref{error}. It is not necessary to neglect them but the 
@@ -288,21 +289,21 @@ y&= \frac{E-E'}{\epsilon}\label{y2}.
 are interchanged). Therefore, we get:
 \begin{equation}
   \begin{split}
-    K=& \frac{2\pi}{\Delta} \int_{-\infty}^{\infty} dE'
-    \int_{-1}^{1}d\mu_0\Bigg(\(1+O(\delta^2+\epsilon\delta+\epsilon^3)\)
-    \hat{\Sigma}_s \(\frac{1-\mu_0}{\delta},E,\frac{E-E'}{\epsilon}\) \\
-    & \phi_{l,m}(E)\Bigg) - \frac{l(l+1)\pi}{\Delta}
-    \int_{-\infty}^{\infty}dE' \int_{-1}^1d\mu_0 \Bigg( (1-\mu_0)
-    \hat{\Sigma}_s \(\frac{1-\mu_0}{\delta},E,\right.\\
-    &\left.\frac{E-E'}{\epsilon}\)\phi_{l,m}(E)\Bigg) 
-    +\frac{2\pi}{\Delta}\frac{\partial}{\partial E}
-    \int_{-\infty}^{\infty} dE' \int_{-1}^{1} d\mu_0 \Bigg( \(E-E'\)
-    \hat{\Sigma}_s \(\frac{1-\mu_0}{\delta},\right.\\
-    &\left.E,\frac{E-E'}{\epsilon}\)
-    \phi_{l,m}(E)\Bigg) + \frac{\pi}{\Delta}\frac{\partial^2}{\partial E^2}
-    \int_{-\infty}^{\infty}  dE' \int_{-1}^1 d\mu_0\ \Bigg((E-E')^2\\
-    & \hat{\Sigma}_s\(\frac{1-\mu_0}{\delta},E,\frac{E-E'}{\epsilon}\)
-    \phi_{l,m}(E)\Bigg).
+    K=& \frac{2\pi}{\Delta} \int_{-\infty}^{\infty}\! dE'
+    \int_{-1}^{1}\! d\mu_0\Bigg(\!\(1+O(\delta^2+\epsilon\delta+\epsilon^3)\)
+    \hat{\Sigma}_s \(\frac{1-\mu_0}{\delta},E,\frac{E-E'}{\epsilon}\)
+    \phi_{l,m}(E)\! \Bigg)\\
+    &- \frac{l(l+1)\pi}{\Delta} \int_{-\infty}^{\infty}dE'\!
+    \int_{-1}^1d\mu_0\! \Bigg( (1-\mu_0) \hat{\Sigma}_s 
+    \(\frac{1-\mu_0}{\delta},E,\frac{E-E'}{\epsilon}\) \phi_{l,m}(E)\Bigg)\\ 
+    &+\frac{2\pi}{\Delta}\frac{\partial}{\partial E}
+    \int_{-\infty}^{\infty}\! dE' \int_{-1}^{1}\! d\mu_0 \Bigg( \(E-E'\)
+    \hat{\Sigma}_s \(\frac{1-\mu_0}{\delta},E,\frac{E-E'}{\epsilon}\) 
+    \phi_{l,m}(E)\Bigg)\\
+    &+ \frac{\pi}{\Delta}\frac{\partial^2}{\partial E^2}
+    \int_{-\infty}^{\infty}\! dE' \int_{-1}^1\! d\mu_0\ \Bigg((E-E')^2
+    \hat{\Sigma}_s\(\frac{1-\mu_0}{\delta},E,\frac{E-E'}{\epsilon}\)
+     \phi_{l,m}(E)\Bigg).
   \end{split}
   \label{K}
 \end{equation}
@@ -347,7 +348,7 @@ $\hat{\Sigma}_s(E)$, we get:
   \end{split}
   \label{final_m1}
 \end{equation}
-Using \cref{eigenvalue}, the $l(l+1)$ factor can be eliminated, then we can 
+Using \cref{eigenvalue}, the $l(l+1)$ factor can be eliminated; then we can 
 sum over the spherical harmonics according to \cref{ang_flux} to obtain our final 
 result:
 \begin{equation}
@@ -379,21 +380,23 @@ $O(\delta)=O(\Delta)$ to have a finite and nonzero angular term in
 O(\Delta)$ for \cref{final} to have a finite and nonzero energy term.
 Therefore, when the scattering becomes more peaked ($\epsilon \rightarrow 0$
 and $\delta \rightarrow 0$), the magnitude of the cross section must increase
-to have the momentum transfer to stay finite and nonzero.
+so that the momentum transfer stay finite and nonzero.
 
 Since $\tilde{R}$ is $O\(\frac{\epsilon^2}{\Delta}\)$, we do not need $\tilde{R}$ 
-to keep the leading order behavior in energy transfer. In many
+to retain the leading order behavior in energy transfer. In many
 applications, the BFP equation used does not have the $\tilde{R}$ term. The 
-reason for keeping $\tilde{R}$, even though it is a higher order term, 
-is that it describes a totally different physics than the stopping power 
+reason for retaining $\tilde{R}$, even though it is a higher order term, 
+is that it describes totally different physics than the stopping power 
 ($\tilde{S}$) term: the stopping power term is convective 
 whereas the $\tilde{R}$ term is diffusive. In certain applications, even a
 small diffusion of the particles in the energy variable can have an important
-effect and thus, it is important to keep the $\tilde{R}$ term \cite{pomraning}. 
-The reason that no convective term in angle appears in
+effect and thus, it is important to keep the $\tilde{R}$ term
+\cite{pomraning}. For instance, $\tilde{R}$ is necessary to obtain thermal
+equilibrium. The reason that no convective term in angle appears in
 \cref{final} (the $\tilde{T}$ term is diffusive) is that we have assumed 
-an isotropic medium. There is the same probability for a particle to be scattered 
-to the left or the right, and thus, the mean scattering angle is zero.
+an isotropic medium; that is there is the same probability for a particle to
+be scattered to the left or the right, and thus, the mean scattering angle is
+zero.
 
 \subsection{Limits of the Boltzmann-Fokker-Planck approximation}
 \subsubsection{Introduction}
@@ -569,7 +572,7 @@ f_l = 1-(1-\bar{\mu}_0)\frac{l(l+1)}{2}+\eta\sum_{k=1}^{l-1}
 \(\frac{l(l+1)}{k(k+1)}-1\) (2k+1) f_k.
 \label{f_n_R}
 \end{equation}
-If the summation term is assumed to be zero for $l=0$ and $l=1$,
+If the summation term is assumed to be zero for $l=0$ and $l=1$;
 \cref{recursion} and \cref{f_n_R} are equivalent for all $l\geq 0$ and $\eta >
 0$. Next, we assume the following expansion of $f_l$ for $\eta \ll 1$:
 \begin{equation}

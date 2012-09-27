@@ -5,32 +5,31 @@ Boltzmann-Fokker-Planck equation and the limitations of the Fokker-Planck operat
 The Boltzmann-Fokker-Planck equation was introduced for charged particle transport
 because the scattering kernel is highly forward-peaked such that a standard Legendre
 expansion of the scattering kernel is impractical and would require hundreds 
-of terms. We also recalled a previous work from Pomraning that shown that the 
-Fokker-Planck 
-operator is an asymptotic limit of the Boltzmann 
+of terms. We also recalled a previous work from Pomraning showing that the 
+Fokker-Planck operator is an asymptotic limit of the Boltzmann 
 operator when the scattering is forward-peaked and that the energy transfer 
 during a collision tends to zero. In the Boltzmann-Fokker-Planck equation, the 
-Fokker-Planck operator is used to model 
-the highly forward-peaked scattering collisions whereas the Boltzmann operator 
-is used for the wide angle scattering collisions. The Fokker-Planck operator 
-simplifies the calculation of the transport equation but is valid only if 
-the kernel is peaked enough. For instance, realistic screened Rutherford 
-cross sections are not peaked enough. Then, we introduced the Fokker-Planck 
-cross sections which mimic the Fokker-Planck operator when using the Boltzmann
-operator. Since Fokker-Planck cross sections are the most forward-peaked cross
-section (the extended transport correction renders the delta scattering equivalent 
-to pure absorption), we used them for our tests. Finally, we introduced the Galerkin 
-quadratures. Galerkin quadratures are crucial to obtain correct results when 
-the scattering is highly anisotropic. Galerkin quadratures are equivalent
-to standard quadratures when the scattering is weakly anisotropic but when the
+Fokker-Planck operator is used to model the highly forward-peaked scattering
+collisions whereas the Boltzmann operator is used for the wide angle
+scattering collisions. The Fokker-Planck operator simplifies the calculation
+of the transport equation but is valid only if the kernel is peaked enough.
+For instance, realistic screened Rutherford cross sections are not peaked
+enough. Then, we introduced the Fokker-Planck cross sections which mimic the
+Fokker-Planck operator when using the Boltzmann operator. Since Fokker-Planck
+cross sections are the most forward-peaked cross section (the extended
+transport correction renders the delta scattering equivalent to no scattering
+at all), we used them for our tests. Finally, we introduced Galerkin
+quadratures. Galerkin quadratures are crucial to obtain correct results when
+the scattering is highly anisotropic. Galerkin quadratures are equivalent to
+standard quadratures when the scattering is weakly anisotropic but when the
 scattering is highly anisotropic, using a standard quadrature can introduce
 non physical solutions.
 
-Next, we introduced the angular multigrid methods to speed up
-the calculation in highly anisotropic medium. When the medium is highly
-anisotropic, the Diffusion Synthetic Acceleration (DSA) is not effective
-anymore because it cannot speed up the convergence of high order of the 
-flux moments. The initial work on this topic was carried out by Morel and Manteuffel. 
+Next, we introduced the angular multigrid methods to speed up the calculation 
+with highly anisotropic scattering. When the scattering is highly anisotropic, 
+the Diffusion Synthetic Acceleration (DSA) is not effective anymore because it 
+cannot speed up the convergence of high order flux moments. The initial work on 
+this topic was carried out by Morel and Manteuffel. 
 They developed a one-dimensional angular multigrid method  to
 accelerate the convergence of Source Iteration (SI). This angular multigrid 
 method uses an $S_{n/2}$ sweep to correct the $S_n$ sweep. The $S_{n/2}$ 
@@ -38,7 +37,7 @@ correction is itself corrected by a $S_{n/4}$ correction, etc. until the
 $S_4$ correction is corrected by $P1$ equations. They showed that when 
 Fokker-Planck cross sections are used the spectral radius of the new 
 method is bounded by 0.6 whereas the spectral radius of DSA can become 
-arbitrary close to unity. Pautz et al. generalized the angular multigrid 
+arbitrary close to unity. Pautz, et al., generalized the angular multigrid 
 method to multidimensional geometries. In this case, the successive correction
 used an $S_2$ sweep before a DSA stage at the final level. Unfortunately, 
 the generalized method was unstable. To stabilize it, the corrections need to 
@@ -58,7 +57,7 @@ developed for triangular cells to arbitrary polygonal meshes using the
 PieceWise Linear Discontinuous (PWLD) finite elements. Arbitrary polygonal
 meshes can potentially decrease the number of unknowns to mesh a domain and
 they simplifies adaptive mesh refinement by suppressing hanging nodes. MIP
-being SPD, it is solved using CG. Therefore, we compared different
+being SPD, is solved using CG. Therefore, we compared different
 CG preconditioners: Algebraic MultiGrid (AMG) preconditioners and the more 
 common Symmetric Gauss-Seidel (SGS) preconditioner. AMG were shown to be much 
 more efficient than SGS. Among the different AMG methods tested the AGMG code 
