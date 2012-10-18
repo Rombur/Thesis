@@ -1,9 +1,9 @@
-\titleformat{\chapter}{\centering\normalsize}{APPENDIX \thechapter.}{1em}{}
-\begin{appendices}
-\renewcommand{\appendixname}{\uppercase{Appendix}}
-%\renewcommand{\appendixtitle}{\uppercase{Appendix}}
+\appendix
+\titleformat{\chapter}{\centering\normalsize}{APPENDIX
+\thechapter.}{0em}{\vskip .5\baselineskip\centering}
+\renewcommand{\appendixname}{\uppercase{APPENDIX}}
+\addtocontents{toc}{\def\protect\cftchappresnum{\appendixname{ }}}
 
 \input{./Appendices/ml_options}
 
-\end{appendices}
 \pagebreak{}

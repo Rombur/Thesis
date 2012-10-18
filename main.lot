@@ -1,26 +1,32 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\afterpage {\hspace {-31pt}{TABLE}\hfill {Page}\par \vspace \medskipamount }
+\afterpage {\vspace {-10pt}\hfill {}\par \vspace \medskipamount }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \vskip -10pt
 \contentsline {table}{\numberline {IV.1}{\ignorespaces Comparison of the number of GMRES iterations needed in ANMG-DSA and ANMG-$P1$SA\relax }}{74}
 \contentsline {table}{\numberline {IV.2}{\ignorespaces Comparison of the number of GMRES iterations needed to solve the volumetric source test problem when $c=1$ using sweep preconditioning (S), DSA preconditioning, and ANMG-DSA preconditioning on a homogeneous medium\relax }}{76}
 \contentsline {table}{\numberline {IV.3}{\ignorespaces Elapsed time (s) to solve the volumetric source test problem when $c=1$ using sweep preconditioning (S), DSA preconditioning, and ANMG-DSA preconditioning on a homogeneous medium\relax }}{76}
-\contentsline {table}{\numberline {IV.4}{\ignorespaces GMRES iterations to solve the heterogeneous problem using sweep preconditioning (S), DSA preconditioning, and ANMG-DSA preconditioning on a heterogeneous medium\relax }}{78}
-\contentsline {table}{\numberline {IV.5}{\ignorespaces Elapsed time (s) to solve the heterogeneous problem using sweep preconditioning (S), DSA preconditioning, and ANMG-DSA preconditioning on a heterogeneous medium\relax }}{78}
+\contentsline {table}{\numberline {IV.4}{\ignorespaces Comparison of the number of GMRES iterations needed to solve a problem whose infinity medium version is unstable for ANMG-DSA with SI\relax }}{78}
+\contentsline {table}{\numberline {IV.5}{\ignorespaces Elapsed time (s) to solve a problem whose infinity medium version is unstable for ANMG-DSA with SI\relax }}{78}
+\contentsline {table}{\numberline {IV.6}{\ignorespaces GMRES iterations to solve the heterogeneous problem using sweep preconditioning (S), DSA preconditioning, and ANMG-DSA preconditioning on a heterogeneous medium\relax }}{80}
+\contentsline {table}{\numberline {IV.7}{\ignorespaces Elapsed time (s) to solve the heterogeneous problem using sweep preconditioning (S), DSA preconditioning, and ANMG-DSA preconditioning on a heterogeneous medium\relax }}{80}
 \addvspace {10\p@ }
 \vskip -10pt
-\contentsline {table}{\numberline {V.1}{\ignorespaces Orthogonal length of the cell for different cells\relax }}{93}
-\contentsline {table}{\numberline {V.2}{\ignorespaces Comparison of different preconditioners for quadrilateral cells\relax }}{109}
-\contentsline {table}{\numberline {V.3}{\ignorespaces Comparison of different preconditioners for polygonal cells using SI\relax }}{110}
-\contentsline {table}{\numberline {V.4}{\ignorespaces Comparison of different preconditioners for polygonal cells using GMRES\relax }}{111}
-\contentsline {table}{\numberline {V.5}{\ignorespaces Comparison of different preconditioners for a heterogeneous medium\relax }}{112}
-\contentsline {table}{\numberline {V.6}{\ignorespaces Comparison of different preconditioners for a highly diffusive heterogeneous medium\relax }}{113}
-\contentsline {table}{\numberline {V.7}{\ignorespaces Comparison of preconditioners on AMR mesh\relax }}{116}
-\contentsline {table}{\numberline {V.8}{\ignorespaces Comparison of preconditioners on rectangular mesh with an aspect ratio of 1.0\relax }}{118}
-\contentsline {table}{\numberline {V.9}{\ignorespaces Comparison of preconditioners on rectangular mesh with an aspect ratio of 6.25\relax }}{118}
+\contentsline {table}{\numberline {V.1}{\ignorespaces Orthogonal length of the cell for different cells\relax }}{95}
+\contentsline {table}{\numberline {V.2}{\ignorespaces Comparison of different preconditioners for quadrilateral cells\relax }}{111}
+\contentsline {table}{\numberline {V.3}{\ignorespaces Comparison of different preconditioners for polygonal cells using SI\relax }}{112}
+\contentsline {table}{\numberline {V.4}{\ignorespaces Comparison of different preconditioners for polygonal cells using GMRES\relax }}{113}
+\contentsline {table}{\numberline {V.5}{\ignorespaces Comparison of different preconditioners for a heterogeneous medium\relax }}{114}
+\contentsline {table}{\numberline {V.6}{\ignorespaces Comparison of different preconditioners for a highly diffusive heterogeneous medium\relax }}{115}
+\contentsline {table}{\numberline {V.7}{\ignorespaces Comparison of preconditioners on an AMR mesh\relax }}{118}
+\contentsline {table}{\numberline {V.8}{\ignorespaces Comparison of preconditioners on rectangular mesh with an aspect ratio of 1.0 with BLD finite elements\relax }}{120}
+\contentsline {table}{\numberline {V.9}{\ignorespaces Comparison of preconditioners on rectangular mesh with an aspect ratio of 6.25 with BLD finite elements\relax }}{120}
+\contentsline {table}{\numberline {V.10}{\ignorespaces Comparison of preconditioners on rectangular mesh with an aspect ratio of 100 with BLD finite elements\relax }}{121}
+\contentsline {table}{\numberline {V.11}{\ignorespaces Comparison of preconditioners on rectangular mesh with an aspect ratio of 100 with PWLD finite elements\relax }}{121}
 \addvspace {10\p@ }
 \vskip -10pt
-\contentsline {table}{\numberline {VI.1}{\ignorespaces Properties of the different zones of the benchmark\relax }}{127}
+\contentsline {table}{\numberline {VI.1}{\ignorespaces Properties of the different zones of the benchmark\relax }}{131}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

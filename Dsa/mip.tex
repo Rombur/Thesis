@@ -6,16 +6,16 @@ cell and the test functions are averaged over cells). The continuous equations
 are :
 \begin{align}
   -\bn\mathrm{D} \bn \phi_0 +\Sigma_a \phi_0 &= Q_0 & \textrm{ for }\br \in
-  \mc{D}\\
-  \frac{1}{4}\phi_0 - \frac{1}{2} \mathrm{D} &=0 & \textrm{ for }\br \in
-  \partial \mc{D}^d\\
+  \mc{D},\\
+  \frac{1}{4}\phi_0 - \frac{1}{2} \mathrm{D} \bn \phi_0 &=0 & \textrm{ for }\br \in
+  \partial \mc{D}^d,\\
   -\mathrm{D}\partial_n \phi_0 &= J^{inc} & \textrm{ for }\br \in \partial
   \mc{D}^r,
 \end{align}
 where $\phi_0$ is the scalar flux and $\mathrm{D}$ is the diffusion
 coefficient. Applying the IP technique, we obtain:
 \begin{equation}
-  b_{IP}(\phi_0,\phi_0^*) = l_{IP}(\phi_0^*)
+  b_{IP}(\phi_0,\phi_0^*) = l_{IP}(\phi_0^*),
   \label{b_l_ip}
 \end{equation}   
 \begin{equation}
@@ -27,14 +27,14 @@ coefficient. Applying the IP technique, we obtain:
     \(\ldb \mathrm{D} \partial_n \phi_0\rdb,\llb \phi_0^* \rrb\)_{E_h^i} + 
     \(\kappa_e^{IP} \phi_0, \phi_0^*\)_{\partial \mc{D}^d}\\
     & -\frac{1}{2} \(\phi_0,\mathrm{D}\partial_n,\phi_0^*\)_{\partial \mc{D}^d}
-    -\frac{1}{2}\(\mathrm{D}\partial_n\phi_0,\phi_0\)_{\partial \mc{D}^d}
+    -\frac{1}{2}\(\mathrm{D}\partial_n\phi_0,\phi_0\)_{\partial \mc{D}^d},
   \end{split}
   \label{b_ip}
 \end{equation}
 and:
 \begin{equation}
   l_{IP}(\phi_0^*) = \(Q_0,\phi_0^*\)_{\mc{D}} +
-  \(J^{inc},\phi_0^*\)_{\partial \mc{D}^r}
+  \(J^{inc},\phi_0^*\)_{\partial \mc{D}^r},
   \label{l_ip}
 \end{equation}
 where $\phi_0$ and $\phi_0^*$ $\in W_{\mc{D}}^h$ where the finite
@@ -92,7 +92,7 @@ the one-group $S_n$ transport equation with isotropic source and scattering:
 \end{equation}
 The variational form of this equation is:
 \begin{equation}
-  b(\psi,\psi^*) = l(\psi^*)
+  b(\psi,\psi^*) = l(\psi^*),
 \end{equation}
 with:
 \begin{equation}
@@ -157,11 +157,11 @@ we obtain an angular error equation:
 \end{equation}
 and:
 \begin{equation}
-  \mc{E}^{(\ell)} = \sum_{d=1}^M w_d \epsilon_d^{(\ell)}
+  \mc{E}^{(\ell)} = \sum_{d=1}^M w_d \epsilon_d^{(\ell)},
 \end{equation}
 where the angular error and the scalar error are given by:
 \begin{align}
-  & \epsilon^{(\ell)} = \psi^c-\psi^{(\ell)}\\
+  & \epsilon^{(\ell)} = \psi^c-\psi^{(\ell)},\\
   & \mc{E}^{(\ell)} = \phi_0^c-\phi_0^{(\ell)}.
 \end{align}           
 It is important to note that the linear form $l$ has disappeared from
@@ -169,7 +169,7 @@ It is important to note that the linear form $l$ has disappeared from
 Dirichlet boundary conditions have disappeared. We now introduce:
 \begin{align}
   & \delta \psi^{(\ell)} = \psi^{(\ell+1/2)}-\psi^{(\ell)} = \epsilon^{(\ell)}-
-  \epsilon^{(l+1/2)}\\
+  \epsilon^{(l+1/2)},\\
   & \delta \phi_0^{(\ell)} = \phi_0^{(\ell+1/2)} - \phi_0^{(\ell)} = \mc{E}^{(\ell)} -
   \mc{E}^{(\ell+1/2)}.
 \end{align}
@@ -183,7 +183,7 @@ Finally, we get the final form of the transport equation for the error:
 Note that solving \cref{tsa} would give the exact correction needed to
 obtain the converged transport solution:
 \begin{align}
-  &\psi^c = \psi^{(\ell+1/2)} + \epsilon^{(\ell+1/2)}\\
+  &\psi^c = \psi^{(\ell+1/2)} + \epsilon^{(\ell+1/2)},\\
   &\phi_0^c = \phi_0^{(\ell+1/2)} + \mc{E}^{(\ell+1/2)},
 \end{align}
 but solving \cref{tsa} is as difficult as solving our original transport equation.
@@ -191,7 +191,7 @@ Therefore, we will replace the transport operator in \cref{tsa} by a diffusion
 operator instead. The solution of this diffusion operator will be denoted by 
 a $\tilde{}$ symbol:
 \begin{align}
-  & \psi^{(\ell+1)} = \psi^{(\ell+1/2)} + \tilde{\epsilon}^{(\ell+1/2)}\\
+  & \psi^{(\ell+1)} = \psi^{(\ell+1/2)} + \tilde{\epsilon}^{(\ell+1/2)},\\
   & \phi_0^{(\ell+1)} = \phi_0^{(\ell+1/2)} + \tilde{\mc{E}}^{(\ell+1/2)}.
 \end{align}
 In the remainder of this section, to simplify the notation and the comparison
@@ -200,13 +200,13 @@ use $\phi_0$ instead of $\tilde{\mc{E}}^{(\ell+1/2)}$. If we assume that the
 primal and dual angular fluxes are linearly anisotropic (diffusion
 approximation) and we assume Fick's law to be valid:
 \begin{align}
-  & \bs{J} = -\mathrm{D}\bn \phi_0\\
+  & \bs{J} = -\mathrm{D}\bn \phi_0,\\
   & \bs{J}^* = \mathrm{D}\bn \phi_0^*,
 \end{align}
 we then obtain:
 \begin{align}
   \tilde{\epsilon}^{(\ell+1/2)} &= \frac{1}{4\pi} (\phi_0-3\mathrm{D} \bn
-  \phi_0 \cdot \bo_d) \label{eps_tilde}\\
+  \phi_0 \cdot \bo_d) \label{eps_tilde},\\
   \tilde{\psi}_d^* &= \frac{1}{4\pi} (\phi_0^*+3\mathrm{D} \bo \phi_0^*\cdot
   \bo_d). \label{psi_tilde}
 \end{align}
@@ -214,8 +214,8 @@ Substituting \cref{eps_tilde,psi_tilde} in \cref{tsa}, we obtain a
 discontinuous finite elements DSA operator in which the
 scalar flux $\phi_0$ is the only unknown. Using:
 \begin{align}
-  & \sum_{d=1}^M w_d = 4 \pi \label{omega_0}\\
-  & \sum_{d=1}^M w_d \bo_d = 0 \label{omega_1}\\
+  & \sum_{d=1}^M w_d = 4 \pi, \label{omega_0}\\
+  & \sum_{d=1}^M w_d \bo_d = 0, \label{omega_1}\\
   & \sum_{d=1}^M w_d \bo_d \cdot \bo_d = \frac{4\pi}{3}\bs{I},
   \label{omega_2}
 \end{align}
@@ -223,7 +223,7 @@ we obtain:
 \begin{equation}
   \sum_{d=1}^M 4 \pi w_d \(\Sigma_t \tilde{\epsilon}_d^{(\ell+1/2)},
   \tilde{\psi}_d^*\)_{\mc{D}} = \(\Sigma_t \phi_0,\phi_0^*\)_{\mc{D}} -
-  \(3\Sigma_t \mathrm{D} \bn \phi_0,\mathrm{D} \bn \phi_0^*\)_{\mc{D}}
+  \(3\Sigma_t \mathrm{D} \bn \phi_0,\mathrm{D} \bn \phi_0^*\)_{\mc{D}},
 \end{equation}
 \begin{equation}
   \(\Sigma_s \tilde{\mc{E}}^{(\ell+1/2)},\tilde{\phi}^*\)_{\mc{D}} =
@@ -231,7 +231,7 @@ we obtain:
 \end{equation}
 If we define:
 \begin{equation}
-  \mathrm{D} = \frac{1}{3\Sigma_t}
+  \mathrm{D} = \frac{1}{3\Sigma_t},
 \end{equation}
 we get:
 \begin{equation}
@@ -257,7 +257,7 @@ Now, we analyze the streaming term:
     \phi_0^{*,+}\)_{E_h^i}\\ 
      & - \(\mathrm{D} \bn \phi_0^{-} \cdot \bs{n}_e,
     \phi_0^{*,-}\)_{E_h^i}\\
-     & - \(\mathrm{D}\bn \phi_0 \cdot \bs{n_e},\phi_0^*\)_{\partial \mc{D}}
+     & - \(\mathrm{D}\bn \phi_0 \cdot \bs{n_e},\phi_0^*\)_{\partial \mc{D}},
   \end{split}
 \end{equation}
 where integration by part was performed and we used:
@@ -292,16 +292,16 @@ Manipulating the interior edge terms give successively :
     \rdb\)_{E_h^i} -\frac{9}{16} \(\llb \mathrm{D} \bn \phi_0\rrb,\right.\\
     &\left.  \llb \mathrm{D} \bn \phi_0^*\rrb\)_{E_h^i}
     - \frac{9}{16} \( \llb \mathrm{D} \bn \phi_0 \cdot \bs{n}\rrb,\right.\\
-    &\left.\llb \mathrm{D} \bn \phi_0^* \cdot \bs{n}\rrb\)_{E_h^i}
+    &\left.\llb \mathrm{D} \bn \phi_0^* \cdot \bs{n}\rrb\)_{E_h^i},
   \end{split}
 \end{equation}
 where we employed the following properties of the angular quadrature:
 \begin{align}
-  & \sum_{\bo_d \cdot \bs{n}>0} w_d |\bo_d \cdot \bs{n}| \approx \pi \\
+  & \sum_{\bo_d \cdot \bs{n}>0} w_d |\bo_d \cdot \bs{n}| \approx \pi, \\
   & \sum_{\bo_d\cdot \bs{n}>0} w_d |\bo_d \cdot \bs{n}| \bo_d \approx
-  \frac{2\pi}{3} \bs{n}\\
+  \frac{2\pi}{3} \bs{n},\\
   & \sum_{\bo_d \cdot \bs{n}>0} w_d |\bo_d\cdot \bs{n}|\bo_m\cdot \bo_d
-  \approx \frac{\pi}{4}\(\bs{I}+\bs{n}\bs{n}\)
+  \approx \frac{\pi}{4}\(\bs{I}+\bs{n}\bs{n}\),
 \end{align}
 where $\bs{n}\bs{n}$ is a matrix. Even if these properties cannot be strictly
 satisfied, numerical results show that the error is negligible.

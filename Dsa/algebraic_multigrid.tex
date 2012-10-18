@@ -31,19 +31,20 @@ aggregation-based algebraic multigrid code (written in Fortran 90).
 We describe the multigrid principles, using first a two-grid setting. Consider
 the following system:
 \begin{equation}
-  \bs{A}_f u_f = b_f
+  \bs{A}_f u_f = b_f,
 \end{equation}
 defined on the fine grid $\mathbb{T}_f$.  The two-grid algorithm is given by :
 \begin{enumerate}
   \item Perform $\nu_1$ pre-smoothing iterations using a smoother (e.g., Jacobi,
-    Gauss-Seidel or ILU) using an initial guess $u_0$: $u = S^{\nu_1}(u_0,b_f)$
+    Gauss-Seidel or ILU) using an initial guess $u_0$: $u =
+    S^{\nu_1}(u_0,b_f)$.
   \item Compute the residual on the fine grid $\mathbb{T}_f$ and restrict it to
-    the coarse grid $\mathbb{T}_c$: $r_c = \bs{R}(b_f-\bs{A}_f u)$
+    the coarse grid $\mathbb{T}_c$: $r_c = \bs{R}(b_f-\bs{A}_f u)$.
   \item Solve with a direct solver the system on the coarse grid: 
-    $v=\bs{A}_c^{-1} r_c$
+    $v=\bs{A}_c^{-1} r_c$.
   \item Interpolate the coarse grid correction to the fine grid and add the
-    correction to $u$: $u \leftarrow u+\bs{P}v$
-  \item Perform $\nu_2$ post-smoothing iterations: $u = S^{\nu_2}(u,b_f)$
+    correction to $u$: $u \leftarrow u+\bs{P}v$.
+  \item Perform $\nu_2$ post-smoothing iterations: $u = S^{\nu_2}(u,b_f)$.
 \end{enumerate}
 When using AMG, the matrix $\bs{A}_c$ on the coarse grid is given by the Galerkin
 approximation:
@@ -78,7 +79,7 @@ error may be not smooth at all from the geometrical point of view. The reason
 is that the error is considered smooth when the smoother does not change the 
 solution significantly anymore \cite{amg_course}:
 \begin{equation}
-  \|Se\|_{\mc{H}} \approx \|e\|_{\mc{H}}
+  \|Se\|_{\mc{H}} \approx \|e\|_{\mc{H}},
 \end{equation}
 where $S$ is the smoother, $e$ is the error, and $\|u\|_{\mc{H}} =
 \sqrt{(u,u)_{\mc{H}}}$ is the norm associated to the scalar product:
@@ -102,7 +103,7 @@ variables \cite{amg}.
 {\definition{Given a threshold value of $0 \leq \theta \leq 1$, the variable
   $u_i$ strongly depends on the variable $u_j$ if:
   \begin{equation}
-    -a_{ij} \geq \theta \max_{k \neq i} \(-a_{ik}\)
+    -a_{ij} \geq \theta \max_{k \neq i} \(-a_{ik}\),
   \end{equation}}}
 $a_{ij}$ must be of the same order of magnitude than the largest
 off-diagonal in equation $i$ or $j$. A related definition is:
@@ -119,7 +120,7 @@ than or equal to zero and the real parts of the eigenvalues of the matrix
 are positive, the following relationship needs to be satisfied for most $i$ 
 \cite{amg}:
 \begin{equation}
-  \sum_{j\neq i} \(\frac{|a_{ij}|}{a_{ii}}\) \(\frac{e_i-e_j}{e_i}\)^2 \ll 1
+  \sum_{j\neq i} \(\frac{|a_{ij}|}{a_{ii}}\) \(\frac{e_i-e_j}{e_i}\)^2 \ll 1,
   \label{ineq}
 \end{equation}
 where $e_i$ is the error associated with the variable $i$. Since the left side 
@@ -165,7 +166,7 @@ interpolation methods:
     Using this relation and \cref{e_locally}, we get the following formula for
     the weights of the interpolation:
     \begin{equation}
-      w_{ik} = -\alpha_i \frac{a_{ik}}{a_{ii}}
+      w_{ik} = -\alpha_i \frac{a_{ik}}{a_{ii}},
     \end{equation}
     where $\alpha_i = \frac{\sum_{j\in N_i} a_{ij}}{\sum_{l \in B_i} a_{il}}$.
     Therefore, it is important that when the coarse variables are chosen,  
@@ -332,7 +333,7 @@ the aggregate $\kappa(G)$ is given by:
 \begin{equation}
   \kappa(\{i,j\}) = \frac{-a_{ij} +\(\frac{1}{a_{ii}+s_i+2a_{ij}}+
   \frac{1}{a_{jj}+s_j+2 a_{ij}}\)^{-1}}{-a_{ij}+\(\frac{1}{a_{ii}-s_i}+
-  \frac{1}{a_{jj}-s_j}\)^{-1}}
+  \frac{1}{a_{jj}-s_j}\)^{-1}},
 \end{equation}
 where $s_i = - \sum_{j\neq i} a_{ij}$. $\kappa$ is only given by the
 off-diagonal entry connecting these two unknowns, their respective diagonal

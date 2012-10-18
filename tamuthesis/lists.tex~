@@ -13,18 +13,19 @@
 %%       TABLE OF CONTENTS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \phantomsection
-\addcontentsline{toc}{chapter}{TABLE OF CONTENTS} 
-
+\addcontentsline{toc}{chapter}{TABLE OF CONTENTS}  % Needs to be set to part, so the TOC doesnt add 'CHAPTER ' prefix in the TOC.
 \begin{singlespace}
 \renewcommand\contentsname{\normalfont} {\centerline{TABLE OF CONTENTS}}
 
-\setcounter{tocdepth}{4} % This puts \subsubsection[]{×} in your List of Tables.  The default is 3.
+%\setcounter{tocdepth}{4} % This puts \subsubsection[]{×} in your List of Tables.  The default is 3.
 
 
 %%%%%%%%%%%%%  Adds Page above the page number in TOC
 \setlength{\cftaftertoctitleskip}{1em}
 \renewcommand{\cftaftertoctitle}{%
 \hfill{\normalfont {Page}\par}}
+
+
 
 \tableofcontents
 
@@ -37,19 +38,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \phantomsection
-\addcontentsline{toc}{chapter}{LIST OF FIGURES} 
+\addcontentsline{toc}{chapter}{LIST OF FIGURES}  % Needs to be set to part, so the TOC doesnt add 'CHAPTER ' prefix in the TOC.
 
 \renewcommand{\cftloftitlefont}{\center\normalfont\MakeUppercase}
 
 \setlength{\cftbeforeloftitleskip}{-12pt} %% Positions the LOF title vertically to match the chapter titles
 
 \renewcommand{\cftafterloftitleskip}{12pt}
-%\renewcommand{\cftafterloftitle}{%
-%\\[\baselineskip]\mbox{}\hfill{\normalfont Page}}
-
 \renewcommand{\cftafterloftitle}{%
-%\\ \vspace{4em}]\mbox{}\hspace{2pt}FIGURE\hfill{\normalfont Page}}%\vskip\baselineskip}
-\\ \vspace{4em} {\normalfont FIGURE}\hfill{\normalfont Page}}
+\\[\baselineskip]\mbox{}\hfill{\normalfont Page}}
 
 \begingroup
 
@@ -78,13 +75,11 @@
 
 \renewcommand{\cftlottitlefont}{\center\normalfont\MakeUppercase}
 
-\setlength{\cftbeforelottitleskip}{-12pt} %% Positions the LOT title vertically to match the chapter titles
+\setlength{\cftbeforelottitleskip}{-12pt} %% Positions the LOF title vertically to match the chapter titles
 
 \renewcommand{\cftafterlottitleskip}{12pt}
-
 \renewcommand{\cftafterlottitle}{%
-%\\[\vspace{4em}]\mbox{}\hspace{4pt}TABLE\hfill{\normalfont Page}}
-\\ \vspace{4em}{\normalfont TABLE}\hfill{\normalfont Page}}
+\\[\baselineskip]\mbox{}\hfill{\normalfont Page}}
 
 \begin{center}
 \begin{singlespace}

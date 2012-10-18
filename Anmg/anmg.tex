@@ -4,7 +4,7 @@
 method, which can be interpreted a Richardson iteration, or a Krylov method. 
 The Source Iteration method at the $k^{th}$ iteration is given by:
 \begin{equation}
-\Phi^{(k+1)} = \bs{DL}^{-1} \bs{M\Sigma}\Phi^{(k)}+\bs{DL}^{-1}Q
+\Phi^{(k+1)} = \bs{DL}^{-1} \bs{M\Sigma}\Phi^{(k)}+\bs{DL}^{-1}Q.
 \end{equation}
 When the scattering ratio $c=\max_{l}\(\frac{\Sigma_{s,l}}{\Sigma_t}\)$ is close
 to one, the spectral radius of SI can become arbitrary close to one and the
@@ -21,7 +21,7 @@ followed by a diffusion synthetic acceleration for the correction:
 \end{equation}
 yielding the next iterate for the flux moments:
 \begin{equation}
-\Phi^{(k+1)} = \phi^{(k+1/2)} + \bs{P}_{0/1\rightarrow n} \delta \Phi^{(k)}
+\Phi^{(k+1)} = \phi^{(k+1/2)} + \bs{P}_{0/1\rightarrow n} \delta \Phi^{(k)}.
 \label{si_dsa_it}
 \end{equation}
 Finally, using \crefrange{dsa_sweep}{si_dsa_it}, we obtain:
@@ -72,7 +72,7 @@ Half(n) = \left\{
 &\frac{n}{2}, &\textrm{if }\frac{n}{2}\textrm{ is even}\\
 &\frac{n}{2}+1, &\textrm{if }\frac{n}{2}\textrm{ is odd}
 \end{aligned}
-\right.
+\right. 
 \end{equation}
 Using this definition of ``Half'' to coarsen the angular grid, the sequence of
 sweeps for an $S_{16}$ base level is $(S_{16}-S_8-S_4)$ and for a $S_{18}$
@@ -119,10 +119,7 @@ the angular multigrid method has an upper bound of $0.6$ when $L\rightarrow
 Fokker-Planck scattering cross sections the cross-section moments decrease
 monotonically:
 \begin{equation}
-  \begin {split}
-  \rho_s &= \frac{\Sigma_{s,N/2}^*}{\Sigma_{s,0}}\\
-         &= \frac{3N-6}{5N-6}
-  \end{split}
+  \rho_s = \frac{\Sigma_{s,N/2}^*}{\Sigma_{s,0}} = \frac{3N-6}{5N-6},
 \end{equation}
 which tends to 0.6 when $N$ goes to infinity.
 
@@ -164,7 +161,7 @@ frequency corrections. The filter is given by:
 \begin{equation}
 \(-\bn\cdot \frac{\beta_f}{3\Sigma_f}\bn + \Sigma_f\) f_{corr} = \Sigma_f
 \(\Phi_{n_2}+P_{n_4\rightarrow n_2}\Phi_{n_4}+\hdots+P_{2\rightarrow
-n_2}\Phi_2\)
+n_2}\Phi_2\),
 \end{equation}
 where $\Sigma_f$ is the filter cross section and $\beta_f$ is the filter
 tuning parameter. A Fourier analysis shows that given an input amplitude $A$,
@@ -181,14 +178,12 @@ one when $L$ becomes large \cite{multigrid_2d}.
 In this research, we propose to abandon SI as the solver for the $S_n$
 equations with highly-forward peaked scattering and to use a Krylov solver
 instead. The DSA-preconditioned system of equations solved with a Krylov method is:
-\begin{equation}
-\begin{split}
-&\((\bs{I} + \bs{P}_{0/1\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow
+\begin{multline}
+\((\bs{I} + \bs{P}_{0/1\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow
 0})(\bs{I}-\bs{DL}^{-1}\bs{M\Sigma})\) \phi=\\
-&(\bs{I}+\bs{P}_{0/1\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow
+(\bs{I}+\bs{P}_{0/1\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{n\rightarrow
 0})\bs{DL}^{-1} Q.
-\end{split}
-\end{equation}
+\end{multline}
 The angular multigrid scheme can also be recast to be used by a Krylov
 solver. Here, we have chosen to recast the PAM method without filtering
 (PAMNF) as a preconditioner for a Krylov solver. The successive corrections of
@@ -229,23 +224,30 @@ are substituted into the moment update equation, \cref{mom_update}, yielding:
 \begin{equation}
   \begin{split}
     \Phi_n^{(k+1)} =& \bs{T}_n \Phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q +
-     \bs{P}_{n_2\rightarrow n}\(\bs{T}_{n_2}\bs{R}_{n\rightarrow n_2}
-     \(\Phi_n^{(k+1/2)}-\Phi_n^{(k)}\)\)+\hdots\\
-     &+\bs{P}_{2\rightarrow n} \bs{T}_2\bs{R}_{4\rightarrow 2} \delta \Phi_4^{(k)}
-     + \bs{P}_{0\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0} \delta
-     \Phi_2^{(k)}\\
+    \bs{P}_{n_2\rightarrow n}\(\bs{T}_{n_2}\bs{R}_{n\rightarrow n_2}
+    \(\Phi_n^{(k+1/2)}-\Phi_n^{(k)}\)\)+\hdots\\
+    &+\bs{P}_{2\rightarrow n} \bs{T}_2\bs{R}_{4\rightarrow 2} \delta \Phi_4^{(k)}
+    + \bs{P}_{0\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0} \delta
+    \Phi_2^{(k)}\\
     =& \bs{T}_n\Phi_n^{(k)} + \bs{D}_n \bs{L}_n^{-1} Q + \bs{P}_{n_2\rightarrow n}
-     \(\bs{T}_{n_2} \bs{R}_{n\rightarrow n_2} \(\bs{T}_n \Phi_n^{(k)} +\bs{D}_n
-     \bs{L}_n^{-1} Q\right.\right.\\
-     &\left.\left.-\Phi_n^{(k)}\)\)+\hdots+\bs{P}_{2\rightarrow n} \bs{T}_2 
-     \bs{R}_{4\rightarrow 2}\( \bs{T}_4 \bs{R}_{8\rightarrow 4} \(\hdots\(\bs{T}_n 
-     \phi_n^{(k)} + \bs{D}_n  \bs{L}_n^{-1} Q\right.\right.\right.\\
-     &\left.\left.\left.-\Phi_n^{(k)}\)\)\)+ \bs{P}_{0\rightarrow n} 
-     \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
-     \(\bs{T}_2 \bs{R}_{4\rightarrow 2}\(\hdots\( \bs{T}_N\Phi_n^{(k)} + \bs{D}_n
-     \bs{L}_n^{-1}Q\right.\right.\right.\\
-     &\left.\left.\left.-\Phi_n^{(k)}\)\)\)\\
-    =& \(\bs{T}_n + \bs{P}_{n_2\rightarrow n} \bs{T}_{n_2} \bs{R}_{n\rightarrow
+    \(\bs{T}_{n_2} \bs{R}_{n\rightarrow n_2} \(\bs{T}_n \Phi_n^{(k)} +\bs{D}_n
+    \bs{L}_n^{-1} Q\right.\right.\\
+    &\left.\left.-\Phi_n^{(k)}\)\)+\hdots+\bs{P}_{2\rightarrow n} \bs{T}_2 
+    \bs{R}_{4\rightarrow 2}\( \bs{T}_4 \bs{R}_{8\rightarrow 4} \(\hdots\(\bs{T}_n 
+    \phi_n^{(k)} + \bs{D}_n  \bs{L}_n^{-1} Q\right.\right.\right.\\
+    &\left.\left.\left.-\Phi_n^{(k)}\)\)\)+ \bs{P}_{0\rightarrow n} 
+    \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
+    \(\bs{T}_2 \bs{R}_{4\rightarrow 2}\(\hdots\( \bs{T}_N\Phi_n^{(k)} + \bs{D}_n
+    \bs{L}_n^{-1}Q\right.\right.\right.\\
+    &\left.\left.\left.-\Phi_n^{(k)}\)\)\),
+  \end{split}
+\end{equation}
+where we defined $\bs{T}_n = \bs{D}_n \bs{L}_n^{-1} \bs{M}_n \bs{\Sigma}_n$
+(the subscript $n$ denotes the $S_n$ level). Thus, we obtain:
+\begin{equation}
+  \begin{split}
+    \Phi_n^{(k+1)} =& \(\bs{T}_n + \bs{P}_{n_2\rightarrow n} \bs{T}_{n_2} 
+    \bs{R}_{n\rightarrow
      n_2} (\bs{T}_n -\bs{I}) + \hdots + \bs{P}_{2\rightarrow n} \bs{T}_2
      \bs{R}_{4\rightarrow 2}\right.\\ 
      &\left.\(\bs{T}_4 \bs{R}_{8\rightarrow 4}\(\hdots\(\bs{T}_n-\bs{I}\)\)\)+
@@ -259,28 +261,24 @@ are substituted into the moment update equation, \cref{mom_update}, yielding:
      n_2}\)\)\)+\\
      &\left. \bs{P}_{0\rightarrow n} \bs{\mc{T}}_0^{-1} \bs{R}_{2\rightarrow 0}
      \(\bs{T}_2 \bs{R}_{4\rightarrow 2}\(\hdots\(\bs{T}_{n_2} \bs{R}_{n\rightarrow
-     n_2}\)\)\)\) \bs{D}_n \bs{L}^{-1} Q
-\end{split}
+     n_2}\)\)\)\) \bs{D}_n \bs{L}^{-1} Q.
+   \end{split}
 \end{equation}
-where we defined $\bs{T}_n = \bs{D}_n \bs{L}_n^{-1} \bs{M}_n \bs{\Sigma}_n$
-(the subscript $n$ denotes the $S_n$ level). Finally, the linear system to be
-solved is given by:
+Finally, the linear system to be solved is given by:
 \begin{align}
   &\(\bs{I}-\bs{T}_n\) \bs{P}^{MG/DSA} \xi_n = \bs{D}_n \bs{L}_n^{-1} Q
-  \label{p_mg_dsa_1}\\
-  &\bs{P}^{MG/DSA} \Phi_n = \xi_n \label{p_mg_dsa_2}
+  \label{p_mg_dsa_1},\\
+  &\bs{P}^{MG/DSA} \Phi_n = \xi_n \label{p_mg_dsa_2},
 \end{align}
-where the multigrid preconditioner $\bs{P}^{MG/DSA}$ is given by:
-\begin{equation}
-\begin{split}
-  &\bs{P}^{MG/DSA} = \(\bs{I}+\bs{P}_{n_2\rightarrow n} \bs{T}_{n_2}
+where the multigrid preconditioner $\bs{P}^{MG/DSA}$ is:
+\begin{multline}
+  \bs{P}^{MG/DSA} = \(\bs{I}+\bs{P}_{n_2\rightarrow n} \bs{T}_{n_2}
 \(\bs{I}+\bs{P}_{n_4\rightarrow n_2}
 \bs{T}_{n_4}\(\hdots\(\bs{I}+\bs{P}_{0\rightarrow 2}
 \bs{\mc{T}}_0^{-1}\bs{R}_{2\rightarrow 0}\)\right.\right.\right.\\
-&\left.\left.\left. \hdots\)\bs{R}_{n_2\rightarrow
+\left.\left.\left. \hdots\)\bs{R}_{n_2\rightarrow
 n_4}\) \bs{R}_{n\rightarrow n_2}\).
-\end{split}
-\end{equation}
+\end{multline}
 At this point, it is necessary to choose a DSA for implementation. Various DSA
 schemes have been reviewed in \cite{dsa_ref,multisweep,trans_87,wareing,larsen_91, 
 consistent_p1}. We have chosen to employ the Modified Interior Penalty
@@ -301,21 +299,23 @@ gradient technique, preconditioned with SSOR to solve the MIP equation.
 Using $S_4$ as the lowest $S_n$ order followed by a $P1SA$ acceleration
 (instead $S_2$ followed by DSA) in \cref{p_mg_dsa_1,p_mg_dsa_2} yields the 
 following linear system:
-\begin{align}
-  &\(\bs{I}-\bs{T}_n\)\bs{P}^{MG/P1SA} \xi_n = \bs{D}_n\bs{L}_n^{-1} Q\\
-  & \bs{P}^{MG/P1SA} \phi_n = \xi_n
-\end{align}
+\begin{subequations}
+  \begin{equation}
+    \(\bs{I}-\bs{T}_n\)\bs{P}^{MG/P1SA} \xi_n = \bs{D}_n\bs{L}_n^{-1} Q
+  \end{equation}
+  \begin{equation}
+    \bs{P}^{MG/P1SA} \phi_n = \xi_n
+  \end{equation}
+\end{subequations}
 where the multigrid preconditioner $P^{MG/P1SA}$ is now given by:
-\begin{equation}
-\begin{split}
-&P^{MG/P1SA} = \(\bs{I}+\bs{P}_{n_2\rightarrow n} \bs{T}_{n_2}
+\begin{multline}
+P^{MG/P1SA} = \(\bs{I}+\bs{P}_{n_2\rightarrow n} \bs{T}_{n_2}
 \(\bs{I}+\bs{P}_{n_4\rightarrow n_2}
 \bs{T}_{n_4}\(\hdots\(\bs{I}+\bs{P}_{1\rightarrow 4}\bs{\mc{T}}_1^{-1}
 \bs{R}_{4\rightarrow 1}\)\right.\right.\right.\\
-&\left.\left.\left. \hdots\)\bs{R}_{n_2\rightarrow n_4}\)
-\bs{R}_{n\rightarrow n_2}\) 
-\end{split}
-\end{equation}
+\left.\left.\left. \hdots\)\bs{R}_{n_2\rightarrow n_4}\)
+\bs{R}_{n\rightarrow n_2}\),
+\end{multline}
 where $\bs{\mc{T}}_1$ is the matrix associated to the $P1SA$ operator. The 
 $P1SA$ discretization used here is the $P1C$ method,
 defined in \cite{P1C_MC2009,yaqiPhD}. This $P1SA$ preconditioner is positive
@@ -368,5 +368,13 @@ zero. This explains the faster convergence of GMRES with DSA preconditioning
 compared to sweep preconditioning. ANMG moves the eigenvalues even further
 aways from zero than DSA and clusters them more compared to DSA. It is obvious
 from these figures that ANMG preconditioning should converge much faster than
-DSA preconditioning.
-
+DSA preconditioning. From Figures \ref{eig_dsa} and \ref{eig_anmg}, it
+  may seem that a preconditioned (DSA or unfiltered ANMG) SI approach
+  would be convergent (the eigenvalues are in $]0,2[$ and, thus, the spectral
+    radius of the SI schemes would be less than one). In
+  \cite{shawn_phd}, it was shown that the unfiltered angular multigrid was
+  unstable if the size of the cell was small enough (less than 0.1
+  transport mean-free-path) which was not the case here. Moreover, because of
+  leakage in this test, convergence is improved. In the next section, 
+  we will further verify that wrapping a Krylov solver around the unfiltered ANMG
+results in an efficient scheme.

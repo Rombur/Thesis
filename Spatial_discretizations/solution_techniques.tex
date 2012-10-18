@@ -137,7 +137,7 @@ process, it is natural to seek a low-order error equation. Taking the zeroth
 and first angular moment moment of \cref{ang_err_eq}, one obtains a
 diffusion equation for the scalar $\varepsilon$:
 \begin{equation}
-  \bs{A}\epsilon^{(\ell+1)} = \Sigma \(\Phi^{(\ell+1)}-\Phi^{(\ell)}\)
+  \bs{A}\epsilon^{(\ell+1)} = \Sigma \(\Phi^{(\ell+1)}-\Phi^{(\ell)}\),
 \end{equation}
 where $\bs{A}$ is the diffusion operator. However, the scalar correction
 $\epsilon^{(\ell+1)}$, when added to the previous iterate of the scalar flux
@@ -148,15 +148,15 @@ the iterative solution technique that can now be described as follows:
 \begin{enumerate}
   \item Perform a transport sweep and obtain the scalar flux after that sweep:
     \begin{equation}
-      \Phi^{(\ell+1/2)} = \bs{DL}^{-1}\(\bs{M\Sigma}\Phi^{(\ell)}+S\)
+      \Phi^{(\ell+1/2)} = \bs{DL}^{-1}\(\bs{M\Sigma}\Phi^{(\ell)}+S\).
     \end{equation}
   \item Solve for the diffusion error equation corrective addition:
     \begin{equation}
-      \bs{A}\epsilon^{(\ell+1/2)}=\bs{\Sigma}\(\Phi^{(\ell+1/2)}-\Phi^{(\ell)}\)
+      \bs{A}\epsilon^{(\ell+1/2)}=\bs{\Sigma}\(\Phi^{(\ell+1/2)}-\Phi^{(\ell)}\).
     \end{equation}
   \item Obtain a new estimate of the scalar flux for the next transport sweep:
     \begin{equation}
-      \Phi^{(\ell+1)} = \Phi^{(\ell+1/2)}+\epsilon^{(\ell+1/2)}
+      \Phi^{(\ell+1)} = \Phi^{(\ell+1/2)}+\epsilon^{(\ell+1/2)}.
     \end{equation}
 \end{enumerate}
 When the process is recast in a Krylov (GMRES) solver, one obtains the

@@ -33,6 +33,8 @@
 \usepackage{mdwlist} % permet de redefinir l'environnement description
 \usepackage{xtab}
 
+\usepackage{afterpage}
+
 \newcommand\bn{\boldsymbol{\nabla}}
 \newcommand\bo{\boldsymbol{\Omega}}
 \newcommand\br{\mathbf{r}}
@@ -71,8 +73,8 @@
 
 %\includeonly{dsa}
 \begin{document}
-\renewcommand{\tamumanuscripttitle}{Acceleration Techniques for Coupled
-Electron-Photon Transport}
+\renewcommand{\tamumanuscripttitle}{Acceleration Techniques for
+Discrete-Ordinates Transport Methods with Highly Forward-Peaked Scattering}
 \renewcommand{\tamupapertype}{Dissertation}
 \renewcommand{\tamufullname}{First Middle Lastname}
 \renewcommand{\tamudegree}{Doctor of Philosophy}
@@ -95,13 +97,24 @@ Electron-Photon Transport}
 
 
 \include{introduction}
+\addtocontents{toc}{\protect\afterpage{\hfill{Page}\par\medskip}}
+\addtocontents{toc}{\protect\afterpage{\vspace{-10pt}\hfill{}\par\medskip}}
+\addtocontents{lof}{\protect\afterpage{\hspace{-33pt}{FIGURE}\hfill{Page}\par\medskip}}
+\addtocontents{lof}{\protect\afterpage{\vspace{-10pt}\hfill{}\par\medskip}}
+\addtocontents{lot}{\protect\afterpage{\hspace{-31pt}{TABLE}\hfill{Page}\par\medskip}}
+\addtocontents{lot}{\protect\afterpage{\vspace{-10pt}\hfill{}\par\medskip}}
 
 \include{boltzmann_equations}
 
+\addtocontents{toc}{\protect\afterpage{\hfill{Page}\par\medskip}}
+\addtocontents{toc}{\protect\afterpage{\vspace{-10pt}\hfill{}\par\medskip}}
 \include{spatial_discretizations}
 
 \include{anmg}
 
+
+\addtocontents{toc}{\protect\afterpage{\hfill{Page}\par\medskip}}
+\addtocontents{toc}{\protect\afterpage{\vspace{-10pt}\hfill{}\par\medskip}}
 \include{dsa}
 
 \include{janus}

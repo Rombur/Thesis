@@ -46,10 +46,11 @@ $\frac{Y}{X}=1$, $\frac{Y}{X}=4$, $\frac{Y}{X}=16$, and $\frac{Y}{X}=100$.
   \label{fig_fa_ar}
 \end{figure}
 MIP is stable for every aspect ratio and the maximum of the spectral radius
-peaks at about 0.5. However, we noted that when both $c$ 
-approaches one and the aspect ratio is large, MIP can become ill-conditioned. 
-In Chapter \ref{anmg_chapter}, MIP was used for problems with $c=1$, without any issues 
-because the cells were square (aspect ratio is one).
+peaks at about 0.5. \red{However, it is important to note that when $c$ 
+approaches one and the aspect ratio is large, MIP becomes ill-conditioned. 
+These two conditions need to be satisfied at the same time. In Chapter 
+\ref{anmg_chapter}, MIP was used for problems with $c=1$, without any issues 
+because the cells were square.}
 
 \subsection{Homogeneous medium}
 Next, we compare different solvers for MIP on a homogeneous medium, 100cm $\times$
@@ -107,12 +108,8 @@ seconds needed to solve the problem.
 Using MIP decreases significantly the number of SI iterations and the
 calculation time as expected. Using PCG-SGS decreases by a factor of three 
 of the number of CG iterations compared to CG but the time needed to solve 
-MIP is greater. This is because each PCG-SGS iteration is much slower
-  than one unpreconditioned CG iteration. SGS requires basically two
-  triangular solves. It is unclear why these simple solves would be so costly
-  in CPU time so as to actually increase the total solver time while the
- number of CG iterations has been divided by three. With ML, the number 
-of CG iterations is reduced by a factor 
+MIP is greater. \red{This is because each PCG-SGS iteration is much slower than a
+CG iteration.} With ML, the number of CG iterations is reduced by a factor 
 of 50 and the MIP calculation time is reduced by a factor three compared to 
 CG. AGMG is by far the most efficient solver, the number of CG iterations is 
 slightly lower than PCG-ML but the MIP calculation is 20 times faster than CG.
@@ -205,13 +202,13 @@ The different solvers are compared in Table \ref{tab_4}:
 \end{table}
 We can see that the comments made for the homogeneous tests are
 still valid. MIP is effective even with heterogeneous medium and AGMG is
-still the fastest method. It is interesting to note that, contrary to 
-  the homogeneous tests where the number of CG iterations remained similar for all 
-  algebraic multigrid preconditioners, for this heterogeneous test AGMG requires
-  significantly fewer iterations than PCG-MLU and PCG-MLM. This difference may
-  be due to the fact that ML was first designed to be used for
+still the fastest solver. \red{It is interesting to note that whereas for
+  the homogeneous tests the number of CG iterations is similar for all the
+  algebraic multigrid preconditioners, for this test AGMG requires
+  significantly less iterations than PCG-MLU and PCG-MLM. This difference is
+  probably due to the fact that ML was first designed to be used for
   continuous finite elements discretization and that we are using
-discontinuous finite elements.
+discontinuous finite elements.}
 
 The cross sections of the different zones were taken from \cite{mip}. In the
 next test, they are modified to make the problem more challenging:
@@ -284,7 +281,7 @@ A $S_{16}$ GLC quadrature is employed. The tolerance on SI is $10^{-8}$ and
 the tolerance on the CG solvers is $10^{-10}$.
 The different solvers are compared in Table \ref{tab_6}:
 \begin{table}[H]
-  \caption{Comparison of preconditioners on an AMR mesh}
+  \caption{Comparison of preconditioners on AMR mesh}
   \begin{center}
     \begin{tabular}{|c|c|c|c|c|c|c|}
       \hline
@@ -309,16 +306,16 @@ As mentioned previously in this Chapter, AMG can have difficulties when the
 aspect ratio of rectangular cells is high. Moreover, when the aspect ratio is
 high and the scattering ratio is close to one, MIP becomes ill conditioned. 
 In the next four examples, the domain is square $100cm \times 100cm$ with vacuum 
-boundaries. There are 10000 cells and we use BLD finite elements for the first
-three runs and PWLD finite elements for the last one; 
+boundaries. There are 10000 cells and we use BLD finite elements \red{for the first
+three tests and PWLD finite elements for the last one}, 
 there are 40000 degrees of freedom. The relative tolerance on SI is $10^{-8}$ 
 and the relative tolerance on CG is $10^{-10}$. We use a $S_{8}$ GLC quadrature, 
 $\Sigma_t = 1 cm^{-1}$, and $\Sigma_s = 0.999 cm^{-1}$. The source is
 $1n/(cm^3s)$. In the first test, the domain is discretized by 100 cells along
 $x$ and 100 cells along $y$. In the second test, the domain is discretized by
 250 cells along $x$ and 40 cells along $y$. Therefore, the aspect ratio is 6.25
-for the second test. In the last two tests, the domain is discretized by 1000
-cells along $x$ and 10 cells along $y$ (the aspect ratio is 100).
+for the second test. \red{In the last two tests, the domain is discretized by 1000
+cells along $x$ and 10 cells along $y$ (the aspect ratio is 100).}
 
 We also compared the effect of the size of the coarsest grid on the convergence.
 In the following Tables (Table \ref{bld_ar_1}, Table \ref{bld_ar_6}, Table 
@@ -391,19 +388,19 @@ compare No-DSA, CG, and AGMG defined previously with:
         \hline
         & No-DSA & CG & PCG-SGS & PCG-MLU-D & PCG-MLU-M & PCG-MLM-D & PCG-MLM-M & AGMG \\
         \hline
-        SI iter    & 7304   & 24      & 24        & 24       & 24       & 24      & 24      & 24      \\
-        Prec (s)   & NA     & NA      & 0.0164239 & 0.362463 & 0.778893 & 1.03128 & 1.66949 & 0.052   \\
-        MIP (s)    & NA     & 372.227 & 742.902   & 941.06   & 925.247  & 922.258 & 964.044 & 6.93176 \\
-        CG iter    & NA     & 84802   & 43466     & 14180    & 14179    & 13896   & 13894   & 821     \\
-        Total (s)  & 9035.6 & 414.301 & 784.77    & 985.796  & 969.318  & 966.77  & 1010.44 & 44.7032 \\
+        SI iter    & 7304   & 24      & 24        & 24       & 24       & 24      & & 24      \\
+        Prec (s)   & NA     & NA      & 0.0164239 & 0.362463 & 0.778893 & 1.03128 & & 0.052   \\
+        MIP (s)    & NA     & 372.227 & 742.902   & 941.06   & 925.247  & 922.258 & & 6.93176 \\
+        CG iter    & NA     & 84802   & 43466     & 14180    & 14179    & 13896   & & 821     \\
+        Total (s)  & 9035.6 & 414.301 & 784.77    & 985.796  & 969.318  & 966.77  & & 44.7032 \\
         \hline
       \end{tabular}
       \label{pwld_ar_100}      
     \end{table}
   \end{center}
 \end{landscape}
-As predicted, inverting MIP requires a lot more CG iterations when the aspect
-ratio increases. The only exception is for AGMG which requires fewer iterations
+\red{As predicted, inverting MIP requires a lot more CG iterations when the aspect
+ratio increases. The only exception is AGMG which requires less iterations
 when the aspect ratio is 6.25 and 100 than when it is 1.0. As expected, PCG-MLU and
 PCG-MLM are much more affected by the aspect ratio than CG and PCG-SGS.
 The number of CG iterations for CG and PCG-SGS is multiplied by two
@@ -413,7 +410,7 @@ and PCG-MLM are the slowest methods. This is not totally unexpected since these 
 have been designed to test the limitations of algebraic multigrid preconditioners. It is 
 interesting to note that changing the size of the coarsest grid for PCG-MLU and PCG-MLM 
 does not affect the number of CG iterations. Even if AGMG does not seems to be to affected 
-by the change in the aspect ratio when BLD finite elements are employed, using PWLD finite 
+by the change of aspect ratio when BLD finite element are employed, using PWLD finite 
 elements dramatically increases the number of CG iterations when the aspect ratio is 100. 
-AGMG is the only method which is significantly impacted by the change of
-finite element type; however, it stays by far the fastest method to solve the MIP equations.
+It is the only method which is significantly impacted by the change of finite element type.
+However, AGMG stays by far the fastest method to solve MIP.}

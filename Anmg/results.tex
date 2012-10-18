@@ -54,7 +54,7 @@ In this test, we compare ANMG-DSA to Sweep and DSA preconditioning. A uniform
 isotropic source of intensity 10 $n/(cm^3 s)$ was used. $S_4$, $S_8$, $S_{16}$, and
 $S_{32}$ calculations were performed. Fokker-Planck cross sections with
 $\alpha=1$ are used and $\Sigma_t = \Sigma_{s,0}$ $(c=1)$. The domain is homogeneous
-and its size is $50cm \times 50cm$ discretized by $50\times 50$ cells. The 
+and its size is $5cm \times 5cm$ discretized by $50\times 50$ cells. The 
 thickness of the domain varies from 50 to 2690 mean free path (the total cross 
 section varies with $L$ for Fokker-Planck cross sections: $\Sigma_{t,S_4}=10cm^{-1},
 \Sigma_{t,S_8}=36cm^{-1}, \Sigma_{t,S_{16}}=136cm^{-1}, 
@@ -76,12 +76,12 @@ The solution for $S_{32}$ calculation is given on Figure \ref{fig_s_32}
     preconditioning, and ANMG-DSA preconditioning on a homogeneous medium}
     \begin{tabular}{|c|c|c|c|c|}
       \hline
-      & S & DSA & ANMG-DSA & $\frac{\textrm{DSA}}{\textrm{ANMG-DSA}}$ \\
+      & S & DSA & ANMG-DSA & $\frac{\textrm{ANMG-DSA}}{\textrm{DSA}}$ \\
       \hline
       $S_4$ & 85   & 42  & 27  & 0.64 \\
       $S_8$ & 409  & 102 & 50  & 0.49 \\
-   $S_{16}$ & 1530 & 266 & 105 & 0.39 \\
-   $S_{32}$ & 4535 & 616 & 225 & 0.36 \\
+   $S_{16}$ & 1526 & 266 & 105 & 0.39 \\
+   $S_{32}$ & 4540 & 616 & 225 & 0.36 \\
       \hline
     \end{tabular}
     \label{table_gmres_homog}
@@ -94,12 +94,12 @@ The solution for $S_{32}$ calculation is given on Figure \ref{fig_s_32}
     preconditioning on a homogeneous medium}
     \begin{tabular}{|c|c|c|c|c|}
       \hline
-      & S & DSA & ANMG-DSA & $\frac{\textrm{DSA}}{\textrm{ANMG-DSA}}$ \\
+      & S & DSA & ANMG-DSA & $\frac{\textrm{ANMG-DSA}}{\textrm{SA}}$ \\
       \hline
       $S_4$ & 9.09322 & 6.51608 & 5.22796 & 0.80 \\
       $S_8$ & 184.949 & 52.65   & 32.7609 & 0.62 \\
-   $S_{16}$ & 4610.94 & 740.193 & 355.939 & 0.48 \\
-   $S_{32}$ & 138181  & 17907.9 & 7357.63 & 0.41 \\
+   $S_{16}$ & 4275.82 & 740.193 & 355.939 & 0.48 \\
+   $S_{32}$ & 138819  & 17907.9 & 7357.63 & 0.41 \\
       \hline
     \end{tabular}
     \label{table_time_homog}
@@ -116,7 +116,70 @@ iterations for ANMG-DSA}}{\textrm{number of GMRES iterations for DSA}}\)$ and
 the ratio of elapsed times between the DSA and the ANMG-DSA
 techniques decrease monotonically. We note from these results that
 ANMG-DSA becomes increasingly superior to the standard DSA as the number of
-directions becomes larger.
+directions becomes larger. The time spent performing the diffusion solve DSA is negligible
+  ($\leq 1\%$ for $S_{16}$ and $S_{32}$ calculations) and is the same for DSA 
+  and ANMG-DSA for a given number of CG iterations. We tried to run a problem with a $S_{64}$ GLC
+  Galerkin quadrature but unfortunately we could not. The reason is that
+  the function that allocates the memory for GMRES in Trilinos 
+  receives the number of bytes to be allocated through an \emph{unsigned
+  int} and, therefore, the maximum size of the problem per processor
+  is: (number of unknowns+2) $\times$ (size of the Krylov space+1) $\times$ 8
+  $\leq 4294967295$. The number of 8 is because \emph{double} are coded using
+  8 bytes and 4294967295 is the largest number of representable by an
+  \emph{unsigned int}. With $S_{64}$ this problem requires
+  5158400496 bytes. This number is about 20\% larger than what is allowed in
+  Trilinos implementation. Moreover, in the function allocating the memory, the \emph{unsigned 
+  int} is cast on a \emph{int} before the allocation is done reducing the size
+  of the largest problem by two. To run the $S_{64}$ problem, GMRES can be
+  restarted more often but this leads to a very slow convergence.
+\subsection{Test Case with a Volumetric Source with finer mesh cell sizes}
+The domain is a 6$cm-$side square discretized by
+  $600\times600$ cells. The quadrature used is a $S_4$ GLC Galerkin
+  quadrature. There is a uniform source of intensity 10 $n/(cm^3s)$.
+  Fokker-Planck cross sections are used with $\alpha=1$ and
+  $\Sigma_t=\Sigma_{s,0}$ $(c=1)$. In Table
+  \ref{new_gmres}, we compare the number of GMRES iterations used by Sweep
+  preconditioning, DSA preconditioning, angular multigrid
+  preconditioning. In Table \ref{new_time}, the time needed to solve 
+  this problem is compared.
+  \begin{table}[H]
+    \begin{center}
+      \caption{Comparison of the number of GMRES iterations needed to solve a
+      problem whose infinity medium version is unstable for ANMG-DSA with SI}
+      \begin{tabular}{|c|c|c|}
+        \hline
+         S & DSA & ANMG-DSA\\
+        \hline
+        101 & 47 & 29 \\
+        \hline
+      \end{tabular}
+      \label{new_gmres}
+    \end{center}
+  \end{table}
+  \begin{table}[H]
+    \begin{center}
+      \caption{Elapsed time (s) to solve a
+      problem whose infinity medium version is unstable for ANMG-DSA with SI}
+      \begin{tabular}{|c|c|c|}
+        \hline
+         S & DSA & ANMG-DSA\\
+        \hline
+        2767.87 & 1730.73 & 1314.07 \\
+        \hline
+      \end{tabular}
+      \label{new_time}
+    \end{center}
+  \end{table}
+  We note that ANMG-DSA requires fewer iterations and less time than DSA which 
+  itself requires fewer iterations and less time than Sweep preconditioning.
+  Using ANMG-DSA within GMRES is more efficient than DSA within GMRES,
+  contrarily to what happens when SI is used. According to \cite{shawn_phd},
+  if the medium is infinite, the spectral radius of the unfiltered ANMG method 
+  with SI, for such a test with fine mesh cells sizes, is 2.11. Because of leakage, unfiltered ANMG with SI would probably 
+  be convergent for this test but it should
+  be less efficient than SI+DSA. The fact that ANMG-DSA with GMRES requires
+  fewer iterations than DSA with GMRES is an indication that ANMG-DSA
+with GMRES is probably stable even if there is no leakage.
 \subsection{Test Case with a Heterogeneous Medium (Beam problem)}
 In this test, we apply a boundary source of intensity 10 $n/(cm^2 s)$ to the
 entire left side of the domain $y \in [0cm,5cm]$. The top, the bottom, 
@@ -169,7 +232,11 @@ time are given in Table \ref{table_gmres_heter} and Table \ref{table_time_heter}
     \label{table_time_heter}
   \end{center}
 \end{table}
-We can see that even on a heterogeneous medium the angular multigrid is the
-most effective. The sweep preconditioning method requires significantly more
-iterations than DSA and ANMG-DSA preconditioning because of the Material 2
-which is very thick and a scattering ratio close to one.
+We can see that even for a heterogeneous problem the angular multigrid is the
+most effective. If we compare Table \ref{table_gmres_homog} when the 
+  $S_{16}$ quadrature is used with Table \ref{table_gmres_heter}, we see that
+the number of iterations needed with DSA and ANMG-DSA preconditioning are
+quite similar. Sweep preconditioning, however, requires more iterations for 
+the heterogeneous case because Material 2 is much thicker. We notice the same
+behavior when comparing Table \ref{table_time_homog} and Table
+\ref{table_time_heter} for CPU times.

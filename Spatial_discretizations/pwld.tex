@@ -46,7 +46,7 @@ made from two adjacent vertices and the point $c$. On each ``side'' sub-cells,
 the mass matrix, for example, can be build using LD finite elements. To do so, 
 we first need to rewrite the mass matrix $\bs{M}$:
 \begin{equation}
-  \bs{M} = \sum_{k=1}^{N_V} \int_{S_k} \chi_i \chi_j\ d\br
+  \bs{M} = \sum_{k=1}^{N_V} \int_{S_k} \chi_i \chi_j\ d\br,
 \end{equation}
 where $S_k$ are the ``side'' sub-cells (see Figure \ref{fig_sub_cell}). We see 
 that $\bs{M}$ can be built by looping over all the ``side'' sub-cells. For a 
