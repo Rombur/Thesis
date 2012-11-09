@@ -35,11 +35,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	
-%\titleformat{\chapter}{\centering\normalsize}{\thechapter.}{1em}{}
+\titleformat{\chapter}[display]{\centering\normalsize}{\chaptername
+\thechapter}{1em}{}
 \titleformat{\section}{\normalsize\bf}{\thesection}{1em}{}
 \titleformat{\subsection}{\normalsize}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}{\normalsize\it}{\thesubsubsection}{1em}{}
 \renewcommand{\thepart}{\Roman{part}.}
+\renewcommand{\chaptername}{CHAPTER }
 \renewcommand{\thechapter}{\Roman{chapter}}
 \renewcommand{\thesection}{\Alph{section}}
 \renewcommand{\thesubsection}{\arabic{subsection}}
@@ -49,6 +51,8 @@
 \setcounter{secnumdepth}{3}
 
 %\addtocontents{toc}{\hfill {\normalfont{Page}\par}}
+%\addtocontents{toc}{\protect\renewcommand{\protect\cftpartleader}
+%        {\protect\cftdotfill{\cftsecdotsep}}}  % puts leader dots on parts.
 \addtocontents{toc}{\protect\renewcommand{\protect\cftchapleader}
         {\protect\cftdotfill{\cftsecdotsep}}}  % puts leader dots on chapters.
 
@@ -86,10 +90,10 @@
 
 
 \renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} % adds leader dots for parts
-\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % adds leader dots for chapters
+%\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % adds leader dots for chapters
 
-\renewcommand{\cftchappresnum}{Chapter }
-\renewcommand{\cftchapaftersnum}{.} % adds a period after chapter numbers in the toc.
+\renewcommand{\cftchappresnum}{CHAPTER }
+%\renewcommand{\cftchapaftersnum}{.} % adds a period after chapter numbers in the toc.
 
 
 \renewcommand\cftsecafterpnum{\vskip\baselineskip} % These lines allow for long toc titles to be displayed single-spaced within.
@@ -114,10 +118,11 @@
 
 
 %%%%%  These change spacing in the toc.. Leave for now for tweaking.
-\cftsetindents{chapter}{0in}{1.0in}
-\cftsetindents{section}{1.0in}{0.2in}  %%  adjusts Indents and Numwidths for tocloft. http://tex.stackexchange.com/questions/50471/question-about-indent-lengths-in-toc
-\cftsetindents{subsection}{1.2in}{0.2in}
-\cftsetindents{subsubsection}{1.4in}{0.2in}
+\cftsetindents{part}{0in}{1.9in}
+\cftsetindents{chapter}{0in}{1.2in}
+\cftsetindents{section}{1.2in}{0.2in}  %%  adjusts Indents and Numwidths for tocloft. http://tex.stackexchange.com/questions/50471/question-about-indent-lengths-in-toc
+\cftsetindents{subsection}{1.4in}{0.2in}
+\cftsetindents{subsubsection}{1.6in}{0.2in}
 \cftsetindents{paragraph}{0.5in}{0.5in}
 
 

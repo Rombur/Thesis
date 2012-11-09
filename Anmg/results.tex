@@ -17,9 +17,9 @@ intensity $10 n/(cm^3 s)$ and Fokker-Planck cross sections with $\alpha=1$.
 $\Sigma_t$ is chosen to be equal to $\Sigma_{s,0}$. The quadrature is the 
 Gauss-Legendre-Chebyshev triangular Galerkin quadrature. The GMRES solver is 
 converged to a relative tolerance, $\(\frac{\|\textrm{residual}\|_2}{\|\textrm{right 
-hand side}\|_2}\)$, of $10^{-4}$. $P1$SA is solved using BiCGSTAB with a relative 
-tolerance of $10^{-6}$. DSA is solved with CG preconditioned by an algebraic 
-multigrid technique \cite{pyamg,amg} with a relative tolerance of $10^{-6}$. The 
+hand side}\|_2}\)$, of $10^{-5}$. $P1$SA is solved using BiCGSTAB with a relative 
+tolerance of $10^{-7}$. DSA is solved with CG preconditioned by an algebraic 
+multigrid technique \cite{pyamg,amg} with a relative tolerance of $10^{-7}$. The 
 number of GMRES iterations needed to solve ANMG-DSA (multigrid preconditioner 
 with $S_2$ as coarsest transport level and diffusion solve) and ANMG-$P1$SA 
 (multigrid preconditioner with $S_4$ as coarsest transport level and $P1$SA solve) 
@@ -34,9 +34,9 @@ $S_4$, $S_8$ and $S_{16}$ (for which the values of the anisotropy order $L$ are 
       \hline
       & ANMG-DSA & ANMG-$P1$SA \\
       \hline
-      $S_4$ & 17 & 15 \\
-      $S_8$ & 23 & 28 \\
-   $S_{16}$ & 42 & 70 \\
+      $S_4$ & 21 & 19 \\
+      $S_8$ & 29 & 38 \\
+   $S_{16}$ & 54 & 85 \\
       \hline
     \end{tabular}
   \label{table_anmg_d_p1}

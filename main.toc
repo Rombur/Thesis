@@ -1,5 +1,7 @@
 \renewcommand {\cftchapleader } {\cftdotfill {4.5}}
+\contentsline {part}{ABSTRACT}{ii}
 \contentsline {part}{DEDICATION}{iv}
+\contentsline {part}{ACKNOWLEDGEMENTS}{v}
 \contentsline {part}{NOMENCLATURE}{vi}
 \contentsline {chapter}{TABLE OF CONTENTS}{ix}
 \contentsline {chapter}{LIST OF FIGURES}{xiii}
@@ -17,6 +19,8 @@
 \contentsline {subsubsection}{\numberline {a}Introduction}{22}
 \contentsline {subsubsection}{\numberline {b}Henyey-Greenstein scattering kernel}{23}
 \contentsline {subsubsection}{\numberline {c}Screened Rutherford scattering kernel}{25}
+\afterpage {\hfill {Page}\par \vspace \medskipamount }
+\afterpage {\vspace {-10pt}\hfill {}\par \vspace \medskipamount }
 \contentsline {section}{\numberline {C}Fokker-Planck cross section}{29}
 \contentsline {subsection}{\numberline {1}Legendre polynomial expansion of $\Sigma _s^{\alpha }$}{30}
 \contentsline {section}{\numberline {D}Galerkin quadratures}{32}
@@ -24,7 +28,7 @@
 \afterpage {\vspace {-10pt}\hfill {}\par \vspace \medskipamount }
 \contentsline {chapter}{\numberline {III}\uppercase {A Brief Review of $S_n$ Transport: Iterative Techniques and Discretization on Arbitrary Polygons}}{43}
 \contentsline {section}{\numberline {A}Introduction}{43}
-\contentsline {section}{\numberline {B}The $S_n$ Transport Equations}{44}
+\contentsline {section}{\numberline {B}The $S_n$ Transport Equations}{43}
 \contentsline {section}{\numberline {C}Solution Techniques}{47}
 \contentsline {subsection}{\numberline {1}Unaccelerated Procedures}{47}
 \contentsline {subsection}{\numberline {2}Synthetic Acceleration and Preconditioning}{49}
@@ -33,8 +37,6 @@
 \contentsline {subsection}{\numberline {2}BiLinear Discontinous finite elements}{53}
 \contentsline {subsection}{\numberline {3}PieceWise Linear Discontinuous finite elements}{54}
 \contentsline {section}{\numberline {E}Conclusions}{58}
-\afterpage {\hfill {Page}\par \vspace \medskipamount }
-\afterpage {\vspace {-10pt}\hfill {}\par \vspace \medskipamount }
 \contentsline {chapter}{\numberline {IV}\uppercase {Angular Multigrid Preconditioner for $S_n$ equations with Highly Forward-Peaked Scattering Kernel}}{59}
 \contentsline {section}{\numberline {A}Introduction}{59}
 \contentsline {section}{\numberline {B}Iterative schemes for highly forward-peaked scattering}{62}
@@ -82,4 +84,4 @@
 \contentsline {section}{\numberline {B}Future work}{135}
 \contentsline {part}{REFERENCES}{138}
 \def \cftchappresnum {\uppercase {APPENDIX}{ }}
-\contentsline {chapter}{\numberline {A} }{153}
+\contentsline {chapter}{\numberline {A}\uppercase {ML options}}{153}

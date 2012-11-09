@@ -332,7 +332,7 @@ two clusters; furthermore, the eigenvalues close to zero are considered as
 outliers that are processed one at a time and increase the asymptotic error
 constant \cite{campbell}.  We use a $S_8$ Gauss-Legendre-Chebyshev Galerkin
 triangular quadrature. The domain, a 5$cm-$side square uniformly discretized
-using a 25 cells, is homogeneous. Fokker-Planck cross sections, with
+using by 25 cells, is homogeneous. Fokker-Planck cross sections, with
 $\alpha=1$ and $L=8$, are employed. For the spatial discretization, BiLinear
 Discontinuous (BLD) finite elements are used (see next Chapter). $\Sigma_t$ 
 is chosen to be equal to $\Sigma_{s,0}$. Figs. \ref{eig_sweep}-\ref{eig_anmg} 
@@ -346,19 +346,19 @@ any matrix $A$ is obtained by multiplying it by the canonical basis vector
 $e_j$).
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.5\textwidth]{./Anmg/s8_5_5}
+  \includegraphics[width=0.5\textwidth]{./Anmg/red_eig_gmres}
   \caption{Eigenspectrum of the sweep preconditioned system}
   \label{eig_sweep}
 \end{figure}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.5\textwidth]{./Anmg/d_s8_5_5}
+  \includegraphics[width=0.5\textwidth]{./Anmg/red_eig_dsa}
   \caption{Eigenspectrum of the DSA preconditioned system}
   \label{eig_dsa}
 \end{figure}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.5\textwidth]{./Anmg/p_s8_5_5}
+  \includegraphics[width=0.5\textwidth]{./Anmg/red_eig_anmg}
   \caption{Eigenspectrum of the ANMG (DSA variant) preconditioned system}
   \label{eig_anmg}
 \end{figure}
